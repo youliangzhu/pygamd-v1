@@ -1,0 +1,42 @@
+import gamst
+	
+mst = gamst.snapshot.read("test_angle.mst")
+app = gamst.application.dynamics(info=mst, dt=0.0, sort=False)
+
+# fn = gamst.force.dpd(info=mst, rcut=1.0)
+# fn.setParams(type_i="A", type_j="A", alpha=25.0, sigma=3.0)
+# app.add(fn)
+
+# fb = gamst.force.bond(info=mst, func='harmonic')
+# fb.setParams(bond_type = 'A-A', param=[4.0, 0.0])#(,K, R0)
+# app.add(fb)
+
+
+@cuda.jit(device=True)
+def _harmonic(cos_abc, sin_abc, param, fp):
+	k = param[0]
+	t0 = param[1]
+	dth = math.acos(cos_abc) - t0
+	f = k * dth
+	p = nb.float32(0.5) * f * dth
+	fp[0]=f
+	fp[1]=p
+
+fa = gamst.force.angle(info=mst, func='harmonic')
+fa.setParams(angle_type = 'A-A-A', param=[400.0, 90.0])#(,K, t0)
+app.add(fa)
+
+fd = gamst.force.dihedral(info=mst, func='harmonic')
+fd.setParams(dihedral_type = 'A-A-A-A', param=[4.0, 0.0])#(,K, R0)
+app.add(fd)
+
+inn = gamst.integration.gwvv(info=mst, group='all')
+app.add(inn)
+
+di = gamst.dump.data(info=mst, group='all', file='data5.log', period=500)
+app.add(di)
+
+dm = gamst.dump.mst(info=mst, group='all', properties=['force', 'virial', 'potential'], file='p.mst', period=1)
+app.add(dm)
+
+app.run(1)

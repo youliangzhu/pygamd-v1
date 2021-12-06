@@ -1,0 +1,21 @@
+import molgen
+
+np=70
+mol1=molgen.Molecule(np)#particle number
+mol1.setParticleTypes("A*60,B*10")#type
+topo="0-1";
+for i in range(1,np-1):
+	c=","+str(i)+"-"+str(i+1)
+	topo+=c
+mol1.setTopology(topo);
+mol1.setBondLength(0.75)#bond length
+mol1.setMass(1.0)#mass
+
+mol2=molgen.Molecule(1)#particle number
+mol2.setParticleTypes("C")#type
+mol2.setMass(1.0)#mass
+
+gen=molgen.Generators(40,40,40) # box size in x, y, and z direction
+gen.addMolecule(mol1,10)#molecule, the number of molecules
+gen.addMolecule(mol2,192000-10*np)#molecule, the number of molecules
+gen.outPutMST("AnBm") #file name

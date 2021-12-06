@@ -1,0 +1,9 @@
+import molgen
+
+mol=molgen.Molecule(1)
+mol.setParticleTypes("a")
+
+gen=molgen.Generators(20.0, 20.0, 20.0)
+gen.addMolecule(mol,5000)
+gen.setMinimumDistance(1.0);
+gen.outPutMST("lj")

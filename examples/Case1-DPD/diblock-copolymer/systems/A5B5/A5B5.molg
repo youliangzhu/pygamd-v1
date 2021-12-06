@@ -1,0 +1,12 @@
+import molgen
+
+mol1=molgen.Molecule(10)#particle number
+mol1.setParticleTypes("A,A,A,A,A,B,B,B,B,B")#type
+mol1.setTopology("0-1,1-2,2-3,3-4,4-5,5-6,6-7,7-8,8-9")#topology
+mol1.setBondLength(0.75)#bond length
+mol1.setMass(1.0)#mass
+
+
+gen=molgen.Generators(20,20,20) # box size in x, y, and z direction
+gen.addMolecule(mol1,2400)#molecule, the number of molecules
+gen.outPutMST("A5B5") #file name

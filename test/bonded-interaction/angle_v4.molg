@@ -1,0 +1,17 @@
+#!/usr/bin/python
+import sys
+sys.path.append('/opt/galamost4/lib')
+import molgen
+
+mol1=molgen.Molecule(4)#number
+mol1.setParticleTypes("A,A,A,A")#type
+mol1.setTopology("0-1,1-2,2-3")#topology
+mol1.setBondLength(0.75)#bond lengh
+mol1.setAngleDegree("A", "A", "A", 120)#bond lengh
+mol1.setDihedralDegree("A", "A", "A", "A", 120)#bond lengh
+mol1.setMass(1.0)#mass
+
+
+gen=molgen.Generators(40,40,40)
+gen.addMolecule(mol1,10)#molecule,number
+gen.outPutXml("test_angle")

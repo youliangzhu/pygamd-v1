@@ -1,0 +1,72 @@
+#!/usr/bin/python
+import sys
+sys.path.append('/home/ylzhu/la-test/work/lib')
+import galamost
+from optparse import OptionParser
+ 
+global _options
+parser = OptionParser()
+parser.add_option('--gpu', dest='gpu',help='GPU on which to execute')
+(_options, args) = parser.parse_args()
+ 
+filename = 'test_angle.xml'
+randomnum = 12340
+build_method = galamost.XmlReader(filename)
+perform_config = galamost.PerformConfig( int(_options.gpu))
+all_info = galamost.AllInfo(build_method,perform_config)
+ 
+dt = 0.0
+app = galamost.Application(all_info, dt)
+
+# neighbor_list = galamost.NeighborList(all_info, 1.0 ,0.05)#(,rcut,rbuffer)
+# dpd = galamost.DpdForce(all_info, neighbor_list, 1.0, randomnum)#(,,rcut,seed)
+# dpd.setParams("A", "A", 25.0, 3.0)#(type,type,alpha,sigma)
+# app.add(dpd)
+ 
+# bondforce = galamost.BondForceHarmonic(all_info)
+# bondforce.setParams('A-A', 4.0, 0.0)#(,K0, R0)
+# app.add(bondforce)
+
+# angleforce = galamost.AngleForceHarmonic(all_info)
+# angleforce.setParams('A-A-A', 400.0, 90.0)#(,K0, R0)
+# app.add(angleforce)
+
+dihedralforce = galamost.DihedralForceHarmonic(all_info)
+dihedralforce.setParams('A-A-A-A', 4.0, 0.0)#(,K0, R0)
+app.add(dihedralforce)
+
+group = galamost.ParticleSet(all_info, "all")
+comp_info = galamost.ComputeInfo(all_info, group)
+
+Gwvv = galamost.DpdGwvv(all_info, group)
+app.add(Gwvv)
+
+#sort_method = galamost.Sort(all_info)
+#sort_method.setPeriod(80)
+#app.add(sort_method) 
+
+DInfo = galamost.DumpInfo(all_info, comp_info, 'data.log')
+DInfo.setPeriod(200)
+app.add(DInfo)
+ 
+mol2 = galamost.Mol2Dump(all_info, 'particles')
+mol2.setPeriod(0)# (period)
+mol2.deleteBoundaryBond(True)# (period)
+app.add(mol2)
+ 
+dcd = galamost.DcdDump(all_info, 'particles',True)
+dcd.setPeriod(10000)# (period)
+dcd.unpbc(True)
+app.add(dcd)
+ 
+xml = galamost.XmlDump(all_info, 'particles')
+xml.setPeriod(5000)# (period)
+xml.setOutputBond(True)
+xml.setOutputForce(True)
+xml.setOutputVirial(True)
+xml.setOutputPotential(True)
+app.add(xml)
+ 
+#ready ro run
+app.run( 1)#(How many steps to run)
+# neighbor_list.printStats()

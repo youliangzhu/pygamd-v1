@@ -1,0 +1,16 @@
+import molgen
+
+mol1=molgen.Molecule(12)#number
+mol1.setParticleTypes("A,A,B,B,A,A,B,B,A,A,B,B")#type
+mol1.setTopology("0-1,1-2,2-3,1-4,4-5,5-6,6-7,5-8,8-9,9-10,10-11")#topology
+mol1.setBondLength(0.75)#bond lengh
+mol1.setMass(1.0)#mass
+
+mol2=molgen.Molecule(1)#number
+mol2.setParticleTypes("S")#type
+mol2.setMass(1.0)#mass
+
+gen=molgen.Generators(40,40,40)
+gen.addMolecule(mol1,1280)#molecule,number
+gen.addMolecule(mol2,176640)#molecule,number
+gen.outPutMST("comblike")

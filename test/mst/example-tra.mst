@@ -1,0 +1,108 @@
+mst_version 1.0  #CopyRight You-Liang Zhu, Zhong-Yuan Lu
+invariant_data
+	num_particles
+		16
+	dimension
+		3
+	box
+		10.000000	10.000000	10.000000
+	bond
+		b	0	1
+		b	1	2
+	angle
+		a	0	1	2
+	type
+		a
+		a
+		a
+		a
+		a
+		a
+		a
+		a
+		a
+		a
+		a
+		a
+		a
+		a
+		a
+		a		
+variant_data
+frame	0
+	timestep
+		0
+	position
+		0	0	0
+		1	0	0
+		2	0	0
+		3	0	0
+		0	1	0
+		1	1	0
+		2	1	0
+		3	1	0
+		0	2	0
+		1	2	0
+		2	2	0
+		3	2	0
+		0	3	0
+		1	3	0
+		2	3	0
+		3	3	0
+	image
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+frame_end
+frame	1
+	timestep
+		1000
+	position
+		0	0	0
+		1	0	0
+		2	0	0
+		3	0	0
+		0	0	1
+		1	0	1
+		2	0	1
+		3	0	1
+		0	0	2
+		1	0	2
+		2	0	2
+		3	0	2
+		0	0	3
+		1	0	3
+		2	0	3
+		3	0 	3
+	image
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+		0	0	0
+frame_end
+	

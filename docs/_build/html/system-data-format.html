@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data format &mdash; PYGAMD v1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data input" href="system-data-input.html" />
+    <link rel="prev" title="System info" href="system.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PYGAMD
+          </a>
+              <div class="version">
+                v1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">General introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units.html">Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Methods and modules</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="system.html">System info</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Data format</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mst-format">MST format</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#snapshot-file">Snapshot file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#trajectory-file">Trajectory file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="system-data-input.html">Data input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-data-output.html">Data output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-group.html">Group</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Plug-Ins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="molgen.html">molgen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataTackle.html">galaTackle</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Announcement</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PYGAMD</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="system.html">System info</a> &raquo;</li>
+      <li>Data format</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/system-data-format.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-format">
+<h1>Data format<a class="headerlink" href="#data-format" title="Permalink to this headline"></a></h1>
+<section id="mst-format">
+<span id="id1"></span><h2>MST format<a class="headerlink" href="#mst-format" title="Permalink to this headline"></a></h2>
+<p>We take MST format files as the standard input and output configuration files.
+The MST files can contain coordinates, types, masses, velocities, bond connections, angles, dihedrals and so on.
+Here is an example of the MST file of a single molecule system. The molecule consisting of four particles is depicted in following picture.</p>
+<a class="reference internal image-reference" href="_images/mst-config.png"><img alt="Principle of dihedral torsion" class="align-center" src="_images/mst-config.png" style="width: 250px;" /></a>
+<p>The data in a line of MST file corresponds to a particle and all particles are given in sequence.
+For example, the coordinate of a particle in x, y, and z directions is written in a line and three columns in MST files.
+However, this rule does not include topological relevant information, including bonds, angles and dihedrals.</p>
+<section id="snapshot-file">
+<h3>Snapshot file<a class="headerlink" href="#snapshot-file" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><p>An example of MST snapshot file with particles coordinates, velocities, types, masses …</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mst_version</span> <span class="mf">1.0</span>
+        <span class="n">num_particles</span>
+                <span class="mi">4</span>
+        <span class="n">timestep</span>
+                <span class="mi">0</span>
+        <span class="n">dimension</span>
+                <span class="mi">3</span>
+        <span class="n">box</span>
+                <span class="mf">10.0</span>    <span class="mf">10.0</span>    <span class="mf">10.0</span>
+        <span class="n">position</span>
+                <span class="o">-</span><span class="mi">1</span>  <span class="mi">2</span> <span class="o">-</span><span class="mi">1</span>
+                <span class="o">-</span><span class="mi">2</span>  <span class="mi">3</span>  <span class="mi">0</span>
+                <span class="o">-</span><span class="mi">1</span>  <span class="mi">4</span>  <span class="mi">1</span>
+                <span class="o">-</span><span class="mi">1</span>  <span class="mi">5</span>  <span class="mi">2</span>
+        <span class="n">velocity</span>
+                <span class="mi">1</span>  <span class="mi">2</span>  <span class="mi">3</span>
+                <span class="mi">1</span>  <span class="mi">0</span>  <span class="mi">0</span>
+                <span class="mi">3</span> <span class="o">-</span><span class="mi">2</span>  <span class="mi">1</span>
+                <span class="mi">0</span>  <span class="mi">1</span>  <span class="mi">1</span>
+        <span class="nb">type</span>
+                <span class="n">A</span>
+                <span class="n">B</span>
+                <span class="n">B</span>
+                <span class="n">A</span>
+        <span class="n">mass</span>
+                <span class="mf">1.0</span>
+                <span class="mf">2.1</span>
+                <span class="mf">1.0</span>
+                <span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>The file could include more information, such as bond, angle, dihedral …</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="c1"># bond with &#39;bond type (string), particle index i (int), j (int)&#39;.</span>
+            <span class="n">bond</span>
+                    <span class="n">polymer</span> <span class="mi">0</span> <span class="mi">1</span>
+                    <span class="n">polymer</span> <span class="mi">1</span> <span class="mi">2</span>
+                    <span class="n">polymer</span> <span class="mi">2</span> <span class="mi">3</span>
+
+ <span class="c1"># angle with &#39;angle type (string), particle index i (int), j (int), k (int)&#39;.</span>
+            <span class="n">angle</span>
+                    <span class="n">theta</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span>
+                    <span class="n">theta</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+
+ <span class="c1"># dihedral with &#39;dihedral type (string), particle index i (int), j (int), k (int), l (int)&#39;.</span>
+            <span class="n">dihedral</span>
+                    <span class="n">phi</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+
+ <span class="c1"># virial site with &#39;vsite type (string), particle index i (int), j (int), k (int), l (int)&#39;.</span>
+            <span class="n">vsite</span>
+                    <span class="n">v</span> <span class="mi">3</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span>
+
+ <span class="c1"># the diameter of particles with float type.</span>
+            <span class="n">diameter</span>
+                    <span class="mf">1.0</span>
+                    <span class="mf">1.0</span>
+                    <span class="mf">1.0</span>
+                    <span class="mf">1.0</span>
+
+ <span class="c1"># the charge of particles with float type.</span>
+            <span class="n">charge</span>
+                     <span class="mf">1.333</span>
+                     <span class="mf">1.333</span>
+                    <span class="o">-</span><span class="mf">1.333</span>
+                    <span class="o">-</span><span class="mf">1.333</span>
+
+ <span class="c1"># the body index of particles with int type, -1 for non-body particles.</span>
+            <span class="n">body</span>
+                    <span class="o">-</span><span class="mi">1</span>
+                    <span class="o">-</span><span class="mi">1</span>
+                     <span class="mi">0</span>
+                     <span class="mi">0</span>
+
+ <span class="c1"># the image in x, y, and z directions of particles with int type.</span>
+            <span class="n">image</span>
+                    <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+                    <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+                    <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+                    <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
+
+ <span class="c1"># the velocity in x, y, and z directions of particles with float type.</span>
+            <span class="n">velocity</span>
+                     <span class="mf">3.768</span>     <span class="o">-</span><span class="mf">2.595</span>    <span class="o">-</span><span class="mf">1.874</span>
+                    <span class="o">-</span><span class="mf">3.988</span>     <span class="o">-</span><span class="mf">1.148</span>     <span class="mf">2.800</span>
+                     <span class="mf">1.570</span>      <span class="mf">1.015</span>    <span class="o">-</span><span class="mf">3.167</span>
+                     <span class="mf">2.441</span>     <span class="o">-</span><span class="mf">1.859</span>    <span class="o">-</span><span class="mf">1.039</span>
+
+
+ <span class="c1"># the orientation vector (x, y, z) of particles with float type.</span>
+            <span class="n">orientation</span>
+                    <span class="o">-</span><span class="mf">0.922</span>     <span class="mf">0.085</span>     <span class="mf">0.376</span>
+                    <span class="o">-</span><span class="mf">0.411</span>    <span class="o">-</span><span class="mf">0.637</span>    <span class="o">-</span><span class="mf">0.651</span>
+                     <span class="mf">0.293</span>     <span class="mf">0.892</span>    <span class="o">-</span><span class="mf">0.342</span>
+                    <span class="o">-</span><span class="mf">0.223</span>     <span class="mf">0.084</span>     <span class="mf">0.970</span>
+
+ <span class="c1"># the quaternion vector (x, y, z, w) of particles with float type.</span>
+            <span class="n">quaternion</span>
+                     <span class="mf">0.369</span>   <span class="mf">0.817</span>  <span class="o">-</span><span class="mf">0.143</span>   <span class="mf">0.418</span>
+                    <span class="o">-</span><span class="mf">0.516</span>  <span class="o">-</span><span class="mf">0.552</span>   <span class="mf">0.653</span>   <span class="mf">0.024</span>
+                    <span class="o">-</span><span class="mf">0.521</span>  <span class="o">-</span><span class="mf">0.002</span>   <span class="mf">0.131</span>   <span class="mf">0.843</span>
+                    <span class="o">-</span><span class="mf">0.640</span>   <span class="mf">0.159</span>  <span class="o">-</span><span class="mf">0.048</span>  <span class="o">-</span><span class="mf">0.749</span>
+
+ <span class="c1"># the angular velocity of rotation in x, y, and z directions of particles with float type.</span>
+            <span class="n">rotation</span>
+                    <span class="o">-</span><span class="mf">0.640</span>    <span class="mf">0.571</span>   <span class="o">-</span><span class="mf">0.512</span>
+                    <span class="o">-</span><span class="mf">0.744</span>    <span class="mf">0.346</span>    <span class="mf">0.569</span>
+                     <span class="mf">0.620</span>   <span class="o">-</span><span class="mf">0.086</span>    <span class="mf">0.779</span>
+                    <span class="o">-</span><span class="mf">0.542</span>    <span class="mf">0.319</span>   <span class="o">-</span><span class="mf">0.776</span>
+
+<span class="c1"># the moment of inertia in x, y, and z directions of particles with float type.</span>
+            <span class="n">inert</span>
+                    <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">3.0</span>
+                    <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">3.0</span>
+                    <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">3.0</span>
+                    <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">3.0</span>
+
+<span class="c1"># the rotated angles of in x, y, and z directions of particles with float type.</span>
+            <span class="n">rotangle</span>
+                    <span class="mf">9.478</span>    <span class="o">-</span><span class="mf">1.677</span>    <span class="mf">8.239</span>
+                    <span class="mf">8.908</span>    <span class="o">-</span><span class="mf">1.214</span>    <span class="mf">8.086</span>
+                    <span class="mf">9.011</span>    <span class="o">-</span><span class="mf">0.653</span>    <span class="mf">7.600</span>
+                    <span class="mf">8.993</span>    <span class="o">-</span><span class="mf">0.488</span>    <span class="mf">8.331</span>
+
+<span class="c1"># the initiator indication of particles with int type, 1 for initiator.</span>
+            <span class="n">init</span>
+                    <span class="mi">0</span>
+                    <span class="mi">1</span>
+                    <span class="mi">0</span>
+                    <span class="mi">1</span>
+
+<span class="c1"># the crosslinking number of particles with int type, 0 for reactable monomer.</span>
+            <span class="n">cris</span>
+                    <span class="mi">0</span>
+                    <span class="mi">0</span>
+                    <span class="mi">0</span>
+                    <span class="mi">0</span>
+
+<span class="c1"># the molecule index of particles with int type, -1 for free particles.</span>
+            <span class="n">molecule</span>
+                    <span class="mi">0</span>
+                    <span class="mi">0</span>
+                    <span class="mi">1</span>
+                    <span class="mi">1</span>
+</pre></div>
+</div>
+<p>The attribute of anisotropic particles …</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># the particle patch attribute with &#39;particle type (string), patch number (int)&#39;</span>
+<span class="c1"># followd by &#39;patch type(string), patch size (float),</span>
+<span class="c1"># patch position vector in x, y, z directions (float)&#39;.</span>
+            <span class="n">patch</span>
+                    <span class="n">B</span> <span class="mi">2</span>
+                    <span class="n">p1</span> <span class="mi">60</span>  <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">1</span>
+                    <span class="n">p1</span> <span class="mi">60</span>  <span class="mi">0</span>    <span class="mi">0</span>   <span class="o">-</span><span class="mi">1</span>
+
+<span class="c1"># the patch-patch interaction parameter with &#39;patch type (string), patch type (string),</span>
+<span class="c1"># gamma_epsilon (float), alpha (float)&#39;.</span>
+            <span class="n">patch_param</span>
+                    <span class="n">p1</span> <span class="n">p1</span> <span class="mf">88.0</span> <span class="mf">0.5</span>
+
+<span class="c1"># the particle shape attribute with &#39;particle type(string), diameter a, diameter b, diameter c,</span>
+<span class="c1"># epsion a, epsion b, epsion c (float)&#39;. The a, b, c are along x, y, z directions in body frame,</span>
+<span class="c1"># respectively.</span>
+            <span class="n">asphere</span>
+                    <span class="n">A</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">3.0</span> <span class="mf">3.0</span> <span class="mf">3.0</span>
+                    <span class="n">B</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">3.0</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">0.2</span>
+
+<span class="c1"># the end of file.</span>
+    <span class="n">mst_end</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="trajectory-file">
+<h3>Trajectory file<a class="headerlink" href="#trajectory-file" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><p>A MST trajectory file could contain multiple frames. The properties in trajectory file are divied into
+two classes, i.e. invariant data and variant data. The invarant data is only output once, whereas the variant data is output every frame.</p>
+<p>An example of MST trajectory file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mst_version</span> <span class="mf">1.0</span>
+<span class="n">invariant_data</span>
+        <span class="n">num_particles</span>
+                <span class="mi">4</span>
+        <span class="n">dimension</span>
+                <span class="mi">3</span>
+        <span class="n">box</span>
+                <span class="mf">10.0</span>    <span class="mf">10.00</span>   <span class="mf">10.0</span>
+        <span class="n">bond</span>
+                <span class="n">polymer</span> <span class="mi">0</span> <span class="mi">1</span>
+                <span class="n">polymer</span> <span class="mi">1</span> <span class="mi">2</span>
+                <span class="n">polymer</span> <span class="mi">2</span> <span class="mi">3</span>
+        <span class="n">angle</span>
+                <span class="n">theta</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span>
+                <span class="n">theta</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+        <span class="n">dihedral</span>
+                <span class="n">phi</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+        <span class="nb">type</span>
+                <span class="n">A</span>
+                <span class="n">B</span>
+                <span class="n">B</span>
+                <span class="n">A</span>
+<span class="n">variant_data</span>
+<span class="n">frame</span>   <span class="mi">0</span>
+        <span class="n">timestep</span>
+                <span class="mi">0</span>
+        <span class="n">position</span>
+                <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
+                <span class="mi">1</span>       <span class="mi">0</span>       <span class="mi">0</span>
+                <span class="mi">2</span>       <span class="mi">0</span>       <span class="mi">0</span>
+                <span class="mi">3</span>       <span class="mi">0</span>       <span class="mi">0</span>
+        <span class="n">image</span>
+                <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
+                <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
+                <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
+                <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
+<span class="n">frame_end</span>
+<span class="n">frame</span>   <span class="mi">1</span>
+        <span class="n">timestep</span>
+                <span class="mi">10000</span>
+        <span class="n">position</span>
+                <span class="mi">0</span>       <span class="mi">1</span>       <span class="mi">0</span>
+                <span class="mi">1</span>       <span class="mi">1</span>       <span class="mi">0</span>
+                <span class="mi">2</span>       <span class="mi">1</span>       <span class="mi">0</span>
+                <span class="mi">3</span>       <span class="mi">1</span>       <span class="mi">0</span>
+        <span class="n">image</span>
+                <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
+                <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
+                <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
+                <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
+<span class="n">frame_end</span>
+<span class="n">frame</span>   <span class="mi">2</span>
+        <span class="n">timestep</span>
+                <span class="mi">20000</span>
+        <span class="n">position</span>
+                <span class="mi">0</span>       <span class="mi">2</span>       <span class="mi">0</span>
+                <span class="mi">1</span>       <span class="mi">2</span>       <span class="mi">0</span>
+                <span class="mi">2</span>       <span class="mi">2</span>       <span class="mi">0</span>
+                <span class="mi">3</span>       <span class="mi">2</span>       <span class="mi">0</span>
+        <span class="n">image</span>
+                <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
+                <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
+                <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
+                <span class="mi">0</span>       <span class="mi">0</span>       <span class="mi">0</span>
+<span class="n">frame_end</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="system.html" class="btn btn-neutral float-left" title="System info" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="system-data-input.html" class="btn btn-neutral float-right" title="Data input" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, You-Liang Zhu and Zhong-Yuan Lu, ylzhu@pygamd.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

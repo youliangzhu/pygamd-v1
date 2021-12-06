@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usage &mdash; PYGAMD v1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Units" href="units.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PYGAMD
+          </a>
+              <div class="version">
+                v1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">General introduction</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="units.html">Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Methods and modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Plug-Ins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="molgen.html">molgen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataTackle.html">galaTackle</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Announcement</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PYGAMD</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage">
+<h1>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h1>
+<p>With a prepared script, you could run pygamd MD engine for obtaining trajectory.</p>
+<blockquote>
+<div><p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">yourscript</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">gpu</span><span class="o">=</span><span class="mi">0</span> <span class="o">&gt;</span><span class="n">a</span><span class="o">.</span><span class="n">log</span><span class="o">&amp;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Where you could specify the GPU id (default value is 0) with the <code class="docutils literal notranslate"><span class="pre">--gpu=</span></code> option and output the screen information into <code class="docutils literal notranslate"><span class="pre">a.log</span></code> file.</p>
+<p>Here is an example of script for DPD simulation.</p>
+<p>Firstly, importing the pygamd module installed as a package of python3 and reading system information by <a class="reference internal" href="system-data-input.html#snapshot.read" title="snapshot.read"><code class="xref py py-class docutils literal notranslate"><span class="pre">snapshot.read</span></code></a> from a mst file</p>
+<blockquote>
+<div><p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygamd</span>
+<span class="n">mst</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">snapshot</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;AB.mst&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>After that, we need to build up an application by <a class="reference internal" href="application.html#application.dynamics" title="application.dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">application.dynamics</span></code></a> which will call defined and added objects.</p>
+<blockquote>
+<div><p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">dynamics</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Further, we should define objects by the classes of pygamd and pass them to the application, such as the following example: DPD force <a class="reference internal" href="module-dpd.html#force.dpd" title="force.dpd"><code class="xref py py-class docutils literal notranslate"><span class="pre">force.dpd</span></code></a>
+, NVT thermostat with GWVV algorithm <a class="reference internal" href="module-dpd.html#integration.gwvv" title="integration.gwvv"><code class="xref py py-class docutils literal notranslate"><span class="pre">integration.gwvv</span></code></a>, and th dump of system collective information <a class="reference internal" href="system-data-output.html#dump.data" title="dump.data"><code class="xref py py-class docutils literal notranslate"><span class="pre">dump.data</span></code></a>.</p>
+<blockquote>
+<div><p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fn</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">force</span><span class="o">.</span><span class="n">dpd</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">rcut</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">fn</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="n">type_i</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">type_j</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">25.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="n">fn</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="n">type_i</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">type_j</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">40.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="n">fn</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="n">type_i</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">type_j</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">25.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+
+
+<span class="n">gw</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">gwvv</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gw</span><span class="p">)</span>
+
+<span class="n">di</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">dump</span><span class="o">.</span><span class="n">data</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s1">&#39;data.log&#39;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">di</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Finally, running the simulation with the number of time steps.</p>
+<blockquote>
+<div><p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="units.html" class="btn btn-neutral float-right" title="Units" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, You-Liang Zhu and Zhong-Yuan Lu, ylzhu@pygamd.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
