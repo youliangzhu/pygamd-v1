@@ -306,6 +306,11 @@ class Molecule
 			m_testnum = testnum;
 			m_set_testnum=true;
 			}
+			
+        void setIncludeItselfInAngle()
+			{
+			m_include_itself_in_angle=true;
+			}
         void genName();
 		unsigned int cellid(int i, int j, int k);	
 		void readData(const std::string& fname);
@@ -414,6 +419,7 @@ class Molecule
 		std::string m_topology_str;
 		vec m_eb_spv;
 		unsigned int nwarning_delt;
+		bool m_include_itself_in_angle;
 		};
 		
 

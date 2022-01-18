@@ -248,18 +248,18 @@ void MolInfo::buildMol()
 	float Ly = m_box.ly;
 	float Lz = m_box.lz;
 
-	float LxINV = 0.0;      
-	float LyINV = 0.0; 
-	float LzINV = 0.0;
+	float Lxinv = 0.0;      
+	float Lyinv = 0.0; 
+	float Lzinv = 0.0;
 
 	if(Lx > 0.0)
-		LxINV = 1.0/Lx;
+		Lxinv = 1.0/Lx;
 	
 	if(Ly > 0.0)
-		LyINV = 1.0/Ly;
+		Lyinv = 1.0/Ly;
 	
 	if(Lz > 0.0)
-		LzINV = 1.0/Lz;
+		Lzinv = 1.0/Lz;
 	
 	m_mol_id_particle.resize(m_N);
 	m_mol_stat_end.clear();
@@ -308,9 +308,9 @@ void MolInfo::buildMol()
 				float dx = m_pos[nextTag].x - posi.x;
 				float dy = m_pos[nextTag].y - posi.y;
 				float dz = m_pos[nextTag].z - posi.z;
-				dx -= Lx*rint(dx*LxINV);
-				dy -= Ly*rint(dy*LyINV);
-				dz -= Lz*rint(dz*LzINV);
+				dx -= Lx*rint(dx*Lxinv);
+				dy -= Ly*rint(dy*Lyinv);
+				dz -= Lz*rint(dz*Lzinv);
 				m_pos0[nextTag].x = posi.x + dx;
 				m_pos0[nextTag].y = posi.y + dy;
 				m_pos0[nextTag].z = posi.z + dz;
@@ -372,9 +372,9 @@ void MolInfo::buildMol()
 								float dx = m_pos[nextTag].x - posi.x;
 								float dy = m_pos[nextTag].y - posi.y;
 								float dz = m_pos[nextTag].z - posi.z;
-								dx -= Lx*rint(dx*LxINV);
-								dy -= Ly*rint(dy*LyINV);
-								dz -= Lz*rint(dz*LzINV);
+								dx -= Lx*rint(dx*Lxinv);
+								dy -= Ly*rint(dy*Lyinv);
+								dz -= Lz*rint(dz*Lzinv);
 								m_pos0[nextTag].x = posi.x + dx;
 								m_pos0[nextTag].y = posi.y + dy;
 								m_pos0[nextTag].z = posi.z + dz;
@@ -443,9 +443,9 @@ void MolInfo::buildMol()
 							float dx = m_pos[idx].x - posi.x;
 							float dy = m_pos[idx].y - posi.y;
 							float dz = m_pos[idx].z - posi.z;
-							dx -= Lx*rint(dx*LxINV);
-							dy -= Ly*rint(dy*LyINV);
-							dz -= Lz*rint(dz*LzINV);
+							dx -= Lx*rint(dx*Lxinv);
+							dy -= Ly*rint(dy*Lyinv);
+							dz -= Lz*rint(dz*Lzinv);
 							m_pos0[idx].x = posi.x + dx;
 							m_pos0[idx].y = posi.y + dy;
 							m_pos0[idx].z = posi.z + dz;					
@@ -500,9 +500,9 @@ void MolInfo::buildMol()
 										float dx = m_pos[nextTag].x - posi.x;
 										float dy = m_pos[nextTag].y - posi.y;
 										float dz = m_pos[nextTag].z - posi.z;
-										dx -= Lx*rint(dx*LxINV);
-										dy -= Ly*rint(dy*LyINV);
-										dz -= Lz*rint(dz*LzINV);
+										dx -= Lx*rint(dx*Lxinv);
+										dy -= Ly*rint(dy*Lyinv);
+										dz -= Lz*rint(dz*Lzinv);
 										m_pos0[nextTag].x = posi.x + dx;
 										m_pos0[nextTag].y = posi.y + dy;
 										m_pos0[nextTag].z = posi.z + dz;
@@ -632,10 +632,16 @@ void MolInfo::updatePosition0()
 	float Ly = m_box.ly;
 	float Lz = m_box.lz;
 
-	float LxINV = 1.0/Lx;     
-	float LyINV = 1.0/Ly;
-	float LzINV = 1.0/Lz;
-
+	double Lxinv = 0.0;
+	double Lyinv = 0.0;
+	double Lzinv = 0.0;
+	
+	if(Lx!=0.0)
+		Lxinv = 1.0/Lx;
+	if(Ly!=0.0)
+		Lyinv = 1.0/Ly;
+	if(Lz!=0.0)
+		Lzinv = 1.0/Lz;
 	std::vector<unsigned int> molecule = m_build.getMolecule();
 	if(molecule.size()==m_N)
 		{
@@ -675,9 +681,9 @@ void MolInfo::updatePosition0()
 				float dx = m_pos[nextTag].x - posi.x;
 				float dy = m_pos[nextTag].y - posi.y;
 				float dz = m_pos[nextTag].z - posi.z;
-				dx -= Lx*rint(dx*LxINV);
-				dy -= Ly*rint(dy*LyINV);
-				dz -= Lz*rint(dz*LzINV);
+				dx -= Lx*rint(dx*Lxinv);
+				dy -= Ly*rint(dy*Lyinv);
+				dz -= Lz*rint(dz*Lzinv);
 				m_pos0[nextTag].x = posi.x + dx;
 				m_pos0[nextTag].y = posi.y + dy;
 				m_pos0[nextTag].z = posi.z + dz;
@@ -736,9 +742,9 @@ void MolInfo::updatePosition0()
 								float dx = m_pos[nextTag].x - posi.x;
 								float dy = m_pos[nextTag].y - posi.y;
 								float dz = m_pos[nextTag].z - posi.z;
-								dx -= Lx*rint(dx*LxINV);
-								dy -= Ly*rint(dy*LyINV);
-								dz -= Lz*rint(dz*LzINV);
+								dx -= Lx*rint(dx*Lxinv);
+								dy -= Ly*rint(dy*Lyinv);
+								dz -= Lz*rint(dz*Lzinv);
 								m_pos0[nextTag].x = posi.x + dx;
 								m_pos0[nextTag].y = posi.y + dy;
 								m_pos0[nextTag].z = posi.z + dz;
@@ -801,9 +807,9 @@ void MolInfo::updatePosition0()
 							float dx = m_pos[idx].x - posi.x;
 							float dy = m_pos[idx].y - posi.y;
 							float dz = m_pos[idx].z - posi.z;
-							dx -= Lx*rint(dx*LxINV);
-							dy -= Ly*rint(dy*LyINV);
-							dz -= Lz*rint(dz*LzINV);
+							dx -= Lx*rint(dx*Lxinv);
+							dy -= Ly*rint(dy*Lyinv);
+							dz -= Lz*rint(dz*Lzinv);
 							m_pos0[idx].x = posi.x + dx;
 							m_pos0[idx].y = posi.y + dy;
 							m_pos0[idx].z = posi.z + dz;					
@@ -854,9 +860,9 @@ void MolInfo::updatePosition0()
 										float dx = m_pos[nextTag].x - posi.x;
 										float dy = m_pos[nextTag].y - posi.y;
 										float dz = m_pos[nextTag].z - posi.z;
-										dx -= Lx*rint(dx*LxINV);
-										dy -= Ly*rint(dy*LyINV);
-										dz -= Lz*rint(dz*LzINV);
+										dx -= Lx*rint(dx*Lxinv);
+										dy -= Ly*rint(dy*Lyinv);
+										dz -= Lz*rint(dz*Lzinv);
 										m_pos0[nextTag].x = posi.x + dx;
 										m_pos0[nextTag].y = posi.y + dy;
 										m_pos0[nextTag].z = posi.z + dz;
@@ -896,7 +902,6 @@ void MolInfo::updatePosition0()
 			}
 		}		
 	}
-
 unsigned int MolInfo::switchNameToIndex(const std::string &name)
     {
     for (unsigned int i = 0; i < m_mol_type_exchmap.size(); i++)
@@ -908,7 +913,7 @@ unsigned int MolInfo::switchNameToIndex(const std::string &name)
  
     return m_mol_type_exchmap.size()-1;
     }
-	
+
 unsigned int MolInfo::cellid(int i, int j, int k)
 	{
 	i = (i + (int)m_dim.x)%(int)m_dim.x;

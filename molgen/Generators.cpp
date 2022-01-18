@@ -368,7 +368,7 @@ void Generators::generate()
 			updatePos(pos, type, ori, quat, body, molecule);
 			indicate += 1;
 			if(indicate%segm==0)
-				cout<<"completion "<<indicate*100/m_Num_mol<< "%"<<endl;
+				cout<<"complete "<<indicate*100/m_Num_mol<< "%"<<endl;
 			}
 		}
 	m_generated=true;

@@ -245,7 +245,8 @@ void Molecule::allocateData(unsigned int size)
 	m_check_distance = false;
 	m_set_sphere = false;
 	m_set_cylinder = false;
-	m_set_body_evacuation = false;	
+	m_set_body_evacuation = false;
+	m_include_itself_in_angle = false;
 	m_testnum =1;
 	m_NBtype=50;
 	m_shift_Lx=0.0;
@@ -321,7 +322,7 @@ void Molecule::readData(const std::string& fname)
 	for(unsigned int i=0; i<charge.size(); i++)
 		setCharge(i,charge[i]);
 	for(unsigned int i=0; i<diameter.size(); i++)
-		setDiameter(i,diameter[i]);	
+		setDiameter(i,diameter[i]);
 	for(unsigned int i=0; i<init.size(); i++)
 		setInit(i,init[i]);	
 	for(unsigned int i=0; i<cris.size(); i++)
@@ -372,7 +373,7 @@ void Molecule::readData(const std::string& fname)
 	for(unsigned int i=0; i<vsites.size(); i++)
 		{
 		m_vsite.push_back(Dihedral(vsites[i].type, vsites[i].a, vsites[i].b, vsites[i].c, vsites[i].d));
-		}		 
+		}
 	}		
 void Molecule::setParticleTypes(std::string type_str)
 	{
@@ -440,7 +441,7 @@ void Molecule::initType()
 	AngleRadian.resize(m_Ntypes*m_Ntypes*m_Ntypes, -1.0);	
 	DihedralRadian.resize(m_Ntypes*m_Ntypes*m_Ntypes*m_Ntypes);
 	}
-	
+
 void Molecule::setTopology(std::string topology_str)
 	{	
 	m_topology_str = topology_str;
@@ -2471,6 +2472,8 @@ void Molecule::generate()
 							m_ori_vec[taga].x = posa.x - posb.x;
 							m_ori_vec[taga].y = posa.y - posb.y;
 							m_ori_vec[taga].z = posa.z - posb.z;
+							if(m_mol_Lz==0.0)
+								m_ori_vec[taga].z = 0.0;
 							}
 
 						if(m_orientation[bondb]==1)
@@ -2478,6 +2481,8 @@ void Molecule::generate()
 							m_ori_vec[bondb].x = posa.x - posb.x;
 							m_ori_vec[bondb].y = posa.y - posb.y;
 							m_ori_vec[bondb].z = posa.z - posb.z;
+							if(m_mol_Lz==0.0)
+								m_ori_vec[taga].z = 0.0;
 							}
 
 						if(m_quaternion[taga]==1)
@@ -2587,6 +2592,8 @@ void Molecule::generate()
 							m_ori_vec[taga].x = (R2S() - 0.5);
 							m_ori_vec[taga].y = (R2S() - 0.5);
 							m_ori_vec[taga].z = (R2S() - 0.5);
+							if(m_mol_Lz==0.0)
+								m_ori_vec[taga].z = 0.0;
 							}	
 							
 						if(m_quaternion[taga]==1)
@@ -2754,6 +2761,8 @@ void Molecule::generateAngle()
 				unsigned int tag = m_bondtable[i*m_bondtableHight + j];
 				tempb.push_back(tag); 
 				}
+			if (m_include_itself_in_angle)
+				tempb.push_back(i);
 			if(tempb.size()>1)
 				{
 				for(unsigned int ii =0; ii<tempb.size()-1;ii++)

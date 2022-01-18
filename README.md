@@ -21,7 +21,7 @@ dataTackle:
 
     sh compile.sh
 
-### Requrements:
+### Requirements:
 1. Python3 including numba, numpy, cupy, and pybind11 packages
 2. NVIDIA CUDA Toolkit >= 7.0
 
@@ -104,7 +104,7 @@ app.run(500000)
 ## Contributing
 
 We welcome contributions to PYGAMD. Whether it is reporting a bug, starting a discussion by asking a question, or proposing/requesting a new feature, 
-please go by creating a new issue here (https://github.com/youliangzhu/pygamd/issues/) or writing an email to the author Dr. You-Liang Zhu (Email: ylzhu@pygamd.com) 
+please go by creating a new issue here (https://github.com/youliangzhu/pygamd-v1/issues/) or writing an email to the author Dr. You-Liang Zhu (Email: ylzhu@pygamd.com) 
 so that we can talk about it. Please note that this project is released with a Contributor Code of Conduct. 
 By participating in this project you agree to abide by its terms.
 
