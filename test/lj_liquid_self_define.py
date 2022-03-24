@@ -1,3 +1,4 @@
+# the script for the simulation of Lennard-Jones liquids
 import pygamd
 from numba import cuda
 import numba as nb
@@ -5,6 +6,7 @@ import numba as nb
 mst = pygamd.snapshot.read("lj.mst")
 app = pygamd.application.dynamics(info=mst, dt=0.001)
 
+# user-defined potential form
 @cuda.jit(device=True)
 def lj(rsq, param, fp):
 	epsilon = param[0]
@@ -20,14 +22,19 @@ def lj(rsq, param, fp):
 		fp[0]=f
 		fp[1]=p	
 
+# non-bonded interactions
 fn = pygamd.force.nonbonded(info=mst, rcut=3.0, func=lj)
 fn.setParams(type_i="a", type_j="a", param=[1.0, 1.0, 1.0, 3.0])
 app.add(fn)
 
+# integration
 inn = pygamd.integration.nvt(info=mst, group=['a'], method="nh", tau=1.0, temperature=1.0)
 app.add(inn)
 
+# the record of temperature, pressure and momentum
 di = pygamd.dump.data(info=mst, group=['a'], file='data.log', period=100)
 app.add(di)
 
+# the number of timesteps
 app.run(1000)
+

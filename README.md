@@ -1,6 +1,6 @@
 # PYGAMD: Python GPU-Accelerated Molecular Dynamics Software
 ## Version 1
-## Copyright: You-Liang Zhu and Zhong-Yuan Lu
+## Copyright: Lu group
 
 Molecular dynamics is an essential tool in the scientific research on colloids, polymers, biomolecules, and etc. 
 `PYGAMD` is a platform based on Python3 Numba where users can define their models and methods by themselves. 
@@ -28,24 +28,14 @@ dataTackle:
 ## Citation
 
 ```
-To cite PYGAMD (employing many algorithms of GALAMOST) in publications use:
+To cite PYGAMD in publications use:
  
-Y.-L. Zhu, H. Liu, Z.-W. Li, H.-J. Qian, G. Milano, Z.-Y. Lu, J. Comput. Chem., 34, 2197, 2013.
-
-A BibTeX entry for LaTeX users is
-@ARTICLE{Zhu2013,
-   author = {Y.-L. Zhu and H. Liu and Z.-W. Li and H.-J. Qian and G. Milano and Z.-Y. Lu},
-   title = {GALAMOST: GPU-accelerated large-scale molecular simulation toolkit},
-   journal = {J. Comput. Chem.},
-   volume = {34},
-   pages = {2197},
-   year = {2013}
-}
+Thanks to Zhongyuan Lu group for providing PYGAMD software in our research work.
 ``` 
 
 
 ## Documentation
-
+Official website: https://pygamd.com
 Online manual could be read here: https://pygamd-v1.readthedocs.io/en/latest/.
 Tutorials written by jupyter notebook are given here: https://nbviewer.jupyter.org/github/youliangzhu/pygamd-v1/tree/main/tutorials/index.ipynb.
 More examples could be found here: https://github.com/youliangzhu/pygamd-v1/tree/main/examples.
