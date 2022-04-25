@@ -32,6 +32,7 @@ CORRESPONDENCE
 
 from pygamd import forces
 from pygamd import plist
+import math
 
 class nonbonded:
 	def __init__(self, info, rcut, func, exclusion=None):
@@ -90,7 +91,61 @@ class dpd:
 				idx = i * self.info.ntypes + j
 				if not self.check[idx]:
 					raise RuntimeError('Error! the parameters between type ',self.info.typemap[i],' and type ',self.info.typemap[j],' have not been set!')
-		
+
+class slj:
+	def __init__(self, info, rcut=1.0):
+		# check d_diameter    
+		if info.d_diameter is None:
+			raise RuntimeError('Error! particle diameters have not been set!') 
+		max_diameter = [0.0, 0.0]
+		for i in range(info.npa):
+			di = info.diameter[i]
+			if di <= 0.0:
+				RuntimeError('Error! particle diameter equal to or smaller then 0.0, particle id ', i,' with the diameter ', di) 
+			if di>max_diameter[0]:
+				max_diameter[1] = max_diameter[0]
+				max_diameter[0] = di
+			elif di>max_diameter[1]:
+				max_diameter[1] = di
+		max_dia = (max_diameter[0] + max_diameter[1])/2.0
+		nl = info.find_plist(rcut+max_dia, None)
+		if nl is None:
+			nl = plist.neighbor(info, rcut+max_dia, None)
+			info.plist.append(nl)
+		self.info = info
+		self.data = forces.pair.slj(info, nl)
+		self.name = "force"
+		self.subname = "slj"
+		self.rcut = rcut
+		self.check = [False for i in range(self.info.ntypes*self.info.ntypes)]
+		self.first_compute = True
+
+	def setParams(self, type_i, type_j, params):
+		if len(params)!=3 and len(params)!=4:
+			RuntimeError('Error! the number of parameters should be 3 or 4, not ', len(params))
+		epsilon = params[0]
+		sigma = params[1]
+		alpha = params[2]
+		rcut = self.rcut
+		if len(params) == 4:
+			rcut = params[3]
+		lj1 = 4.0 * epsilon * math.pow(sigma, int(12))
+		lj2 = alpha * 4.0 * epsilon * math.pow(sigma, int(6))		
+		self.data.setParams(type_i, type_j, [lj1, lj2, sigma, rcut], self.check)
+
+	def compute(self, timestep):
+		if self.first_compute:
+			self.check_parameters()			
+			self.first_compute = False
+		self.data.calculate(timestep)
+
+	def check_parameters(self):
+		for i in range(self.info.ntypes):
+			for j in range(i, self.info.ntypes):
+				idx = i * self.info.ntypes + j
+				if not self.check[idx]:
+					raise RuntimeError('Error! the parameters between type ', self.info.typemap[i], ' and type ', self.info.typemap[j], ' have not been set!')
+
 class bond:
 	def __init__(self, info, func):	
 		self.info = info
@@ -163,9 +218,4 @@ class dihedral:
 	def check_parameters(self):
 		for i in range(self.info.dihedral.ndtypes):
 			if not self.check[i]:
-				raise RuntimeError('Error! the parameters for dihedral type ',self.info.dihedral.typemap[i],' have not been set!')		
-				
-				
-				
-				
-		
+				raise RuntimeError('Error! the parameters for dihedral type ',self.info.dihedral.typemap[i],' have not been set!')

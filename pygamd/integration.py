@@ -51,4 +51,11 @@ class gwvv:
 		self.name="integration"
 		self.subname="gwvv"
 
-	
+class bd:
+	def __init__(self, info, group, temp):
+		self.data=integrations.bd.bd(info, group, temp)
+		self.name="integration"
+		self.subname="bd"
+        
+	def setParams(self, typ, gama):
+		self.data.setParams(typ, gama)	

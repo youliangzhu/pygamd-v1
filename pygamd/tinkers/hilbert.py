@@ -78,14 +78,14 @@ def sort6(output, input):
 	output[7] = input[7]
 
 def sort8(output, input):
-    output[0] = input[6]
-    output[1] = input[5]
-    output[2] = input[2]
-    output[3] = input[1]
-    output[4] = input[0]
-    output[5] = input[3]
-    output[6] = input[4]
-    output[7] = input[7]
+	output[0] = input[6]
+	output[1] = input[5]
+	output[2] = input[2]
+	output[3] = input[1]
+	output[4] = input[0]
+	output[5] = input[3]
+	output[6] = input[4]
+	output[7] = input[7]
 
 sort={0: sort1, 1: sort2, 2: sort2, 3: sort4, 4: sort4, 5: sort6, 6: sort6, 7: sort8}
 step = np.asarray([[0, 0, 0], [0, 0, 1], [0, 1, 1], [0, 1, 0], [1, 1, 0], [1, 1, 1], [1, 0, 1], [1, 0, 0]])
@@ -143,7 +143,7 @@ def cu_copy_int1d(npa, array, temp):
 	if i < npa:
 		array[i] = temp[i]
 
-# sort two dimensional float array	
+# sort one dimensional float array	
 @cuda.jit("void(int32, int32[:], float32[:], float32[:])")
 def cu_sort_float1d(npa, particle_order, temp, array):
 	i = cuda.grid(1)
@@ -261,8 +261,23 @@ class sort_order:
 		
 		# sort velocity0 array
 		if self.info.d_velo is not None:
-			cu_sort_float2d[self.nblocks, self.block_size](self.info.npa, self.d_particle_order, self.d_temp_float4, self.info.d_velo)		
-			cu_copy_float2d[self.nblocks, self.block_size](self.info.npa, self.info.d_velo, self.d_temp_float4)			
+			cu_sort_float2d[self.nblocks, self.block_size](self.info.npa, self.d_particle_order, self.d_temp_float4, self.info.d_velo)
+			cu_copy_float2d[self.nblocks, self.block_size](self.info.npa, self.info.d_velo, self.d_temp_float4)
+			
+		# sort diameter array
+		if self.info.d_diameter is not None:
+			cu_sort_float1d[self.nblocks, self.block_size](self.info.npa, self.d_particle_order, self.d_temp_float, self.info.d_diameter)
+			cu_copy_float1d[self.nblocks, self.block_size](self.info.npa, self.info.d_diameter, self.d_temp_float)
+
+		# sort charge array
+		if self.info.d_charge is not None:
+			cu_sort_float1d[self.nblocks, self.block_size](self.info.npa, self.d_particle_order, self.d_temp_float, self.info.d_charge)
+			cu_copy_float1d[self.nblocks, self.block_size](self.info.npa, self.info.d_charge, self.d_temp_float)
+
+		# sort body array
+		if self.info.d_body is not None:
+			cu_sort_int1d[self.nblocks, self.block_size](self.info.npa, self.d_particle_order, self.d_temp_int, self.info.d_body)
+			cu_copy_int1d[self.nblocks, self.block_size](self.info.npa, self.info.d_body, self.d_temp_int)				
 
 		for p in self.info.plist:
 			p.data.sort()

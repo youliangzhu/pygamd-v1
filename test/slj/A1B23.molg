@@ -1,0 +1,20 @@
+import molgen
+
+mol1=molgen.Molecule(24)#particle number
+mol1.setParticleTypes("A,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B")#type
+mol1.setTopology("0-1,1-2,2-3,3-4,4-5,5-6,6-7,7-8,8-9,9-10,10-11,11-12,12-13,13-14,14-15,15-16,16-17,17-18,18-19,19-20,20-21,21-22,22-23")#topology
+mol1.setBondLength(1.0)#bond length
+mol1.setBondLength('A','B',2.0)#bond length
+mol1.setMass('A',3.0)#mass
+mol1.setMass('B',1.0)
+mol1.setDiameter('A', 3.0)
+mol1.setDiameter('B', 1.0)
+
+
+gen=molgen.Generators(50,50,50) # box size in x, y, and z direction
+gen.setMinimumDistance("A","A", 3.5)
+gen.setMinimumDistance("A","B", 2.5)
+gen.setMinimumDistance("B","B", 1.5)
+# sets the minimum separated distance between the particle types.
+gen.addMolecule(mol1,100)#molecule, the number of molecules
+gen.outPutMST("A1B23") #file name

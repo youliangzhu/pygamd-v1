@@ -1,11 +1,11 @@
-import jugamd
+import pygamd
 from numba import cuda
 import numba as nb
 import math
 
 
-mst = jugamd.snapshot.read("example.mst")
-app = jugamd.application.dynamics(info=mst, dt=0.001)
+mst = pygamd.snapshot.read("example.mst")
+app = pygamd.application.dynamics(info=mst, dt=0.001)
 
 @cuda.jit(device=True)
 def lj(rsq, param, fp):
@@ -22,7 +22,7 @@ def lj(rsq, param, fp):
 		fp[0]=f
 		fp[1]=p	
 
-fn = jugamd.force.nonbonded(info=mst, rcut=3.0, func=lj)
+fn = pygamd.force.nonbonded(info=mst, rcut=3.0, func=lj)
 fn.setParams(type_i="A", type_j="A", param=[1.0, 1.0, 1.0, 3.0])
 app.add(fn)
 
@@ -36,7 +36,7 @@ def bond_harmonic(rsq, param, fp):
 	fp[0]=f
 	fp[1]=p
 
-fb = jugamd.force.bond(info=mst, func=bond_harmonic)
+fb = pygamd.force.bond(info=mst, func=bond_harmonic)
 fb.setParams(bond_type = 'A-A', param=[1000.0, 0.5])#param=[k, r0]
 app.add(fb)
 
@@ -51,7 +51,7 @@ def angle_harmonic(cos_abc, sin_abc, param, fp):
 	fp[0]=f
 	fp[1]=p
 
-fa = jugamd.force.angle(info=mst, func=angle_harmonic)
+fa = pygamd.force.angle(info=mst, func=angle_harmonic)
 fa.setParams(angle_type='A-A-A', param=[100.0, 120.0])#param=[k, t0]
 app.add(fa)
 
@@ -66,17 +66,17 @@ def dihedral_harmonic(cos_abcd, sin_abcd, param, fp):
 	fp[0]=-k*f
 	fp[1]=k*p
 	
-fd = jugamd.force.dihedral(info=mst, func=dihedral_harmonic)
+fd = pygamd.force.dihedral(info=mst, func=dihedral_harmonic)
 fd.setParams(dihedral_type = 'A-A-A-A', param=[25.0, math.cos(math.pi), math.sin(math.pi), -1.0])#param=[k, cos_phi0, sin_phi0, cos_factor]
 app.add(fd)
 
-nvt = jugamd.integration.nvt(info=mst, group='all', method="nh", tau=0.5, temperature=1.0)
+nvt = pygamd.integration.nvt(info=mst, group='all', method="nh", tau=0.5, temperature=1.0)
 app.add(nvt)
 
-dd = jugamd.dump.data(info=mst, group='all', file='data.log', period=100)
+dd = pygamd.dump.data(info=mst, group='all', file='data.log', period=100)
 app.add(dd)
 
-dm = jugamd.dump.mst(info=mst, group='all', file='p.mst', period=10000)
+dm = pygamd.dump.mst(info=mst, group='all', file='p.mst', period=10000)
 app.add(dm)
 
 #run 
