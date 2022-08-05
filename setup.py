@@ -32,17 +32,16 @@ CORRESPONDENCE
 
 from setuptools import setup, find_packages
 
-def readme():
-    with open('README.md') as f:
-        return f.read()
+with open("README.rst", "r") as fh:
+    long_description = fh.read()
 
 setup(name='pygamd',
-      version='1.0.0',
+      version='1.0.1',
       description='Python GPU-Accelerated Molecular Dynamics Software',
-      long_description=readme(),
+      long_description=long_description,
       classifiers=[
         'Development Status :: 3 - Alpha',
-        'License :: OSI Approved :: GNU License',
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Programming Language :: Python :: 3',
         'Intended Audience :: Science/Research',
         'Operating System :: POSIX :: Linux',
@@ -54,13 +53,13 @@ setup(name='pygamd',
       url='https://github.com/ylzhu/pygamd.py',
       author='You-Liang Zhu',
       author_email='ylzhu@pygamd.com',
-      license='GNU',
+      license='GNU General Public License v3 (GPLv3)',
 	  packages = find_packages(),
       install_requires=[
           'numpy',
-          'numba',
-          'cupy'
+          'numba'
       ],
+      python_requires='>=3',
       data_files=[('poetry', ['poetry/poetry.zip', 'poetry/READ.md'])],      
       include_package_data=True,
       zip_safe=False)

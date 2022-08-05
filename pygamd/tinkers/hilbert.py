@@ -34,7 +34,6 @@ import math
 import numpy as np
 import numba as nb
 from numba import cuda
-import cupy
 import time
 
 def sort1(output, input):
@@ -192,6 +191,8 @@ class sort_order:
 		self.nelement = self.ngrid*self.ngrid*self.ngrid		
 		self.order = np.zeros(self.nelement, dtype=np.int32)
 		self.reverse_order = np.zeros(self.nelement, dtype=np.int32)
+		self.bin_particle = np.zeros(self.info.npa, dtype=np.int32)
+		self.particle_order = np.zeros(self.info.npa, dtype=np.int32)        
 		self.count = np.int32(0)
 		self.block_size = 256
 		self.nblocks = math.ceil(self.info.npa / self.block_size)
@@ -211,9 +212,8 @@ class sort_order:
 		self.d_temp_float4 = cuda.device_array([self.info.npa, 4], dtype=np.float32)
 		self.d_order = cuda.to_device(self.order)
 		
-		#self.stream = cupy.cuda.Stream()
-		self.d_bin_particle = cupy.zeros(self.info.npa, dtype=np.int32)
-		self.d_particle_order = cupy.zeros(self.info.npa, dtype=np.int32)
+		self.d_bin_particle = cuda.device_array(self.info.npa, dtype=np.int32)
+		self.d_particle_order = cuda.device_array(self.info.npa, dtype=np.int32)
 		
 		
 	def calculate(self, timestep):
@@ -224,8 +224,10 @@ class sort_order:
 
 	def get_3d_order(self):
 		cu_bin_particle[self.nblocks, self.block_size](self.info.npa, self.ngrid, self.info.d_pos, self.info.d_box, self.d_order, self.d_bin_particle)
-		self.d_particle_order = cupy.argsort(self.d_bin_particle)
-		
+		self.bin_particle = self.d_bin_particle.copy_to_host()
+		self.particle_order = np.argsort(self.bin_particle)
+		self.d_particle_order = cuda.to_device(self.particle_order)
+
 	def generate_order(self, ii, wi, mx, cell_order, reverse_order):
 		if wi == np.int32(1):
 			reverse_order[self.count] = ii[0]*mx*mx + ii[1]*mx + ii[2]

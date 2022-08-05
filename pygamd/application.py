@@ -52,7 +52,7 @@ class dynamics:
 	integrations=[]
 	tinkers=[]
 	dumps=[]
-	def __init__(self, info, dt, sort=True):
+	def __init__(self, info, dt, sort=False):
 		self.info=info
 		self.info.dt = dt
 		self.sort = sort
@@ -60,20 +60,24 @@ class dynamics:
 		self.init_timestep = self.info.timestep
 		self.last = self.init_timestep
 		self.target = self.init_timestep + 200
-		self.begin = self.init_timestep		 
+		self.begin = self.init_timestep 
 		self.end = self.init_timestep
 		self.average_tps = 0.0
 		self.count_tps = 0
 		self.block_size = 64
 		if dt>0.0:
-			self.sort_period = np.int32(20.0/dt)
+			self.sort_period = np.int32(2.0/dt)
+			if self.sort_period<100:
+				self.sort_period = 100
+			elif self.sort_period > 2000:
+				self.sort_period = 2000
 		else:
 			self.sort_period = np.int32(1000)
 		if self.sort:
 			self.psort = tinker.psort(info, self.sort_period)
 
 	def run(self, ntimesteps):
-		self.end += ntimesteps	
+		self.end += ntimesteps
 		print("info : --- start to run")
 		print("info : from ",self.begin," to ",self.end," timestep")
 		
@@ -84,7 +88,7 @@ class dynamics:
 			fi.compute(self.begin)
 			
 		for di in self.dumps:
-			di.compute(self.begin)				
+			di.compute(self.begin)
 			
 		for ts in range(self.begin+1, self.end+1):
 			self.register(ts)
@@ -102,7 +106,7 @@ class dynamics:
 				ii.data.secondstep(ts)
 				
 			for di in self.dumps:
-				di.compute(ts)				
+				di.compute(ts)
 				
 			for ti in self.tinkers:
 				ti.data.compute(ts)
@@ -121,7 +125,7 @@ class dynamics:
 			self.tinkers.append(app)
 			
 		if app.name=="dump":
-			self.dumps.append(app)			
+			self.dumps.append(app)
 			
 	def remove(self, app):
 		if app.name=="force":
