@@ -38,10 +38,10 @@ from numba import cuda
 import math 
 import time
 
-try:
-	deviceFunction = cuda.compiler.DeviceFunctionTemplate
-except:
-	deviceFunction = cuda.compiler.DeviceDispatcher
+# try:
+	# deviceFunction = cuda.compiler.DeviceFunctionTemplate
+# except:
+	# deviceFunction = cuda.compiler.DeviceDispatcher
 
 minimum_value = nb.float32(0.001)
 
@@ -50,8 +50,8 @@ def dihedral_force(cu_func_pro, cu_func_imp):
 		cu_func_pro = potentials.bonded_library.cu_proper(cu_func_pro)
 	if isinstance(cu_func_imp, str):
 		cu_func_imp = potentials.bonded_library.cu_improper(cu_func_imp)			
-	if not isinstance(cu_func_pro, deviceFunction) or not isinstance(cu_func_imp, deviceFunction):
-		raise RuntimeError('Error dihedral_force device function!')
+	# if not isinstance(cu_func_pro, deviceFunction) or not isinstance(cu_func_imp, deviceFunction):
+		# raise RuntimeError('Error dihedral_force device function!')
 	@cuda.jit("void(int32, float32[:, :], float32[:, :], float32, float32, float32, float32, float32, float32, int32[:], int32[:, :, :], float32[:, :], float32[:, :], float32, float32, int32)")
 	def cu_dihedral_force(npa, pos, params, box0, box1, box2, box0_half, box1_half, box2_half, dihedral_size, dihedral_list, force, virial_potential, one_four, one_twelve, param_len):
 		i = cuda.grid(1)
@@ -406,6 +406,7 @@ class dihedral:
 			term_id = 1
 		else:
 			raise RuntimeError("Error, dihedral term ", term, " the candidates are 'dihedral' and 'improper' !")
+
 		if isinstance(self.func, str) and self.func == 'harmonic':
 			if len(param) != 2:
 				raise RuntimeError("Error, the number of harmonic parameters is not equal to 2!")
@@ -413,7 +414,7 @@ class dihedral:
 			t0=param[1]
 			t0_rad = math.pi*t0/180.0
 			self.params[type_id] = [k, t0_rad, math.cos(t0_rad), math.sin(t0_rad), self.cos_factor, term_id]		
-		elif isinstance(self.func, deviceFunction):
+		else:
 			param.append(term_id)
 			self.params[type_id] = param
 

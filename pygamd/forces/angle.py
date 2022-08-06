@@ -40,16 +40,16 @@ import time
 
 minimum_value = nb.float32(0.001)
 
-try:
-	deviceFunction = cuda.compiler.DeviceFunctionTemplate
-except:
-	deviceFunction = cuda.compiler.DeviceDispatcher
+# try:
+	# deviceFunction = cuda.compiler.DeviceFunctionTemplate
+# except:
+	# deviceFunction = cuda.compiler.DeviceDispatcher
 
 def angle_force(cu_func):
 	if isinstance(cu_func, str):
 		cu_func = potentials.bonded_library.cu_angle(cu_func)
-	if not isinstance(cu_func, deviceFunction):
-		raise RuntimeError('Error angle_force device function!')
+	# if not isinstance(cu_func, deviceFunction):
+		# raise RuntimeError('Error angle_force device function!')
 	@cuda.jit("void(int32, float32[:, :], float32[:, :], float32, float32, float32, float32, float32, float32, int32[:], int32[:, :, :], float32[:, :], float32[:, :], float32, float32)")
 	def cu_angle_force(npa, pos, params, box0, box1, box2, box0_half, box1_half, box2_half, angle_size, angle_list, force, virial_potential, one_three, one_sixth):
 		i = cuda.grid(1)
@@ -238,8 +238,8 @@ class angle:
 			k=param[0]
 			t0=param[1]
 			t0_rad = math.pi*t0/180.0
-			self.params[type_id] = [k, math.cos(t0_rad)]			
-		elif isinstance(self.func, deviceFunction):
+			self.params[type_id] = [k, math.cos(t0_rad)]
+		else:
 			self.params[type_id] = param
 
 		check[type_id] = True

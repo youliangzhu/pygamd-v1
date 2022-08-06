@@ -38,16 +38,16 @@ from numba import cuda
 import math 
 import time
 
-try:
-	deviceFunction = cuda.compiler.DeviceFunctionTemplate
-except:
-	deviceFunction = cuda.compiler.DeviceDispatcher
+# try:
+	# deviceFunction = cuda.compiler.DeviceFunctionTemplate
+# except:
+	# deviceFunction = cuda.compiler.DeviceDispatcher
 
 def nonbonded_force(cu_func):
 	if isinstance(cu_func, str):
 		cu_func = potentials.nb_library.cu_nonbonded(cu_func)
-	if not isinstance(cu_func, deviceFunction):
-		raise RuntimeError('Error nonbonded_force device function!')
+	# if not isinstance(cu_func, deviceFunction):
+		# raise RuntimeError('Error nonbonded_force device function!')
 	@cuda.jit("void(int32, float32[:, :], float32[:, :], float32, float32, float32, float32, float32, float32, int32, int32[:], int32[:, :], float32[:, :], float32[:, :], float32)")
 	def cu_nonbonded_force(npa, pos, params, box0, box1, box2, box0_half, box1_half, box2_half, ntypes, neighbor_size, neighbor_list, force, virial_potential, one_sixth):
 		i = cuda.grid(1)
@@ -214,8 +214,8 @@ class pair:
 			rcut=param[1]
 			rcutsq = rcut*rcut
 			self.params[idx1] = [alpha, 1.0/rcut, rcutsq]
-			self.params[idx2] = [alpha, 1.0/rcut, rcutsq]			
-		elif isinstance(self.func, deviceFunction):
+			self.params[idx2] = [alpha, 1.0/rcut, rcutsq]
+		else:
 			self.params[idx1] = param
 			self.params[idx2] = param
 		check[idx1] = True
