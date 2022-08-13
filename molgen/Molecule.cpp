@@ -358,8 +358,8 @@ void Molecule::readData(const std::string& fname)
 	for(unsigned int i=0; i<bonds.size(); i++)
 		{
 		m_bond.push_back(Bond(bonds[i].type, bonds[i].a, bonds[i].b, bonds[i].bc));
-		m_nbond[bonds[i].a] += 1;
-		m_nbond[bonds[i].b] += 1;
+		// m_nbond[bonds[i].a] += 1;
+		// m_nbond[bonds[i].b] += 1;
 		}
 	for(unsigned int i=0; i<angles.size(); i++)
 		{
@@ -439,7 +439,7 @@ void Molecule::initType()
 	m_Ntypes = m_type_mapping.size();
 	BondLength.resize(m_Ntypes*m_Ntypes);	
 	AngleRadian.resize(m_Ntypes*m_Ntypes*m_Ntypes, -1.0);	
-	DihedralRadian.resize(m_Ntypes*m_Ntypes*m_Ntypes*m_Ntypes);
+	DihedralRadian.resize(m_Ntypes*m_Ntypes*m_Ntypes*m_Ntypes, -1000.0);
 	}
 
 void Molecule::setTopology(std::string topology_str)
@@ -448,7 +448,7 @@ void Molecule::setTopology(std::string topology_str)
 	}
 	
 void Molecule::initBond()
-	{	
+	{
 	std::string temp_before;
 	std::string temp_after;	
 	unsigned int column =0;
@@ -521,7 +521,7 @@ void Molecule::initBond()
 		unsigned int bonda = m_bond[i].a;
 		unsigned int bondb = m_bond[i].b;
 		m_nbond[bonda] += 1;
-		m_nbond[bondb] += 1;				
+		m_nbond[bondb] += 1;
 		}
 
 
@@ -546,8 +546,11 @@ void Molecule::initBond()
 		m_nbond_temp[bonda] = h_a +1;
 		m_nbond_temp[bondb] = h_b +1;		
 		}
+	for (unsigned int i =0; i<m_NatomPerMole;i++)
+		if(m_nbond_temp[i]!=m_nbond[i])
+			cerr << endl << "***Error! bond number conflict!" << endl;
 	}
-
+		
 void Molecule::initData()
 	{
 	if(m_initdata)
@@ -2865,7 +2868,7 @@ void Molecule::generateDihedral()
 								unsigned int typ_c = m_typeId[c];
 								unsigned int typ_d = m_typeId[d];
 								double a_r = DihedralRadian[typ_a + typ_b*m_Ntypes + typ_c*m_Ntypes*m_Ntypes + typ_d*m_Ntypes*m_Ntypes*m_Ntypes];
-								if (a_r>0.0)
+								if (a_r > -M_PI && a_r <= M_PI)
 									{
 									std::string dihedralname;
 									if(typ_a<typ_d)
@@ -2974,5 +2977,6 @@ void export_Molecule(pybind11::module &m)
 		.def("setSphere", &Molecule::setSphere)
 		.def("setCylinder", &Molecule::setCylinder)
 		.def("setBodyEvacuation", &Molecule::setBodyEvacuation)
+		.def("setIncludeItselfInAngle", &Molecule::setIncludeItselfInAngle)		
 		;
 	} 

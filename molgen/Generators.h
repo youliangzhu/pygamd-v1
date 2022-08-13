@@ -49,8 +49,8 @@ class Generators
         void addMolecule(Molecule* Mol, unsigned int Nm);
 		void setMinimumDistance(double mini_dis);
 		void setMinimumDistance(const std::string& name1, const std::string& name2, double mini_dis);
-		void outPutXml(std::string fname);
-		void outPutMol2(std::string fname);	
+		void outPutXML(std::string fname);
+		void outPutMOL2(std::string fname);	
 		void outPutMST(std::string fname);		
         void updatePos(std::vector<vec>& pos, std::vector<std::string>& type, std::vector<vec>& ori, std::vector<vec4>& quat,
 						std::vector<unsigned int>& body, std::vector<unsigned int>& molecule);

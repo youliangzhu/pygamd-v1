@@ -56,6 +56,8 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Non-bonded interactions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#non-bonded-functions">Non-bonded functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#self-defined-functions">Self-defined functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#non-bonded-functions-for-charged-beads">Non-bonded functions for charged beads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#self-defined-functions-for-charged-beads">Self-defined functions for charged beads</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="forcefield-bonded.html">Bonded interactions</a></li>
@@ -107,12 +109,21 @@ However, it supports well self-defined analytical functions via writting codes o
 device function in script.</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 39%" />
-<col style="width: 61%" />
+<col style="width: 51%" />
+<col style="width: 49%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#non-bonded"><span class="std std-ref">Non-bonded functions</span></a></p></td>
 <td><p><a class="reference internal" href="#force.nonbonded" title="force.nonbonded"><code class="xref py py-class docutils literal notranslate"><span class="pre">force.nonbonded</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#self-defined-function"><span class="std std-ref">Self-defined functions</span></a></p></td>
+<td><p><a class="reference internal" href="#force.nonbonded" title="force.nonbonded"><code class="xref py py-class docutils literal notranslate"><span class="pre">force.nonbonded</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#non-bonded-c"><span class="std std-ref">Non-bonded functions for charged beads</span></a></p></td>
+<td><p><a class="reference internal" href="#force.nonbonded_c" title="force.nonbonded_c"><code class="xref py py-class docutils literal notranslate"><span class="pre">force.nonbonded_c</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#self-defined-function-c"><span class="std std-ref">Self-defined functions for charged beads</span></a></p></td>
+<td><p><a class="reference internal" href="#force.nonbonded_c" title="force.nonbonded_c"><code class="xref py py-class docutils literal notranslate"><span class="pre">force.nonbonded_c</span></code></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -123,7 +134,7 @@ device function in script.</p>
 <div><p>The function describing non-bonded interactions could be either the one called from non-bonded interaction function libary, or the one defined by user himself in script.
 Non-bonded interaction function libary contains Lennard-Jones function named as ‘lj’ and harmonic function named as ‘harmonic’.</p>
 <dl>
-<dt>Lennard-Jones function (lj)</dt><dd><div class="math notranslate nohighlight">
+<dt>Lennard-Jones function (‘lj’)</dt><dd><div class="math notranslate nohighlight">
 \begin{eqnarray*}
 V_{\mathrm{LJ}}(r)  = &amp; 4 \epsilon \left[ \left( \frac{\sigma}{r} \right)^{12} -
                   \alpha \left( \frac{\sigma}{r} \right)^{6} \right] &amp; r &lt; r_{\mathrm{cut}} \\
@@ -137,7 +148,7 @@ V_{\mathrm{LJ}}(r)  = &amp; 4 \epsilon \left[ \left( \frac{\sigma}{r} \right)^{1
 - <em>note</em>: equal to or smaller than the global rcut specified in <code class="docutils literal notranslate"><span class="pre">force.nonbonded</span></code></p></li>
 </ul>
 </dd>
-<dt>Harmonic function (harmonic)</dt><dd><div class="math notranslate nohighlight">
+<dt>Harmonic function (‘harmonic’)</dt><dd><div class="math notranslate nohighlight">
 \begin{eqnarray*}
 V_{\mathrm{H}}(r) = \frac{1}{2}\alpha \left( r - r_{\mathrm{cut}} \right)^{2}, r &lt; r_{\mathrm{cut}}
 \end{eqnarray*}</div><p>Coefficients:</p>
@@ -189,7 +200,8 @@ the default is None.</p></li>
 <p>Description:</p>
 <blockquote>
 <div><p>The device function for non-bonded interactions could be written in script and conveyed
-to kernel funciton for calculation.</p>
+to kernel funciton for calculation. The function has three parameters where rsq, param, and fp
+are square of distance, interaction parameters, and force and potential, respectively.</p>
 <p>With the potential form of non-bonded interactions <span class="math notranslate nohighlight">\(p(r)\)</span>, the expression of parameters in script are:</p>
 <ul class="simple">
 <li><p>p = <span class="math notranslate nohighlight">\(p(r)\)</span></p></li>
@@ -230,13 +242,133 @@ to kernel funciton for calculation.</p>
                 <span class="n">r2inv</span> <span class="o">=</span> <span class="n">sigma2</span><span class="o">/</span><span class="n">rsq</span><span class="p">;</span>
                 <span class="n">r6inv</span> <span class="o">=</span> <span class="n">r2inv</span> <span class="o">*</span> <span class="n">r2inv</span> <span class="o">*</span> <span class="n">r2inv</span><span class="p">;</span>
                 <span class="n">f</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">4.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">epsilon</span> <span class="o">*</span> <span class="n">r2inv</span> <span class="o">*</span> <span class="n">r6inv</span> <span class="o">*</span> <span class="p">(</span><span class="n">nb</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">12.0</span><span class="p">)</span>
-                    <span class="o">*</span> <span class="n">r6inv</span> <span class="o">-</span> <span class="n">nb</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">6.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="n">sigma2</span>
+                        <span class="o">*</span> <span class="n">r6inv</span> <span class="o">-</span> <span class="n">nb</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">6.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="n">sigma2</span>
                 <span class="n">p</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">4.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">epsilon</span> <span class="o">*</span> <span class="n">r6inv</span> <span class="o">*</span> <span class="p">(</span> <span class="n">r6inv</span> <span class="o">-</span> <span class="n">nb</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
                 <span class="n">fp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">f</span>
                 <span class="n">fp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">p</span>
 
 <span class="n">fn</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">force</span><span class="o">.</span><span class="n">nonbonded</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">rcut</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">lj</span><span class="p">)</span>
 <span class="n">fn</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="n">type_i</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">type_j</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="non-bonded-functions-for-charged-beads">
+<span id="non-bonded-c"></span><h2>Non-bonded functions for charged beads<a class="headerlink" href="#non-bonded-functions-for-charged-beads" title="Permalink to this headline"></a></h2>
+<p>Description:</p>
+<blockquote>
+<div><p>The function describing non-bonded interactions including electrostatic part could be either the one called from non-bonded interaction function libary, or the one defined by user himself in script.</p>
+<dl>
+<dt>Lennard-Jones-coulomb function (‘lj_coulomb’)</dt><dd><div class="math notranslate nohighlight">
+\begin{eqnarray*}
+V_{\mathrm{LJ}}(r)  = &amp; 4 \epsilon \left[ \left( \frac{\sigma}{r} \right)^{12} -
+                  \alpha \left( \frac{\sigma}{r} \right)^{6} \right] + f\frac{q_{i} q_{j}}{\epsilon_{r}r} &amp; r &lt; r_{\mathrm{cut}} \\
+                    = &amp; 0 &amp; r \ge r_{\mathrm{cut}} \\
+\end{eqnarray*}</div><p>Following coefficients need being set per pair of particle types:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> - the depth of the potential well (in energy units)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span> - the collision diameter (in distance units)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> - the factor of attraction (unitless)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon_{r}\)</span> - dielectric coefficient : <span class="math notranslate nohighlight">\(f= 1/4\pi \epsilon_0=138.935\text{ }kJ\text{ }mol^{-1}\text{ }nm\text{ }e^{-2}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(r_{\mathrm{cut}}\)</span> - cutoff radius (in distance units)
+- <em>note</em>: equal to or smaller than the global rcut specified in <code class="docutils literal notranslate"><span class="pre">force.nonbonded_c</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="force.nonbonded_c">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">force.</span></span><span class="sig-name descname"><span class="pre">nonbonded_c</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclusion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#force.nonbonded_c" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor of non-bonded interaction calculation object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>info</strong> – system information.</p></li>
+<li><p><strong>rcut</strong> – cut-off radius of interactions.</p></li>
+<li><p><strong>func</strong> – function name.</p></li>
+<li><p><strong>exclusion</strong> – a python list of exclusions, the candidates are ‘bond’, ‘angle’, ‘dihedral’,
+the default is None.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="force.nonbonded_c.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#force.nonbonded_c.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies interaction parameters with type_i, type_j, a list of parameters.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fn</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">force</span><span class="o">.</span><span class="n">nonbonded_c</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">rcut</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="s1">&#39;lj_coulomb&#39;</span><span class="p">)</span>
+<span class="n">fn</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="n">type_i</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">type_j</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+
+
+<span class="n">fn</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">force</span><span class="o">.</span><span class="n">nonbonded_c</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">rcut</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="s1">&#39;lj_coulomb&#39;</span><span class="p">,</span> <span class="n">exclusion</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bond&#39;</span><span class="p">])</span>
+<span class="n">fn</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="n">type_i</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">type_j</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="self-defined-functions-for-charged-beads">
+<span id="self-defined-function-c"></span><h2>Self-defined functions for charged beads<a class="headerlink" href="#self-defined-functions-for-charged-beads" title="Permalink to this headline"></a></h2>
+<p>Description:</p>
+<blockquote>
+<div><p>The device function for non-bonded interactions could be written in script and conveyed
+to kernel funciton for calculation. The function has three parameters where rsq, qi, qj, param, and fp
+are the square of distance, qi and qj, interaction parameters, and force and potential, respectively.</p>
+<p>With the potential form of non-bonded interactions <span class="math notranslate nohighlight">\(p(r)\)</span>, the expression of parameters in script are:</p>
+<ul class="simple">
+<li><p>p = <span class="math notranslate nohighlight">\(p(r)\)</span></p></li>
+<li><p>f = <span class="math notranslate nohighlight">\(-(\triangle p(r)/\triangle r)(1/r)\)</span></p></li>
+</ul>
+<p>Function code template:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@cuda</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">rsq</span><span class="p">,</span> <span class="n">qi</span><span class="p">,</span> <span class="n">qj</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
+        <span class="n">rcut</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">p2</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">p3</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="o">...</span>
+        <span class="k">if</span> <span class="n">rsq</span><span class="o">&lt;</span><span class="n">rcut</span><span class="o">*</span><span class="n">rcut</span><span class="p">:</span>
+                <span class="n">calculation</span> <span class="n">codes</span>
+                <span class="o">...</span>
+                <span class="n">fp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">f</span>
+                <span class="n">fp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">p</span>
+
+<span class="n">fn</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">force</span><span class="o">.</span><span class="n">nonbonded_c</span><span class="p">(</span><span class="n">info</span><span class="p">,</span> <span class="n">rcut</span><span class="p">,</span> <span class="n">func</span><span class="p">)</span>
+<span class="n">fn</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="n">type_i</span><span class="p">,</span> <span class="n">type_j</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="p">[</span><span class="n">rcut</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>
+<span class="o">....</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">cuda</span>
+<span class="kn">import</span> <span class="nn">numba</span> <span class="k">as</span> <span class="nn">nb</span>
+
+<span class="nd">@cuda</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">lj_coulomb</span><span class="p">(</span><span class="n">rsq</span><span class="p">,</span> <span class="n">qi</span><span class="p">,</span> <span class="n">qj</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">fp</span><span class="p">):</span>
+        <span class="n">epsilon</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">epsilonr</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">rcut</span> <span class="o">=</span> <span class="n">param</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+        <span class="n">coulomb_eff</span> <span class="o">=</span> <span class="mf">138.935</span><span class="o">/</span><span class="n">epsilonr</span>
+        <span class="k">if</span> <span class="n">rsq</span><span class="o">&lt;</span><span class="n">rcut</span><span class="o">*</span><span class="n">rcut</span><span class="p">:</span>
+                <span class="n">sigma2</span> <span class="o">=</span> <span class="n">sigma</span><span class="o">*</span><span class="n">sigma</span>
+                <span class="n">r2inv</span> <span class="o">=</span> <span class="n">sigma2</span><span class="o">/</span><span class="n">rsq</span><span class="p">;</span>
+                <span class="n">r6inv</span> <span class="o">=</span> <span class="n">r2inv</span> <span class="o">*</span> <span class="n">r2inv</span> <span class="o">*</span> <span class="n">r2inv</span><span class="p">;</span>
+                <span class="n">f</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">4.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">epsilon</span> <span class="o">*</span> <span class="n">r2inv</span> <span class="o">*</span> <span class="n">r6inv</span> <span class="o">*</span> <span class="p">(</span><span class="n">nb</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">12.0</span><span class="p">)</span>
+                        <span class="o">*</span> <span class="n">r6inv</span> <span class="o">-</span> <span class="n">nb</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">6.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="n">sigma2</span> <span class="o">+</span> <span class="n">coulomb_eff</span><span class="o">*</span><span class="n">qi</span><span class="o">*</span><span class="n">qj</span><span class="o">*</span><span class="n">r2inv</span><span class="o">*</span><span class="n">rinv</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="n">nb</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">4.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">epsilon</span> <span class="o">*</span> <span class="n">r6inv</span> <span class="o">*</span> <span class="p">(</span> <span class="n">r6inv</span> <span class="o">-</span> <span class="n">nb</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>
+                        <span class="o">+</span> <span class="n">coulomb_eff</span><span class="o">*</span><span class="n">qi</span><span class="o">*</span><span class="n">qj</span><span class="o">*</span><span class="n">rinv</span>
+                <span class="n">fp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">f</span>
+                <span class="n">fp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">p</span>
+
+<span class="n">fn</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">force</span><span class="o">.</span><span class="n">nonbonded_c</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">rcut</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">lj_coulomb</span><span class="p">)</span>
+<span class="n">fn</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="n">type_i</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">type_j</span><span class="o">=</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
 </pre></div>
 </div>

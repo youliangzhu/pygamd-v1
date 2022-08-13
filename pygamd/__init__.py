@@ -34,9 +34,17 @@ import sys
 import ctypes
 import os
 import zipfile
+import platform
 
+plat = platform.system().lower()
 curr_file = os.path.abspath(__file__)
 poetry_path = curr_file.replace("pygamd/__init__.py", "poetry")
+
+if plat == 'windows':
+	print('Runing on windows')
+	curr_file = os.path.abspath(__file__)
+	poetry_path = curr_file.replace("Python310\site-packages\pygamd\__init__.py", "poetry")
+
 import json
 import random
 if os.path.exists(poetry_path):
@@ -72,7 +80,7 @@ from optparse import OptionParser
 
 
 
-PYGAMD_VERSION="1.0.4"
+PYGAMD_VERSION="1.0.5"
 
 print("PYGAMD v", PYGAMD_VERSION )
 print("PYGAMD - Python GPU-Accelerated Molecular Dynamics Software")

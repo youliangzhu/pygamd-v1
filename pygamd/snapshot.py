@@ -43,7 +43,8 @@ class read:
 			self.data = snapshots.read_mst.read_mst(filename)
 		self.compute_properties = {'temperature':False, 'pressure':False, 'momentum':False, 'potential':False, 'stress_tensor':False}
 		self.variant = {'position':True, 'velocity':True, 'type':False, 'mass':False, 'image':True, 'box':False, 
-						'force':True, 'potential':True, 'virial':True, 'bond':False, 'angle':False, 'dihedral':False}		
+						'charge':False, 'body':False, 'diameter':False, 'init':True, 'cris':True,
+						'force':True, 'potential':True, 'virial':True, 'bond':False, 'angle':False, 'dihedral':False}
 		# system information
 		self.npa = self.data.num_particles
 		self.pitch = (self.npa + (16 - (self.npa & 15)))
@@ -60,16 +61,16 @@ class read:
 		self.body = None
 		self.diameter = None
 		self.molecule = None
-		self.init = None		
+		self.init = None
 		self.cris = None
 		self.orientation = None
-		self.quaternion = None	
-		self.inert = None		
+		self.quaternion = None
+		self.inert = None
 		
 		
 		self.bond = None
 		self.angle = None
-		self.dihedral = None		
+		self.dihedral = None
 		self.vsite = None
 		
 		# host arrays		
@@ -77,8 +78,8 @@ class read:
 		self.vel = np.zeros([self.npa, 4], dtype=np.float32)
 		self.image = np.zeros([self.npa, 3], dtype=np.int32)
 		self.box = np.asarray(self.data.box, dtype=np.float32)
-		self.tag = np.zeros(self.npa, dtype=np.int32)		
-		self.rtag = np.zeros(self.npa, dtype=np.int32)		
+		self.tag = np.zeros(self.npa, dtype=np.int32)
+		self.rtag = np.zeros(self.npa, dtype=np.int32)
 		
 		
 		for i in range(0, self.npa):

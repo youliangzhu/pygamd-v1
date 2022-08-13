@@ -131,9 +131,9 @@ class bd:
 			self.ps = chare.particle_set(info, group)
 			info.particle_set.append(self.ps)
 			
-	def setParams(self, typ, gama):
+	def setParams(self, typ, gamma):
 		typ_id = self.info.convert_name_to_id(typ)
-		self.params[typ_id] = gama
+		self.params[typ_id] = gamma
 		self.params_changed = True
 		
 	#calculate non-bonded force

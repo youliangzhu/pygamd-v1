@@ -57,5 +57,5 @@ class bd:
 		self.name="integration"
 		self.subname="bd"
         
-	def setParams(self, typ, gama):
-		self.data.setParams(typ, gama)	
+	def setParams(self, typ, gamma):
+		self.data.setParams(typ, gamma)	

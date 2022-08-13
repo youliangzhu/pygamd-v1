@@ -39,7 +39,7 @@ class nonbonded:
 		nl = info.find_plist(rcut, exclusion)
 		if nl is None:
 			nl = plist.neighbor(info, rcut, exclusion)
-			info.plist.append(nl)	
+			info.plist.append(nl)
 		self.info = info
 		self.data=forces.pair.pair(info, nl, func)
 		self.name="force"
@@ -62,6 +62,36 @@ class nonbonded:
 				idx = i * self.info.ntypes + j
 				if not self.check[idx]:
 					raise RuntimeError('Error! the parameters between type ',self.info.typemap[i],' and type ',self.info.typemap[j],' has not been set!')
+
+class nonbonded_c:
+	def __init__(self, info, rcut, func, exclusion=None):
+		nl = info.find_plist(rcut, exclusion)
+		if nl is None:
+			nl = plist.neighbor(info, rcut, exclusion)
+			info.plist.append(nl)
+		self.info = info
+		self.data=forces.pair.pair_c(info, nl, func)
+		self.name="force"
+		self.subname="nonbonded_c"
+		self.check=[False for i in range(self.info.ntypes*self.info.ntypes)]
+		self.first_compute = True
+		
+	def setParams(self, type_i, type_j, param):
+		self.data.setParams(type_i, type_j, param, self.check)
+
+	def compute(self, timestep):
+		if self.first_compute:
+			self.check_parameters()
+			self.first_compute = False
+		self.data.calculate(timestep)
+	
+	def check_parameters(self):
+		for i in range(self.info.ntypes):
+			for j in range(i, self.info.ntypes):
+				idx = i * self.info.ntypes + j
+				if not self.check[idx]:
+					raise RuntimeError('Error! the parameters between type ',self.info.typemap[i],' and type ',self.info.typemap[j],' has not been set!')
+
 class dpd:
 	def __init__(self, info, rcut=1.0):
 		nl = info.find_plist(rcut, None)

@@ -62,10 +62,27 @@ def cu_nonbonded(force_name):
 			fp[0]=f
 			fp[1]=p
 
+	@cuda.jit(device=True)
+	def _lj_coulomb(rsq, qi, qj, param, fp):
+		lj1 = param[0]
+		lj2 = param[1]
+		coulomb_eff = param[2]
+		rcutsq = param[3]
+		if rsq<rcutsq:
+			r2inv = nb.float32(1.0)/rsq
+			rinv = math.sqrt(r2inv)
+			r6inv = r2inv * r2inv * r2inv
+			f = r2inv * r6inv * (nb.float32(12.0) * lj1  * r6inv - nb.float32(6.0) * lj2) + coulomb_eff*qi*qj*r2inv*rinv
+			p = r6inv * (lj1 * r6inv - lj2) + coulomb_eff*qi*qj*rinv
+			fp[0]=f
+			fp[1]=p
+
 	if force_name=="lj":
 		return _lj
 	elif force_name=="harmonic":
 		return _harmonic
+	elif force_name=="lj_coulomb":
+		return _lj_coulomb
 
 # host functions
 def nonbonded(force_name):
@@ -80,7 +97,38 @@ def nonbonded(force_name):
 			p = r6inv * (lj1 * r6inv - lj2)
 			fp[0]=f
 			fp[1]=p
+
+	def _harmonic(rsq, param, fp):
+		alpha = param[0]
+		r_cutINV = param[1]
+		rcutsq = param[2]
+		if rsq<rcutsq:
+			rinv = 1.0/math.sqrt(rsq)
+			omega = rinv - r_cutINV
+			f = alpha*omega
+			p = 0.5*alpha*omega*omega*rsq
+			fp[0]=f
+			fp[1]=p
+
+	def _lj_coulomb(rsq, qi, qj, param, fp):
+		lj1 = param[0]
+		lj2 = param[1]
+		coulomb_eff = param[2]
+		rcutsq = param[3]
+		if rsq<rcutsq:
+			r2inv = 1.0/rsq
+			rinv = math.sqrt(r2inv)
+			r6inv = r2inv * r2inv * r2inv
+			f = r2inv * r6inv * (12.0 * lj1  * r6inv - 6.0 * lj2) + coulomb_eff*qi*qj*r2inv*rinv
+			p = r6inv * (lj1 * r6inv - lj2) + coulomb_eff*qi*qj*rinv
+			fp[0]=f
+			fp[1]=p
+
 	if force_name=="lj":
 		return _lj
+	elif force_name=="harmonic":
+		return _harmonic
+	elif force_name=="lj_coulomb":
+		return _lj_coulomb
 
 		

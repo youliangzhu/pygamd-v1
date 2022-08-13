@@ -54,7 +54,9 @@
 <li class="toctree-l1"><a class="reference internal" href="forcefield.html">Force field</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="integration.html">Integration</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">NVT ensemble</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#thermostat">Thermostat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nvt">NVT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwvv">GWVV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bd">BD</a></li>
 </ul>
 </li>
 </ul>
@@ -101,21 +103,27 @@
 <p><strong>Overview</strong></p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 43%" />
-<col style="width: 57%" />
+<col style="width: 42%" />
+<col style="width: 58%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#nvt"><span class="std std-ref">Thermostat</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#nvt"><span class="std std-ref">NVT</span></a></p></td>
 <td><p><a class="reference internal" href="#integration.nvt" title="integration.nvt"><code class="xref py py-class docutils literal notranslate"><span class="pre">integration.nvt</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#gwvv"><span class="std std-ref">GWVV</span></a></p></td>
+<td><p><a class="reference internal" href="#integration.gwvv" title="integration.gwvv"><code class="xref py py-class docutils literal notranslate"><span class="pre">integration.gwvv</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bd"><span class="std std-ref">BD</span></a></p></td>
+<td><p><a class="reference internal" href="#integration.bd" title="integration.bd"><code class="xref py py-class docutils literal notranslate"><span class="pre">integration.bd</span></code></a></p></td>
 </tr>
 </tbody>
 </table>
-<section id="thermostat">
-<span id="nvt"></span><h2>Thermostat<a class="headerlink" href="#thermostat" title="Permalink to this headline"></a></h2>
+<section id="nvt">
+<span id="id1"></span><h2>NVT<a class="headerlink" href="#nvt" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="integration.nvt">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">integration.</span></span><span class="sig-name descname"><span class="pre">nvt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#integration.nvt" title="Permalink to this definition"></a></dt>
-<dd><p>Constructor of a NVT NoseHoover thermostat object for a group of particles.</p>
+<dd><p>Constructor of a NVT thermostat object for a group of particles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -141,6 +149,57 @@
 
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">inn</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">nvt</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;nh&quot;</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">inn</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="gwvv">
+<span id="id2"></span><h2>GWVV<a class="headerlink" href="#gwvv" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="integration.gwvv">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">integration.</span></span><span class="sig-name descname"><span class="pre">gwvv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#integration.gwvv" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor of a GWVV thermostat object for a group of particles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>info</strong> – system information.</p></li>
+<li><p><strong>group</strong> – a group of particles.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">inn</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">gwvv</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">inn</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="bd">
+<span id="id3"></span><h2>BD<a class="headerlink" href="#bd" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="integration.bd">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">integration.</span></span><span class="sig-name descname"><span class="pre">bd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#integration.bd" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor of a Brownian Dynamics thermostat object for a group of particles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>info</strong> – system information.</p></li>
+<li><p><strong>group</strong> – a group of particles.</p></li>
+<li><p><strong>temperature</strong> – temperature.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="integration.bd.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">gamma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#integration.bd.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the gamma parameter for particle type.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">inn</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">integration</span><span class="o">.</span><span class="n">bd</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">inn</span><span class="p">)</span>
 </pre></div>
 </div>

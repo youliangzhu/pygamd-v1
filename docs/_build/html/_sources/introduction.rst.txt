@@ -8,7 +8,7 @@ a new method in a well-developed MD package by users. Thereby, we provide a MD s
 
 PYGAMD is a platform where users could build up their customized force fields including potential forms and parameters.
 This is achieved by that PYGAMD is programmed based on Numba, a Just-In-Time Python Compiler. The potential forms and methods could be conveyed 
-from user interface to the underlying computation. More important, PYGAMD provide a higher performance on GPU computation up to traditional packages 
+from user interface to the underlying computation. More important, PYGAMD provide a high performance on GPU computation up to traditional packages 
 programmed by CUDA and C. 
 
 This package is the version 1 of PYGAMD which includes MD engine **pygamd**, molecular configuration generator **molgen**, and data tackler **dataTackle** etc. 

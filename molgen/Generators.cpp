@@ -374,7 +374,7 @@ void Generators::generate()
 	m_generated=true;
 	}
 
-void Generators::outPutXml(std::string fname)
+void Generators::outPutXML(std::string fname)
 	{
 	generate();
     std::string m_fname = fname + ".xml";
@@ -1006,7 +1006,7 @@ void Generators::outPutXml(std::string fname)
 	cout<<"Success"<<endl;
 	}
 	
-void Generators::outPutMol2(std::string fname)
+void Generators::outPutMOL2(std::string fname)
 	{
 	generate();
     std::string m_fname = fname + ".mol2";
@@ -1718,8 +1718,8 @@ void export_Generators(pybind11::module &m)
 		.def("addMolecule", &Generators::addMolecule)
 		.def("setMinimumDistance", static_cast< void (Generators::*)(double) >(&Generators::setMinimumDistance))
 		.def("setMinimumDistance", static_cast< void (Generators::*)(const std::string&, const std::string&, double)>(&Generators::setMinimumDistance))
-		.def("outPutXml", &Generators::outPutXml)
-		.def("outPutMol2", &Generators::outPutMol2)
+		.def("outPutXML", &Generators::outPutXML)
+		.def("outPutMOL2", &Generators::outPutMOL2)
 		.def("outPutMST", &Generators::outPutMST)		
 		.def("setParam", &Generators::setParam)
 		.def("setDimension", &Generators::setDimension)		
