@@ -184,7 +184,7 @@ to kernel funciton for calculation.</p>
 <p>With the potential form of bond interactions <span class="math notranslate nohighlight">\(p(r)\)</span>, the expression of parameters in script are:</p>
 <ul class="simple">
 <li><p>p = <span class="math notranslate nohighlight">\(p(r)\)</span></p></li>
-<li><p>f = <span class="math notranslate nohighlight">\(-(\triangle p(r)/\triangle r)(1/r)\)</span></p></li>
+<li><p>f = <span class="math notranslate nohighlight">\(-(\partial p(r)/\partial r)(1/r)\)</span></p></li>
 </ul>
 <p>Function code template:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@cuda</span><span class="o">.</span><span class="n">jit</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>

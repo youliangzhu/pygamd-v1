@@ -90,7 +90,7 @@ Description:
    With the potential form of angle interactions :math:`p(\theta)`, the expression of parameters in script are: 
 
    * p = :math:`p(\theta)`
-   * f = :math:`\triangle p(\theta)/\triangle \theta`  
+   * f = :math:`\partial p(\theta)/\partial \theta`  
 
    Function code template::
 

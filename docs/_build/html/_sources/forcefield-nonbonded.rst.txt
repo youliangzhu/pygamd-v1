@@ -98,7 +98,7 @@ Description:
    With the potential form of non-bonded interactions :math:`p(r)`, the expression of parameters in script are: 
 
    * p = :math:`p(r)`
-   * f = :math:`-(\triangle p(r)/\triangle r)(1/r)`
+   * f = :math:`-(\partial p(r)/\partial r)(1/r)`
 
    Function code template::
    
@@ -190,12 +190,12 @@ Description:
    Example::
    
       fn = pygamd.force.nonbonded_c(info=mst, rcut=3.0, func='lj_coulomb')
-      fn.setParams(type_i="a", type_j="a", param=[1.0, 1.0, 1.0, 3.0])
+      fn.setParams(type_i="a", type_j="a", param=[1.0, 1.0, 1.0, 15.0, 3.0])
       app.add(fn)
 
 
       fn = pygamd.force.nonbonded_c(info=mst, rcut=3.0, func='lj_coulomb', exclusion=['bond'])
-      fn.setParams(type_i="a", type_j="a", param=[1.0, 1.0, 1.0, 3.0])
+      fn.setParams(type_i="a", type_j="a", param=[1.0, 1.0, 1.0, 15.0, 3.0])
       app.add(fn)
 
 

@@ -98,7 +98,7 @@ Description:
    With the potential form of non-bonded interactions :math:`p(r)`, the expression of parameters in script are: 
 
    * p = :math:`p(r)`
-   * f = :math:`-(\triangle p(r)/\triangle r)(1/r)`
+   * f = :math:`-(\partial p(r)/\partial r)(1/r)`
 
    Function code template::
    

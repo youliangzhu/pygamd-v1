@@ -97,7 +97,7 @@ Description:
    With the potential form of dihedral interactions :math:`p(\varphi)`, the expression of parameters in script are: 
 
    * p = :math:`p(\varphi)`
-   * f = :math:`\triangle p(\varphi)/\triangle \varphi`     
+   * f = :math:`\partial p(\varphi)/\partial \varphi`     
 
    Function code template::
 
