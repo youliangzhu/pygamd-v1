@@ -36,7 +36,7 @@ with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 setup(name='pygamd',
-      version='1.0.5',
+      version='1.0.7',
       description='Python GPU-Accelerated Molecular Dynamics Software',
       long_description=long_description,
       classifiers=[
@@ -60,6 +60,6 @@ setup(name='pygamd',
           'numba'
       ],
       python_requires='>=3',
-      data_files=[('poetry', ['poetry/poetry.zip', 'poetry/READ.md'])],      
+      data_files=[('poetry', ['poetry/poetry.zip', 'poetry/READ.md', 'poetry/molgen.cpython-39-x86_64-linux-gnu.so'])],
       include_package_data=True,
       zip_safe=False)
