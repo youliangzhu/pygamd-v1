@@ -36,18 +36,31 @@ import os
 import zipfile
 import platform
 
-plat = platform.system().lower()
 curr_file = os.path.abspath(__file__)
-poetry_path = curr_file.replace("pygamd/__init__.py", "poetry")
+poetry_path = ""
+node = "/"
 
+plat = platform.system().lower()
 if plat == 'windows':
 	print('Runing on windows')
-	curr_file = os.path.abspath(__file__)
-	poetry_path = curr_file.replace("Python310\site-packages\pygamd\__init__.py", "poetry")
+	node = '\\'
+
+find_poet = False
+while not find_poet:
+	p=curr_file.rfind(node)
+	if p!=-1:
+		curr_file = curr_file[0:p]
+	else:
+		break
+	poetry_path = curr_file+"/poetry"
+	if os.path.exists(poetry_path):
+		find_poet =True
+
 
 import json
 import random
-if os.path.exists(poetry_path):
+if find_poet:
+	sys.path.append(poetry_path)
 	tang = random.randint(0, 56)
 	tang = tang * 1000
 	filename = 'poet.tang.' + repr(tang) + '.json'
@@ -65,6 +78,9 @@ if os.path.exists(poetry_path):
 	for i in ser_dic['paragraphs']:
 		print(i)
 	os.remove(filename)
+else:
+	print('Warning, not find poetry path!')
+
 
 from pygamd import application
 from pygamd import chare
@@ -80,7 +96,7 @@ from optparse import OptionParser
 
 
 
-PYGAMD_VERSION="1.0.5"
+PYGAMD_VERSION="1.0.7"
 
 print("PYGAMD v", PYGAMD_VERSION )
 print("PYGAMD - Python GPU-Accelerated Molecular Dynamics Software")

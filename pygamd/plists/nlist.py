@@ -157,7 +157,7 @@ def cu_zero(situation):
 class nlist:
 	#定义构造方法
 	def __init__(self, info, rcut, rbuff, exclusion):
-		self.cutoff_rsq = rcut*rcut
+		self.cutoff_rsq = (rcut+rbuff)*(rcut+rbuff)
 		self.rbuff_half_rsq = (rbuff/2.0)*(rbuff/2.0)
 #		print(self.rcut)
 		self.info=info
