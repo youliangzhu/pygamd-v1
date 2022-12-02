@@ -52,7 +52,7 @@ while not find_poet:
 		curr_file = curr_file[0:p]
 	else:
 		break
-	poetry_path = curr_file+"/poetry"
+	poetry_path = curr_file+node+"poetry"
 	if os.path.exists(poetry_path):
 		find_poet =True
 
@@ -96,7 +96,7 @@ from optparse import OptionParser
 
 
 
-PYGAMD_VERSION="1.0.7"
+PYGAMD_VERSION="1.1.0"
 
 print("PYGAMD v", PYGAMD_VERSION )
 print("PYGAMD - Python GPU-Accelerated Molecular Dynamics Software")

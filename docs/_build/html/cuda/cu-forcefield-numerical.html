@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Numerical interaction &mdash; PYGAMD v1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Coulomb interaction" href="cu-forcefield-coulomb.html" />
+    <link rel="prev" title="Bonded interactions" href="cu-forcefield-bonded.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PYGAMD
+          </a>
+              <div class="version">
+                v1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">General introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units.html">Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../numba/system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cu-data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-system.html">System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-application.html">Application</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cu-forcefield.html">Force field</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-nonbonded.html">Short range non-bonded interactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded.html">Bonded interactions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Numerical interaction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#theory-description">Theory description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#non-bonded-interaction">Non-bonded interaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bond-interaction">Bond interaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#angle-interaction">Angle interaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dihedral-interaction">Dihedral interaction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-coulomb.html">Coulomb interaction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-files.html">Read force parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cu-integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-constraint.html">Constraint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Plug-Ins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../molgen.html">molgen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dataTackle.html">galaTackle</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Announcement</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PYGAMD</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="cu-forcefield.html">Force field</a> &raquo;</li>
+      <li>Numerical interaction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cuda/cu-forcefield-numerical.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="numerical-interaction">
+<h1>Numerical interaction<a class="headerlink" href="#numerical-interaction" title="Permalink to this headline"></a></h1>
+<section id="theory-description">
+<h2>Theory description<a class="headerlink" href="#theory-description" title="Permalink to this headline"></a></h2>
+<p>The numerical non-bonded, bond, angle, and torsion potentials can be derived from iterative Boltzmann inversion (IBI) or reverse Monte Carlo (RMC) method.
+With IBI method, the procedure starts with the potentials of mean force as guessed potentials and then optimizes
+the potentials iteratively by mapping the structural distributions (i.e., radial distribution function, RDF) onto
+the ones obtained either from atomistic simulations or from experiments. The resulting numerical potentials usually
+take the form as a table in which the potential values at discrete grid points of distance are given.
+In the treatment of tabulated potentials, the initial inputted potential tables on grid points of r are
+transformed to the tables (arrays) on grid points of <span class="math notranslate nohighlight">\(z = r^2\)</span>. With this trick, the <span class="math notranslate nohighlight">\(r = SQRT(r^2)\)</span> in the inner
+loop of force calculation is avoided, and the force is then calculated by</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\begin{eqnarray*}
+F=-r\frac{\partial V(r)}{\partial r}\frac{1}{r}=-2r\frac{\partial V(z)}{\partial z}
+\end{eqnarray*}</div></div></blockquote>
+<p>Within each interval between the grid points, potentials are fitted to a cubic spline function,
+more specifically, for each <span class="math notranslate nohighlight">\(x_i&lt; x &lt; x_{i+1}\)</span>, let <span class="math notranslate nohighlight">\(δ = x - x_i\)</span>, <span class="math notranslate nohighlight">\(V(x)\)</span> is represented by</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\begin{eqnarray*}
+V(x)=C_{0}+C_{1}\delta +C_{2}{\delta}^{2}+C_{3}{\delta}^{3}
+\end{eqnarray*}</div></div></blockquote>
+<p>where <span class="math notranslate nohighlight">\(x\)</span> corresponds to <span class="math notranslate nohighlight">\(z\)</span>, <span class="math notranslate nohighlight">\(\theta\)</span>, and <span class="math notranslate nohighlight">\(\varphi\)</span> for particle-particle distance square, bending angle,
+and torsion angle, respectively. <span class="math notranslate nohighlight">\(i\)</span> is the index of the grid point and <span class="math notranslate nohighlight">\(C_0\)</span> is the starting potential value of each grid point.
+Other parameters <span class="math notranslate nohighlight">\(C_1\)</span>, <span class="math notranslate nohighlight">\(C_2\)</span>, and <span class="math notranslate nohighlight">\(C_3\)</span> are chosen to make the values of the first derivative and the second derivative
+at both ends of interval <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(x_{i+1}\)</span> equal to the correct values of function V. The interval between two adjacent grids <span class="math notranslate nohighlight">\(\Delta=x_{i+1}-x_i\)</span>
+should be equal.</p>
+<p>The interaction parameters <span class="math notranslate nohighlight">\((C_0, C_1, C_2, C_3)\)</span> can be read from four columns in a file by function <code class="docutils literal notranslate"><span class="pre">setParams()</span></code>
+with the formats, such as pair interactions with</p>
+<blockquote>
+<div><p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">PairForcePoints</span><span class="o">&gt;</span>
+<span class="n">C0</span>  <span class="n">C1</span>  <span class="n">C2</span>  <span class="n">C3</span>
+<span class="o">&lt;/</span><span class="n">PairForcePoints</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The other node names for bond, angle and dihedral are <code class="docutils literal notranslate"><span class="pre">BondForcePoints</span></code>, <code class="docutils literal notranslate"><span class="pre">AngleForcePoints</span></code>, and <code class="docutils literal notranslate"><span class="pre">DihedralForcePoints</span></code>, respectively.</p>
+<p>For convenience, the potentials also can be read directively from two columns in a file by function <code class="docutils literal notranslate"><span class="pre">setPotential()</span></code> with the formats, such as for pair potential</p>
+<blockquote>
+<div><p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">PairPotential</span><span class="o">&gt;</span>
+<span class="n">r</span>  <span class="n">potential</span>
+<span class="o">&lt;/</span> <span class="n">PairPotential</span> <span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>With the potential input format, <span class="math notranslate nohighlight">\(x\)</span> corresponds to <span class="math notranslate nohighlight">\(r\)</span> for distance and <span class="math notranslate nohighlight">\(F=-\partial V(r)/\partial r\)</span>.
+The distance or angle points in first column should be in equal interval and the potentials at the corresponding points are given in second column.
+The angles <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\varphi\)</span> are in radians. The other node names for bond, angle and dihedral are <code class="docutils literal notranslate"><span class="pre">BondPotential</span></code>, <code class="docutils literal notranslate"><span class="pre">AnglePotential</span></code>, and <code class="docutils literal notranslate"><span class="pre">Dihedralpotential</span></code>, respectively.</p>
+</section>
+<section id="non-bonded-interaction">
+<h2>Non-bonded interaction<a class="headerlink" href="#non-bonded-interaction" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="PairForceTable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PairForceTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npoint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PairForceTable" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of an object of numerical pair force calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
+<li><p><strong>npoint</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The number of numerical points.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="PairForceTable.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string&amp;</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PairForceTable.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the numerical interaction parameters(C0,C1,C2,C3) with type1, type2, cut-off, inputting file name, start column, end column</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PairForceTable.setPotential">
+<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std::vector&lt;float2&gt;</span> <span class="pre">potential</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PairForceTable.setPotential" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the numerical potential with type1, type2, potential array(r, potential)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the numerical potential with type1, type2, inputting file name, start column, end column.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pair</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">PairForceTable</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">pair</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="s2">&quot;table.dat&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pair</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="bond-interaction">
+<h2>Bond interaction<a class="headerlink" href="#bond-interaction" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="BondForceTable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForceTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npoint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceTable" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of an object of numerical bond force calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>npoint</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The number of numerical points.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="BondForceTable.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceTable.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the numerical bond interaction parameters(C0,C1,C2,C3) with bond type, cut-off, inputting file name, start column, end column.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="BondForceTable.setPotential">
+<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std::vector&lt;float2&gt;</span> <span class="pre">potential</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceTable.setPotential" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the numerical potential with bond type and the array of potential.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the numerical potential with bond type, inputting file name, start column, and end column.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bond</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">BondForceTable</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">bond</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;1_1&#39;</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;table.dat&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bond</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="angle-interaction">
+<h2>Angle interaction<a class="headerlink" href="#angle-interaction" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="AngleForceTable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AngleForceTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npoint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceTable" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of an object of numerical angle force calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>npoint</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The number of numerical points.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="AngleForceTable.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">file</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceTable.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the numerical angle force parameters(C0,C1,C2,C3) with angle type, inputting file name, start column, and end column.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AngleForceTable.setPotential">
+<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std::vector&lt;float2&gt;</span> <span class="pre">potential</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceTable.setPotential" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the numerical potential with angle type and the array of potential(r, potential).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the numerical potential with angle type, inputting file name, start column, and end column.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">angle</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">AngleForceTable</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">angle</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;111&#39;</span><span class="p">,</span> <span class="s2">&quot;table.dat&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="dihedral-interaction">
+<h2>Dihedral interaction<a class="headerlink" href="#dihedral-interaction" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DihedralForceTable">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npoint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceTable" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of an object of numerical dihedral force calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>npoint</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The number of numerical points.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="DihedralForceTable.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceTable.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the numerical dihedral force parameters(C0,C1,C2,C3) with dihedral type, inputting file name, start column, end column.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DihedralForceTable.setPotential">
+<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">dihedral_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std::vector&lt;float2&gt;</span> <span class="pre">potential</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceTable.setPotential" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the numerical potential with dihedral type and the array of potential(r, potential).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">dihedral_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id3" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the numerical potential with dihedral type, inputting file name, start column, end column.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dihedral</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">DihedralForceTable</span> <span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">dihedral</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;111&#39;</span><span class="p">,</span> <span class="s2">&quot;table.dat&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dihedral</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cu-forcefield-bonded.html" class="btn btn-neutral float-left" title="Bonded interactions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cu-forcefield-coulomb.html" class="btn btn-neutral float-right" title="Coulomb interaction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, You-Liang Zhu and Zhong-Yuan Lu, ylzhu@pygamd.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

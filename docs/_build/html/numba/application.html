@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Application &mdash; PYGAMD v1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Force field" href="forcefield.html" />
+    <link rel="prev" title="Group" href="system-group.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PYGAMD
+          </a>
+              <div class="version">
+                v1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">General introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units.html">Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="system.html">System info</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modules-management">Modules management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multi-stage-simulation">Multi-stage simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#two-dimensional-simulation">Two-dimensional simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/cu-data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/cu-system.html">System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/cu-application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/cu-forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/cu-integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/cu-constraint.html">Constraint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/cu-module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Plug-Ins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../molgen.html">molgen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dataTackle.html">galaTackle</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Announcement</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PYGAMD</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Application</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/numba/application.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="application">
+<h1>Application<a class="headerlink" href="#application" title="Permalink to this headline"></a></h1>
+<section id="modules-management">
+<h2>Modules management<a class="headerlink" href="#modules-management" title="Permalink to this headline"></a></h2>
+<p>PYGAMD is organized by being composed of modules. Application manages and calls modules, and thereby run simulations.
+Usually, we only define an application object in the context of script. The modules can be
+added into by <code class="docutils literal notranslate"><span class="pre">add()</span></code> or removed from by <code class="docutils literal notranslate"><span class="pre">remove()</span></code> the application before runing <code class="docutils literal notranslate"><span class="pre">run()</span></code> the simulation.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="application.dynamics">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">application.</span></span><span class="sig-name descname"><span class="pre">dynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#application.dynamics" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor of application object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>info</strong> – system information</p></li>
+<li><p><strong>dt</strong> – integration time step</p></li>
+<li><p><strong>sort</strong> – if device memory is sorted by Hilbert curve, the default is True.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="application.dynamics.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#application.dynamics.add" title="Permalink to this definition"></a></dt>
+<dd><p>adds an object to the application.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="application.dynamics.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#application.dynamics.remove" title="Permalink to this definition"></a></dt>
+<dd><p>removes an added object.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="application.dynamics.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#application.dynamics.run" title="Permalink to this definition"></a></dt>
+<dd><p>runs the simulation for N time steps.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">dynamics</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="c1"># builds up an application.</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="c1"># runs the simulation for 10000 time steps.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="multi-stage-simulation">
+<h2>Multi-stage simulation<a class="headerlink" href="#multi-stage-simulation" title="Permalink to this headline"></a></h2>
+<p>An application can have single or multiple stage simulations. The commands in the context of script are executed sequentially.
+Every stage simulation is achieved with <code class="docutils literal notranslate"><span class="pre">run()</span></code>.  Before a stage of simulation, the modules and parameters can be adjusted.
+New modules can be added into the applicaitons by <code class="docutils literal notranslate"><span class="pre">add()</span></code>. The added modules at last stage can be removed from the application,
+otherwise they will be kept. For example:</p>
+<ul>
+<li><p>First stage simulation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">dynamics</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lj</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">nvt</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Second state simulation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">lj</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">nvt</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">harmonic</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">npt</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="two-dimensional-simulation">
+<h2>Two-dimensional simulation<a class="headerlink" href="#two-dimensional-simulation" title="Permalink to this headline"></a></h2>
+<ol class="arabic simple">
+<li><p>Controlling script, i.e. ‘file.py’ script is same for two- and three-dimensional simulations.</p></li>
+</ol>
+<p>2. However, configuration file i.e. MST file should indicate two-dimensional
+system by:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>pointing out dimensions with dimensions=”2”</p></li>
+<li><p>setting the length of box in Z diretion to zero with lz=”0”</p></li>
+<li><p>specifying the position of particles in Z direction as 0.0</p></li>
+</ol>
+</div></blockquote>
+<p>An example is given:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mst_version</span> <span class="mf">1.0</span>
+        <span class="n">num_particles</span>
+                <span class="mi">8</span>
+        <span class="n">timestep</span>
+                <span class="mi">0</span>
+        <span class="n">dimension</span>
+                <span class="mi">2</span>
+        <span class="n">box</span>
+                <span class="mf">200.0</span>    <span class="mf">200.0</span>    <span class="mf">0.0</span>
+        <span class="n">position</span>
+                 <span class="mf">28.5678528848</span>   <span class="o">-</span><span class="mf">37.9327360252</span>     <span class="mf">0.0000000000</span>
+                 <span class="mf">28.0019705849</span>   <span class="o">-</span><span class="mf">37.1082499897</span>     <span class="mf">0.0000000000</span>
+                 <span class="mf">29.5648198865</span>   <span class="o">-</span><span class="mf">37.8549105956</span>     <span class="mf">0.0000000000</span>
+                 <span class="mf">28.1367681830</span>   <span class="o">-</span><span class="mf">38.8350474902</span>     <span class="mf">0.0000000000</span>
+                <span class="o">-</span><span class="mf">37.5589154370</span>   <span class="o">-</span><span class="mf">72.8549398355</span>     <span class="mf">0.0000000000</span>
+                <span class="o">-</span><span class="mf">38.4958248509</span>   <span class="o">-</span><span class="mf">72.5053675968</span>     <span class="mf">0.0000000000</span>
+                <span class="o">-</span><span class="mf">36.7877222908</span>   <span class="o">-</span><span class="mf">72.2183386015</span>     <span class="mf">0.0000000000</span>
+                <span class="o">-</span><span class="mf">37.3931991693</span>   <span class="o">-</span><span class="mf">73.8411133084</span>     <span class="mf">0.0000000000</span>
+<span class="n">mst_end</span>
+</pre></div>
+</div>
+<p>3. For molgen script to generate a two-dimensional configuration file, a specification of two dimensions
+and box size in Z direction as 0.0 is necessary. Such as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">molgen</span>
+
+<span class="n">mol</span><span class="o">=</span><span class="n">molgen</span><span class="o">.</span><span class="n">Molecule</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">setParticleTypes</span><span class="p">(</span><span class="s2">&quot;A,B,B,B&quot;</span><span class="p">)</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">setTopology</span><span class="p">(</span><span class="s2">&quot;0-1,0-2,0-3&quot;</span><span class="p">)</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">setBondLength</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">setAngleDegree</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">setInit</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mol</span><span class="o">.</span><span class="n">setCris</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">gen</span><span class="o">=</span><span class="n">molgen</span><span class="o">.</span><span class="n">Generators</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="c1"># box size in X, Y, and Z directions</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">addMolecule</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">setDimension</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">setMinimumDistance</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">outPutMST</span><span class="p">(</span><span class="s2">&quot;pn2d&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="system-group.html" class="btn btn-neutral float-left" title="Group" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="forcefield.html" class="btn btn-neutral float-right" title="Force field" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, You-Liang Zhu and Zhong-Yuan Lu, ylzhu@pygamd.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

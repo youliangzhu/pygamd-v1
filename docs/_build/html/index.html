@@ -46,13 +46,23 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="units.html">Units</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Methods and modules</span></p>
+<p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="system.html">System info</a></li>
-<li class="toctree-l1"><a class="reference internal" href="application.html">Application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="forcefield.html">Force field</a></li>
-<li class="toctree-l1"><a class="reference internal" href="integration.html">Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba/system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba/application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba/forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba/integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba/module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-system.html">System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-constraint.html">Constraint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-module.html">Modules</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Plug-Ins</span></p>
 <ul>
@@ -110,60 +120,223 @@
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Methods and modules</span></p>
+<p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="system.html">System info</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="system-data-format.html">Data format</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="system-data-format.html#mst-format">MST format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba/system.html">System info</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="numba/system-data-format.html">Data format</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="numba/system-data-format.html#mst-format">MST format</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="system-data-input.html">Data input</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="system-data-input.html#mst-reader">MST reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numba/system-data-input.html">Data input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="numba/system-data-input.html#mst-reader">MST reader</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="system-data-output.html">Data output</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="system-data-output.html#collective-information">Collective information</a></li>
-<li class="toctree-l3"><a class="reference internal" href="system-data-output.html#mst-dump">MST dump</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numba/system-data-output.html">Data output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="numba/system-data-output.html#collective-information">Collective information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numba/system-data-output.html#mst-dump">MST dump</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="system-group.html">Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numba/system-group.html">Group</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="application.html">Application</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="application.html#modules-management">Modules management</a></li>
-<li class="toctree-l2"><a class="reference internal" href="application.html#multi-stage-simulation">Multi-stage simulation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="application.html#two-dimensional-simulation">Two-dimensional simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba/application.html">Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="numba/application.html#modules-management">Modules management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numba/application.html#multi-stage-simulation">Multi-stage simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numba/application.html#two-dimensional-simulation">Two-dimensional simulation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="forcefield.html">Force field</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="forcefield-nonbonded.html">Non-bonded interactions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="forcefield-nonbonded.html#non-bonded-functions">Non-bonded functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="forcefield-nonbonded.html#self-defined-functions">Self-defined functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="forcefield-nonbonded.html#non-bonded-functions-for-charged-beads">Non-bonded functions for charged beads</a></li>
-<li class="toctree-l3"><a class="reference internal" href="forcefield-nonbonded.html#self-defined-functions-for-charged-beads">Self-defined functions for charged beads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba/forcefield.html">Force field</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="numba/forcefield-nonbonded.html">Non-bonded interactions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="numba/forcefield-nonbonded.html#non-bonded-functions">Non-bonded functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numba/forcefield-nonbonded.html#self-defined-functions">Self-defined functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numba/forcefield-nonbonded.html#non-bonded-functions-for-charged-beads">Non-bonded functions for charged beads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numba/forcefield-nonbonded.html#self-defined-functions-for-charged-beads">Self-defined functions for charged beads</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="forcefield-bonded.html">Bonded interactions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="forcefield-bonded-bond.html">Bond interactions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="forcefield-bonded-angle.html">Angle bending</a></li>
-<li class="toctree-l3"><a class="reference internal" href="forcefield-bonded-dihedral.html">Dihedral torsion</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="integration.html">Integration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="integration-nvt.html">NVT ensemble</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="integration-nvt.html#nvt">NVT</a></li>
-<li class="toctree-l3"><a class="reference internal" href="integration-nvt.html#gwvv">GWVV</a></li>
-<li class="toctree-l3"><a class="reference internal" href="integration-nvt.html#bd">BD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numba/forcefield-bonded.html">Bonded interactions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="numba/forcefield-bonded-bond.html">Bond interactions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numba/forcefield-bonded-angle.html">Angle bending</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numba/forcefield-bonded-dihedral.html">Dihedral torsion</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="module.html">Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="module-dpd.html">Dissipative particle dynamics</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="module-dpd.html#dpd-force">DPD force</a></li>
-<li class="toctree-l3"><a class="reference internal" href="module-dpd.html#gwvv-integration">GWVV integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba/integration.html">Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="numba/integration-nvt.html">NVT ensemble</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="numba/integration-nvt.html#nvt">NVT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numba/integration-nvt.html#gwvv">GWVV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numba/integration-nvt.html#bd">BD</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="numba/module.html">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="numba/module-dpd.html">Dissipative particle dynamics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="numba/module-dpd.html#dpd-force">DPD force</a></li>
+<li class="toctree-l3"><a class="reference internal" href="numba/module-dpd.html#gwvv-integration">GWVV integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-data.html">Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-data-format.html">Data format</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-data-format.html#xml-format">XML format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-data-input.html">Data input</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-data-input.html#xml-reader">XML reader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-data-input.html#binary-reader">Binary reader</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-data-output.html">Data output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-data-output.html#collective-information">Collective information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-data-output.html#mol2-dump">MOL2 dump</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-data-output.html#xml-dump">XML dump</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-data-output.html#dcd-trajectory-dump">DCD trajectory dump</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-data-output.html#binary-dump">Binary dump</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-system.html">System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-system-import.html">Information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-system-import.html#import-cuda-lib">import cuda-lib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-system-import.html#import-hip-lib">import hip-lib</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-system-information.html">Information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-system-information.html#perform-configuration">Perform configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-system-information.html#all-information">All information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-system-list.html">Particle list</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-system-list.html#neighbor-list">Neighbor list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-system-list.html#cell-list">Cell list</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-system-group.html">Particle set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-system-compute.html">Information computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-system-sort.html">Memory sorting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-application.html">Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-application.html#modules-management">Modules management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-application.html#multi-stage-simulation">Multi-stage simulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-application.html#two-dimensional-simulation">Two-dimensional simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-forcefield.html">Force field</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-forcefield-nonbonded.html">Short range non-bonded interactions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-nonbonded.html#lennard-jones-lj-interaction">Lennard-Jones (LJ) interaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-nonbonded.html#shift-lennard-jones-lj-interaction">Shift Lennard-Jones (LJ) interaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-nonbonded.html#linear-molecule-pi-pi-interaction">Linear molecule <span class="math notranslate nohighlight">\(\pi\)</span>-<span class="math notranslate nohighlight">\(\pi\)</span> interaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-nonbonded.html#generalized-exponential-model">Generalized exponential model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-nonbonded.html#lennard-jones-and-ewald-short-range-interaction">Lennard-Jones and Ewald (short range) interaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-nonbonded.html#pair-interaction">Pair interaction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-forcefield-bonded.html">Bonded interactions</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-forcefield-numerical.html">Numerical interaction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-numerical.html#theory-description">Theory description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-numerical.html#non-bonded-interaction">Non-bonded interaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-numerical.html#bond-interaction">Bond interaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-numerical.html#angle-interaction">Angle interaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-numerical.html#dihedral-interaction">Dihedral interaction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-forcefield-coulomb.html">Coulomb interaction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-coulomb.html#ewald-summation-theory">Ewald summation theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-coulomb.html#ewald-short-range">Ewald (short-range)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-coulomb.html#ewald-for-dpd-short-range">Ewald for DPD (short-range)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-coulomb.html#pppm-long-range">PPPM (long-range)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-coulomb.html#enuf-long-range">ENUF (long-range)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-forcefield-files.html">Read force parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-files.html#force-field-format">Force field format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-files.html#use-force-fields">Use force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-files.html#use-gromacs-force-fields">Use GROMACS force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-forcefield-files.html#convert-gromacs-files">Convert GROMACS files</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-integration.html">Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-integration-nve.html">NVE ensemble</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-integration-nve.html#nve-thermostat">NVE thermostat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-integration-nve.html#nve-for-rigid-body">NVE for rigid body</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-integration-nve.html#nve-for-rigid-body-with-tunable-freedoms">NVE for rigid body with tunable freedoms</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-integration-nvt.html">NVT ensemble</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-integration-nvt.html#nose-hoover-thermostat">Nose Hoover thermostat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-integration-nvt.html#berendsen-thermostat">Berendsen thermostat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-integration-nvt.html#andersen-thermostat">Andersen thermostat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-integration-nvt.html#brownian-dynamic-thermostat">Brownian dynamic thermostat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-integration-nvt.html#nvt-for-rigid-body">NVT for rigid body</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-integration-nvt.html#brownian-dynamic-for-rigid-body">Brownian dynamic for rigid body</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-integration-npt.html">NPT ensemble</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-integration-npt.html#andersen-barostat">Andersen barostat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-integration-npt.html#npt-for-rigid-body">NPT for rigid body</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-integration-npt.html#martyna-tobias-klein-barostat">Martyna-Tobias-Klein barostat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-integration-npt.html#martyna-tobias-klein-barostat-for-rigid-body">Martyna-Tobias-Klein barostat for rigid body</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-constraint.html">Constraint</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-constraint-variant.html">Variant</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-constraint-variant.html#variant-const">Variant Const</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-constraint-variant.html#variant-linear">Variant Linear</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-constraint-variant.html#variant-sin">Variant Sin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-constraint-variant.html#variant-well">Variant Well</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-constraint-external_interaction.html">External interaction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-constraint-external_interaction.html#axial-stretching">Axial stretching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-constraint-external_interaction.html#external-force">External force</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-constraint-space_constraint.html">Space constraint</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-constraint-space_constraint.html#bounce-back-condition">Bounce back condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-constraint-space_constraint.html#lj-surface-force">LJ surface force</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-constraint-remove_momentum.html">Remove CM momentum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-constraint-ccpmd.html">Constant chemical potential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-constraint-bond_constraint.html">Bond constraint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-constraint-virtual_site.html">Virtual site</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-module.html">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-module-mdscf.html">MD-SCF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-module-mdscf.html#mdscf-force">MDSCF force</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-module-mdscf.html#mdscf-electrostatic-force">MDSCF electrostatic force</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-module-polymerization.html">Polymerization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-module-polymerization.html#polymerization-model">Polymerization model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-module-polymerization.html#depolymerization-model">Depolymerization model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-module-anisotropic.html">Anisotropic particle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-module-anisotropic.html#gay-berne-model">Gay-Berne model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-module-anisotropic.html#soft-anisotropic-model">Soft anisotropic model</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cuda/cu-module-dpd.html">Dissipative particle dynamics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-module-dpd.html#dpd-force">DPD force</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-module-dpd.html#gwvv-integration">GWVV integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cuda/cu-module-dpd.html#coulomb-interaction-in-dpd">Coulomb interaction in DPD</a></li>
 </ul>
 </li>
 </ul>

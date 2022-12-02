@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coulomb interaction &mdash; PYGAMD v1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Read force parameters" href="cu-forcefield-files.html" />
+    <link rel="prev" title="Numerical interaction" href="cu-forcefield-numerical.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PYGAMD
+          </a>
+              <div class="version">
+                v1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">General introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units.html">Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../numba/system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cu-data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-system.html">System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-application.html">Application</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cu-forcefield.html">Force field</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-nonbonded.html">Short range non-bonded interactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded.html">Bonded interactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-numerical.html">Numerical interaction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Coulomb interaction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ewald-summation-theory">Ewald summation theory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ewald-short-range">Ewald (short-range)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ewald-for-dpd-short-range">Ewald for DPD (short-range)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pppm-long-range">PPPM (long-range)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enuf-long-range">ENUF (long-range)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-files.html">Read force parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cu-integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-constraint.html">Constraint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Plug-Ins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../molgen.html">molgen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dataTackle.html">galaTackle</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Announcement</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PYGAMD</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="cu-forcefield.html">Force field</a> &raquo;</li>
+      <li>Coulomb interaction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cuda/cu-forcefield-coulomb.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coulomb-interaction">
+<h1>Coulomb interaction<a class="headerlink" href="#coulomb-interaction" title="Permalink to this headline"></a></h1>
+<section id="ewald-summation-theory">
+<span id="ewald-theory"></span><h2>Ewald summation theory<a class="headerlink" href="#ewald-summation-theory" title="Permalink to this headline"></a></h2>
+<p>The Coulomb interaction between two charge particles is given by:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\begin{eqnarray*}
+    U\left( r \right)=f\frac{q_{i} q_{j}}{\epsilon_{r}r}
+\end{eqnarray*}</div></div></blockquote>
+<p>where electric conversion factor <span class="math notranslate nohighlight">\(f= 1/4\pi \epsilon_0=138.935\text{ }kJ\text{ }mol^{-1}\text{ }nm\text{ }e^{-2}\)</span>.
+The total electrostatic energy of N particles and their periodic images is given by</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\begin{eqnarray*}
+ V=\frac{f}{2\epsilon_{r}}\sum\limits_{\mathbf{n}}\sum\limits_{i}^{N}{\sum\limits_{j}^{N}{\frac{{q}_{i}{q}_{j}}{\left| {r}_{ij}+\mathbf{n} \right|}}}
+\end{eqnarray*}</div></div></blockquote>
+<p>The electrostatic potential is practically calculated by</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\begin{eqnarray*}
+    U\left( r^{*} \right)=\frac{q^{*}_{i} q^{*}_{j}}{r^{*}}
+\end{eqnarray*}</div></div></blockquote>
+<p>The electric conversion factor and relative dielectric constant are considered in the reduced charge.
+For example, if the mass, length, and energy units are [amu], [nm], and [kJ/mol], respectively, according to <a class="reference internal" href="../units.html#charge-units"><span class="std std-ref">Charge units</span></a> the reduced charge is
+<span class="math notranslate nohighlight">\(q^{*}=z\sqrt{f^*/{\epsilon }_{r}}\)</span> with <span class="math notranslate nohighlight">\(f^* = 138.935\)</span>. The <span class="math notranslate nohighlight">\(z\)</span> is the valence of ion.</p>
+<p>The calculation of Coulomb interaction is split into two parts, short-range part and long-range part by adding and subtracting a Gaussian distribution.</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\begin{eqnarray*}
+    G\left( r \right)=\frac{\kappa^{3}}{\pi^{3/2}}\mbox{exp}\left(-\kappa^2r^2\right)
+\end{eqnarray*}</div></div></blockquote>
+<p>The short-range part including <a class="reference internal" href="#EwaldForce" title="EwaldForce"><code class="xref py py-class docutils literal notranslate"><span class="pre">EwaldForce</span></code></a> and <a class="reference internal" href="#DPDEwaldForce" title="DPDEwaldForce"><code class="xref py py-class docutils literal notranslate"><span class="pre">DPDEwaldForce</span></code></a> (for DPD) methods is calculated directly as non-bonded interactions.
+The long-range part inlcuding <a class="reference internal" href="#PPPMForce" title="PPPMForce"><code class="xref py py-class docutils literal notranslate"><span class="pre">PPPMForce</span></code></a> or <a class="reference internal" href="#ENUFForce" title="ENUFForce"><code class="xref py py-class docutils literal notranslate"><span class="pre">ENUFForce</span></code></a> methods is calculated in the reciprocal sum by Fourier transform.</p>
+<p>For Coulomb interaction calculation, a short-range method and a long-range method are both needed.</p>
+<blockquote>
+<div><p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">groupC</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;charge&quot;</span><span class="p">)</span>
+
+<span class="c1"># real space</span>
+<span class="n">ewald</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">EwaldForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="n">groupC</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span><span class="c1">#(,,r_cut)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ewald</span><span class="p">)</span>
+
+<span class="c1"># reciprocal space</span>
+<span class="n">pppm</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">PPPMForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="n">groupC</span><span class="p">)</span>
+<span class="n">pppm</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="c1"># grid number in x, y, and z directions, spread order, r_cut in real space.</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pppm</span><span class="p">)</span>
+
+<span class="n">kappa</span> <span class="o">=</span> <span class="n">pppm</span><span class="o">.</span><span class="n">getKappa</span><span class="p">()</span>
+<span class="c1"># an optimized kappa can be calculated by PPPMForce and passed into EwaldForce.</span>
+<span class="n">ewald</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="n">kappa</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="ewald-short-range">
+<span id="ewald-short"></span><h2>Ewald (short-range)<a class="headerlink" href="#ewald-short-range" title="Permalink to this headline"></a></h2>
+<p>Description:</p>
+<blockquote>
+<div><p>The short-range term is exactly handled in the direct sum.</p>
+<div class="math notranslate nohighlight">
+\begin{eqnarray*}
+ V^{S}=\frac{f}{2\epsilon_{r}}\sum\limits_{\mathbf{n}}\sum\limits_{i}^{N}\sum\limits_{j}^{N}\frac{{q}_{i}{q}_{j}\mbox{erfc} \left(\kappa\left| {r}_{ij}+\mathbf{n} \right| \right)}{\left| {r}_{ij}+\mathbf{n} \right|}
+\end{eqnarray*}</div><p>The following coefficients must be set:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\kappa\)</span> - <em>kappa</em> (unitless)</p></li>
+</ul>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="EwaldForce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EwaldForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EwaldForce" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of an direct Ewald force object for a group of charged particles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
+<li><p><strong>group</strong> (<a class="reference internal" href="cu-system-group.html#id2" title="ParticleSet"><em>ParticleSet</em></a>) – The group of charged particles.</p></li>
+<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The cut-off radius.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="EwaldForce.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typei</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typej</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">kappa</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EwaldForce.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the kappa per unique pair of particle types.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">kappa</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the kappa for all pairs of particle types.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">group</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;charge&quot;</span><span class="p">)</span>
+<span class="n">kappa</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="n">ewald</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">EwaldForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="n">ewald</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="n">kappa</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ewald</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="ewald-for-dpd-short-range">
+<span id="ewald-short-dpd"></span><h2>Ewald for DPD (short-range)<a class="headerlink" href="#ewald-for-dpd-short-range" title="Permalink to this headline"></a></h2>
+<p>Description:</p>
+<blockquote>
+<div><p>In order to remove the divergency at <span class="math notranslate nohighlight">\(r=0\)</span>, a Slater-type charge density is used to describe the charged DPD particles.</p>
+<div class="math notranslate nohighlight">
+\begin{eqnarray*}
+ \rho(r)=\frac{q}{\pi\lambda^{3}}e^{-2r/\lambda}
+\end{eqnarray*}</div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span> - the decay length of the charge (in distance units)</p></li>
+</ul>
+<p>The short-range term is exactly handled in the direct sum.</p>
+<div class="math notranslate nohighlight">
+\begin{eqnarray*}
+ V^{S}=\frac{f}{2\epsilon_{r}}\sum\limits_{\mathbf{n}}\sum\limits_{i}^{N}\sum\limits_{j}^{N}\frac{{q}_{i}{q}_{j}\mbox{erfc} \left(\kappa\left| {r}_{ij}+\mathbf{n} \right| \right)}{\left| {r}_{ij}+\mathbf{n} \right|} \left[1-(1+\beta r_{ij}\mbox{e}^{-2\beta r_{ij}} \right]
+\end{eqnarray*}</div><p>The following coefficients must be set:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\kappa\)</span> - <em>kappa</em> (unitless)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta=1/\lambda\)</span> - <em>beta</em> (in inverse distance units)</p></li>
+</ul>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="DPDEwaldForce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DPDEwaldForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDEwaldForce" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of an direct Ewald force object for a group of charged particles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
+<li><p><strong>group</strong> (<a class="reference internal" href="cu-system-group.html#id2" title="ParticleSet"><em>ParticleSet</em></a>) – The group of charged particles.</p></li>
+<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The cut-off radius.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="DPDEwaldForce.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typei</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typej</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">kappa</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDEwaldForce.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the kappa per unique pair of particle types.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">kappa</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the kappa for all pairs of particle types.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DPDEwaldForce.setBeta">
+<span class="sig-name descname"><span class="pre">setBeta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">beta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDEwaldForce.setBeta" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the beta for all pairs of particle types.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">group</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;charge&quot;</span><span class="p">)</span>
+<span class="n">kappa</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="n">dpd_ewald</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">DPDEwaldForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="n">dpd_ewald</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="n">kappa</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dpd_ewald</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="pppm-long-range">
+<span id="pppm-long"></span><h2>PPPM (long-range)<a class="headerlink" href="#pppm-long-range" title="Permalink to this headline"></a></h2>
+<p>Description:</p>
+<blockquote>
+<div><p>The long-range term is exactly handled in the reciprocal sum.</p>
+<div class="math notranslate nohighlight">
+\begin{eqnarray*}
+ V^{L}&amp;=&amp;\frac{1}{2V\epsilon_{0}\epsilon_{r}}\sum\limits_{\mathbf{k}\neq0}\frac{\mbox{exp}(-\mathbf{k}^{2}/4\kappa^{2})}{\mathbf{k}^{2}} \left| S(\mathbf{k}) \right|^{2} \\
+ S(\mathbf{k})&amp;=&amp;\sum\limits_{i=1}^{N}q_{i}\mbox{exp}^{i\mathbf{k} \cdot \mathbf{r}_i}
+\end{eqnarray*}</div><p>The self-energy term.</p>
+<div class="math notranslate nohighlight">
+\begin{eqnarray*}
+ V^{self}&amp;=&amp;\frac{1}{f}\frac{\kappa}{\sqrt{\pi}}\sum\limits_{i=1}^{N}q_{i}^{2}
+\end{eqnarray*}</div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\kappa\)</span> - <em>kappa</em> (unitless)</p></li>
+</ul>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="PPPMForce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PPPMForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PPPMForce" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of a PPPM force object for a group of charged particles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
+<li><p><strong>group</strong> (<a class="reference internal" href="cu-system-group.html#id2" title="ParticleSet"><em>ParticleSet</em></a>) – The group of charged particles.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="PPPMForce.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">nx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ny</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">nz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PPPMForce.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the PPPM force with the number of grid points in x, y, and z direction, the order of interpolation, and the cutoff radius of direct force.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">fourierspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the PPPM force with the fourier space, the order of interpolation, and the cutoff radius of direct force.
+The number of grid points will be derived automatically.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">float</span> <span class="pre">getKappa()</span></span></dt>
+<dd><p>return the kappa calculated by PPPM force.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">group</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;charge&quot;</span><span class="p">)</span>
+<span class="n">pppm</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">PPPMForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
+<span class="n">pppm</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pppm</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="enuf-long-range">
+<span id="enuf-long"></span><h2>ENUF (long-range)<a class="headerlink" href="#enuf-long-range" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="ENUFForce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ENUFForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ENUFForce" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of an ENUF force object for a group of charged particles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
+<li><p><strong>group</strong> (<a class="reference internal" href="cu-system-group.html#id2" title="ParticleSet"><em>ParticleSet</em></a>) – The group of charged particles.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="ENUFForce.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">precision</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">Nx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">Ny</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">Nz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ENUFForce.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the ENUF force with alpha, hyper sampling factor sigma, precision determine the order of interpolation (precision*2+2), and the number of grid points in x, y, and z direction.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">group</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;charge&quot;</span><span class="p">)</span>
+<span class="n">kappa</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="n">enuf</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ENUFForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
+<span class="n">enuf</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">enuf</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cu-forcefield-numerical.html" class="btn btn-neutral float-left" title="Numerical interaction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cu-forcefield-files.html" class="btn btn-neutral float-right" title="Read force parameters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, You-Liang Zhu and Zhong-Yuan Lu, ylzhu@pygamd.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

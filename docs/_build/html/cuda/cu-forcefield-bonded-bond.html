@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bond stretching &mdash; PYGAMD v1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PYGAMD
+          </a>
+              <div class="version">
+                v1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">General introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units.html">Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../numba/system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cu-data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-system.html">System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-constraint.html">Constraint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Plug-Ins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../molgen.html">molgen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dataTackle.html">galaTackle</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Announcement</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PYGAMD</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Bond stretching</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cuda/cu-forcefield-bonded-bond.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bond-stretching">
+<h1>Bond stretching<a class="headerlink" href="#bond-stretching" title="Permalink to this headline"></a></h1>
+<p><strong>Overview</strong></p>
+<p>Bonds impose connected forces on specific pairs of particles to model chemical bonds.
+The bonds are specified in <a class="reference internal" href="cu-data-format.html#xml-format"><span class="std std-ref">XML format</span></a> configuration file with the format:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">bond</span><span class="o">&gt;</span>
+<span class="n">bond_type</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>  <span class="n">particle_i</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>  <span class="n">particle_j</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="o">&lt;/</span><span class="n">bond</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>By themselves, bonds do nothing. Only when you specify a bond force in script(i.e. <a class="reference internal" href="cu-forcefield-files.html#BondForceHarmonic" title="BondForceHarmonic"><code class="xref py py-class docutils literal notranslate"><span class="pre">BondForceHarmonic</span></code></a>), are forces actually calculated between the listed particles.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#harmonic-bond"><span class="std std-ref">Harmonic bond potential</span></a></p></td>
+<td><p><a class="reference internal" href="cu-forcefield-files.html#BondForceHarmonic" title="BondForceHarmonic"><code class="xref py py-class docutils literal notranslate"><span class="pre">BondForceHarmonic</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#fene-bond"><span class="std std-ref">FENE bond potential</span></a></p></td>
+<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">BondForceFene</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#polynominal-bond"><span class="std std-ref">Polynominal bond potential</span></a></p></td>
+<td><p><a class="reference internal" href="#BondForcePolynomial" title="BondForcePolynomial"><code class="xref py py-class docutils literal notranslate"><span class="pre">BondForcePolynomial</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#morse-bond"><span class="std std-ref">Morse bond potential</span></a></p></td>
+<td><p><a class="reference internal" href="#BondForceMorse" title="BondForceMorse"><code class="xref py py-class docutils literal notranslate"><span class="pre">BondForceMorse</span></code></a></p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../_images/bond.png"><img alt="Principle of bond stretching" class="align-center" src="../_images/bond.png" style="width: 250px;" /></a>
+<section id="harmonic-bond-potential">
+<span id="harmonic-bond"></span><h2>Harmonic bond potential<a class="headerlink" href="#harmonic-bond-potential" title="Permalink to this headline"></a></h2>
+<p>Description:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\begin{eqnarray*}
+V_{\mathrm{bond}}(r) = \frac{1}{2}k\left( r - r_{0} \right)^{2}
+\end{eqnarray*}</div><p>Coefficients:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(k\)</span> - spring constant <code class="docutils literal notranslate"><span class="pre">k</span></code> (in units of energy/distance^2)</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_0\)</span> - equilibrium length <code class="docutils literal notranslate"><span class="pre">r0</span></code> (in distance units)</p></li>
+</ul>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="BondForceHarmonic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceHarmonic" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of harmonic bond interaction object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="BondForceHarmonic.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceHarmonic.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the bond interaction parameters with bond type, spring constant, and equilibrium length.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bondforce</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">BondForceHarmonic</span><span class="p">(</span><span class="n">all_info</span><span class="p">)</span>
+<span class="n">bondforce</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;polymer&#39;</span><span class="p">,</span> <span class="mf">1250.000</span><span class="p">,</span> <span class="mf">0.470</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bondforce</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="fene-bond-potential">
+<span id="fene-bond"></span><h2>FENE bond potential<a class="headerlink" href="#fene-bond-potential" title="Permalink to this headline"></a></h2>
+<p>Description:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\begin{eqnarray*}
+V_{\mathrm{bond}}(r)=-\frac{1}{2}k {r_{m}}^{2}\log \left[ 1-\frac{\left(r - r_{0} -\Delta \right)^{2}}{r_{m}^{2}} \right]
+\end{eqnarray*}
+
+\begin{eqnarray*}
+   V_{\mathrm{WCA}}(r)=&amp;4 \epsilon \left[ \left( \frac{\sigma }{r-\Delta } \right)^{12}-\left( \frac{\sigma }{r-\Delta } \right)^{6} \right] + \epsilon
+                               &amp; ,(r - \Delta)&lt;\sigma^{1/6}  \\
+                    = &amp; 0 &amp; ,(r - \Delta) \ge \sigma^{1/6}  \\
+\end{eqnarray*}</div><p>Coefficients:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(k\)</span> - attractive force strength <code class="docutils literal notranslate"><span class="pre">k</span></code> (in units of energy/distance^2)</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_0\)</span> - equilibrium length <code class="docutils literal notranslate"><span class="pre">r0</span></code> (in distance units)
+- <em>optional</em>: defaults to 0.0</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_m\)</span> - maximum bond length <code class="docutils literal notranslate"><span class="pre">rm</span></code> (in distance units)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> - <em>epsilon</em> (in energy units)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span> - <em>sigma</em> (in distance units)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta = (d_{i} + d_{j})/2 - 1.0\)</span> - (in distance units); <span class="math notranslate nohighlight">\(d_{i}\)</span> and <span class="math notranslate nohighlight">\(d_{j}\)</span> are the diameter of particle <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span> which can be input from XML file.</p></li>
+</ul>
+<dl class="simple">
+<dt>Note:</dt><dd><p><span class="math notranslate nohighlight">\(\Delta\)</span> only will be considered (default value is 0.0) by calling the function <code class="docutils literal notranslate"><span class="pre">setConsiderDiameter(True)</span></code></p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="BondForceFENE">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForceFENE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceFENE" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of FENE bond interaction object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="BondForceFENE.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceFENE.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the FENE bond force parameters with bond type, spring constant, and the maximum length of the bond.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the FENE bond force parameters with bond type, spring constant, maximum length, and equilibrium length.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the FENE+WCA bond parameters with bond type, spring constant, maximum length of the bond, epsilon, sigma (the latter two parameters for WCA force between two bonded particles ).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="BondForceFENE.setConsiderDiameter">
+<span class="sig-name descname"><span class="pre">setConsiderDiameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">con_dia</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceFENE.setConsiderDiameter" title="Permalink to this definition"></a></dt>
+<dd><p>the diameter of particles will be considered or not</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bondforcefene</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">BondForceFENE</span><span class="p">(</span><span class="n">all_info</span><span class="p">)</span>
+<span class="n">bondforcefene</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;polymer&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bondforcefene</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="polynominal-bond-potential">
+<span id="polynominal-bond"></span><h2>Polynominal bond potential<a class="headerlink" href="#polynominal-bond-potential" title="Permalink to this headline"></a></h2>
+<p>Description:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\begin{eqnarray*}
+V_{\mathrm{bond}}(r)=k_{1}\left( r - r_{0} \right)^{2}+k_{2}\left( r - r_{0} \right)^{4}
+\end{eqnarray*}</div><p>Coefficients:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(k_1\)</span> - spring constant <code class="docutils literal notranslate"><span class="pre">k1</span></code> (in units of energy/distance^2)</p></li>
+<li><p><span class="math notranslate nohighlight">\(k_2\)</span> - spring constant <code class="docutils literal notranslate"><span class="pre">k2</span></code> (in units of energy/distance^4)</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_0\)</span> - equilibrium length <code class="docutils literal notranslate"><span class="pre">r0</span></code> (in distance units)</p></li>
+</ul>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="BondForcePolynomial">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForcePolynomial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForcePolynomial" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of polynomial bond interaction object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="BondForcePolynomial.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForcePolynomial.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the polynomial bond force parameters with bond type, spring constant k1, spring constant k2, and equilibrium bond length r0.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bondforce_polynomial</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">BondForcePolynomial</span><span class="p">(</span><span class="n">all_info</span><span class="p">)</span>
+<span class="n">bondforce_polynomial</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;polymer&#39;</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bondforce_polynomial</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="morse-bond-potential">
+<span id="morse-bond"></span><h2>Morse bond potential<a class="headerlink" href="#morse-bond-potential" title="Permalink to this headline"></a></h2>
+<p>Description:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\begin{eqnarray*}
+V_{\mathrm{bond}}(r)=&amp;k\left[ 1-e^{-\alpha \left( r-r_{0} \right)} \right]^{2} &amp; r &lt; r_{\mathrm{m}} \\
+                    = &amp; 0 &amp; r \ge r_{\mathrm{m}} \\
+\end{eqnarray*}</div><p>Coefficients:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(k\)</span> - well depth <code class="docutils literal notranslate"><span class="pre">k</span></code> (in units of energy)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> - controls the ‘width’ of the potential <code class="docutils literal notranslate"><span class="pre">alpha</span></code> (he smaller <span class="math notranslate nohighlight">\(\alpha\)</span> is, the larger the well)</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_0\)</span> - equilibrium length <code class="docutils literal notranslate"><span class="pre">r0</span></code> (in distance units)</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_m\)</span> - maximum interaction range <code class="docutils literal notranslate"><span class="pre">rm</span></code> (in distance units)</p></li>
+</ul>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="BondForceMorse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForceMorse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceMorse" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of Morse bond interaction object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="BondForceMorse.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceMorse.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the Morse bond force parameters with bond type, spring constant, alpha controls the ‘width’ of the potential, equilibrium bond length, maximum interaction range.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bondforce_morse</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">BondForceMorse</span><span class="p">(</span><span class="n">all_info</span><span class="p">)</span>
+<span class="n">bondforce_morse</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;polymer&#39;</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bondforce_morse</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, You-Liang Zhu and Zhong-Yuan Lu, ylzhu@pygamd.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anisotropic particle &mdash; PYGAMD v1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dissipative particle dynamics" href="cu-module-dpd.html" />
+    <link rel="prev" title="Polymerization" href="cu-module-polymerization.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PYGAMD
+          </a>
+              <div class="version">
+                v1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">General introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units.html">Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../numba/system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cu-data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-system.html">System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-constraint.html">Constraint</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cu-module.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cu-module-mdscf.html">MD-SCF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-module-polymerization.html">Polymerization</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Anisotropic particle</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gay-berne-model">Gay-Berne model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#uniaxial-gb-interaction">Uniaxial GB interaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bond-force-of-uniaxial-gb-particles">Bond force of uniaxial GB particles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#biaxial-gb-interaction">Biaxial GB interaction</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#soft-anisotropic-model">Soft anisotropic model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#janus-particle-model">Janus particle model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#thermostat-for-janus-particle-model">Thermostat for Janus particle model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multiple-patch-particle-model">Multiple patch particle model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#thermostat-for-multiple-patch-particle-model">Thermostat for multiple patch particle model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-module-dpd.html">Dissipative particle dynamics</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Plug-Ins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../molgen.html">molgen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dataTackle.html">galaTackle</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Announcement</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PYGAMD</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="cu-module.html">Modules</a> &raquo;</li>
+      <li>Anisotropic particle</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cuda/cu-module-anisotropic.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="anisotropic-particle">
+<h1>Anisotropic particle<a class="headerlink" href="#anisotropic-particle" title="Permalink to this headline"></a></h1>
+<section id="gay-berne-model">
+<h2>Gay-Berne model<a class="headerlink" href="#gay-berne-model" title="Permalink to this headline"></a></h2>
+<section id="uniaxial-gb-interaction">
+<h3>Uniaxial GB interaction<a class="headerlink" href="#uniaxial-gb-interaction" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="GBForce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GBForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#GBForce" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of a method of Gay-Berne force.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
+<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The cut-off radius.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="GBForce.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma_e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon_e</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon_s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">Ps</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#GBForce.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the GB force parameters with type1, type2, epsilon0, sigma0, nu, mu, end-to-end length (sigma_e), side-by-side length (sigma_s), end-to-end energy (epsilon_e), side-by-side energy (epsilon_s), Ps.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gb</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">GBForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">)</span>
+<span class="n">gb</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span> <span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="c1"># sets parameters: type1, type2, epsilon0, sigma0, nu, mu, sigma_e,</span>
+<span class="c1"># sigma_s, epsilon_e, epsilon_s, Ps.</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gb</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="bond-force-of-uniaxial-gb-particles">
+<h3>Bond force of uniaxial GB particles<a class="headerlink" href="#bond-force-of-uniaxial-gb-particles" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="BondForceAni">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForceAni</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceAni" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of a method of bond force calculation of anisotropic particles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="BondForceAni.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">bondtype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">Kbond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rbond</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">Kangle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">dangle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceAni.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the bond force parameters with bond type, bond spring constant, end-to-end length of GB particle, angle spring constant, equilibrium angle degree.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bondani</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">BondForceAni</span><span class="p">(</span><span class="n">all_info</span><span class="p">)</span>
+<span class="n">bondani</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;A-A&#39;</span><span class="p">,</span> <span class="mf">100.0</span> <span class="p">,</span> <span class="mf">4.498</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bondani</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="biaxial-gb-interaction">
+<h3>Biaxial GB interaction<a class="headerlink" href="#biaxial-gb-interaction" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="PBGBForce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PBGBForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PBGBForce" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of a method of Gay-Berne force.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="PBGBForce.setGUM">
+<span class="sig-name descname"><span class="pre">setGUM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">gamma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">mu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PBGBForce.setGUM" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the GB force parameters with gamma, nu, mu.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PBGBForce.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PBGBForce.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the GB force parameters with type1, type2, epsilon, sigma, cutoff radius.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PBGBForce.setAspheres">
+<span class="sig-name descname"><span class="pre">setAspheres</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PBGBForce.setAspheres" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the file for shape parameters.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="PBGBForce.setPatches">
+<span class="sig-name descname"><span class="pre">setPatches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PBGBForce.setPatches" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the file for Patch parameters.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pbgb</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">PBGBForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">)</span>
+<span class="n">pbgb</span><span class="o">.</span><span class="n">setGUM</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span><span class="c1">#(gamma, niu, miu)</span>
+<span class="n">pbgb</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span> <span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span><span class="c1">#(,,epsilon, sigma, rcut)</span>
+<span class="n">pbgb</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span> <span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span><span class="c1">#(,,epsilon, sigma, rcut)</span>
+<span class="n">pbgb</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span> <span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">)</span><span class="c1">#(,,epsilon, sigma, rcut)</span>
+<span class="n">pbgb</span><span class="o">.</span><span class="n">setAspheres</span><span class="p">(</span><span class="s1">&#39;patch.log&#39;</span><span class="p">)</span><span class="c1">#(,a,b,c,eia_one,eib_one,eic_one)</span>
+<span class="n">pbgb</span><span class="o">.</span><span class="n">setPatches</span><span class="p">(</span><span class="s1">&#39;patch.log&#39;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pbgb</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>File ‘patch.log’:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Patches</span><span class="o">&gt;</span>
+<span class="n">B</span> <span class="mi">2</span>                             <span class="c1">#particle type, patch number</span>
+<span class="n">p1</span> <span class="mi">60</span>  <span class="mi">0</span>         <span class="mi">0</span>   <span class="mi">1</span>          <span class="c1">#patch type, beta(degree) which is half of the opening angle-</span>
+<span class="n">p1</span> <span class="mi">60</span>  <span class="mi">0</span>         <span class="mi">0</span>   <span class="o">-</span><span class="mi">1</span>         <span class="c1">#of the attractive patch, patch position(x, y, z) in unit vector</span>
+<span class="o">&lt;/</span><span class="n">Patches</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">PatchParams</span><span class="o">&gt;</span>
+<span class="n">p1</span> <span class="n">p1</span> <span class="mf">88.0</span> <span class="mf">0.5</span>                  <span class="c1">#patch type, patch type, alpha_A, and gamma_epsilon</span>
+<span class="o">&lt;/</span><span class="n">PatchParams</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">Aspheres</span><span class="o">&gt;</span>
+<span class="n">A</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">3.0</span> <span class="mf">3.0</span> <span class="mf">3.0</span>       <span class="c1">#a,b,c,eia_one,eib_one,eic_one</span>
+<span class="n">B</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">3.0</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">0.2</span>       <span class="c1">#a,b,c,eia_one,eib_one,eic_one</span>
+<span class="o">&lt;/</span><span class="n">Aspheres</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+<section id="soft-anisotropic-model">
+<h2>Soft anisotropic model<a class="headerlink" href="#soft-anisotropic-model" title="Permalink to this headline"></a></h2>
+<section id="janus-particle-model">
+<h3>Janus particle model<a class="headerlink" href="#janus-particle-model" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="LZWForce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LZWForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LZWForce" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of a method of LZW force calculation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
+<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The cut-off radius.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="LZWForce.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alphaR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">mu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alphaA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">beta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LZWForce.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the LZW force parameters with type1, type2, alphaR, mu, nu, alphaA, and beta.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="LZWForce.setMethod">
+<span class="sig-name descname"><span class="pre">setMethod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">method</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LZWForce.setMethod" title="Permalink to this definition"></a></dt>
+<dd><p>chooses a method of ‘Disk’, ‘Janus’, ABAtriJanus’, ‘BABtriJanus’.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lzw</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">LZWForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">lzw</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span> <span class="p">,</span> <span class="mf">396.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">88.0</span><span class="p">,</span><span class="mf">60.0</span><span class="o">/</span><span class="mf">180.0</span><span class="o">*</span><span class="mf">3.1415926</span><span class="p">)</span>
+<span class="n">lzw</span><span class="o">.</span><span class="n">setMethod</span><span class="p">(</span><span class="s1">&#39;ABAtriJanus&#39;</span><span class="p">)</span>
+<span class="c1"># sets method with the choice of ABAtriJanus.</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lzw</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="thermostat-for-janus-particle-model">
+<h3>Thermostat for Janus particle model<a class="headerlink" href="#thermostat-for-janus-particle-model" title="Permalink to this headline"></a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="BerendsenAniNVT">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BerendsenAniNVT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">AllInfo</span> <span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ParticleSet</span> <span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ComputeInfo</span> <span class="pre">comp_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">tauR</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BerendsenAniNVT" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of a Berendsen NVT thermostat for anisotropic particles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>group</strong> (<a class="reference internal" href="cu-system-group.html#id2" title="ParticleSet"><em>ParticleSet</em></a>) – The group of particles.</p></li>
+<li><p><strong>comp_info</strong> (<a class="reference internal" href="cu-system-compute.html#ComputeInfo" title="ComputeInfo"><em>ComputeInfo</em></a>) – The object of calculation of collective information.</p></li>
+<li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
+<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The cut-off radius.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="BerendsenAniNVT.setTau">
+<span class="sig-name descname"><span class="pre">setTau</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">tauR</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BerendsenAniNVT.setTau" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the Berendsen NVT thermostat with tauT and tauR.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="BerendsenAniNVT.setT">
+<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BerendsenAniNVT.setT" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the temperature with a constant value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the temperature with a varying value by time step.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bere</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">BerendsenAniNVT</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">comp_info</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bere</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="multiple-patch-particle-model">
+<h3>Multiple patch particle model<a class="headerlink" href="#multiple-patch-particle-model" title="Permalink to this headline"></a></h3>
+<p>Description:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\begin{eqnarray*}
+        U_{ij}=\left\{ \begin{array}{ll} \frac{\alpha_{ij}^R d_{ij}}{\mu}\left(1-\frac{r_{ij}}{d_{ij}}\right)^\mu-
+        \sum\limits_{\kappa=1}^{M_i}\sum\limits_{\lambda=1}^{M_j} f^\nu \left(\mathbf{n}_{i}^{\kappa}, \mathbf{n}_j^{\lambda},  \mathbf{r}_{ij}\right) \frac{\alpha_{ij}^A d_{ij}}{\mu}\left[\frac{r_{ij}}{d_{ij}}-\left(\frac{r_{ij}}{d_{ij}}\right)^\mu\right] &amp;  r_{ij}\leq d_{ij} \\  0  &amp; r_{ij}&gt; d_{ij},
+        \end{array} \right.
+\end{eqnarray*}
+
+        \begin{eqnarray*}
+        f\left(\mathbf{n}_{i}^{\kappa}, \mathbf{n}_j^{\lambda},  \mathbf{r}_{ij}\right) = \left\{ \begin{array}{ll}
+        \cos\frac{\pi\theta_i^{\kappa}}{2\theta_{m}^{\kappa}}\cos\frac{\pi\theta_j^{\lambda}}{2\theta_{m}^{\lambda}} &amp; \textrm{if $\cos\theta_i^{\kappa}\geq \cos\theta_{m}^{\kappa}$ and $\cos\theta_j^{\lambda} \geq \cos\theta_{m}^{\lambda}$}\\
+        0 &amp; \textrm{otherwise}.
+        \end{array} \right.
+        \end{eqnarray*}</div><p>The following coefficients must be set per unique pair of particle types:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha^R\)</span> - <em>alphaR</em>, repulsive strength</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span> - <em>mu</em>, the power (unitless)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha^A\)</span> - <em>alphaA</em>, attractive strength</p></li>
+<li><p><span class="math notranslate nohighlight">\(d\)</span> - the diameter defaults to the r_cut (in distance units)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\nu\)</span> - <em>nu</em>, the angular width of attraction (unitless)</p></li>
+</ul>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="AniForce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AniForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AniForce" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of force calculation of multiple patch particle model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
+<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The cut-off radius.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="AniForce.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alphaR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">mu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AniForce.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the force parameters with type1, type2, alphaR, mu.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AniForce.setPatches">
+<span class="sig-name descname"><span class="pre">setPatches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AniForce.setPatches" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the file for Patch parameters.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ani</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">AniForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">ani</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span> <span class="p">,</span> <span class="mf">396.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span><span class="c1">#(,,alpha_R,mu)</span>
+<span class="n">ani</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span> <span class="p">,</span> <span class="mf">396.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span><span class="c1">#(,,alpha_R,mu)</span>
+<span class="n">ani</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span> <span class="p">,</span> <span class="mf">396.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span><span class="c1">#(,,alpha_R,mu)</span>
+<span class="n">ani</span><span class="o">.</span><span class="n">setPatches</span><span class="p">(</span><span class="s1">&#39;patch-3.log&#39;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ani</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>File ‘patch-3.log’:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Patches</span><span class="o">&gt;</span>
+<span class="n">A</span> <span class="mi">0</span>                             <span class="c1">#particle type, patch number</span>
+<span class="n">B</span> <span class="mi">3</span>                             <span class="c1">#particle type, patch number</span>
+<span class="n">p1</span> <span class="mi">45</span>  <span class="mi">0</span>         <span class="mi">0</span>   <span class="mi">1</span>          <span class="c1">#patch type, beta(degree) which is half of the opening angle-</span>
+<span class="n">p2</span> <span class="mi">45</span>  <span class="mf">0.866025</span>  <span class="mi">0</span>   <span class="o">-</span><span class="mf">0.5</span>       <span class="c1">#of the attractive patch, patch position(x, y, z) in unit vector</span>
+<span class="n">p3</span> <span class="mi">45</span> <span class="o">-</span><span class="mf">0.866025</span>  <span class="mi">0</span>   <span class="o">-</span><span class="mf">0.5</span>
+<span class="o">&lt;/</span><span class="n">Patches</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">PatchParams</span><span class="o">&gt;</span>
+<span class="n">p1</span> <span class="n">p1</span> <span class="mf">220.0</span> <span class="mf">0.5</span>                 <span class="c1">#patch type, patch type, alpha_A, and nu</span>
+<span class="n">p2</span> <span class="n">p2</span> <span class="mf">220.0</span> <span class="mf">0.5</span>                 <span class="c1">#patch type, patch type, alpha_A, and nu</span>
+<span class="n">p3</span> <span class="n">p3</span> <span class="mf">220.0</span> <span class="mf">0.5</span>                 <span class="c1">#patch type, patch type, alpha_A, and nu</span>
+<span class="n">p1</span> <span class="n">p2</span> <span class="mf">220.0</span> <span class="mf">0.5</span>                 <span class="c1">#patch type, patch type, alpha_A, and nu</span>
+<span class="n">p1</span> <span class="n">p3</span> <span class="mf">220.0</span> <span class="mf">0.5</span>                 <span class="c1">#patch type, patch type, alpha_A, and nu</span>
+<span class="n">p2</span> <span class="n">p3</span> <span class="mf">220.0</span> <span class="mf">0.5</span>                 <span class="c1">#patch type, patch type, alpha_A, and nu</span>
+<span class="o">&lt;/</span><span class="n">PatchParams</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="thermostat-for-multiple-patch-particle-model">
+<h3>Thermostat for multiple patch particle model<a class="headerlink" href="#thermostat-for-multiple-patch-particle-model" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><p>The motion of anisotropic particles with multiple patches are integrated by rigid body method with a body index in XML file.
+The solvent particles with a body index of -1 are integrated by normal methods.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bgroup</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">)</span>
+<span class="n">rigidnvt</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">NVTRigid</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">bgroup</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rigidnvt</span><span class="p">)</span>
+
+<span class="n">nbgroup</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span><span class="s1">&#39;non_body&#39;</span><span class="p">)</span>
+<span class="n">comp_info_nb</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ComputeInfo</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">nbgroup</span><span class="p">)</span>
+<span class="n">nh</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">NoseHooverNVT</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">nbgroup</span><span class="p">,</span> <span class="n">comp_info_nb</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span><span class="c1">#( ,temperature, tau)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">nh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cu-module-polymerization.html" class="btn btn-neutral float-left" title="Polymerization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cu-module-dpd.html" class="btn btn-neutral float-right" title="Dissipative particle dynamics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, You-Liang Zhu and Zhong-Yuan Lu, ylzhu@pygamd.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

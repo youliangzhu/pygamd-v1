@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dissipative particle dynamics &mdash; PYGAMD v1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="molgen" href="../molgen.html" />
+    <link rel="prev" title="Anisotropic particle" href="cu-module-anisotropic.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PYGAMD
+          </a>
+              <div class="version">
+                v1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">General introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units.html">Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../numba/system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cu-data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-system.html">System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-constraint.html">Constraint</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cu-module.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cu-module-mdscf.html">MD-SCF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-module-polymerization.html">Polymerization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-module-anisotropic.html">Anisotropic particle</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Dissipative particle dynamics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dpd-force">DPD force</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gwvv-integration">GWVV integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#coulomb-interaction-in-dpd">Coulomb interaction in DPD</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Plug-Ins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../molgen.html">molgen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dataTackle.html">galaTackle</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Announcement</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PYGAMD</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="cu-module.html">Modules</a> &raquo;</li>
+      <li>Dissipative particle dynamics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cuda/cu-module-dpd.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dissipative-particle-dynamics">
+<h1>Dissipative particle dynamics<a class="headerlink" href="#dissipative-particle-dynamics" title="Permalink to this headline"></a></h1>
+<section id="dpd-force">
+<h2>DPD force<a class="headerlink" href="#dpd-force" title="Permalink to this headline"></a></h2>
+<p>Description:</p>
+<blockquote>
+<div><p>The DPD force consists of pair‐wise conservative, dissipative and random terms.</p>
+<div class="math notranslate nohighlight">
+\begin{eqnarray*}
+ \vec{F}_{ij}^{C}&amp;=&amp;\alpha\left(1-\frac{r_{ij}}{r_{cut}}\right)\vec{e}_{ij} \\
+ \vec{F}_{ij}^{D}&amp;=&amp;-\gamma\omega^{D}(r_{ij})(\vec{e}_{ij} \cdot \vec{v}_{ij} )\vec{e}_{ij}  \\
+ \vec{F}_{ij}^{R}&amp;=&amp;T\sigma\omega^{R}(r_{ij})\xi_{ij}\vec{e}_{ij} \\
+\end{eqnarray*}</div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\gamma=\sigma^{2}/2k_{B}T\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\omega^{D}(r_{ij})=[\omega^{R}(r_{ij})]^2=(1-r_{ij}/r_{cut})^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\xi_{ij}\)</span> - a random number with zero mean and unit variance</p></li>
+<li><p><span class="math notranslate nohighlight">\(T\)</span> - <cite>temperature</cite>
+- <em>optional</em>: defaults to 1.0</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_{cut}\)</span> - <em>r_cut</em> (in distance units)
+- <em>optional</em>: defaults to 1.0</p></li>
+</ul>
+<p>The following coefficients must be set per unique pair of particle types:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> - <em>alpha</em> (in energy units)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span> - <em>sigma</em> (unitless)</p></li>
+</ul>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="DPDForce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DPDForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand_num</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDForce" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of a DPD interaction object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
+<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The cut-off radius.</p></li>
+<li><p><strong>temperature</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The temperature.</p></li>
+<li><p><strong>rand_num</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The seed of random number generator.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="id0">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DPDForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand_num</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of a DPD interaction object. The default temperature is 1.0.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
+<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The cut-off radius.</p></li>
+<li><p><strong>rand_num</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The seed of random number generator.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="DPDForce.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typei</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typej</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDForce.setParams" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the DPD interaction parameters per unique pair of particle types.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DPDForce.setT">
+<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDForce.setT" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the temperature with a constant value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the temperature with a varying value by time step.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="DPDForce.setDPDVV">
+<span class="sig-name descname"><span class="pre">setDPDVV</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DPDForce.setDPDVV" title="Permalink to this definition"></a></dt>
+<dd><p>calls the function to enable DPDVV method (the default is GWVV).</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dpd</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">DPDForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">12345</span><span class="p">)</span>
+<span class="n">dpd</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dpd</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="gwvv-integration">
+<h2>GWVV integration<a class="headerlink" href="#gwvv-integration" title="Permalink to this headline"></a></h2>
+<p>Description:</p>
+<blockquote>
+<div><p>Integration algorithm.</p>
+<div class="math notranslate nohighlight">
+\begin{eqnarray*}
+ &amp;v_i^0&amp;\leftarrow v_i+ \lambda\frac{1}{m}(F_i^c \Delta t + F_i^d \Delta t + F_i^r \sqrt{\Delta t})\\
+ &amp;v_i&amp;\leftarrow v_i+ \frac{1}{2}\frac{1}{m}(F_i^c \Delta t + F_i^d \Delta t + F_i^r \sqrt{\Delta t})\\
+ &amp;r_i&amp;\leftarrow r_i+ v_i \Delta t\\
+ &amp;&amp;Calculate \quad F_i^c\{r_j\}, F_i^d\{r_j, v_j^0\}, F_i^r\{r_j\}\\
+ &amp;v_i&amp;\leftarrow v_i+ \frac{1}{2}\frac{1}{m}(F_i^c \Delta t + F_i^d \Delta t + F_i^r \sqrt{\Delta t})
+\end{eqnarray*}</div><ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\lambda\)</span> - <em>lambda</em> (unitless)
+- <em>optional</em>: defaults to 0.65</p></li>
+</ul>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="DPDGWVV">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DPDGWVV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">AllInfo</span> <span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ParticleSet</span> <span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDGWVV" title="Permalink to this definition"></a></dt>
+<dd><p>The constructor of a GWVV NVT thermostat for a group of DPD particles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>group</strong> (<a class="reference internal" href="cu-system-group.html#id2" title="ParticleSet"><em>ParticleSet</em></a>) – The group of particles.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="DPDGWVV.setLambda">
+<span class="sig-name descname"><span class="pre">setLambda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">lambda</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDGWVV.setLambda" title="Permalink to this definition"></a></dt>
+<dd><p>specifies lambda.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gwvv</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">DPDGWVV</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gwvv</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="coulomb-interaction-in-dpd">
+<h2>Coulomb interaction in DPD<a class="headerlink" href="#coulomb-interaction-in-dpd" title="Permalink to this headline"></a></h2>
+<p>Description:</p>
+<blockquote>
+<div><blockquote>
+<div><p>In order to remove the divergency at <span class="math notranslate nohighlight">\(r=0\)</span>, a Slater-type charge density is used to describe the charged DPD particles.
+Thereby, <a class="reference internal" href="cu-forcefield-coulomb.html#ewald-short-dpd"><span class="std std-ref">Ewald for DPD (short-range)</span></a> (<a class="reference internal" href="cu-forcefield-coulomb.html#DPDEwaldForce" title="DPDEwaldForce"><code class="xref py py-class docutils literal notranslate"><span class="pre">DPDEwaldForce</span></code></a>) method can be employed to calculated the short-range part of Ewald summation.
+The long-range part of Ewald summation can be calculated by <a class="reference internal" href="cu-forcefield-coulomb.html#pppm-long"><span class="std std-ref">PPPM (long-range)</span></a> (<a class="reference internal" href="cu-forcefield-coulomb.html#PPPMForce" title="PPPMForce"><code class="xref py py-class docutils literal notranslate"><span class="pre">PPPMForce</span></code></a>) or <a class="reference internal" href="cu-forcefield-coulomb.html#enuf-long"><span class="std std-ref">ENUF (long-range)</span></a> (<a class="reference internal" href="cu-forcefield-coulomb.html#ENUFForce" title="ENUFForce"><code class="xref py py-class docutils literal notranslate"><span class="pre">ENUFForce</span></code></a>).
+And the <a class="reference internal" href="cu-forcefield-coulomb.html#enuf-long"><span class="std std-ref">ENUF (long-range)</span></a> (<a class="reference internal" href="cu-forcefield-coulomb.html#ENUFForce" title="ENUFForce"><code class="xref py py-class docutils literal notranslate"><span class="pre">ENUFForce</span></code></a>) is suggested.</p>
+</div></blockquote>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">group_charge</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;charge&quot;</span><span class="p">)</span>
+<span class="n">kappa</span><span class="o">=</span><span class="mf">0.2</span>
+
+<span class="c1"># real space</span>
+<span class="n">ewald</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">DPDEwaldForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="n">group_charge</span><span class="p">,</span> <span class="mf">3.64</span><span class="p">)</span><span class="c1">#(,,rcut)</span>
+<span class="n">ewald</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="n">kappa</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ewald</span><span class="p">)</span>
+
+<span class="c1"># reciprocal space</span>
+<span class="n">enuf</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ENUFForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="n">group_charge</span><span class="p">)</span>
+<span class="n">enuf</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="n">kappa</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">enuf</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Reduced charges:</p>
+<blockquote>
+<div><blockquote>
+<div><p>The charges should be converted into the ones in reduced units according to <a class="reference internal" href="../units.html#charge-units"><span class="std std-ref">Charge units</span></a>.
+Typically, the fundamental length and energy are <span class="math notranslate nohighlight">\(\sigma=0.646\text{ }nm\)</span> and <span class="math notranslate nohighlight">\(\epsilon=k_{B}T\)</span> with <span class="math notranslate nohighlight">\(T=300\text{ }K\)</span>, respectively, in DPD.
+The reduced charges are <span class="math notranslate nohighlight">\(q^{*}=z\sqrt{f/(\sigma k_{B}T \epsilon_r)}\)</span>. The <span class="math notranslate nohighlight">\(z\)</span> is the valence of ion.</p>
+<p>Here is a <a class="reference internal" href="../molgen.html#molgen"><span class="std std-ref">molgen</span></a> script for polyelectrolyte.</p>
+</div></blockquote>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/python</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">import</span> <span class="nn">molgen</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">er</span><span class="o">=</span><span class="mf">78.0</span>
+<span class="n">kBT</span><span class="o">=</span><span class="mf">300.0</span><span class="o">*</span><span class="mf">8.314</span><span class="o">/</span><span class="mf">1000.0</span>
+<span class="n">r</span><span class="o">=</span><span class="mf">0.646</span>
+<span class="n">gama</span><span class="o">=</span><span class="mf">138.935</span>
+<span class="n">dpdcharge</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">gama</span><span class="o">/</span><span class="p">(</span><span class="n">er</span><span class="o">*</span><span class="n">kBT</span><span class="o">*</span><span class="n">r</span><span class="p">))</span>
+
+<span class="n">mol1</span><span class="o">=</span><span class="n">molgen</span><span class="o">.</span><span class="n">Molecule</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">mol1</span><span class="o">.</span><span class="n">setParticleTypes</span><span class="p">(</span><span class="s2">&quot;P*50&quot;</span><span class="p">)</span>
+<span class="n">topo</span><span class="o">=</span><span class="s2">&quot;0-1&quot;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+  <span class="n">c</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;-&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">topo</span><span class="o">+=</span><span class="n">c</span>
+<span class="n">mol1</span><span class="o">.</span><span class="n">setTopology</span><span class="p">(</span><span class="n">topo</span><span class="p">)</span>
+<span class="n">mol1</span><span class="o">.</span><span class="n">setBondLength</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">mol1</span><span class="o">.</span><span class="n">setMass</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="n">mol2</span><span class="o">=</span><span class="n">molgen</span><span class="o">.</span><span class="n">Molecule</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mol2</span><span class="o">.</span><span class="n">setParticleTypes</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
+<span class="n">mol2</span><span class="o">.</span><span class="n">setMass</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">mol2</span><span class="o">.</span><span class="n">setCharge</span><span class="p">(</span><span class="n">dpdcharge</span><span class="p">)</span>
+
+<span class="n">mol3</span><span class="o">=</span><span class="n">molgen</span><span class="o">.</span><span class="n">Molecule</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mol3</span><span class="o">.</span><span class="n">setParticleTypes</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="n">mol3</span><span class="o">.</span><span class="n">setMass</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">mol3</span><span class="o">.</span><span class="n">setCharge</span><span class="p">(</span><span class="o">-</span><span class="n">dpdcharge</span><span class="p">)</span>
+
+<span class="n">mol4</span><span class="o">=</span><span class="n">molgen</span><span class="o">.</span><span class="n">Molecule</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mol4</span><span class="o">.</span><span class="n">setParticleTypes</span><span class="p">(</span><span class="s2">&quot;W&quot;</span><span class="p">)</span>
+<span class="n">mol4</span><span class="o">.</span><span class="n">setMass</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+
+<span class="n">gen</span><span class="o">=</span><span class="n">molgen</span><span class="o">.</span><span class="n">Generators</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">addMolecule</span><span class="p">(</span><span class="n">mol1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">addMolecule</span><span class="p">(</span><span class="n">mol2</span><span class="p">,</span><span class="mi">75</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">addMolecule</span><span class="p">(</span><span class="n">mol3</span><span class="p">,</span><span class="mi">75</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">addMolecule</span><span class="p">(</span><span class="n">mol4</span><span class="p">,</span><span class="mi">9925</span><span class="p">)</span>
+
+<span class="n">gen</span><span class="o">.</span><span class="n">outPutXml</span><span class="p">(</span><span class="s2">&quot;ps0&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cu-module-anisotropic.html" class="btn btn-neutral float-left" title="Anisotropic particle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../molgen.html" class="btn btn-neutral float-right" title="molgen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, You-Liang Zhu and Zhong-Yuan Lu, ylzhu@pygamd.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

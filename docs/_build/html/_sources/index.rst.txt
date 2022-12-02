@@ -17,14 +17,26 @@ Welcome to PYGAMD's documentation!
    
 .. toctree::
    :maxdepth: 3
-   :caption: Methods and modules
+   :caption: Modules (NUMBA)
    
-   system
-   application   
-   forcefield
-   integration
-   module   
+   numba/system
+   numba/application   
+   numba/forcefield
+   numba/integration
+   numba/module   
 
+   
+.. toctree::
+   :maxdepth: 3
+   :caption: Modules (CUDA)
+   
+   cuda/cu-data
+   cuda/cu-system
+   cuda/cu-application   
+   cuda/cu-forcefield
+   cuda/cu-integration
+   cuda/cu-constraint  
+   cuda/cu-module
    
 .. toctree::
    :maxdepth: 3

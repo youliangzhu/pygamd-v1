@@ -19,11 +19,8 @@ The installation instructions for **pygamd**, **molgen**, and **galaTackle** are
 	
 	python3 setup.py install
 
-2. Installation for **molgen**::
+2. Installation for PIP::
 
-    python3 setup.py build
+    pip install pygamd
     python3 setup.py install
-	
-3. Installation for **galaTackle**::
 
-    sh compile.sh	

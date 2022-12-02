@@ -12,7 +12,7 @@ parser.add_option('--gpu', dest='gpu',help='GPU on which to execute')
 filename = 'comblike.xml'
 randomnum = 12340
 build_method = galamost.XmlReader(filename)
-perform_config = galamost.PerformConfig( int(_options.gpu))
+perform_config = galamost.PerformConfig(_options.gpu)
 all_info = galamost.AllInfo(build_method,perform_config)
  
 dt = 0.04

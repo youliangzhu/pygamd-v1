@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Read force parameters &mdash; PYGAMD v1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Integration" href="cu-integration.html" />
+    <link rel="prev" title="Coulomb interaction" href="cu-forcefield-coulomb.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> PYGAMD
+          </a>
+              <div class="version">
+                v1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">General introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units.html">Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../numba/system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numba/module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cu-data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-system.html">System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-application.html">Application</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cu-forcefield.html">Force field</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-nonbonded.html">Short range non-bonded interactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded.html">Bonded interactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-numerical.html">Numerical interaction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-coulomb.html">Coulomb interaction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Read force parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#force-field-format">Force field format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-force-fields">Use force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-gromacs-force-fields">Use GROMACS force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#convert-gromacs-files">Convert GROMACS files</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cu-integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-constraint.html">Constraint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cu-module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Plug-Ins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../molgen.html">molgen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dataTackle.html">galaTackle</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Announcement</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PYGAMD</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="cu-forcefield.html">Force field</a> &raquo;</li>
+      <li>Read force parameters</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cuda/cu-forcefield-files.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="read-force-parameters">
+<h1>Read force parameters<a class="headerlink" href="#read-force-parameters" title="Permalink to this headline"></a></h1>
+<section id="force-field-format">
+<h2>Force field format<a class="headerlink" href="#force-field-format" title="Permalink to this headline"></a></h2>
+<p>Force field for non-boned interactions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">pair_params</span><span class="o">&gt;</span>
+<span class="n">particle_type1</span>  <span class="n">particle_type2</span>  <span class="n">epsilon</span>  <span class="n">sigma</span>  <span class="n">alpha</span>
+<span class="o">&lt;/</span><span class="n">pair_params</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>For bond, angle, and dihedral interactions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">bond_params</span><span class="o">&gt;</span>
+<span class="n">bond_type</span>  <span class="n">spring_constant</span>  <span class="n">equilibrium_length</span>  <span class="n">function_type</span>
+<span class="o">&lt;/</span><span class="n">bond_params</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">angle_params</span><span class="o">&gt;</span>
+<span class="n">angle_type</span>  <span class="n">spring_constant</span>  <span class="n">equilibrium_length</span>  <span class="n">function_type</span>
+<span class="o">&lt;/</span><span class="n">angle_params</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">dihedral_params</span><span class="o">&gt;</span>
+<span class="n">dihedral_type</span>  <span class="n">parameter1</span>  <span class="n">parameter2</span> <span class="o">...</span>  <span class="n">function_type</span>
+<span class="o">&lt;/</span><span class="n">dihedral_params</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>For bond constraint and virtual site:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">constraint_params</span><span class="o">&gt;</span>
+<span class="n">constraint_type</span>  <span class="n">equilibrium_length</span>  <span class="n">function_type</span>
+<span class="o">&lt;/</span><span class="n">constraint_params</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">vsite_params</span><span class="o">&gt;</span>
+<span class="n">virtual_site_type</span>  <span class="n">a</span>  <span class="n">b</span>  <span class="n">c</span>  <span class="n">function_type</span>
+<span class="o">&lt;/</span><span class="n">vsite_params</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>An example of force field file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">pair_params</span><span class="o">&gt;</span>
+<span class="n">Qa</span> <span class="n">Qa</span> <span class="mf">2.3</span> <span class="mf">0.6</span> <span class="mf">1.0</span>
+<span class="n">Qa</span> <span class="n">Q0</span> <span class="mf">2.0</span> <span class="mf">0.6</span> <span class="mf">1.0</span>
+<span class="n">Qa</span> <span class="n">Na</span> <span class="mf">0.5</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">Qa</span> <span class="n">C4</span> <span class="mf">0.5</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">Qa</span> <span class="n">C1</span> <span class="mf">2.0</span> <span class="mf">0.62</span> <span class="mf">1.0</span>
+<span class="n">Qa</span> <span class="n">SC3</span> <span class="mf">0.5</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">Qa</span> <span class="n">SC1</span> <span class="mf">2.0</span> <span class="mf">0.62</span> <span class="mf">1.0</span>
+<span class="n">Qa</span> <span class="n">SP1c</span> <span class="mf">2.7</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">Q0</span> <span class="n">Q0</span> <span class="mf">2.0</span> <span class="mf">0.6</span> <span class="mf">1.0</span>
+<span class="n">Q0</span> <span class="n">Na</span> <span class="mf">0.5</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">Q0</span> <span class="n">C4</span> <span class="mf">0.5</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">Q0</span> <span class="n">C1</span> <span class="mf">2.0</span> <span class="mf">0.62</span> <span class="mf">1.0</span>
+<span class="n">Q0</span> <span class="n">SC3</span> <span class="mf">0.5</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">Q0</span> <span class="n">SC1</span> <span class="mf">2.0</span> <span class="mf">0.62</span> <span class="mf">1.0</span>
+<span class="n">Q0</span> <span class="n">SP1c</span> <span class="mf">2.7</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">Na</span> <span class="n">Na</span> <span class="mf">2.3</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">Na</span> <span class="n">C4</span> <span class="mf">2.7</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">Na</span> <span class="n">C1</span> <span class="mf">2.7</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">Na</span> <span class="n">SC3</span> <span class="mf">2.7</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">Na</span> <span class="n">SC1</span> <span class="mf">2.7</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">Na</span> <span class="n">SP1c</span> <span class="mf">2.3</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">C4</span> <span class="n">C4</span> <span class="mf">4.5</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">C4</span> <span class="n">C1</span> <span class="mf">4.0</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">C4</span> <span class="n">SC3</span> <span class="mf">4.5</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">C4</span> <span class="n">SC1</span> <span class="mf">4.0</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">C4</span> <span class="n">SP1c</span> <span class="mf">2.7</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">C1</span> <span class="n">C1</span> <span class="mf">4.5</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">C1</span> <span class="n">SC3</span> <span class="mf">4.5</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">C1</span> <span class="n">SC1</span> <span class="mf">4.5</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">C1</span> <span class="n">SP1c</span> <span class="mf">2.3</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">SC3</span> <span class="n">SC3</span> <span class="mf">3.4</span> <span class="mf">0.43</span> <span class="mf">1.0</span>
+<span class="n">SC3</span> <span class="n">SC1</span> <span class="mf">3.4</span> <span class="mf">0.43</span> <span class="mf">1.0</span>
+<span class="n">SC3</span> <span class="n">SP1c</span> <span class="mf">2.7</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">SC1</span> <span class="n">SC1</span> <span class="mf">3.4</span> <span class="mf">0.43</span> <span class="mf">1.0</span>
+<span class="n">SC1</span> <span class="n">SP1c</span> <span class="mf">2.3</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="n">SP1c</span> <span class="n">SP1c</span> <span class="mf">2.3</span> <span class="mf">0.47</span> <span class="mf">1.0</span>
+<span class="o">&lt;/</span><span class="n">pair_params</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">constraint_params</span><span class="o">&gt;</span>
+<span class="n">SP1c</span><span class="o">-</span><span class="n">SC3</span> <span class="mf">0.4904</span> <span class="mi">1</span>
+<span class="n">SP1c</span><span class="o">-</span><span class="n">SC1</span> <span class="mf">0.6019</span> <span class="mi">1</span>
+<span class="n">SC3</span><span class="o">-</span><span class="n">SC1</span> <span class="mf">0.2719</span> <span class="mi">1</span>
+<span class="n">SC1</span><span class="o">-</span><span class="n">SC3</span> <span class="mf">0.7237</span> <span class="mi">1</span>
+<span class="n">SC1</span><span class="o">-</span><span class="n">SC1</span> <span class="mf">0.5376</span> <span class="mi">1</span>
+<span class="o">&lt;/</span><span class="n">constraint_params</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">vsite_params</span><span class="o">&gt;</span>
+<span class="n">SC1</span><span class="o">-</span><span class="n">SC1</span><span class="o">-</span><span class="n">SC3</span><span class="o">-</span><span class="n">SC1</span> <span class="mf">0.9613</span> <span class="mf">0.6320</span> <span class="mf">0.0</span> <span class="mi">1</span>
+<span class="n">SC1</span><span class="o">-</span><span class="n">SC3</span><span class="o">-</span><span class="n">SP1c</span><span class="o">-</span><span class="n">SC1</span> <span class="mf">0.5207</span> <span class="mf">0.2882</span> <span class="o">-</span><span class="mf">1.03168</span> <span class="mi">4</span>
+<span class="n">SC1</span><span class="o">-</span><span class="n">SC1</span><span class="o">-</span><span class="n">SC3</span><span class="o">-</span><span class="n">SC1_1</span> <span class="mf">0.2287</span> <span class="mf">0.4111</span> <span class="mf">1.41920</span> <span class="mi">4</span>
+<span class="o">&lt;/</span><span class="n">vsite_params</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">bond_params</span><span class="o">&gt;</span>
+<span class="n">Q0</span><span class="o">-</span><span class="n">Qa</span> <span class="mf">1250.0</span> <span class="mf">0.450</span> <span class="mi">1</span>
+<span class="n">Qa</span><span class="o">-</span><span class="n">Na</span> <span class="mf">1250.0</span> <span class="mf">0.450</span> <span class="mi">1</span>
+<span class="n">Na</span><span class="o">-</span><span class="n">Na</span> <span class="mf">1250.0</span> <span class="mf">0.370</span> <span class="mi">1</span>
+<span class="n">Na</span><span class="o">-</span><span class="n">C1</span> <span class="mf">1250.0</span> <span class="mf">0.480</span> <span class="mi">1</span>
+<span class="n">C1</span><span class="o">-</span><span class="n">C1</span> <span class="mf">1250.0</span> <span class="mf">0.480</span> <span class="mi">1</span>
+<span class="n">C1</span><span class="o">-</span><span class="n">C4</span> <span class="mf">1250.0</span> <span class="mf">0.480</span> <span class="mi">1</span>
+<span class="n">C4</span><span class="o">-</span><span class="n">C4</span> <span class="mf">1250.0</span> <span class="mf">0.480</span> <span class="mi">1</span>
+<span class="n">C4</span><span class="o">-</span><span class="n">C1</span> <span class="mf">1250.0</span> <span class="mf">0.480</span> <span class="mi">1</span>
+<span class="n">SC1</span><span class="o">-</span><span class="n">C1</span> <span class="mf">1250.0</span> <span class="mf">0.425</span> <span class="mi">1</span>
+<span class="o">&lt;/</span><span class="n">bond_params</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">angle_params</span><span class="o">&gt;</span>
+<span class="n">Qa</span><span class="o">-</span><span class="n">Na</span><span class="o">-</span><span class="n">Na</span> <span class="mf">25.0</span> <span class="mf">120.000</span> <span class="mi">2</span>
+<span class="n">Qa</span><span class="o">-</span><span class="n">Na</span><span class="o">-</span><span class="n">C1</span> <span class="mf">25.0</span> <span class="mf">180.000</span> <span class="mi">2</span>
+<span class="n">Na</span><span class="o">-</span><span class="n">C1</span><span class="o">-</span><span class="n">C1</span> <span class="mf">35.0</span> <span class="mf">180.000</span> <span class="mi">2</span>
+<span class="n">C1</span><span class="o">-</span><span class="n">C1</span><span class="o">-</span><span class="n">C1</span> <span class="mf">35.0</span> <span class="mf">180.000</span> <span class="mi">2</span>
+<span class="n">Na</span><span class="o">-</span><span class="n">C1</span><span class="o">-</span><span class="n">C4</span> <span class="mf">35.0</span> <span class="mf">180.000</span> <span class="mi">2</span>
+<span class="n">C1</span><span class="o">-</span><span class="n">C4</span><span class="o">-</span><span class="n">C4</span> <span class="mf">20.0</span> <span class="mf">95.000</span> <span class="mi">2</span>
+<span class="n">C4</span><span class="o">-</span><span class="n">C4</span><span class="o">-</span><span class="n">C1</span> <span class="mf">45.0</span> <span class="mf">120.000</span> <span class="mi">2</span>
+<span class="n">SC1</span><span class="o">-</span><span class="n">SC1</span><span class="o">-</span><span class="n">C1</span> <span class="mf">25.0</span> <span class="mf">180.0</span> <span class="mi">2</span>
+<span class="o">&lt;/</span><span class="n">angle_params</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">dihedral_params</span><span class="o">&gt;</span>
+<span class="n">SP1c</span><span class="o">-</span><span class="n">SC3</span><span class="o">-</span><span class="n">SC1</span><span class="o">-</span><span class="n">SC1_F2</span> <span class="o">-</span><span class="mf">179.7</span> <span class="mf">50.0</span> <span class="mi">2</span>
+<span class="o">&lt;/</span><span class="n">dihedral_params</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="use-force-fields">
+<h2>Use force fields<a class="headerlink" href="#use-force-fields" title="Permalink to this headline"></a></h2>
+<p>Description:</p>
+<blockquote>
+<div><p>Force fields in the format could be read by <code class="docutils literal notranslate"><span class="pre">force_field_gala</span></code> module. The classes of <code class="docutils literal notranslate"><span class="pre">force_field_gala</span></code> module are listed as following.</p>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="LJCoulombShiftForce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LJCoulombShiftForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rshift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJCoulombShiftForce" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor of an object to simutaneously calculate modified Lennard-Jones and Coulomb interactions which are smoothed by a shift function same to GROMACS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
+<li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – Neighbor list.</p></li>
+<li><p><strong>rcut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – Cut-off radius.</p></li>
+<li><p><strong>rshift</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – Shift radius.</p></li>
+<li><p><strong>epsilon_r</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – Relative dielectric constant.</p></li>
+<li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">force_field_gala</span>
+<span class="n">e_r</span> <span class="o">=</span> <span class="mf">15.0</span>
+<span class="n">lj</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">LJCoulombShiftForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">nlist</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">e_r</span><span class="p">,</span> <span class="s2">&quot;Equ.force_field&quot;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lj</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="LJEwaldForce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LJEwaldForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJEwaldForce" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor of an object to simutaneously calculate Lennard-Jones and the short-part Coulomb interactions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
+<li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – Neighbor list.</p></li>
+<li><p><strong>rcut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – Cut-off radius.</p></li>
+<li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="LJEwaldForce.setEnergy_shift">
+<span class="sig-name descname"><span class="pre">setEnergy_shift</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LJEwaldForce.setEnergy_shift" title="Permalink to this definition"></a></dt>
+<dd><p>calls the function to shift LJ potential to be zero at cut-off point.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="LJEwaldForce.setDispVirialCorr">
+<span class="sig-name descname"><span class="pre">setDispVirialCorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">open</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJEwaldForce.setDispVirialCorr" title="Permalink to this definition"></a></dt>
+<dd><p>switches the dispersion virial correction.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">force_field_gala</span>
+<span class="n">lj</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">LJEwaldForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;ffnonbonded.force_field&quot;</span><span class="p">)</span>
+<span class="n">lj</span><span class="o">.</span><span class="n">setEnergy_shift</span><span class="p">()</span>
+<span class="n">lj</span><span class="o">.</span><span class="n">setDispVirialCorr</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span><span class="c1">#dispersion virial correction</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lj</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="BondForceHarmonic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceHarmonic" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor of an object to calculate harmonic bond interactions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
+<li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bondforce</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">BondForceHarmonic</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;ffbonded.force_field&quot;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bondforce</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="AngleForceHarmonicCos">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AngleForceHarmonicCos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceHarmonicCos" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor of an object to calculate harmonic cosine angle interactions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
+<li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">angleforce</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">AngleForceHarmonicCos</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;ffbonded.force_field&quot;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">angleforce</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="AngleForceHarmonic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AngleForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceHarmonic" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor of an object to calculate harmonic angle interactions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
+<li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">angleforce</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">AngleForceHarmonic</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;ffbonded.force_field&quot;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">angleforce</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DihedralForceAmberCosine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceAmberCosine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceAmberCosine" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor of an object to calculate Amber cosine dihedral interactions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
+<li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dihedralforce</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">DihedralForceAmberCosine</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;ffbonded.force_field&quot;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dihedralforce</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DihedralForceHarmonic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceHarmonic" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor of an object to calculate harmonic dihedral interactions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
+<li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dihedralforce</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">DihedralForceHarmonic</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;ffbonded.force_field&quot;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dihedralforce</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="BondConstraint">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondConstraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondConstraint" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor of an object to implement bond constraints.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
+<li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="BondConstraint.setNumIters">
+<span class="sig-name descname"><span class="pre">setNumIters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ncycles</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondConstraint.setNumIters" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the number of iterations of calcuation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="BondConstraint.setExpansionOrder">
+<span class="sig-name descname"><span class="pre">setExpansionOrder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">order</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondConstraint.setExpansionOrder" title="Permalink to this definition"></a></dt>
+<dd><p>specifies the spread order.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bond_constraint</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">BondConstraint</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;Equ.force_field&quot;</span><span class="p">)</span>
+<span class="n">bond_constraint</span><span class="o">.</span><span class="n">setExpansionOrder</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">bond_constraint</span><span class="o">.</span><span class="n">setNumIters</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bond_constraint</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="Vsite">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Vsite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Vsite" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor of an object to implement virtual sites using a same method to GROMACS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
+<li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vs</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">Vsite</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;Equ.force_field&quot;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">vs</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="use-gromacs-force-fields">
+<h2>Use GROMACS force fields<a class="headerlink" href="#use-gromacs-force-fields" title="Permalink to this headline"></a></h2>
+<p>Description:</p>
+<blockquote>
+<div><p>Force fields in GROMACS format are supported by <code class="docutils literal notranslate"><span class="pre">force_field_itp</span></code> module. The usage and methods are same to <code class="docutils literal notranslate"><span class="pre">force_field_gala</span></code> module, but for reading the force fields in GROMACS format from itp files.</p>
+</div></blockquote>
+<p>An example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">force_field_itp</span>
+<span class="n">lj</span> <span class="o">=</span> <span class="n">force_field_itp</span><span class="o">.</span><span class="n">LJEwaldForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;ffnonbonded.itp&quot;</span><span class="p">)</span>
+<span class="n">lj</span><span class="o">.</span><span class="n">setEnergy_shift</span><span class="p">()</span>
+<span class="n">lj</span><span class="o">.</span><span class="n">setDispVirialCorr</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span><span class="c1">#dispersion virial correction</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lj</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="convert-gromacs-files">
+<h2>Convert GROMACS files<a class="headerlink" href="#convert-gromacs-files" title="Permalink to this headline"></a></h2>
+<p>Description:</p>
+<blockquote>
+<div><p>Convert GROMACS files to GALA files including configuration and force fields by <code class="docutils literal notranslate"><span class="pre">gro_to_xml</span></code> module.
+Execution command is <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">gro_to_xml.py</span></code> with two necessary parameters <code class="docutils literal notranslate"><span class="pre">--gro=</span></code> and <code class="docutils literal notranslate"><span class="pre">--top=</span></code> to set
+the GROMACS file names.</p>
+</div></blockquote>
+<p>An example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">gro_to_xml</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">top</span><span class="o">=</span><span class="n">Topol</span><span class="o">.</span><span class="n">top</span> <span class="o">--</span><span class="n">gro</span><span class="o">=</span><span class="n">Equ</span><span class="o">.</span><span class="n">gro</span>
+</pre></div>
+</div>
+<p>Then two files ‘Equ.xml’ of configuration and ‘Equ.force_field’ of force field will be generated.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cu-forcefield-coulomb.html" class="btn btn-neutral float-left" title="Coulomb interaction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cu-integration.html" class="btn btn-neutral float-right" title="Integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, You-Liang Zhu and Zhong-Yuan Lu, ylzhu@pygamd.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
