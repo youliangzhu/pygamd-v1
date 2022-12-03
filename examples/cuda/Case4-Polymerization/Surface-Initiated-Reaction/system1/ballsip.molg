@@ -1,6 +1,4 @@
 #!/usr/bin/python
-import sys
-sys.path.append('/opt/galamost3/lib')
 import molgen
 
 lx=54.0

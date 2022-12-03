@@ -1,6 +1,4 @@
 #!/usr/bin/python
-import sys
-sys.path.append('/opt/galamost4/lib') # the path where the GALAMOST program is installed
 import molgen
 import math
 
