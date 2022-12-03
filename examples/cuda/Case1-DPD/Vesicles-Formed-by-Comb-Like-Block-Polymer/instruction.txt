@@ -1,0 +1,23 @@
+(1)	Description 
+The comb-like copolymer A6 (B2)3 in solution will form a vesicle in DPD simulation. 
+The system is described in “Ying-Tao Liu, Ying Zhao, Hong Liu, Yu-Hua Liu, and Zhong-Yuan Lu, 
+J. Phys. Chem. B 2009, 113, 15256–15262”.
+
+(2)	System
+The system consists of 1280 A6 (B2)3 and 176640 S with box size of 40*40*40. The concentration of the block copolymers is 0.08. The parameters for DPD simulation are listed:
+alpha	A	B	S
+A	    25	70	150
+B		28	27
+S			25
+
+(3)	Commands
+1)	Run the simulation by:
+    python comblike.molg
+	
+    python comblike.gala --gpu=0>a.log&
+
+
+2)	The PBC conditions can be removed by:
+    galaTackle filename.xml 
+Select the function of 9 and enter; a new “filename. reimage.xml” will be generated.
+And then you can see the configuration by OVITO

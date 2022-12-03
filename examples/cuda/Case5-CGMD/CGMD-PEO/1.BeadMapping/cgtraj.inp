@@ -1,0 +1,28 @@
+&TRAJ
+ NFORM='XTC',
+ FNAME='md_nowater.xtc',
+ NTYPES=1,
+ NAMOL='Other_chain_A'
+ NSPEC=10,
+ NFBEG=1,
+ NFEND=1,
+ ISTEP=1,
+ IPRINT=5,
+&END
+
+BeadMapping
+CGTrajectoryOutputFile:peo10-10.xtc
+ CGMolecularType:peo10-10.CG
+  ParentType:peo
+  PEB:    8:1-8
+  PEO1:   7:9-15
+  PEO2:   7:16-22
+  PEO3:   7:23-29
+  PEO4:   7:30-36
+  PEO5:   7:37-43
+  PEO6:   7:44-50
+  PEO7:   7:51-57
+  PEO8:   7:58-64
+  PEC:    8:65-72
+ EndCGMolecularType
+EndBeadMapping

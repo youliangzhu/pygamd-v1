@@ -1,0 +1,16 @@
+System1:
+(1)	Description
+This is a surface-initiated polymerization system which is introduced in "Hong Liu,You-Liang Zhu, Jing Zhang, Zhong-Yuan Lu and Zhao-Yan Sun, ACS Macro Lett. 2012, 1, 1249".
+With this model, the molecular weight and its distribution, as well as the polydispersity index of the grafted chains, can be investigated.
+(2)	system
+The radius of the ball is 25 (in reduced unit). The chain will grow by polymerization from the inner surface of the ball.
+(3)	Commands
+	1)	Run the simulation by :
+		python ballsip.molg
+		python ballsip.gala --gpu=0 >a.log&
+	
+	2)	See the configuration by:
+		vmd filename.mol2
+		Ovito filename.xml
+		
+System2: please see the tutorial https://nbviewer.jupyter.org/github/zhuyouliang/GALAMOST/blob/master/tutorials/reaction_grafting-from-sphere.ipynb

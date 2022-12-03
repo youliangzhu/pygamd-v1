@@ -1,0 +1,13 @@
+#include "dry_martini_v2.1_Kai.itp"
+#include "dry_martini_v2.1_lipids.itp"
+#include "dry_martini_v2.1_cholesterol.itp"
+    
+[ system ]
+; name
+Martini_NP system 
+    
+[ molecules ]
+; name        number
+DPPC 	 1260
+DUPC     846
+CHOL     900

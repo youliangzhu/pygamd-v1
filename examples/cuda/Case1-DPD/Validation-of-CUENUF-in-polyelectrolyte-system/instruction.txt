@@ -1,0 +1,10 @@
+(1)	Description
+Please see “pe-salt.pptx” and the reference. 
+(2)	Commands
+1)	Generate configuration:
+    python pe-salt.molg             
+2)	Run the simulation by:
+    python pe-salt.gala --gpu=0 >a.log&
+3)	Calculate mean square radius of gyration and mean square end-to-end distance :
+    galaTackle *.xml  
+    Select 1 and 2, and enter to calculate the rg^2 and ed^2

@@ -1,0 +1,39 @@
+#!/usr/bin/python
+import sys
+sys.path.append('/opt/galamost4/lib')
+import molgen
+
+popg=molgen.Molecule(12)
+popg.setParticleTypes("L,P,G,G,C,C,C,C,C,D,C,C")#particle type
+popg.setTopology("0-1,1-2,2-3,2-4,4-5,5-6,6-7,3-8,8-9,9-10,10-11")#topology
+popg.setBondLength(0.47)
+popg.setBondLength("L","P",0.37)
+popg.setBondLength("P","G",0.37)
+popg.setBondLength("G","G",0.37)
+popg.setMass(72.0)
+popg.setAngleDegree("P","G","G",120)
+popg.setAngleDegree("P","G","C",180)
+popg.setAngleDegree("G","C","C",180)
+popg.setAngleDegree("C","C","C",180)
+popg.setAngleDegree("G","C","D",180)
+popg.setAngleDegree("C","D","C",120)
+popg.setAngleDegree("C","C","D",180)
+popg.setCharge("P", -11.787088)
+popg.setBox(-10.09, 10.09, -2.0, 2.0, -11.645, 11.645)
+
+
+ion=molgen.Molecule(1)
+ion.setParticleTypes("Na")
+ion.setMass(72.0)
+ion.setCharge(11.787088)
+
+water=molgen.Molecule(1)
+water.setParticleTypes("W")
+water.setMass(72.0)
+
+gen=molgen.Generators(20.18, 20.18, 23.29) #box size in x, y, z directions
+gen.addMolecule(popg, 1216)#molecule name, the number of molecules
+gen.addMolecule(ion, 1216)#molecule name, the number of molecules
+gen.addMolecule(water,64448)#molecule name, the number of molecules
+gen.setMinimumDistance(0.1)# the minimum distance for all nonbonded particles
+gen.outPutXml("popg")

@@ -1,0 +1,9 @@
+#include "martini_v2.0.itp"
+#include "martini_v2.0_lipids.itp"
+
+[ system ]
+DPPC BILAYER 
+
+[ molecules ]
+DPPC 128
+W 2000

@@ -1,0 +1,1188 @@
+;;;;;; TOPOLOGIES FOR LIPIDS - last updated 12-december-2011
+;
+; lipids are defined here as double tail amphipatic  molecules
+; (for mono-tailed lipids see the surfactant files)
+; (for pegylated lipids see the polymer files)
+
+;
+; currently available:
+
+;;;;;; COMMON PCs: DPPC, DHPC, DLPC (DMPC), DSPC, POPC, DOPC, DAPC, DUPC
+;;;;;; COMMON PEs: DPPE, DHPE, DLPE (DMPE), DSPE, POPE, DOPE
+;;;;;; SPHINGOLIPIDS: PPCS
+;;;;;; CHARGED LIPIDS: DOPG, POPG, DOPS, POPS
+;;;;;; BOLALIPIDS: cyclic di-DPPC, acyclic di-DPPC 
+
+
+; For more background on the testing and optimization of the parameters,
+; please see the following refs:
+
+; S.J. Marrink, A.H. de Vries, A.E. Mark.
+; Coarse grained model for semi-quantitative lipid simulations.
+; JPC-B, 108:750-760, 2004.
+
+; and for poly-unsaturated lipids:
+
+;  S.J. Marrink, A.H. de Vries, T.A. Harroun, J. Katsaras, S.R. Wassall.
+;  Cholesterol shows preference for the interior of polyunsaturated lipid membranes.
+;  JACS, 130:10-11, 2008.
+;
+; and
+;
+; H.J. Risselada, S.J. Marrink.
+; The molecular face of lipid rafts in model membranes.
+; PNAS, 105:17367-17372, 2008.
+
+
+;;;;;;
+;;;;;; COMMON PCs
+;;;;;;
+
+;;;;;; DIPALMITOYL PHOSPHATIDYLCHOLINE  
+;
+; in general models PCs with saturated tail lengths C15-18
+
+[moleculetype]
+; molname 	nrexcl
+  DPPC 		1
+
+[atoms]
+; id 	type 	resnr 	residu 	atom 	cgnr 	charge
+  1 	Q0 	1 	DPPC 	NC3 	1 	1.0 
+  2 	Qa 	1 	DPPC 	PO4 	2 	-1.0 
+  3 	Na 	1 	DPPC 	GL1 	3 	0 
+  4 	Na 	1 	DPPC 	GL2 	4 	0 
+  5 	C1 	1 	DPPC 	C1A 	5 	0 
+  6 	C1 	1 	DPPC 	C2A 	6 	0 
+  7 	C1 	1 	DPPC 	C3A 	7 	0 
+  8 	C1 	1 	DPPC 	C4A 	8 	0 
+  9 	C1 	1 	DPPC 	C1B 	9 	0 
+  10 	C1 	1 	DPPC 	C2B 	10 	0 
+  11 	C1 	1 	DPPC 	C3B 	11 	0 
+  12 	C1 	1 	DPPC 	C4B 	12 	0 
+
+[bonds]
+; i j 	funct 	length 	force.c.
+  1 2 	1 	0.470 	1250
+  2 3 	1 	0.470 	1250
+  3 4 	1 	0.370 	1250
+  3 5 	1 	0.470 	1250
+  5 6 	1 	0.470 	1250
+  6 7 	1 	0.470 	1250
+  7 8 	1 	0.470 	1250
+  4 9 	1 	0.470 	1250
+  9 10 	1 	0.470 	1250
+  10 11 1 	0.470 	1250
+  11 12 1 	0.470 	1250
+
+[angles]
+; i j k 	funct 	angle 	force.c.
+  2 3 4 	2 	120.0 	25.0 
+  2 3 5 	2 	180.0 	25.0 
+  3 5 6 	2 	180.0 	25.0 
+  5 6 7 	2 	180.0 	25.0 
+  6 7 8 	2 	180.0 	25.0 
+  4 9 10 	2 	180.0 	25.0 
+  9 10 11 	2 	180.0 	25.0 
+ 10 11 12 	2 	180.0 	25.0 
+
+
+;;;;;; DIHEXANOYL PHOSPHATIDYLCHOLINE
+;
+; in general models PCs with saturated tail lengths C8-11
+
+[moleculetype]
+; molname 	nrexcl
+DHPC 1
+
+[atoms]
+; id 	type 	resnr 	residu 	atom 	cgnr 	charge
+  1 	Q0 	1 	DHPC 	NC3 	1 	1.0 
+  2 	Qa 	1 	DHPC  	PO4 	2 	-1.0 
+  3 	Na 	1 	DHPC 	GL1 	3 	0 
+  4 	Na 	1 	DHPC 	GL2 	4 	0 
+  5 	C1 	1 	DHPC 	C1A 	5 	0 
+  6 	C1 	1 	DHPC 	C2A 	6 	0 
+  7 	C1 	1 	DHPC 	C1B 	7 	0 
+  8 	C1 	1 	DHPC 	C2B 	8 	0 
+
+[bonds]
+; i j 	funct 	length 	force.c.
+  1 2 	1 	0.470 	1250
+  2 3 	1 	0.470 	1250
+  3 4 	1 	0.370 	1250
+  3 5 	1 	0.470 	1250
+  5 6 	1 	0.470 	1250
+  4 7 	1 	0.470 	1250
+  7 8 	1 	0.470 	1250
+
+[angles]
+; i j k 	funct 	angle 	force.c.
+  2 3 4 	2 	120.0 	25.0 
+  2 3 5 	2 	180.0 	25.0 
+  3 5 6 	2 	180.0 	25.0 
+  4 7 8 	2 	180.0 	25.0 
+
+;;;;;; DILAUROYL PHOSPHATIDYLCHOLINE 
+;
+; in general models PCs with saturated tail lengths C12-15, including DMPC
+
+[moleculetype]
+; molname 	nrexcl
+  DLPC 		1
+
+[atoms]
+; id 	type 	resnr 	residu 	atom 	cgnr 	charge
+   1 	Q0 	1 	DLPC 	NC3 	1 	1.0
+   2 	Qa 	1 	DLPC  	PO4 	2 	-1.0
+   3 	Na 	1 	DLPC 	GL1 	3 	0
+   4 	Na 	1 	DLPC 	GL2 	4 	0
+   5 	C1 	1 	DLPC 	C1A 	5 	0
+   6 	C1 	1 	DLPC 	C2A 	6 	0
+   7 	C1 	1 	DLPC 	C3A 	7 	0
+   8 	C1 	1 	DLPC 	C1B 	8 	0
+   9 	C1 	1 	DLPC 	C2B 	9 	0
+   10 	C1 	1 	DLPC 	C3B 	10 	0
+
+[bonds]
+; i j 	funct 	length 	force.c.
+  1 2 	1 	0.47 	1250
+  2 3 	1 	0.47 	1250
+  3 4 	1 	0.37 	1250
+  3 5 	1 	0.47 	1250
+  5 6 	1 	0.47 	1250
+  6 7 	1 	0.47 	1250
+  4 8 	1 	0.47 	1250
+  8 9 	1 	0.47 	1250
+  9 10 	1 	0.47 	1250
+
+[angles]
+; i j k 	funct 	angle 	force.c.
+  2 3 4 	2 	120.0 	25.0 
+  2 3 5 	2 	180.0 	25.0 
+  3 5 6 	2 	180.0 	25.0
+  5 6 7 	2 	180.0 	25.0
+  4 8 9 	2 	180.0 	25.0
+  8 9 10 	2 	180.0 	25.0
+
+;;;;;; DISTEAROYL PHOSPHATIDYLCHOLINE
+;
+; in general models PCs with saturated tail lengths C18-21
+
+[moleculetype]
+; molname 	nrexcl
+  DSPC 		1
+
+[atoms]
+; id 	type 	resnr 	residu 	atom 	cgnr 	charge
+  1 	Q0 	1 	DSPC 	NC3 	1 	1.0 
+  2 	Qa 	1 	DSPC  	PO4 	2 	-1.0 
+  3 	Na 	1 	DSPC 	GL1 	3 	0 
+  4 	Na 	1 	DSPC 	GL2 	4 	0 
+  5 	C1 	1 	DSPC 	C1A 	5 	0 
+  6 	C1 	1 	DSPC 	C2A 	6 	0 
+  7 	C1 	1 	DSPC 	C3A 	7 	0 
+  8 	C1 	1 	DSPC 	C4A 	8 	0 
+  9 	C1 	1 	DSPC 	C5A 	9 	0 
+  10 	C1 	1 	DSPC 	C1B 	10 	0 
+  11 	C1 	1 	DSPC 	C2B 	11 	0 
+  12 	C1 	1 	DSPC 	C3B 	12 	0	 
+  13 	C1 	1 	DSPC 	C4B 	13 	0 
+  14 	C1 	1 	DSPC 	C5B 	14 	0 
+
+[bonds]
+; i j 	funct 	length 	force.c.
+  1 2 	1 	0.47 	1250
+  2 3 	1 	0.47 	1250
+  3 4 	1 	0.37 	1250
+  3 5 	1 	0.47 	1250
+  5 6 	1 	0.47 	1250
+  6 7 	1 	0.47 	1250
+  7 8 	1 	0.47 	1250
+  8 9 	1 	0.47 	1250
+  4 10 	1 	0.47 	1250
+  10 11 1 	0.47 	1250
+  11 12 1 	0.47 	1250
+  12 13 1 	0.47 	1250
+  13 14 1 	0.47 	1250
+
+[angles]
+; i j k 	funct 	angle 	force.c.
+  2 3 4 	2 	120.0 	25.0 
+  2 3 5 	2 	180.0 	25.0 
+  3 5 6 	2 	180.0 	25.0 
+  5 6 7 	2 	180.0 	25.0 
+  6 7 8 	2 	180.0 	25.0 
+  7 8 9 	2 	180.0 	25.0 
+  4 10 11 	2 	180.0 	25.0 
+  10 11 12 	2 	180.0 	25.0 
+  11 12 13 	2 	180.0 	25.0 
+  12 13 14 	2 	180.0 	25.0 
+
+
+;;;;;; PALMITOYL OLEOYL PHOSPHATIDYLCOLINE
+
+[moleculetype]
+; molname 	nrexcl
+  POPC 1
+
+[atoms]
+; id 	type 	resnr 	residu 	atom 	cgnr 	charge
+  1 	Q0 	1  	POPC 	NC3 	1 	1.0 
+  2 	Qa 	1  	POPC 	PO4 	2 	-1.0 
+  3 	Na 	1  	POPC 	GL1 	3 	0 
+  4 	Na 	1  	POPC 	GL2 	4 	0 
+  5 	C1 	1  	POPC 	C1A 	5 	0 
+  6 	C1 	1  	POPC 	C2A 	6 	0 
+  7 	C1 	1  	POPC 	C3A 	7 	0 
+  8 	C1 	1  	POPC 	C4A 	8 	0 
+  9 	C1 	1  	POPC 	C1B 	9 	0 
+  10 	C1 	1  	POPC 	C2B 	10 	0 
+  11 	C3 	1  	POPC 	D3B 	11 	0 
+  12 	C1 	1  	POPC 	C4B 	12 	0 
+  13 	C1 	1  	POPC 	C5B 	13 	0 
+
+[bonds]
+; i j 	funct 	length 	force.c.
+  1 2 	1 	0.47 	1250
+  2 3 	1 	0.47 	1250
+  3 4 	1 	0.37 	1250
+  4 5 	1 	0.47 	1250
+  5 6 	1 	0.47 	1250
+  6 7 	1 	0.47 	1250
+  7 8 	1 	0.47 	1250
+  3 9 	1 	0.47 	1250
+  9 10 	1 	0.47 	1250
+  10 11 1 	0.47 	1250
+  11 12 1 	0.47 	1250
+  12 13 1 	0.47 	1250
+
+[angles]
+; i j k 	funct 	angle 	force.c.
+  2 3 4 	2 	120.0 	25.0 
+  2 3 9 	2 	180.0 	25.0 
+  4 5 6 	2 	180.0 	25.0 
+  5 6 7 	2 	180.0 	25.0 
+  6 7 8 	2 	180.0 	25.0 
+  3 9 10 	2 	180.0 	25.0 
+  9 10 11 	2 	180.0 	25.0 
+  10 11 12 	2 	120.0 	45.0 
+  11 12 13 	2 	180.0 	25.0 
+
+
+;;;;;; DIOLEOYL PHOSPHATIDYLCHOLINE
+
+[moleculetype]
+; molname 	nrexcl
+  DOPC 		1
+
+[atoms]
+; id 	type 	resnr 	residu 	atom 	cgnr 	charge
+  1 	Q0 	1 	DOPC 	NC3 	1 	1.0 
+  2 	Qa 	1 	DOPC  	PO4 	2 	-1.0 
+  3 	Na 	1 	DOPC 	GL1 	3 	0 
+  4 	Na 	1 	DOPC 	GL2 	4 	0 
+  5 	C1 	1 	DOPC 	C1A 	5 	0 
+  6 	C1 	1 	DOPC 	C2A 	6 	0 
+  7 	C3 	1 	DOPC 	D3A 	7 	0 
+  8 	C1 	1 	DOPC 	C4A 	8 	0 
+  9 	C1 	1 	DOPC 	C5A 	9 	0 
+  10 	C1 	1 	DOPC 	C1B 	10 	0	 
+  11 	C1 	1 	DOPC 	C2B 	11 	0 
+  12 	C3 	1 	DOPC 	D3B 	12 	0 
+  13 	C1 	1 	DOPC 	C4B 	13 	0	 
+  14 	C1 	1 	DOPC 	C5B 	14 	0 
+
+[bonds]
+; i j 	funct 	length 	force.c.
+  1 2 	1 	0.47 	1250
+  2 3 	1 	0.47 	1250
+  3 4 	1 	0.37 	1250
+  3 5 	1 	0.47 	1250
+  5 6 	1 	0.47 	1250
+  6 7 	1 	0.47 	1250
+  7 8 	1 	0.47 	1250
+  8 9 	1 	0.47 	1250
+  4 10 	1 	0.47 	1250
+  10 11 1 	0.47 	1250
+  11 12 1 	0.47 	1250
+  12 13 1 	0.47 	1250
+  13 14 1 	0.47 	1250
+
+[angles]
+; i j k 	funct 	angle 	force.c.
+  2 3 4 	2 	120.0 	25.0 
+  2 3 5 	2 	180.0 	25.0 
+  3 5 6 	2 	180.0 	25.0 
+  5 6 7 	2 	180.0 	25.0 
+  6 7 8 	2 	120.0 	45.0 
+  7 8 9 	2 	180.0 	25.0 
+  4 10 11 	2 	180.0 	25.0 
+  10 11 12 	2 	180.0 	25.0 
+  11 12 13 	2 	120.0 	45.0 
+  12 13 14 	2 	180.0 	25.0 
+
+;;;;;; DIARACHIDONOYL PHOSPHATIDYLCHOLINE (20:4-20:4 PC)
+;;;;;; or di-(all-cis-5,8,11,14-eicosatetraenoyl)-PC
+
+[ moleculetype ]
+; 	molname 	nrexcl
+  	DAPC 	  	1
+
+[ atoms ]
+;id 	type 	resnr 	residu 	atom 	cgnr 	charge
+ 1 	Q0 	1 	DAPC 	NC3 	1 	1.0
+ 2 	Qa 	1 	DAPC 	PO4 	2 	-1.0
+ 3 	Na 	1 	DAPC 	GL1 	3 	0
+ 4 	Na 	1 	DAPC 	GL2 	4 	0
+ 5 	C4 	1 	DAPC 	D1A 	5 	0 	
+ 6 	C4 	1 	DAPC 	D2A 	6 	0
+ 7 	C4 	1 	DAPC 	D3A 	7 	0
+ 8 	C4 	1 	DAPC 	D4A 	8 	0
+ 9 	C2 	1 	DAPC 	C5A 	9 	0
+ 10 	C4 	1 	DAPC 	D1B 	10 	0
+ 11 	C4 	1 	DAPC 	D2B 	11 	0
+ 12 	C4 	1 	DAPC 	D3B 	12 	0
+ 13 	C4 	1 	DAPC 	D4B 	13 	0
+ 14 	C2 	1 	DAPC 	C5B 	14 	0
+
+[bonds]
+; i 	j 	funct 	length 	force.c.
+  1 	2 	1 	0.47 	1250
+  2 	3 	1 	0.47 	1250
+  3 	4 	1 	0.37 	1250
+  3 	5 	1 	0.47 	1250
+  5 	6 	1 	0.47 	1250
+  6 	7 	1 	0.47 	1250
+  7 	8 	1 	0.47 	1250
+  8 	9 	1 	0.47 	1250
+  4 	10 	1 	0.47 	1250
+  10 	11 	1 	0.47 	1250
+  11 	12 	1 	0.47 	1250
+  12 	13 	1 	0.47 	1250
+  13 	14 	1 	0.47 	1250
+
+[angles]
+; i 	j 	k 	funct 	angle 		force.c.
+  2 	3 	4 	2 	120.000 	25.0
+  2 	3 	5 	2 	180.000 	25.0
+  3 	5 	6 	2 	100.000 	10.0
+  5 	6 	7 	2 	100.000 	10.0
+  6 	7 	8 	2 	100.000 	10.0
+  7 	8 	9 	2 	120.000 	45.0
+  4 	10 	11 	2 	100.000 	10.0
+  10 	11 	12 	2 	100.000 	10.0
+  11 	12 	13 	2 	100.000 	10.0
+  12 	13 	14 	2 	120.000 	45.0
+
+;;;;;; DILINOLEYL PHOSPHATIDYLCHOLINE  (18:2-18:2 PC)
+;;;;;; or di-(cis-cis-9,12-octadecadienoyl)-PC
+;
+
+[moleculetype]
+; molname 	nrexcl
+  DUPC 		1
+
+[atoms]
+; id 	type 	resnr 	residu 	atom 	cgnr 	charge
+  1 	Q0 	1 	DUPC 	NC3 	1 	1.0 
+  2 	Qa 	1 	DUPC 	PO4 	2 	-1.0 
+  3 	Na 	1 	DUPC 	GL1 	3 	0 
+  4 	Na 	1 	DUPC 	GL2 	4 	0 
+  5 	C1 	1 	DUPC 	C1A 	5 	0 
+  6 	C4 	1 	DUPC 	D2A 	6 	0 
+  7 	C4 	1 	DUPC 	D3A 	7 	0 
+  8 	C1 	1 	DUPC 	C4A 	8 	0 
+  9 	C1 	1 	DUPC 	C1B 	9 	0 
+  10 	C4 	1 	DUPC 	D2B 	10 	0 
+  11 	C4 	1 	DUPC 	D3B 	11 	0 
+  12 	C1 	1 	DUPC 	C4B 	12 	0 
+
+[bonds]
+; i j 	funct 	length 	force.c.
+  1 2 	1 	0.470 	1250
+  2 3 	1 	0.470 	1250
+  3 4 	1 	0.370 	1250
+  3 5 	1 	0.470 	1250
+  5 6 	1 	0.470 	1250
+  6 7 	1 	0.470 	1250
+  7 8 	1 	0.470 	1250
+  4 9 	1 	0.470 	1250
+  9 10 	1 	0.470 	1250
+  10 11 1 	0.470 	1250
+  11 12 1 	0.470 	1250
+
+[angles]
+; i j k 	funct 	angle 	force.c.
+  2 3 4 	2 	120.0 	25.0 
+  2 3 5 	2 	180.0 	25.0 
+  3 5 6 	2 	180.0 	25.0 
+  5 6 7 	2 	100.0 	10.0 
+  6 7 8 	2 	120.0 	45.0 
+  4 9 10 	2 	180.0 	25.0 
+  9 10 11 	2 	100.0 	10.0 
+ 10 11 12 	2 	120.0 	45.0 
+
+
+;;;;;;
+;;;;;; COMMON PEs 
+;;;;;;
+;;;;;; DPPE, DHPE, DLPE, DSPE, POPE, DOPE
+;;;;;;
+
+;;;;;; DIPALMITOYL PHOSPHATIDYLETHANOLAMINE  
+;
+; in general models PEs with saturated tail lengths C15-18
+
+[moleculetype]
+; molname 	nrexcl
+  DPPE 		1
+
+[atoms]
+; id 	type 	resnr 	residu 	atom 	cgnr 	charge
+  1 	Qd 	1 	DPPE 	NH3 	1 	1.0 
+  2 	Qa 	1 	DPPE 	PO4 	2 	-1.0 
+  3 	Na 	1 	DPPE 	GL1 	3 	0 
+  4 	Na 	1 	DPPE 	GL2 	4 	0 
+  5 	C1 	1 	DPPE 	C1A 	5 	0 
+  6 	C1 	1 	DPPE 	C2A 	6 	0 
+  7 	C1 	1 	DPPE 	C3A 	7 	0 
+  8 	C1 	1 	DPPE 	C4A 	8 	0 
+  9 	C1 	1 	DPPE 	C1B 	9 	0 
+  10 	C1 	1 	DPPE 	C2B 	10 	0 
+  11 	C1 	1 	DPPE 	C3B 	11 	0 
+  12 	C1 	1 	DPPE 	C4B 	12 	0 
+
+[bonds]
+; i j 	funct 	length 	force.c.
+  1 2 	1 	0.470 	1250
+  2 3 	1 	0.470 	1250
+  3 4 	1 	0.370 	1250
+  3 5 	1 	0.470 	1250
+  5 6 	1 	0.470 	1250
+  6 7 	1 	0.470 	1250
+  7 8 	1 	0.470 	1250
+  4 9 	1 	0.470 	1250
+  9 10 	1 	0.470 	1250
+  10 11 1 	0.470 	1250
+  11 12 1 	0.470 	1250
+
+[angles]
+; i j k 	funct 	angle 	force.c.
+  2 3 4 	2 	120.0 	25.0 
+  2 3 5 	2 	180.0 	25.0 
+  3 5 6 	2 	180.0 	25.0 
+  5 6 7 	2 	180.0 	25.0 
+  6 7 8 	2 	180.0 	25.0 
+  4 9 10 	2 	180.0 	25.0 
+  9 10 11 	2 	180.0 	25.0 
+ 10 11 12 	2 	180.0 	25.0 
+
+
+;;;;;; DIHEXANOYL PHOSPHATIDYLETHANOLAMINE
+;
+; in general models PEs with saturated tail lengths C8-11
+
+[moleculetype]
+; molname 	nrexcl
+DHPE 1
+
+[atoms]
+; id 	type 	resnr 	residu 	atom 	cgnr 	charge
+  1 	Qd 	1 	DHPE 	NH3 	1 	1.0 
+  2 	Qa 	1 	DHPE  	PO4 	2 	-1.0 
+  3 	Na 	1 	DHPE 	GL1 	3 	0 
+  4 	Na 	1 	DHPE 	GL2 	4 	0 
+  5 	C1 	1 	DHPE 	C1A 	5 	0 
+  6 	C1 	1 	DHPE 	C2A 	6 	0 
+  7 	C1 	1 	DHPE 	C1B 	7 	0 
+  8 	C1 	1 	DHPE 	C2B 	8 	0 
+
+[bonds]
+; i j 	funct 	length 	force.c.
+  1 2 	1 	0.470 	1250
+  2 3 	1 	0.470 	1250
+  3 4 	1 	0.370 	1250
+  3 5 	1 	0.470 	1250
+  5 6 	1 	0.470 	1250
+  4 7 	1 	0.470 	1250
+  7 8 	1 	0.470 	1250
+
+[angles]
+; i j k 	funct 	angle 	force.c.
+  2 3 4 	2 	120.0 	25.0 
+  2 3 5 	2 	180.0 	25.0 
+  3 5 6 	2 	180.0 	25.0 
+  4 7 8 	2 	180.0 	25.0 
+
+;;;;;; DILAUROYL PHOSPHATIDYLETHANOLAMINE
+;
+; in general models PEs with saturated tail lengths C12-15, including DMPE
+
+[moleculetype]
+; molname 	nrexcl
+  DLPE 		1
+
+[atoms]
+; id 	type 	resnr 	residu 	atom 	cgnr 	charge
+   1 	Qd 	1 	DLPE 	NH3 	1 	1.0
+   2 	Qa 	1 	DLPE  	PO4 	2 	-1.0
+   3 	Na 	1 	DLPE 	GL1 	3 	0
+   4 	Na 	1 	DLPE 	GL2 	4 	0
+   5 	C1 	1 	DLPE 	C1A 	5 	0
+   6 	C1 	1 	DLPE 	C2A 	6 	0
+   7 	C1 	1 	DLPE 	C3A 	7 	0
+   8 	C1 	1 	DLPE 	C1B 	8 	0
+   9 	C1 	1 	DLPE 	C2B 	9 	0
+   10 	C1 	1 	DLPE 	C3B 	10 	0
+
+[bonds]
+; i j 	funct 	length 	force.c.
+  1 2 	1 	0.47 	1250
+  2 3 	1 	0.47 	1250
+  3 4 	1 	0.37 	1250
+  3 5 	1 	0.47 	1250
+  5 6 	1 	0.47 	1250
+  6 7 	1 	0.47 	1250
+  4 8 	1 	0.47 	1250
+  8 9 	1 	0.47 	1250
+  9 10 	1 	0.47 	1250
+
+[angles]
+; i j k 	funct 	angle 	force.c.
+  2 3 4 	2 	120.0 	25.0 
+  2 3 5 	2 	180.0 	25.0 
+  3 5 6 	2 	180.0 	25.0
+  5 6 7 	2 	180.0 	25.0
+  4 8 9 	2 	180.0 	25.0
+  8 9 10 	2 	180.0 	25.0
+
+;;;;;; DISTEAROYL PHOSPHATIDYLETHANOLAMINE
+;
+; in general models PEs with saturated tail lengths C18-21
+
+[moleculetype]
+; molname 	nrexcl
+  DSPE 		1
+
+[atoms]
+; id 	type 	resnr 	residu 	atom 	cgnr 	charge
+  1 	Qd 	1 	DSPE 	NH3 	1 	1.0 
+  2 	Qa 	1 	DSPE  	PO4 	2 	-1.0 
+  3 	Na 	1 	DSPE 	GL1 	3 	0 
+  4 	Na 	1 	DSPE 	GL2 	4 	0 
+  5 	C1 	1 	DSPE 	C1A 	5 	0 
+  6 	C1 	1 	DSPE 	C2A 	6 	0 
+  7 	C1 	1 	DSPE 	C3A 	7 	0 
+  8 	C1 	1 	DSPE 	C4A 	8 	0 
+  9 	C1 	1 	DSPE 	C5A 	9 	0 
+  10 	C1 	1 	DSPE 	C1B 	10 	0 
+  11 	C1 	1 	DSPE 	C2B 	11 	0 
+  12 	C1 	1 	DSPE 	C3B 	12 	0	 
+  13 	C1 	1 	DSPE 	C4B 	13 	0 
+  14 	C1 	1 	DSPE 	C5B 	14 	0 
+
+[bonds]
+; i j 	funct 	length 	force.c.
+  1 2 	1 	0.47 	1250
+  2 3 	1 	0.47 	1250
+  3 4 	1 	0.37 	1250
+  3 5 	1 	0.47 	1250
+  5 6 	1 	0.47 	1250
+  6 7 	1 	0.47 	1250
+  7 8 	1 	0.47 	1250
+  8 9 	1 	0.47 	1250
+  4 10 	1 	0.47 	1250
+  10 11 1 	0.47 	1250
+  11 12 1 	0.47 	1250
+  12 13 1 	0.47 	1250
+  13 14 1 	0.47 	1250
+
+[angles]
+; i j k 	funct 	angle 	force.c.
+  2 3 4 	2 	120.0 	25.0 
+  2 3 5 	2 	180.0 	25.0 
+  3 5 6 	2 	180.0 	25.0 
+  5 6 7 	2 	180.0 	25.0 
+  6 7 8 	2 	180.0 	25.0 
+  7 8 9 	2 	180.0 	25.0 
+  4 10 11 	2 	180.0 	25.0 
+  10 11 12 	2 	180.0 	25.0 
+  11 12 13 	2 	180.0 	25.0 
+  12 13 14 	2 	180.0 	25.0 
+
+
+;;;;;; PALMITOYL OLEOYL PHOSPHATIDYLETHANOLAMINE
+
+
+[moleculetype]
+; molname 	nrexcl
+  POPE 1
+
+[atoms]
+; id 	type 	resnr 	residu 	atom 	cgnr 	charge
+  1 	Qd 	1  	POPE 	NH3 	1 	1.0 
+  2 	Qa 	1  	POPE 	PO4 	2 	-1.0 
+  3 	Na 	1  	POPE 	GL1 	3 	0 
+  4 	Na 	1  	POPE 	GL2 	4 	0 
+  5 	C1 	1  	POPE 	C1A 	5 	0 
+  6 	C1 	1  	POPE 	C2A 	6 	0 
+  7 	C1 	1  	POPE 	C3A 	7 	0 
+  8 	C1 	1  	POPE 	C4A 	8 	0 
+  9 	C1 	1  	POPE 	C1B 	9 	0 
+  10 	C1 	1  	POPE 	C2B 	10 	0 
+  11 	C3 	1  	POPE 	D3B 	11 	0 
+  12 	C1 	1  	POPE 	C4B 	12 	0 
+  13 	C1 	1  	POPE 	C5B 	13 	0 
+
+[bonds]
+; i j 	funct 	length 	force.c.
+  1 2 	1 	0.47 	1250
+  2 3 	1 	0.47 	1250
+  3 4 	1 	0.37 	1250
+  4 5 	1 	0.47 	1250
+  5 6 	1 	0.47 	1250
+  6 7 	1 	0.47 	1250
+  7 8 	1 	0.47 	1250
+  3 9 	1 	0.47 	1250
+  9 10 	1 	0.47 	1250
+  10 11 1 	0.47 	1250
+  11 12 1 	0.47 	1250
+  12 13 1 	0.47 	1250
+
+[angles]
+; i j k 	funct 	angle 	force.c.
+  2 3 4 	2 	120.0 	25.0 
+  2 3 9 	2 	180.0 	25.0 
+  4 5 6 	2 	180.0 	25.0 
+  5 6 7 	2 	180.0 	25.0 
+  6 7 8 	2 	180.0 	25.0 
+  3 9 10 	2 	180.0 	25.0 
+  9 10 11 	2 	180.0 	25.0 
+  10 11 12 	2 	120.0 	45.0 
+  11 12 13 	2 	180.0 	25.0 
+
+
+;;;;;; DIOLEOYL PHOSPHATIDYLETHANOLAMINE
+
+[moleculetype]
+; molname 	nrexcl
+  DOPE 		1
+
+[atoms]
+; id 	type 	resnr 	residu 	atom 	cgnr 	charge
+  1 	Qd 	1 	DOPE 	NH3 	1 	1.0 
+  2 	Qa 	1 	DOPE  	PO4 	2 	-1.0 
+  3 	Na 	1 	DOPE 	GL1 	3 	0 
+  4 	Na 	1 	DOPE 	GL2 	4 	0 
+  5 	C1 	1 	DOPE 	C1A 	5 	0 
+  6 	C1 	1 	DOPE 	C2A 	6 	0 
+  7 	C3 	1 	DOPE 	D3A 	7 	0 
+  8 	C1 	1 	DOPE 	C4A 	8 	0 
+  9 	C1 	1 	DOPE 	C5A 	9 	0 
+  10 	C1 	1 	DOPE 	C1B 	10 	0	 
+  11 	C1 	1 	DOPE 	C2B 	11 	0 
+  12 	C3 	1 	DOPE 	D3B 	12 	0 
+  13 	C1 	1 	DOPE 	C4B 	13 	0	 
+  14 	C1 	1 	DOPE 	C5B 	14 	0 
+
+[bonds]
+; i j 	funct 	length 	force.c.
+  1 2 	1 	0.47 	1250
+  2 3 	1 	0.47 	1250
+  3 4 	1 	0.37 	1250
+  3 5 	1 	0.47 	1250
+  5 6 	1 	0.47 	1250
+  6 7 	1 	0.47 	1250
+  7 8 	1 	0.47 	1250
+  8 9 	1 	0.47 	1250
+  4 10 	1 	0.47 	1250
+  10 11 1 	0.47 	1250
+  11 12 1 	0.47 	1250
+  12 13 1 	0.47 	1250
+  13 14 1 	0.47 	1250
+
+[angles]
+; i j k 	funct 	angle 	force.c.
+  2 3 4 	2 	120.0 	25.0 
+  2 3 5 	2 	180.0 	25.0 
+  3 5 6 	2 	180.0 	25.0 
+  5 6 7 	2 	180.0 	25.0 
+  6 7 8 	2 	120.0 	45.0 
+  7 8 9 	2 	180.0 	25.0 
+  4 10 11 	2 	180.0 	25.0 
+  10 11 12 	2 	180.0 	25.0 
+  11 12 13 	2 	120.0 	45.0 
+  12 13 14 	2 	180.0 	25.0 
+
+;;;;;;
+;;;;;; SPHINGHOLIPIDS
+;;;;;;
+;;;;;; PPCS, ...
+
+
+;;;;;; PALMITOYL SPHINGOMYELINE PC
+
+; not tested!!
+
+[moleculetype]
+; molname 	nrexcl
+  PPCS 1
+
+[atoms]
+; id 	type 	resnr 	residu 	atom 	cgnr 	charge
+   1 	Q0 	1 	PPCS 	NC3 	1 	1.0 
+   2 	Qa 	1 	PPCS  	PO4 	2 	-1.0 
+   3 	P5 	1 	PPCS 	AM1 	3 	0 
+   4 	P1 	1 	PPCS 	AM2 	4 	0 
+   5 	C1 	1 	PPCS 	C1A 	5 	0 
+   6 	C1 	1 	PPCS 	C2A 	6 	0 
+   7 	C1 	1 	PPCS 	C3A 	7 	0 
+   8 	C1 	1 	PPCS 	C4A 	8 	0 
+   9 	C3 	1 	PPCS 	D1B 	9 	0 
+   10 	C1 	1 	PPCS 	C2B 	10 	0 
+   11 	C1 	1 	PPCS 	C3B 	11 	0 
+   12 	C1 	1 	PPCS 	C4B 	12 	0 
+
+[bonds]
+; i j 	funct 	length 	force.c.
+  1 2 	1 	0.47 	1250
+  2 3 	1 	0.47 	1250
+  3 4 	1 	0.37 	1250
+  3 5 	1 	0.47 	1250
+  5 6 	1 	0.47 	1250
+  6 7 	1 	0.47 	1250
+  7 8 	1 	0.47 	1250
+  4 9 	1 	0.47 	1250
+  9 10 	1 	0.47 	1250
+  10 11 1 	0.47 	1250
+  11 12 1 	0.47 	1250
+
+[angles]
+; i j k 	funct 	angle 	force.c.
+  2 3 4 	2 	120.0 	25.0 
+  2 3 5 	2 	180.0 	25.0 
+  3 5 6 	2 	180.0 	25.0 
+  5 6 7 	2 	180.0 	25.0 
+  6 7 8 	2 	180.0 	25.0 
+  4 9 10 	2 	180.0 	45.0 
+  9 10 11 	2 	180.0 	25.0 
+  10 11 12 	2 	180.0 	25.0 
+
+
+
+;;;;;;
+;;;;;; CHARGED LIPIDS
+;;;;;;
+;;;;;; DOPG, POPG, DOPS, POPS 
+;;;;;;
+;;;;;; Contributed by Luca Monticelli
+;;;;;;
+;;;;;; Note: the topologies for charged lipids are not well tested (yet),
+;;;;;; but have been used in, e.g., monolayer studies :
+;;;;;; S. Baoukina, L. Monticelli, H.J. Risselada, S.J. Marrink, D.P. Tieleman.
+;;;;;; The molecular mechanism of lipid monolayer collapse.
+;;;;;; PNAS, 105:10803-10808, 2008.  
+
+;;;;;; DIOLEOYL PHOSPHATIDYLGLYCEROL
+;
+; trial topology!
+
+[ moleculetype ]
+; molname nrexcl
+DOPG 1
+
+[ atoms ]
+;id type resnr residu atom cgnr charge
+ 1 P4 1 DOPG GL0 1 0
+ 2 Qa 1 DOPG PO4 2 -1.0
+ 3 Na 1 DOPG GL1 3 0
+ 4 Na 1 DOPG GL2 4 0
+ 5 C1 1 DOPG C1A 5 0
+ 6 C1 1 DOPG C2A 6 0
+ 7 C3 1 DOPG D3A 7 0
+ 8 C1 1 DOPG C4A 8 0
+ 9 C1 1 DOPG C5A 9 0
+ 10 C1 1 DOPG C1B 10 0
+ 11 C1 1 DOPG C2B 11 0
+ 12 C3 1 DOPG D3B 12 0
+ 13 C1 1 DOPG C4B 13 0
+ 14 C1 1 DOPG C5B 14 0
+
+[bonds]
+; i j funct length force.c.
+   1 2 1 0.37 1250
+   2 3 1 0.37 1250
+   3 4 1 0.37 1250
+   3 5 1 0.47 1250
+   5 6 1 0.47 1250
+   6 7 1 0.47 1250
+   7 8 1 0.47 1250
+   8 9 1 0.47 1250
+   4 10 1 0.47 1250
+   10 11 1 0.47 1250
+   11 12 1 0.47 1250
+   12 13 1 0.47 1250
+   13 14 1 0.47 1250
+
+[angles]
+; i j k funct angle force.c.
+   2 3 4 2 120.000 25.0
+   2 3 5 2 180.000 25.0
+   3 5 6 2 180.000 25.0
+   5 6 7 2 180.000 25.0
+   6 7 8 2 120.000 45.0
+   7 8 9 2 180.000 25.0
+   4 10 11 2 180.000 25.0
+  10 11 12 2 180.000 25.0
+  11 12 13 2 120.000 45.0
+  12 13 14 2 180.000 25.0
+
+
+
+;;;;;; PALMITOYL OLEOYL PHOSPHATIDYLGLYCEROL
+;
+; trial topology!
+; note: in earlier version of this file (before 15-3-2011), actually OPPG rather than POPG was modeled
+;       (in practice the behavior is expected to be very similar though)
+
+[ moleculetype ]
+; molname nrexcl
+POPG 1
+
+[ atoms ]
+;id type resnr residu atom cgnr charge
+ 1 P4 1 POPG GL0 1 0
+ 2 Qa 1 POPG PO4 2 -1.0
+ 3 Na 1 POPG GL1 3 0
+ 4 Na 1 POPG GL2 4 0
+ 5 C1 1 POPG C1A 5 0
+ 6 C1 1 POPG C2A 6 0
+ 7 C1 1 POPG C3A 7 0
+ 8 C1 1 POPG C4A 8 0
+ 9 C1 1 POPG C1B 9 0
+ 10 C1 1 POPG C2B 10 0
+ 11 C3 1 POPG D3B 11 0
+ 12 C1 1 POPG C4B 12 0
+ 13 C1 1 POPG C5B 13 0
+
+[bonds]
+; i j 	funct 	length 	force.c.
+  1 2 	1 	0.37 	1250
+  2 3 	1 	0.37 	1250
+  3 4 	1 	0.37 	1250
+  4 5 	1 	0.47 	1250
+  5 6 	1 	0.47 	1250
+  6 7 	1 	0.47 	1250
+  7 8 	1 	0.47 	1250
+  3 9 	1 	0.47 	1250
+  9 10 	1 	0.47 	1250
+  10 11 1 	0.47 	1250
+  11 12 1 	0.47 	1250
+  12 13 1 	0.47 	1250
+
+[angles]
+; i j k 	funct 	angle 	force.c.
+  2 3 4 	2 	120.0 	25.0 
+  2 3 9 	2 	180.0 	25.0 
+  4 5 6 	2 	180.0 	25.0 
+  5 6 7 	2 	180.0 	25.0 
+  6 7 8 	2 	180.0 	25.0 
+  3 9 10 	2 	180.0 	25.0 
+  9 10 11 	2 	180.0 	25.0 
+  10 11 12 	2 	120.0 	45.0 
+  11 12 13 	2 	180.0 	25.0 
+
+
+;;;;;; DI-OLEOYL PHOSPHATIDYLSERINE
+;
+; trial topology!
+
+[ moleculetype ]
+; molname nrexcl
+DOPS 1
+
+[ atoms ]
+;id type resnr residu atom cgnr charge
+ 1 P5 1 DOPS CNO 1 0
+ 2 Qa 1 DOPS PO4 2 -1.0
+ 3 Na 1 DOPS GL1 3 0
+ 4 Na 1 DOPS GL2 4 0
+ 5 C1 1 DOPS C1A 5 0
+ 6 C1 1 DOPS C2A 6 0
+ 7 C3 1 DOPS D3A 7 0
+ 8 C1 1 DOPS C4A 8 0
+ 9 C1 1 DOPS C5A 9 0
+ 10 C1 1 DOPS C1B 10 0
+ 11 C1 1 DOPS C2B 11 0
+ 12 C3 1 DOPS D3B 12 0
+ 13 C1 1 DOPS C4B 13 0
+ 14 C1 1 DOPS C5B 14 0
+ 
+[bonds]
+; i j funct length force.c.
+   1 2 1 0.37 1250
+   2 3 1 0.37 1250
+   3 4 1 0.37 1250
+   3 5 1 0.47 1250
+   5 6 1 0.47 1250
+   6 7 1 0.47 1250
+   7 8 1 0.47 1250
+   8 9 1 0.47 1250
+   4 10 1 0.47 1250
+   10 11 1 0.47 1250
+   11 12 1 0.47 1250
+   12 13 1 0.47 1250
+   13 14 1 0.47 1250
+
+[angles]
+; i j k funct angle force.c.
+   2 3 4 2 120.000 25.0
+   2 3 5 2 180.000 25.0
+   3 5 6 2 180.000 25.0
+   5 6 7 2 180.000 25.0
+   6 7 8 2 120.000 45.0
+   7 8 9 2 180.000 25.0
+   4 10 11 2 180.000 25.0
+  10 11 12 2 180.000 25.0
+  11 12 13 2 120.000 45.0
+  12 13 14 2 180.000 25.0
+
+
+;;;;;; PALMITOYL OLEOYL PHOSPHATIDYLSERINE
+;
+; trial topology!
+; note: in earlier version of this file (before 15-3-2011), actually OPPS rather than POPS was modeled
+;       (in practice the behavior is expected to be very similar though)
+
+[ moleculetype ]
+; molname nrexcl
+POPS 1
+
+[ atoms ]
+;id type resnr residu atom cgnr charge
+ 1 P5 1 POPS CNO 1 0
+ 2 Qa 1 POPS PO4 2 -1.0
+ 3 Na 1 POPS GL1 3 0
+ 4 Na 1 POPS GL2 4 0
+ 5 C1 1 POPS C1A 5 0
+ 6 C1 1 POPS C2A 6 0
+ 7 C1 1 POPS C3A 7 0
+ 8 C1 1 POPS C4A 8 0
+ 9 C1 1 POPS C1B 9 0
+ 10 C1 1 POPS C2B 10 0
+ 11 C3 1 POPS D3B 11 0
+ 12 C1 1 POPS C4B 12 0
+ 13 C1 1 POPS C5B 13 0
+
+[bonds]
+; i j 	funct 	length 	force.c.
+  1 2 	1 	0.37 	1250
+  2 3 	1 	0.37 	1250
+  3 4 	1 	0.37 	1250
+  4 5 	1 	0.47 	1250
+  5 6 	1 	0.47 	1250
+  6 7 	1 	0.47 	1250
+  7 8 	1 	0.47 	1250
+  3 9 	1 	0.47 	1250
+  9 10 	1 	0.47 	1250
+  10 11 1 	0.47 	1250
+  11 12 1 	0.47 	1250
+  12 13 1 	0.47 	1250
+
+[angles]
+; i j k 	funct 	angle 	force.c.
+  2 3 4 	2 	120.0 	25.0 
+  2 3 9 	2 	180.0 	25.0 
+  4 5 6 	2 	180.0 	25.0 
+  5 6 7 	2 	180.0 	25.0 
+  6 7 8 	2 	180.0 	25.0 
+  3 9 10 	2 	180.0 	25.0 
+  9 10 11 	2 	180.0 	25.0 
+  10 11 12 	2 	120.0 	45.0 
+  11 12 13 	2 	180.0 	25.0 
+
+
+;;;;;; BOLA DIPALMITOYL PHOSPHATIDYLCHOLINE
+;
+; cyclic di-DPPC
+;
+; please cite:
+; 
+; M. Bulacu, X. Periole, S.J. Marrink. 
+; In-silico design of robust bolalipid membranes, 
+; Biomacromol., in press, 2011. DOI:10.1021/bm201454j. 
+
+[ moleculetype ]
+; molname       nrexcl
+BOLA                 1
+
+[ atoms ]
+;id type resnr residu atom cgnr   charge
+ 1   Q0   1     BOLA      NC1    1      1.0    
+ 2   Qa   1     BOLA      PO1    2     -1.0    
+ 3   Na   1     BOLA      GL1    3      0    
+ 4   Na   1     BOLA      GL2    4      0    
+ 5   C1   1     BOLA      C1A    5      0    
+ 6   C1   1     BOLA      C2A    6      0    
+ 7   C1   1     BOLA      C3A    7      0    
+ 8   C1   1     BOLA      C4A    8      0    
+ 9   C1   1     BOLA      C1B    9      0    
+ 10  C1   1     BOLA      C2B    10     0    
+ 11  C1   1     BOLA      C3B    11     0    
+ 12  C1   1     BOLA      C4B    12     0    
+ 13  Q0   1     BOLA      NC2    13     1.0    
+ 14  Qa   1     BOLA      PO2    14    -1.0    
+ 15  Na   1     BOLA      GL3    15     0    
+ 16  Na   1     BOLA      GL4    16     0    
+ 17  C1   1     BOLA      C1C    17     0    
+ 18  C1   1     BOLA      C2C    18     0    
+ 19  C1   1     BOLA      C3C    19     0    
+ 20  C1   1     BOLA      C4C    20     0    
+ 21  C1   1     BOLA      C1D    21     0    
+ 22  C1   1     BOLA      C2D    22     0    
+ 23  C1   1     BOLA      C3D    23     0    
+ 24  C1   1     BOLA      C4D    24     0    
+
+[bonds]
+;  i     j   funct   length  force.c.
+   1     2    1       0.470    1250
+   2     3    1       0.470    1250
+   3     4    1       0.370    1250
+   3     5    1       0.470    1250
+   5     6    1       0.470    1250
+   6     7    1       0.470    1250
+   7     8    1       0.470    1250
+   4     9    1       0.470    1250
+   9     10   1       0.470    1250
+   10    11   1       0.470    1250
+   11    12   1       0.470    1250
+   13    14   1       0.470    1250
+   14    15   1       0.470    1250
+   15    16   1       0.370    1250
+   15    17   1       0.470    1250
+   17    18   1       0.470    1250
+   18    19   1       0.470    1250
+   19    20   1       0.470    1250
+   16    21   1       0.470    1250
+   21    22   1       0.470    1250
+   22    23   1       0.470    1250
+   23    24   1       0.470    1250
+    8    20   1       0.470    1250
+   12    24   1       0.470    1250
+
+
+[angles]
+;  i     j    k     funct   angle  force.c.
+   2     3    4       2   120.000  25.0 
+   2     3    5       2   180.000  25.0 
+   3     5    6       2   180.000  25.0 
+   5     6    7       2   180.000  25.0 
+   6     7    8       2   180.000  25.0 
+   4     9   10       2   180.000  25.0 
+   9    10   11       2   180.000  25.0 
+  10    11   12       2   180.000  25.0 
+  14    15   16       2   120.000  25.0 
+  14    15   17       2   180.000  25.0 
+  15    17   18       2   180.000  25.0 
+  17    18   19       2   180.000  25.0 
+  18    19   20       2   180.000  25.0 
+  16    21   22       2   180.000  25.0 
+  21    22   23       2   180.000  25.0 
+  22    23   24       2   180.000  25.0 
+   7     8   20       2   180.000  25.0 ; remove for fully-flexible linkers
+   8    20   19       2   180.000  25.0 ; remove for fully-flexible and semi-flexible linkers
+  11    12   24       2   180.000  25.0 ; remove for fully-flexible linkers
+  12    24   23       2   180.000  25.0 ; remove for fully-flexible and semi-flexible linkers
+
+
+
+;;;;;; BOLA DIPALMITOYL PHOSPHATIDYLCHOLINE
+;
+; acyclic di-DPPC
+;
+; please cite:
+; 
+; M. Bulacu, X. Periole, S.J. Marrink. 
+; In-silico design of robust bolalipid membranes, 
+; Biomacromol., in press, 2011. DOI:10.1021/bm201454j. 
+
+
+[ moleculetype ]
+; molname       nrexcl
+BOLB                 1
+
+[ atoms ]
+;id type resnr residu atom cgnr   charge
+ 1   Q0   1     BOLB      NC1    1      1.0    
+ 2   Qa   1     BOLB      PO1    2     -1.0    
+ 3   Na   1     BOLB      GL1    3      0    
+ 4   Na   1     BOLB      GL2    4      0    
+ 5   C1   1     BOLB      C1A    5      0    
+ 6   C1   1     BOLB      C2A    6      0    
+ 7   C1   1     BOLB      C3A    7      0    
+ 8   C1   1     BOLB      C4A    8      0    
+ 9   C1   1     BOLB      C1B    9      0    
+ 10  C1   1     BOLB      C2B    10     0    
+ 11  C1   1     BOLB      C3B    11     0    
+ 12  C1   1     BOLB      C4B    12     0    
+ 13  Q0   1     BOLB      NC2    13     1.0    
+ 14  Qa   1     BOLB      PO2    14    -1.0    
+ 15  Na   1     BOLB      GL3    15     0    
+ 16  Na   1     BOLB      GL4    16     0    
+ 17  C1   1     BOLB      C1C    17     0    
+ 18  C1   1     BOLB      C2C    18     0    
+ 19  C1   1     BOLB      C3C    19     0    
+ 20  C1   1     BOLB      C4C    20     0    
+ 21  C1   1     BOLB      C1D    21     0    
+ 22  C1   1     BOLB      C2D    22     0    
+ 23  C1   1     BOLB      C3D    23     0    
+ 24  C1   1     BOLB      C4D    24     0    
+
+[bonds]
+;  i     j   funct   length  force.c.
+   1     2    1       0.470    1250
+   2     3    1       0.470    1250
+   3     4    1       0.370    1250
+   3     5    1       0.470    1250
+   5     6    1       0.470    1250
+   6     7    1       0.470    1250
+   7     8    1       0.470    1250
+   4     9    1       0.470    1250
+   9     10   1       0.470    1250
+   10    11   1       0.470    1250
+   11    12   1       0.470    1250
+   13    14   1       0.470    1250
+   14    15   1       0.470    1250
+   15    16   1       0.370    1250
+   15    17   1       0.470    1250
+   17    18   1       0.470    1250
+   18    19   1       0.470    1250
+   19    20   1       0.470    1250
+   16    21   1       0.470    1250
+   21    22   1       0.470    1250
+   22    23   1       0.470    1250
+   23    24   1       0.470    1250
+    8    20   1       0.470    1250
+
+
+[angles]
+;  i     j    k     funct   angle  force.c.
+   2     3    4       2   120.000  25.0 
+   2     3    5       2   180.000  25.0 
+   3     5    6       2   180.000  25.0 
+   5     6    7       2   180.000  25.0 
+   6     7    8       2   180.000  25.0 
+   4     9   10       2   180.000  25.0 
+   9    10   11       2   180.000  25.0 
+  10    11   12       2   180.000  25.0 
+  14    15   16       2   120.000  25.0 
+  14    15   17       2   180.000  25.0 
+  15    17   18       2   180.000  25.0 
+  17    18   19       2   180.000  25.0 
+  18    19   20       2   180.000  25.0 
+  16    21   22       2   180.000  25.0 
+  21    22   23       2   180.000  25.0 
+  22    23   24       2   180.000  25.0 
+   7     8   20       2   180.000  25.0 ; remove for fully-flexible linker
+   8    20   19       2   180.000  25.0 ; remove for fully-flexible and semi-flexible linker

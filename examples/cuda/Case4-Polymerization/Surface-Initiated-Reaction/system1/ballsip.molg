@@ -1,0 +1,28 @@
+#!/usr/bin/python
+import sys
+sys.path.append('/opt/galamost3/lib')
+import molgen
+
+lx=54.0
+ly=54.0
+lz=54.0
+npp=25744
+radius=24.0
+nppfile="ball.xml"
+
+
+mol0=molgen.Molecule(nppfile, npp)# filename, the number of particles
+mol0.setInit("B", 1) # 1 represents initiator; the default value is 0.
+mol0.setCris("A", 1) # 0 represents reactive monomer; 1 represents inert monomer; the default value is 0.
+
+mol1=molgen.Molecule(1) # the number of particles in a molecule
+mol1.setParticleTypes("C") # particle type
+mol1.setCris("C", 0) # 0 represents reactive monomer; 1 represents inert monomer; the default value is 0.
+mol1.setSphere(0.0, 0.0, 0.0, 0.0, radius) # center position(x,y,z) of sphere, spherical shell with radius r_min and r_max for placing particles.
+
+gen=molgen.Generators(lx,ly,lz) # box size
+gen.addMolecule(mol0,1) # molecule type, number of molecules
+gen.addMolecule(mol1,55632) # molecule type, number of molecules
+gen.setMinimumDistance(0.9)# minimum distance between any two particles
+gen.outPutXml("gencon_ballSIP") # output filename
+

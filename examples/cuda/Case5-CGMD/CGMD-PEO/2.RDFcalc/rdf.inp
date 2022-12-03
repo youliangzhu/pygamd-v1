@@ -1,0 +1,40 @@
+&Parameters
+  TrajFile=peo10-10.xtc
+  NMType=1
+  NameMType= peo10-10.CG
+  NMolMType= 10
+  NPairBondsExclude  = 1
+  NAngleBondsExclude = 1
+  Exclusions = exclusions_SR.dat
+  OutputFile= peo10-10.rdf
+  Step = 1
+  RMaxNB=20.
+  RMinB=0.0
+  RMaxB=20.
+  ResolNB=0.1,
+  ResolB=0.02,
+  ResolA=1.0
+&EndParameters
+
+&CGTypes
+PEB:PEB
+PEO:PEO1 PEO2 PEO3 PEO4 PEO5 PEO6 PEO7 PEO8
+PEC:PEC
+&EndCGTypes
+
+&RDFsNB
+ add : all
+&EndRDFsNB
+
+&RDFsB
+ add : peo10-10.CG : 1 : PEB  PEO1
+ add : peo10-10.CG : 2 : PEO1 PEO2,PEO2 PEO3,PEO3 PEO4,PEO4 PEO5,PEO5 PEO6,PEO6 PEO7,PEO7 PEO8
+ add : peo10-10.CG : 3 : PEO8 PEC
+&EndRDFsB
+
+&RDFsA
+add : peo10-10.CG : 4: PEB PEO1 PEO2
+add : peo10-10.CG : 5: PEO1 PEO2 PEO3,PEO2 PEO3 PEO4,PEO3 PEO4 PEO5,PEO4 PEO5 PEO6,PEO5 PEO6 PEO7,PEO6 PEO7 PEO8
+add : peo10-10.CG : 6: PEO7 PEO8 PEC
+&EndRDFsA
+

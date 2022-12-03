@@ -1,0 +1,10 @@
+<Patches>
+A 0
+B 3
+p1 45  0         0   1
+p1 45  0.866025  0   -0.5
+p1 45 -0.866025  0   -0.5
+</Patches>
+<PatchParams>
+p1 p1 132.0 0.5
+</PatchParams>

@@ -1,0 +1,64 @@
+;;; ALTERNATIVE TOPOLOGY FOR CHOLESTEROL USING VIRTUAL SITES
+;;; 2014/10/03
+
+; Adapted from the equilibrium structure of Martini 2.0 cholesterol to have 3 virtual sites. Updated
+; for Dry Martini use (60% extra protrusion and special SP1c particle with increased liking of Q
+; particles).
+;
+; Runs at 40fs timestep; the manual suggests that triangle constraints with virtual sites and large
+; timesteps (exactly this case then) should use lincs-order = 6; I played it safe and used
+; lincs-order = 8 and lincs-iter = 2 during parameterization. The performance penalty, even on a 30%
+; cholesterol membrane, is negligible. Frame masses were distributed to best mimic the original
+; cholesterol's moment of inertia (using S-particle mass of 45).
+
+[ moleculetype ]
+; molname  nrexcl
+  CHOL     1
+
+[ atoms ]
+; i type resnr residue atom cgnr charge mass
+  1 SP1c 1     CHOL    ROH  1    0.0    77.22
+  2 SC1  1     CHOL    R1   2    0.0      0.0
+  3 SC3  1     CHOL    R2   3    0.0    38.69
+  4 SC1  1     CHOL    R3   4    0.0   159.65
+  5 SC1  1     CHOL    R4   5    0.0      0.0
+  6 SC1  1     CHOL    R5   6    0.0      0.0
+  7 SC1  1     CHOL    C1   7    0.0    39.44
+  8  C1  1     CHOL    C2   8    0.0     72.0
+
+[ bonds ]
+; i  j  funct  length  force
+  7  8  1      0.425   1250.0
+#ifndef FLEXIBLE
+
+[ constraints ]
+#endif
+  1  3  1      0.4904  300000.0
+  1  4  1      0.6019  300000.0
+  3  4  1      0.2719  300000.0
+  7  3  1      0.7237  300000.0
+  7  4  1      0.5376  300000.0
+
+[ virtual_sites3 ]
+  5  4  3  7   1  0.9613  0.6320           ; in-plane bead from frame 4-3-7 (bead 5)
+  2  3  1  4   4  0.5207  0.2882  -1.03168 ; out-of-plane bead from frame 3-1-4 (bead 2)
+  6  4  3  7   4  0.2287  0.4111   1.41920 ; out-of-plane bead from frame 4-3-7 (bead 6)
+
+[ angles ]
+; i  j  k  funct  angle  force
+  4  7  8  2      180.0  25.0
+
+[ dihedrals ]
+; i  j  k  l  funct  angle  force
+  1  3  4  7  2     -179.7  50.0
+
+[ exclusions ]
+; i  j  k  ...
+  1  2  3  4  5  6  7
+  2  3  4  5  6  7
+  3  4  5  6  7
+  4  5  6  7
+  5  6  7
+  6  7
+
+; Manel

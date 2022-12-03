@@ -22,19 +22,9 @@ pygamd:
 
    python3 setup.py install
 
-molgen:
-
 ::
 
-   python3 setup.py build
-
-   python3 setup.py install
-
-dataTackle:
-
-::
-
-   sh compile.sh
+   pip install pygamd
 
 Requirements:
 ~~~~~~~~~~~~~

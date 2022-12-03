@@ -1,0 +1,26 @@
+#!/usr/bin/python
+import sys
+sys.path.append('/opt/galamost3/lib')
+import molgen
+
+mol1=molgen.Molecule(1000);
+mol1.setParticleTypes("C_33,C_32*998,C_33");
+topo="0-1";
+for i in range(1,999):
+	topo +=","+str(i)+"-"+str(i+1) #generate topology
+mol1.setTopology(topo)
+mol1.setBondLength("C_33","C_32",0.154)
+mol1.setBondLength("C_32","C_32",0.154)
+mol1.setMass("C_33",15.03452)
+mol1.setMass("C_32",14.02658)
+mol1.setAngleDegree("C_33","C_32","C_32",114.0)
+mol1.setAngleDegree("C_32","C_32","C_32",114.0)
+mol1.setDihedralDegree("C_33","C_32","C_32","C_32",180.0)
+mol1.setDihedralDegree("C_32","C_32","C_32","C_32",180.0)
+
+gen=molgen.Generators(20,20,20)
+gen.addMolecule(mol1,50)
+gen.setMinimumDistance("C_33","C_33", 0.34)
+gen.setMinimumDistance("C_33","C_32", 0.35)
+gen.setMinimumDistance("C_32","C_32", 0.36)
+gen.outPutXml("PE-1000")

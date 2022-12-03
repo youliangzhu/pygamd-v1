@@ -1,0 +1,22 @@
+#!/usr/bin/python
+import sys
+sys.path.append('/opt/galamost4/lib')
+import molgen
+
+mol0=molgen.Molecule(1)
+mol0.setParticleTypes("A")
+
+mol1=molgen.Molecule(1)
+mol1.setParticleTypes("B")
+mol1.setQuaternion("B")
+mol1.setBody(0)
+mol1.setMass(1.5)
+
+gen0=molgen.Generators(50, 50, 50)
+gen0.addMolecule(mol0, 6000)
+gen0.addMolecule(mol1, 500)
+gen0.setMinimumDistance("A","A",1.0)
+gen0.setMinimumDistance("A","B",2.0)
+gen0.setMinimumDistance("B","B",3.0)
+gen0.outPutXml("gbinit")
+

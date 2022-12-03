@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<galamost_xml version="1.3">
+<configuration time_step="0" dimensions="3" natoms="4" >
+<box lx="20" ly="20" lz="20"/>
+<position num="4">
+     1.1646814138    -7.1233613217    -5.3873373360
+     1.6320456325    -7.2046996486    -5.2293665677
+     1.7401682803    -7.6191070090    -4.9713432496
+     1.7748068241    -7.6013341850    -4.4728612560
+</position>
+<image num="4">
+0 0 0
+0 0 0
+0 0 0
+0 0 0
+</image>
+<mass num="4">
+1.0000000000
+1.0000000000
+1.0000000000
+1.0000000000
+</mass>
+<type num="4">
+A
+A
+A
+A
+</type>
+<bond>
+A-A 0 1
+A-A 1 2
+A-A 2 3
+</bond>
+<angle>
+A-A-A 0 1 2
+A-A-A 1 2 3
+</angle>
+<dihedral>
+A-A-A-A 0 1 2 3
+</dihedral>
+</configuration>
+</galamost_xml>

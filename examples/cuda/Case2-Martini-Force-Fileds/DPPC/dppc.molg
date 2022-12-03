@@ -1,0 +1,36 @@
+#!/usr/bin/python
+import sys
+sys.path.append('/opt/galamost4/lib')
+import molgen
+
+lx = 6.3
+ly = 6.4
+lz = 10.06
+
+mol1=molgen.Molecule(12)#particle number
+mol1.setParticleTypes("Q0,Qa,Na,Na,C1,C1,C1,C1,C1,C1,C1,C1") #with assigned id sequentially from 0 to 11
+mol1.setTopology("0-1,1-2,2-3,2-4,3-8,4-5,5-6,6-7,8-9,9-10,10-11")
+mol1.setBondLength(0.47)
+mol1.setBondLength("Na","Na",0.37)
+mol1.setMass(72.0)
+mol1.setAngleDegree("Qa","Na","Na",0)# Qa-Na-Na with 120 degree
+mol1.setAngleDegree("Qa","Na","C1",0)
+mol1.setAngleDegree("Na","C1","C1",0)
+mol1.setAngleDegree("C1","C1","C1",0)
+mol1.setCharge("Q0", 11.787088)
+# the f = 1/(4*pi*epsilon_0) = 138.935 for basic reduced units with mass = 1 amu, 
+# lengh = 1 nm, and energy = 1000 J/mol; thereby the reduced elementary charge q = sqrt(f)
+mol1.setCharge("Qa", -11.787088)
+mol1.setBox(-lx/2.0, lx/2.0, -ly/2.0, ly/2.0, -3.0, 3.0)
+
+mol2=molgen.Molecule(1)#number
+mol2.setParticleTypes("P4")
+mol2.setMass(72.0)
+
+gen=molgen.Generators(lx, ly, lz) # box size in x, y, and z directions
+gen.addMolecule(mol1, 128)
+gen.addMolecule(mol2, 2000)
+gen.setMinimumDistance(0.42)
+gen.setMinimumDistance('C1', 'Qa', 0.6)
+gen.setMinimumDistance('C1', 'Q0', 0.6)
+gen.outPutXml("dppc")

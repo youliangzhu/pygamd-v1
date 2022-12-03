@@ -1,0 +1,22 @@
+#!/usr/bin/python
+import sys
+sys.path.append('/opt/galamost3/lib')  # the path where the GALAMOST program is installed
+import molgen
+
+mol1=molgen.Molecule(10)#particle number
+mol1.setParticleTypes("A,B,B,B,B,B,B,B,B,B")#type
+mol1.setTopology("0-1,1-2,2-3,3-4,4-5,5-6,6-7,7-8,8-9")#topology
+mol1.setBondLength(0.75)#bond length
+mol1.setMass(1.0)#mass
+
+mol2=molgen.Molecule(10)#particle number
+mol2.setParticleTypes("A,A,B,B,B,B,B,B,B,B")#type
+mol2.setTopology("0-1,1-2,2-3,3-4,4-5,5-6,6-7,7-8,8-9")#topology
+mol2.setBondLength(0.75)#bond length
+mol2.setMass(1.0)#mass
+
+
+gen=molgen.Generators(20,20,20) # box size in x, y, and z direction
+gen.addMolecule(mol1,1440)#molecule, the number of molecules
+gen.addMolecule(mol2,960)#molecule, the number of molecules
+gen.outPutXml("A1B9-A2B8") #file name

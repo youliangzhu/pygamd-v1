@@ -1,0 +1,25 @@
+1. Description 
+These three systems are diblock copolymers with different ratio of block length. 
+They will form a microphase separated structure in DPD simulations. 
+They are described in reference “Robert D. Groot and Timothy J. Madden, 
+Dynamic simulation of diblock copolymer microphase separation, J. Chem. Phys., Vol. 108, No. 20, 22 May 1998”.
+
+2. Systems
+Description	No. particles	ρ	f	  α_ii	α_AB	χN	Time	Phase
+A1B9/A2B8	24000	        3	0.14	25	57	    98	80000	bcc
+A3B7	    24000	        3	0.30	25	40	    46	40000	hexagonal
+A5B5	    24000	        3	0.50	25	40	    46	40000	lamellar
+
+3. Commands
+1) Generate the initial configuration of “.xml” file by:
+   python A5B5.molg.
+
+2) Run the simulation by:
+   python A5B5.gala --gpu=0>a.log&
+
+3) The PBC conditions can be removed by:
+   galaTackle filename.xml
+Select the function of 9 and enter, a new “filename.reimage.xml” will be generated.
+
+4) See configuration by OVITO
+

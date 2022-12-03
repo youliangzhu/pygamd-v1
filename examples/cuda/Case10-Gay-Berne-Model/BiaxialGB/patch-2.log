@@ -1,0 +1,11 @@
+<Patches>
+B 0
+</Patches>
+<PatchParams>
+p1 p1 88.0 0.5
+</PatchParams>
+<Aspheres>
+A 1.0 1.0 1.0 3.0 3.0 3.0       #a,b,c,eia_one,eib_one,eic_one
+B 0.5 3.0 2.0 1.0 0.2 0.2       #a,b,c,eia_one,eib_one,eic_one
+</Aspheres>
+

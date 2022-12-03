@@ -1,0 +1,41 @@
+  NMType = 1
+  NameMType = peo10-10.CG
+  NMolMType = 10
+  LMoveMType = TRUE,
+  Box = 78.55459, 78.55459, 78.55459
+  Epsilon = 1.0
+  TEMP=300.
+  ExclusionSR = exclusions_SR.dat
+  ExclusionEL = exclusions_SR.dat
+  MCSteps = 100000000,
+  MCStepsEquil = 5000000,
+  MCStepAtom = 1.0
+  MCStepTransMol = 0
+  MCStepRotMol = 0
+  iMCStepTransMol = 500
+  iMCStepRotMol = 500
+  NMCAutoAdjust=10
+  iCalcEnergy = 100000
+  RCutEl=20.0
+  AF = 3.0
+  FQ = 9.0
+  ProhibPotLevel=1000.0
+  RandomSeed=51
+
+  InverseMode =NG
+  NIter=10
+  IAverage=500
+  REGP = 0.3,
+  MaxPotCor=2.0
+  KeepStructure=False
+  MaxRelDif=10.0
+  iPotCorCheck = 0
+
+  VerboseLevel=5
+  InputRDF= peo10-10.rdf
+! Input file with tabulated Potentials
+  InputPot=01.peo10-10.i010.pot
+
+  Output = 02.peo10-10
+  DumpLastConf = .false.
+  WriteTraj = 0

@@ -1,0 +1,884 @@
+
+; DRY MARTINI v2.1
+;
+; C. Arnarez, J.J. Uusitalo, M.F. Masman, H.I. Ingolfsson, D.H. de Jong, M.N. Melo, X. Periole, A.H. de Vries, S.J. Marrink
+; Dry Martini, a coarse-grained force field for lipid membrane simulations with implicit solvent
+; (in preparation)
+;
+; S.J. Marrink, H.J. Risselada, S. Yefimov, D.P. Tieleman, A.H. de Vries
+; The MARTINI forcefield: coarse grained model for biomolecular simulations
+; J. Phys. Chem. B, 111:7812-7824, 2007
+;
+; S.J. Marrink, A.H. de Vries, A.E. Mark
+; Coarse grained model for semi-quantitative lipid simulations
+; J. Phys. Chem. B, 108:750-760, 2004
+;
+; last modified: 2014/10/03
+
+; NOTE: Bead types have not been changed with respect to Dry Martini v2.0. Some
+;       interaction levels have been updated: namely *P3/*N0, *P2/*N0, *N0/*C5,
+;       *C1/*C3 and *C1/*C4 interactions have been modified to stay in line
+;       with standard Martini.
+    
+; NOTE: The particles, levels and interaction matrix present in this file have
+;       been updated to take into account the fix applied on dry cholesterol
+;       (increase of the Q/SP1 attraction) required to allow demixing of lipid
+;       phases.
+    
+[ defaults ]
+; nbfunc comb-rule gen-pairs fudgeLJ fudgeQQ
+  1      2         no        1.0     1.0
+
+;       name           sig    eps
+#define dm_rrII        0.4700 4.5000   # regular/regular
+#define dm_rrIII       0.4700 4.0000
+#define dm_rrIV        0.4700 3.5000
+#define dm_rrV         0.4700 3.1000
+#define dm_rrVI        0.4700 2.7000
+#define dm_rrVII       0.4700 2.3000
+#define dm_rrVIII      0.4700 2.0000
+#define dm_rrIX        0.6200 2.0000
+#define dm_rrX         0.4700 1.5000
+#define dm_rrXI        0.4700 1.0000
+#define dm_rrXII       0.4700 0.5000
+#define dm_rrVI_qq     0.6000 2.7000   # regular/regular, charge/charge interactions
+#define dm_rrVII_qq    0.6000 2.3000
+#define dm_rrVIII_qq   0.6000 2.0000
+#define dm_ssII        0.4300 3.4000   # small/small
+#define dm_ssIII       0.4300 3.0000
+#define dm_ssIV        0.4300 2.6000
+#define dm_ssV         0.4300 2.3000
+#define dm_ssVI        0.4300 2.0000
+#define dm_ssVII       0.4300 1.7000
+#define dm_ssVIII      0.4300 1.5000
+#define dm_ssIX        0.6200 2.0000
+#define dm_ssX         0.4300 1.1250
+#define dm_ssXI        0.4300 0.7500
+#define dm_ssXII       0.4300 0.3750
+#define dm_ssVI_qq     0.5500 2.0000   # small/small, charge/charge interactions
+#define dm_ssVII_qq    0.5500 1.7000
+#define dm_ssVIII_qq   0.5500 1.5000
+#define dm_rsII        0.4700 4.5000   # regular/small
+#define dm_rsIII       0.4700 4.0000
+#define dm_rsIV        0.4700 3.5000
+#define dm_rsV         0.4700 3.1000
+#define dm_rsVI        0.4700 2.7000
+#define dm_rsVII       0.4700 2.3000
+#define dm_rsVIII      0.4700 2.0000
+#define dm_rsIX        0.6200 2.0000
+#define dm_rsX         0.4700 1.5000
+#define dm_rsXI        0.4700 1.0000
+#define dm_rsXII       0.4700 0.5000
+#define dm_rsVI_qq     0.6000 2.7000   # regular/small, charge/charge interactions
+#define dm_rsVII_qq    0.6000 2.3000
+#define dm_rsVIII_qq   0.6000 2.0000
+; For special attraction between NP-lipid head (Qa), modified from "dm_rrVI_qq", Kai 04/27/2015
+#define dm_rr_kai1     0.6000 2.7000
+; For special attraction between NP-lipid head (Q0), modified from "dm_rrVIII_qq", Kai 04/27/2015
+#define dm_rr_kai2     0.6000 2.0000 
+
+; ---------------------------------------------------------------
+; levels of LJ interaction of WET-Martini(only for reference):
+ 
+; O 	- supra attractive: 	(eps=5.6, s=0.47) 
+; I 	- attractive: 		(eps=5.0, s=0.47) 
+; II 	- almost attractive: 	(eps=4.5, s=0.47)
+; III 	- semi attractive:	(eps=4.0, s=0.47) 
+; IV 	- intermediate: 	(eps=3.5, s=0.47) 
+; V 	- almost intermediate: 	(eps=3.1, s=0.47) 
+; VI 	- semi repulsive: 	(eps=2.7, s=0.47) 
+; VII 	- almost repulsive: 	(eps=2.3, s=0.47) 
+; VIII	- repulsive: 		(eps=2.0, s=0.47)
+; IX 	- super repulsive: 	(eps=2.0, s=0.62)
+; ---------------------------------------------------------------
+
+[ atomtypes ]
+; name    mass chrg ptype sig eps
+  Qda     72.0 0.0  A     0.0 0.0   # regular beads
+  Qd      72.0 0.0  A     0.0 0.0
+  Qa      72.0 0.0  A     0.0 0.0
+  Q0      72.0 0.0  A     0.0 0.0
+  P5      72.0 0.0  A     0.0 0.0
+  P4      72.0 0.0  A     0.0 0.0
+  P3      72.0 0.0  A     0.0 0.0
+  P2      72.0 0.0  A     0.0 0.0
+  P1      72.0 0.0  A     0.0 0.0
+  Nda     72.0 0.0  A     0.0 0.0
+  Nd      72.0 0.0  A     0.0 0.0
+  Na      72.0 0.0  A     0.0 0.0
+  N0      72.0 0.0  A     0.0 0.0
+  C5      72.0 0.0  A     0.0 0.0
+  C4      72.0 0.0  A     0.0 0.0
+  C3      72.0 0.0  A     0.0 0.0
+  C2      72.0 0.0  A     0.0 0.0
+  C1      72.0 0.0  A     0.0 0.0
+  SQda    45.0 0.0  A     0.0 0.0   # small beads
+  SQd     45.0 0.0  A     0.0 0.0
+  SQa     45.0 0.0  A     0.0 0.0
+  SQ0     45.0 0.0  A     0.0 0.0
+  SP5     45.0 0.0  A     0.0 0.0
+  SP4     45.0 0.0  A     0.0 0.0
+  SP3     45.0 0.0  A     0.0 0.0
+  SP2     45.0 0.0  A     0.0 0.0
+  SP1     45.0 0.0  A     0.0 0.0
+  SNda    45.0 0.0  A     0.0 0.0
+  SNd     45.0 0.0  A     0.0 0.0
+  SNa     45.0 0.0  A     0.0 0.0
+  SN0     45.0 0.0  A     0.0 0.0
+  SC5     45.0 0.0  A     0.0 0.0
+  SC4     45.0 0.0  A     0.0 0.0
+  SC3     45.0 0.0  A     0.0 0.0
+  SC2     45.0 0.0  A     0.0 0.0
+  SC1     45.0 0.0  A     0.0 0.0
+  SP1c    45.0 0.0  A     0.0 0.0   # fix for dry cholesterol
+
+;  Qda | VI  
+;   Qd | VI   VII 
+;   Qa | VI   VI   VII 
+;   Q0 | VIII VIII VIII VIII
+;   P5 | XII  XII  XII  XII  V   
+;   P4 | XII  XII  XII  XII  V    VI  
+;   P3 | XII  XII  XII  XII  V    VI   VI  
+;   P2 | XII  XII  XII  XII  V    VII  VII  VII 
+;   P1 | XII  XII  XII  XII  X    X    X    VIII VII 
+;  Nda | XII  XII  XII  XII  XII  XI   XI   XI   VII  VI  
+;   Nd | XII  XII  XII  XII  XII  XI   XI   XI   VII  VI   VII 
+;   Na | XII  XII  XII  XII  XII  XI   XI   XI   VII  VI   VI   VII 
+;   N0 | XII  XII  XII  XII  XII  XI   X    IX   VII  VII  VII  VII  V   
+;   C5 | XII  XII  XII  XII  XII  XI   X    VI   VI   VI   VI   VI   V    III 
+;   C4 | XII  XII  XII  XII  XII  XI   X    VI   VI   VI   VI   VI   IV   III  II  
+;   C3 | XII  XII  XII  XII  XII  XI   X    VII  VI   VI   VI   VI   IV   III  II   II  
+;   C2 | IX   IX   IX   IX   XII  XII  X    VIII VI   VI   VI   VI   IV   III  III  II   II  
+;   C1 | IX   IX   IX   IX   XII  XII  XI   X    VII  VI   VI   VI   IV   III  III  II   II   II  
+; SQda | VI   VI   VI   VIII XII  XII  XII  XII  XII  XII  XII  XII  XII  XII  XII  XII  IX   IX   VI  
+;  SQd | VI   VII  VI   VIII XII  XII  XII  XII  XII  XII  XII  XII  XII  XII  XII  XII  IX   IX   VI   VII 
+;  SQa | VI   VI   VII  VIII XII  XII  XII  XII  XII  XII  XII  XII  XII  XII  XII  XII  IX   IX   VI   VI   VII 
+;  SQ0 | VIII VIII VIII VIII XII  XII  XII  XII  XII  XII  XII  XII  XII  XII  XII  XII  IX   IX   VIII VIII VIII VIII
+;  SP5 | XII  XII  XII  XII  V    V    V    V    X    XII  XII  XII  XII  XII  XII  XII  XII  XII  XII  XII  XII  XII  V   
+;  SP4 | XII  XII  XII  XII  V    VI   VI   VII  X    XI   XI   XI   XI   XI   XI   XI   XII  XII  XII  XII  XII  XII  V    VI  
+;  SP3 | XII  XII  XII  XII  V    VI   VI   VII  X    XI   XI   XI   X    X    X    X    X    XI   XII  XII  XII  XII  V    VI   VI  
+;  SP2 | XII  XII  XII  XII  V    VII  VII  VII  VIII XI   XI   XI   IX   VI   VI   VII  VIII X    XII  XII  XII  XII  V    VII  VII  VII 
+;  SP1 | XII  XII  XII  XII  X    X    X    VIII VII  VII  VII  VII  VII  VI   VI   VI   VI   VII  XII  XII  XII  XII  X    X    X    VIII VII 
+; SNda | XII  XII  XII  XII  XII  XI   XI   XI   VII  VI   VI   VI   VII  VI   VI   VI   VI   VI   XII  XII  XII  XII  XII  XI   XI   XI   VII  VI  
+;  SNd | XII  XII  XII  XII  XII  XI   XI   XI   VII  VI   VII  VI   VII  VI   VI   VI   VI   VI   XII  XII  XII  XII  XII  XI   XI   XI   VII  VI   VII 
+;  SNa | XII  XII  XII  XII  XII  XI   XI   XI   VII  VI   VI   VII  VII  VI   VI   VI   VI   VI   XII  XII  XII  XII  XII  XI   XI   XI   VII  VI   VI   VII 
+;  SN0 | XII  XII  XII  XII  XII  XI   X    IX   VII  VII  VII  VII  V    V    IV   IV   IV   IV   XII  XII  XII  XII  XII  XI   X    IX   VII  VII  VII  VII  V   
+;  SC5 | XII  XII  XII  XII  XII  XI   X    VI   VI   VI   VI   VI   V    III  III  III  III  III  XII  XII  XII  XII  XII  XI   X    VI   VI   VI   VI   VI   V    III 
+;  SC4 | XII  XII  XII  XII  XII  XI   X    VI   VI   VI   VI   VI   IV   III  II   II   III  III  XII  XII  XII  XII  XII  XI   X    VI   VI   VI   VI   VI   IV   III  II  
+;  SC3 | XII  XII  XII  XII  XII  XI   X    VII  VI   VI   VI   VI   IV   III  II   II   II   II   XII  XII  XII  XII  XII  XI   X    VII  VI   VI   VI   VI   IV   III  II   II  
+;  SC2 | IX   IX   IX   IX   XII  XII  X    VIII VI   VI   VI   VI   IV   III  III  II   II   II   IX   IX   IX   IX   XII  XII  X    VIII VI   VI   VI   VI   IV   III  III  II   II  
+;  SC1 | IX   IX   IX   IX   XII  XII  XI   X    VII  VI   VI   VI   IV   III  III  II   II   II   IX   IX   IX   IX   XII  XII  XI   X    VII  VI   VI   VI   IV   III  III  II   II   II  
+; SP1c | VI   VI   VI   VI   X    X    X    VIII VII  VII  VII  VII  VII  VI   VI   VI   VI   VII  XII  XII  XII  XII  X    X    X    VIII VII  VII  VII  VII  VII  VI   VI   VI   VI   VII  VII 
+;      +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+;        Qda  Qd   Qa   Q0   P5   P4   P3   P2   P1   Nda  Nd   Na   N0   C5   C4   C3   C2   C1   SQda SQd  SQa  SQ0  SP5  SP4  SP3  SP2  SP1  SNda SNd  SNa  SN0  SC5  SC4  SC3  SC2  SC1  SP1c
+
+
+[ nonbond_params ]
+;  part part   func level
+    Qda Qda    1    dm_rrVI_qq
+    Qda Qd     1    dm_rrVI_qq
+    Qda Qa     1    dm_rrVI_qq
+    Qda Q0     1    dm_rrVIII_qq
+    Qda P5     1    dm_rrXII
+    Qda P4     1    dm_rrXII
+    Qda P3     1    dm_rrXII
+    Qda P2     1    dm_rrXII
+    Qda P1     1    dm_rrXII
+    Qda Nda    1    dm_rrXII
+    Qda Nd     1    dm_rrXII
+    Qda Na     1    dm_rrXII
+    Qda N0     1    dm_rrXII
+    Qda C5     1    dm_rrXII
+    Qda C4     1    dm_rrXII
+    Qda C3     1    dm_rrXII
+    Qda C2     1    dm_rrIX
+    Qda C1     1    dm_rrIX
+    Qda SQda   1    dm_rsVI_qq
+    Qda SQd    1    dm_rsVI_qq
+    Qda SQa    1    dm_rsVI_qq
+    Qda SQ0    1    dm_rsVIII_qq
+    Qda SP5    1    dm_rsXII
+    Qda SP4    1    dm_rsXII
+    Qda SP3    1    dm_rsXII
+    Qda SP2    1    dm_rsXII
+    Qda SP1    1    dm_rsXII
+    Qda SNda   1    dm_rsXII
+    Qda SNd    1    dm_rsXII
+    Qda SNa    1    dm_rsXII
+    Qda SN0    1    dm_rsXII
+    Qda SC5    1    dm_rsXII
+    Qda SC4    1    dm_rsXII
+    Qda SC3    1    dm_rsXII
+    Qda SC2    1    dm_rsIX
+    Qda SC1    1    dm_rsIX
+    Qda SP1c   1    dm_rsVI
+     Qd Qd     1    dm_rrVII_qq
+; modified by Kai 04/27/2015	 
+     Qd Qa     1    dm_rr_kai1 
+     Qd Q0     1    dm_rr_kai2
+;	 
+     Qd P5     1    dm_rrXII
+     Qd P4     1    dm_rrXII
+     Qd P3     1    dm_rrXII
+     Qd P2     1    dm_rrXII
+     Qd P1     1    dm_rrXII
+     Qd Nda    1    dm_rrXII
+     Qd Nd     1    dm_rrXII
+     Qd Na     1    dm_rrXII
+     Qd N0     1    dm_rrXII
+     Qd C5     1    dm_rrXII
+     Qd C4     1    dm_rrXII
+     Qd C3     1    dm_rrXII
+     Qd C2     1    dm_rrIX
+     Qd C1     1    dm_rrIX
+     Qd SQda   1    dm_rsVI_qq
+     Qd SQd    1    dm_rsVII_qq
+     Qd SQa    1    dm_rsVI_qq
+     Qd SQ0    1    dm_rsVIII_qq
+     Qd SP5    1    dm_rsXII
+     Qd SP4    1    dm_rsXII
+     Qd SP3    1    dm_rsXII
+     Qd SP2    1    dm_rsXII
+     Qd SP1    1    dm_rsXII
+     Qd SNda   1    dm_rsXII
+     Qd SNd    1    dm_rsXII
+     Qd SNa    1    dm_rsXII
+     Qd SN0    1    dm_rsXII
+     Qd SC5    1    dm_rsXII
+     Qd SC4    1    dm_rsXII
+     Qd SC3    1    dm_rsXII
+     Qd SC2    1    dm_rsIX
+     Qd SC1    1    dm_rsIX
+     Qd SP1c   1    dm_rsVI
+     Qa Qa     1    dm_rrVII_qq
+     Qa Q0     1    dm_rrVIII_qq
+     Qa P5     1    dm_rrXII
+     Qa P4     1    dm_rrXII
+     Qa P3     1    dm_rrXII
+     Qa P2     1    dm_rrXII
+     Qa P1     1    dm_rrXII
+     Qa Nda    1    dm_rrXII
+     Qa Nd     1    dm_rrXII
+     Qa Na     1    dm_rrXII
+     Qa N0     1    dm_rrXII
+     Qa C5     1    dm_rrXII
+     Qa C4     1    dm_rrXII
+     Qa C3     1    dm_rrXII
+     Qa C2     1    dm_rrIX
+     Qa C1     1    dm_rrIX
+     Qa SQda   1    dm_rsVI_qq
+     Qa SQd    1    dm_rsVI_qq
+     Qa SQa    1    dm_rsVII_qq
+     Qa SQ0    1    dm_rsVIII_qq
+     Qa SP5    1    dm_rsXII
+     Qa SP4    1    dm_rsXII
+     Qa SP3    1    dm_rsXII
+     Qa SP2    1    dm_rsXII
+     Qa SP1    1    dm_rsXII
+     Qa SNda   1    dm_rsXII
+     Qa SNd    1    dm_rsXII
+     Qa SNa    1    dm_rsXII
+     Qa SN0    1    dm_rsXII
+     Qa SC5    1    dm_rsXII
+     Qa SC4    1    dm_rsXII
+     Qa SC3    1    dm_rsXII
+     Qa SC2    1    dm_rsIX
+     Qa SC1    1    dm_rsIX
+     Qa SP1c   1    dm_rsVI
+     Q0 Q0     1    dm_rrVIII_qq
+     Q0 P5     1    dm_rrXII
+     Q0 P4     1    dm_rrXII
+     Q0 P3     1    dm_rrXII
+     Q0 P2     1    dm_rrXII
+     Q0 P1     1    dm_rrXII
+     Q0 Nda    1    dm_rrXII
+     Q0 Nd     1    dm_rrXII
+     Q0 Na     1    dm_rrXII
+     Q0 N0     1    dm_rrXII
+     Q0 C5     1    dm_rrXII
+     Q0 C4     1    dm_rrXII
+     Q0 C3     1    dm_rrXII
+     Q0 C2     1    dm_rrIX
+     Q0 C1     1    dm_rrIX
+     Q0 SQda   1    dm_rsVIII_qq
+     Q0 SQd    1    dm_rsVIII_qq
+     Q0 SQa    1    dm_rsVIII_qq
+     Q0 SQ0    1    dm_rsVIII_qq
+     Q0 SP5    1    dm_rsXII
+     Q0 SP4    1    dm_rsXII
+     Q0 SP3    1    dm_rsXII
+     Q0 SP2    1    dm_rsXII
+     Q0 SP1    1    dm_rsXII
+     Q0 SNda   1    dm_rsXII
+     Q0 SNd    1    dm_rsXII
+     Q0 SNa    1    dm_rsXII
+     Q0 SN0    1    dm_rsXII
+     Q0 SC5    1    dm_rsXII
+     Q0 SC4    1    dm_rsXII
+     Q0 SC3    1    dm_rsXII
+     Q0 SC2    1    dm_rsIX
+     Q0 SC1    1    dm_rsIX
+     Q0 SP1c   1    dm_rsVI
+     P5 P5     1    dm_rrV
+     P5 P4     1    dm_rrV
+     P5 P3     1    dm_rrV
+     P5 P2     1    dm_rrV
+     P5 P1     1    dm_rrX
+     P5 Nda    1    dm_rrXII
+     P5 Nd     1    dm_rrXII
+     P5 Na     1    dm_rrXII
+     P5 N0     1    dm_rrXII
+     P5 C5     1    dm_rrXII
+     P5 C4     1    dm_rrXII
+     P5 C3     1    dm_rrXII
+     P5 C2     1    dm_rrXII
+     P5 C1     1    dm_rrXII
+     P5 SQda   1    dm_rsXII
+     P5 SQd    1    dm_rsXII
+     P5 SQa    1    dm_rsXII
+     P5 SQ0    1    dm_rsXII
+     P5 SP5    1    dm_rsV
+     P5 SP4    1    dm_rsV
+     P5 SP3    1    dm_rsV
+     P5 SP2    1    dm_rsV
+     P5 SP1    1    dm_rsX
+     P5 SNda   1    dm_rsXII
+     P5 SNd    1    dm_rsXII
+     P5 SNa    1    dm_rsXII
+     P5 SN0    1    dm_rsXII
+     P5 SC5    1    dm_rsXII
+     P5 SC4    1    dm_rsXII
+     P5 SC3    1    dm_rsXII
+     P5 SC2    1    dm_rsXII
+     P5 SC1    1    dm_rsXII
+     P5 SP1c   1    dm_rsX
+     P4 P4     1    dm_rrVI
+     P4 P3     1    dm_rrVI
+     P4 P2     1    dm_rrVII
+     P4 P1     1    dm_rrX
+     P4 Nda    1    dm_rrXI
+     P4 Nd     1    dm_rrXI
+     P4 Na     1    dm_rrXI
+     P4 N0     1    dm_rrXI
+     P4 C5     1    dm_rrXI
+     P4 C4     1    dm_rrXI
+     P4 C3     1    dm_rrXI
+     P4 C2     1    dm_rrXII
+     P4 C1     1    dm_rrXII
+     P4 SQda   1    dm_rsXII
+     P4 SQd    1    dm_rsXII
+     P4 SQa    1    dm_rsXII
+     P4 SQ0    1    dm_rsXII
+     P4 SP5    1    dm_rsV
+     P4 SP4    1    dm_rsVI
+     P4 SP3    1    dm_rsVI
+     P4 SP2    1    dm_rsVII
+     P4 SP1    1    dm_rsX
+     P4 SNda   1    dm_rsXI
+     P4 SNd    1    dm_rsXI
+     P4 SNa    1    dm_rsXI
+     P4 SN0    1    dm_rsXI
+     P4 SC5    1    dm_rsXI
+     P4 SC4    1    dm_rsXI
+     P4 SC3    1    dm_rsXI
+     P4 SC2    1    dm_rsXII
+     P4 SC1    1    dm_rsXII
+     P4 SP1c   1    dm_rsX
+     P3 P3     1    dm_rrVI
+     P3 P2     1    dm_rrVII
+     P3 P1     1    dm_rrX
+     P3 Nda    1    dm_rrXI
+     P3 Nd     1    dm_rrXI
+     P3 Na     1    dm_rrXI
+     P3 N0     1    dm_rrX
+     P3 C5     1    dm_rrX
+     P3 C4     1    dm_rrX
+     P3 C3     1    dm_rrX
+     P3 C2     1    dm_rrX
+     P3 C1     1    dm_rrXI
+     P3 SQda   1    dm_rsXII
+     P3 SQd    1    dm_rsXII
+     P3 SQa    1    dm_rsXII
+     P3 SQ0    1    dm_rsXII
+     P3 SP5    1    dm_rsV
+     P3 SP4    1    dm_rsVI
+     P3 SP3    1    dm_rsVI
+     P3 SP2    1    dm_rsVII
+     P3 SP1    1    dm_rsX
+     P3 SNda   1    dm_rsXI
+     P3 SNd    1    dm_rsXI
+     P3 SNa    1    dm_rsXI
+     P3 SN0    1    dm_rsX
+     P3 SC5    1    dm_rsX
+     P3 SC4    1    dm_rsX
+     P3 SC3    1    dm_rsX
+     P3 SC2    1    dm_rsX
+     P3 SC1    1    dm_rsXI
+     P3 SP1c   1    dm_rsX
+     P2 P2     1    dm_rrVII
+     P2 P1     1    dm_rrVIII
+     P2 Nda    1    dm_rrXI
+     P2 Nd     1    dm_rrXI
+     P2 Na     1    dm_rrXI
+     P2 N0     1    dm_rrIX
+     P2 C5     1    dm_rrVI
+     P2 C4     1    dm_rrVI
+     P2 C3     1    dm_rrVII
+     P2 C2     1    dm_rrVIII
+     P2 C1     1    dm_rrX
+     P2 SQda   1    dm_rsXII
+     P2 SQd    1    dm_rsXII
+     P2 SQa    1    dm_rsXII
+     P2 SQ0    1    dm_rsXII
+     P2 SP5    1    dm_rsV
+     P2 SP4    1    dm_rsVII
+     P2 SP3    1    dm_rsVII
+     P2 SP2    1    dm_rsVII
+     P2 SP1    1    dm_rsVIII
+     P2 SNda   1    dm_rsXI
+     P2 SNd    1    dm_rsXI
+     P2 SNa    1    dm_rsXI
+     P2 SN0    1    dm_rsIX
+     P2 SC5    1    dm_rsVI
+     P2 SC4    1    dm_rsVI
+     P2 SC3    1    dm_rsVII
+     P2 SC2    1    dm_rsVIII
+     P2 SC1    1    dm_rsX
+     P2 SP1c   1    dm_rsVIII
+     P1 P1     1    dm_rrVII
+     P1 Nda    1    dm_rrVII
+     P1 Nd     1    dm_rrVII
+     P1 Na     1    dm_rrVII
+     P1 N0     1    dm_rrVII
+     P1 C5     1    dm_rrVI
+     P1 C4     1    dm_rrVI
+     P1 C3     1    dm_rrVI
+     P1 C2     1    dm_rrVI
+     P1 C1     1    dm_rrVII
+     P1 SQda   1    dm_rsXII
+     P1 SQd    1    dm_rsXII
+     P1 SQa    1    dm_rsXII
+     P1 SQ0    1    dm_rsXII
+     P1 SP5    1    dm_rsX
+     P1 SP4    1    dm_rsX
+     P1 SP3    1    dm_rsX
+     P1 SP2    1    dm_rsVIII
+     P1 SP1    1    dm_rsVII
+     P1 SNda   1    dm_rsVII
+     P1 SNd    1    dm_rsVII
+     P1 SNa    1    dm_rsVII
+     P1 SN0    1    dm_rsVII
+     P1 SC5    1    dm_rsVI
+     P1 SC4    1    dm_rsVI
+     P1 SC3    1    dm_rsVI
+     P1 SC2    1    dm_rsVI
+     P1 SC1    1    dm_rsVII
+     P1 SP1c   1    dm_rsVII
+    Nda Nda    1    dm_rrVI
+    Nda Nd     1    dm_rrVI
+    Nda Na     1    dm_rrVI
+    Nda N0     1    dm_rrVII
+    Nda C5     1    dm_rrVI
+    Nda C4     1    dm_rrVI
+    Nda C3     1    dm_rrVI
+    Nda C2     1    dm_rrVI
+    Nda C1     1    dm_rrVI
+    Nda SQda   1    dm_rsXII
+    Nda SQd    1    dm_rsXII
+    Nda SQa    1    dm_rsXII
+    Nda SQ0    1    dm_rsXII
+    Nda SP5    1    dm_rsXII
+    Nda SP4    1    dm_rsXI
+    Nda SP3    1    dm_rsXI
+    Nda SP2    1    dm_rsXI
+    Nda SP1    1    dm_rsVII
+    Nda SNda   1    dm_rsVI
+    Nda SNd    1    dm_rsVI
+    Nda SNa    1    dm_rsVI
+    Nda SN0    1    dm_rsVII
+    Nda SC5    1    dm_rsVI
+    Nda SC4    1    dm_rsVI
+    Nda SC3    1    dm_rsVI
+    Nda SC2    1    dm_rsVI
+    Nda SC1    1    dm_rsVI
+    Nda SP1c   1    dm_rsVII
+     Nd Nd     1    dm_rrVII
+     Nd Na     1    dm_rrVI
+     Nd N0     1    dm_rrVII
+     Nd C5     1    dm_rrVI
+     Nd C4     1    dm_rrVI
+     Nd C3     1    dm_rrVI
+     Nd C2     1    dm_rrVI
+     Nd C1     1    dm_rrVI
+     Nd SQda   1    dm_rsXII
+     Nd SQd    1    dm_rsXII
+     Nd SQa    1    dm_rsXII
+     Nd SQ0    1    dm_rsXII
+     Nd SP5    1    dm_rsXII
+     Nd SP4    1    dm_rsXI
+     Nd SP3    1    dm_rsXI
+     Nd SP2    1    dm_rsXI
+     Nd SP1    1    dm_rsVII
+     Nd SNda   1    dm_rsVI
+     Nd SNd    1    dm_rsVII
+     Nd SNa    1    dm_rsVI
+     Nd SN0    1    dm_rsVII
+     Nd SC5    1    dm_rsVI
+     Nd SC4    1    dm_rsVI
+     Nd SC3    1    dm_rsVI
+     Nd SC2    1    dm_rsVI
+     Nd SC1    1    dm_rsVI
+     Nd SP1c   1    dm_rsVII
+     Na Na     1    dm_rrVII
+     Na N0     1    dm_rrVII
+     Na C5     1    dm_rrVI
+     Na C4     1    dm_rrVI
+     Na C3     1    dm_rrVI
+     Na C2     1    dm_rrVI
+     Na C1     1    dm_rrVI
+     Na SQda   1    dm_rsXII
+     Na SQd    1    dm_rsXII
+     Na SQa    1    dm_rsXII
+     Na SQ0    1    dm_rsXII
+     Na SP5    1    dm_rsXII
+     Na SP4    1    dm_rsXI
+     Na SP3    1    dm_rsXI
+     Na SP2    1    dm_rsXI
+     Na SP1    1    dm_rsVII
+     Na SNda   1    dm_rsVI
+     Na SNd    1    dm_rsVI
+     Na SNa    1    dm_rsVII
+     Na SN0    1    dm_rsVII
+     Na SC5    1    dm_rsVI
+     Na SC4    1    dm_rsVI
+     Na SC3    1    dm_rsVI
+     Na SC2    1    dm_rsVI
+     Na SC1    1    dm_rsVI
+     Na SP1c   1    dm_rsVII
+     N0 N0     1    dm_rrV
+     N0 C5     1    dm_rrV
+     N0 C4     1    dm_rrIV
+     N0 C3     1    dm_rrIV
+     N0 C2     1    dm_rrIV
+     N0 C1     1    dm_rrIV
+     N0 SQda   1    dm_rsXII
+     N0 SQd    1    dm_rsXII
+     N0 SQa    1    dm_rsXII
+     N0 SQ0    1    dm_rsXII
+     N0 SP5    1    dm_rsXII
+     N0 SP4    1    dm_rsXI
+     N0 SP3    1    dm_rsX
+     N0 SP2    1    dm_rsIX
+     N0 SP1    1    dm_rsVII
+     N0 SNda   1    dm_rsVII
+     N0 SNd    1    dm_rsVII
+     N0 SNa    1    dm_rsVII
+     N0 SN0    1    dm_rsV
+     N0 SC5    1    dm_rsV
+     N0 SC4    1    dm_rsIV
+     N0 SC3    1    dm_rsIV
+     N0 SC2    1    dm_rsIV
+     N0 SC1    1    dm_rsIV
+     N0 SP1c   1    dm_rsVII
+     C5 C5     1    dm_rrIII
+     C5 C4     1    dm_rrIII
+     C5 C3     1    dm_rrIII
+     C5 C2     1    dm_rrIII
+     C5 C1     1    dm_rrIII
+     C5 SQda   1    dm_rsXII
+     C5 SQd    1    dm_rsXII
+     C5 SQa    1    dm_rsXII
+     C5 SQ0    1    dm_rsXII
+     C5 SP5    1    dm_rsXII
+     C5 SP4    1    dm_rsXI
+     C5 SP3    1    dm_rsX
+     C5 SP2    1    dm_rsVI
+     C5 SP1    1    dm_rsVI
+     C5 SNda   1    dm_rsVI
+     C5 SNd    1    dm_rsVI
+     C5 SNa    1    dm_rsVI
+     C5 SN0    1    dm_rsV
+     C5 SC5    1    dm_rsIII
+     C5 SC4    1    dm_rsIII
+     C5 SC3    1    dm_rsIII
+     C5 SC2    1    dm_rsIII
+     C5 SC1    1    dm_rsIII
+     C5 SP1c   1    dm_rsVI
+     C4 C4     1    dm_rrII
+     C4 C3     1    dm_rrII
+     C4 C2     1    dm_rrIII
+     C4 C1     1    dm_rrIII
+     C4 SQda   1    dm_rsXII
+     C4 SQd    1    dm_rsXII
+     C4 SQa    1    dm_rsXII
+     C4 SQ0    1    dm_rsXII
+     C4 SP5    1    dm_rsXII
+     C4 SP4    1    dm_rsXI
+     C4 SP3    1    dm_rsX
+     C4 SP2    1    dm_rsVI
+     C4 SP1    1    dm_rsVI
+     C4 SNda   1    dm_rsVI
+     C4 SNd    1    dm_rsVI
+     C4 SNa    1    dm_rsVI
+     C4 SN0    1    dm_rsIV
+     C4 SC5    1    dm_rsIII
+     C4 SC4    1    dm_rsII
+     C4 SC3    1    dm_rsII
+     C4 SC2    1    dm_rsIII
+     C4 SC1    1    dm_rsIII
+     C4 SP1c   1    dm_rsVI
+     C3 C3     1    dm_rrII
+     C3 C2     1    dm_rrII
+     C3 C1     1    dm_rrII
+     C3 SQda   1    dm_rsXII
+     C3 SQd    1    dm_rsXII
+     C3 SQa    1    dm_rsXII
+     C3 SQ0    1    dm_rsXII
+     C3 SP5    1    dm_rsXII
+     C3 SP4    1    dm_rsXI
+     C3 SP3    1    dm_rsX
+     C3 SP2    1    dm_rsVII
+     C3 SP1    1    dm_rsVI
+     C3 SNda   1    dm_rsVI
+     C3 SNd    1    dm_rsVI
+     C3 SNa    1    dm_rsVI
+     C3 SN0    1    dm_rsIV
+     C3 SC5    1    dm_rsIII
+     C3 SC4    1    dm_rsII
+     C3 SC3    1    dm_rsII
+     C3 SC2    1    dm_rsII
+     C3 SC1    1    dm_rsII
+     C3 SP1c   1    dm_rsVI
+     C2 C2     1    dm_rrII
+     C2 C1     1    dm_rrII
+     C2 SQda   1    dm_rsIX
+     C2 SQd    1    dm_rsIX
+     C2 SQa    1    dm_rsIX
+     C2 SQ0    1    dm_rsIX
+     C2 SP5    1    dm_rsXII
+     C2 SP4    1    dm_rsXII
+     C2 SP3    1    dm_rsX
+     C2 SP2    1    dm_rsVIII
+     C2 SP1    1    dm_rsVI
+     C2 SNda   1    dm_rsVI
+     C2 SNd    1    dm_rsVI
+     C2 SNa    1    dm_rsVI
+     C2 SN0    1    dm_rsIV
+     C2 SC5    1    dm_rsIII
+     C2 SC4    1    dm_rsIII
+     C2 SC3    1    dm_rsII
+     C2 SC2    1    dm_rsII
+     C2 SC1    1    dm_rsII
+     C2 SP1c   1    dm_rsVI
+     C1 C1     1    dm_rrII
+     C1 SQda   1    dm_rsIX
+     C1 SQd    1    dm_rsIX
+     C1 SQa    1    dm_rsIX
+     C1 SQ0    1    dm_rsIX
+     C1 SP5    1    dm_rsXII
+     C1 SP4    1    dm_rsXII
+     C1 SP3    1    dm_rsXI
+     C1 SP2    1    dm_rsX
+     C1 SP1    1    dm_rsVII
+     C1 SNda   1    dm_rsVI
+     C1 SNd    1    dm_rsVI
+     C1 SNa    1    dm_rsVI
+     C1 SN0    1    dm_rsIV
+     C1 SC5    1    dm_rsIII
+     C1 SC4    1    dm_rsIII
+     C1 SC3    1    dm_rsII
+     C1 SC2    1    dm_rsII
+     C1 SC1    1    dm_rsII
+     C1 SP1c   1    dm_rsVII
+   SQda SQda   1    dm_ssVI_qq
+   SQda SQd    1    dm_ssVI_qq
+   SQda SQa    1    dm_ssVI_qq
+   SQda SQ0    1    dm_ssVIII_qq
+   SQda SP5    1    dm_ssXII
+   SQda SP4    1    dm_ssXII
+   SQda SP3    1    dm_ssXII
+   SQda SP2    1    dm_ssXII
+   SQda SP1    1    dm_ssXII
+   SQda SNda   1    dm_ssXII
+   SQda SNd    1    dm_ssXII
+   SQda SNa    1    dm_ssXII
+   SQda SN0    1    dm_ssXII
+   SQda SC5    1    dm_ssXII
+   SQda SC4    1    dm_ssXII
+   SQda SC3    1    dm_ssXII
+   SQda SC2    1    dm_ssIX
+   SQda SC1    1    dm_ssIX
+   SQda SP1c   1    dm_ssXII
+    SQd SQd    1    dm_ssVII_qq
+    SQd SQa    1    dm_ssVI_qq
+    SQd SQ0    1    dm_ssVIII_qq
+    SQd SP5    1    dm_ssXII
+    SQd SP4    1    dm_ssXII
+    SQd SP3    1    dm_ssXII
+    SQd SP2    1    dm_ssXII
+    SQd SP1    1    dm_ssXII
+    SQd SNda   1    dm_ssXII
+    SQd SNd    1    dm_ssXII
+    SQd SNa    1    dm_ssXII
+    SQd SN0    1    dm_ssXII
+    SQd SC5    1    dm_ssXII
+    SQd SC4    1    dm_ssXII
+    SQd SC3    1    dm_ssXII
+    SQd SC2    1    dm_ssIX
+    SQd SC1    1    dm_ssIX
+    SQd SP1c   1    dm_ssXII
+    SQa SQa    1    dm_ssVII_qq
+    SQa SQ0    1    dm_ssVIII_qq
+    SQa SP5    1    dm_ssXII
+    SQa SP4    1    dm_ssXII
+    SQa SP3    1    dm_ssXII
+    SQa SP2    1    dm_ssXII
+    SQa SP1    1    dm_ssXII
+    SQa SNda   1    dm_ssXII
+    SQa SNd    1    dm_ssXII
+    SQa SNa    1    dm_ssXII
+    SQa SN0    1    dm_ssXII
+    SQa SC5    1    dm_ssXII
+    SQa SC4    1    dm_ssXII
+    SQa SC3    1    dm_ssXII
+    SQa SC2    1    dm_ssIX
+    SQa SC1    1    dm_ssIX
+    SQa SP1c   1    dm_ssXII
+    SQ0 SQ0    1    dm_ssVIII_qq
+    SQ0 SP5    1    dm_ssXII
+    SQ0 SP4    1    dm_ssXII
+    SQ0 SP3    1    dm_ssXII
+    SQ0 SP2    1    dm_ssXII
+    SQ0 SP1    1    dm_ssXII
+    SQ0 SNda   1    dm_ssXII
+    SQ0 SNd    1    dm_ssXII
+    SQ0 SNa    1    dm_ssXII
+    SQ0 SN0    1    dm_ssXII
+    SQ0 SC5    1    dm_ssXII
+    SQ0 SC4    1    dm_ssXII
+    SQ0 SC3    1    dm_ssXII
+    SQ0 SC2    1    dm_ssIX
+    SQ0 SC1    1    dm_ssIX
+    SQ0 SP1c   1    dm_ssXII
+    SP5 SP5    1    dm_ssV
+    SP5 SP4    1    dm_ssV
+    SP5 SP3    1    dm_ssV
+    SP5 SP2    1    dm_ssV
+    SP5 SP1    1    dm_ssX
+    SP5 SNda   1    dm_ssXII
+    SP5 SNd    1    dm_ssXII
+    SP5 SNa    1    dm_ssXII
+    SP5 SN0    1    dm_ssXII
+    SP5 SC5    1    dm_ssXII
+    SP5 SC4    1    dm_ssXII
+    SP5 SC3    1    dm_ssXII
+    SP5 SC2    1    dm_ssXII
+    SP5 SC1    1    dm_ssXII
+    SP5 SP1c   1    dm_rsX
+    SP4 SP4    1    dm_ssVI
+    SP4 SP3    1    dm_ssVI
+    SP4 SP2    1    dm_ssVII
+    SP4 SP1    1    dm_ssX
+    SP4 SNda   1    dm_ssXI
+    SP4 SNd    1    dm_ssXI
+    SP4 SNa    1    dm_ssXI
+    SP4 SN0    1    dm_ssXI
+    SP4 SC5    1    dm_ssXI
+    SP4 SC4    1    dm_ssXI
+    SP4 SC3    1    dm_ssXI
+    SP4 SC2    1    dm_ssXII
+    SP4 SC1    1    dm_ssXII
+    SP4 SP1c   1    dm_rsX
+    SP3 SP3    1    dm_ssVI
+    SP3 SP2    1    dm_ssVII
+    SP3 SP1    1    dm_ssX
+    SP3 SNda   1    dm_ssXI
+    SP3 SNd    1    dm_ssXI
+    SP3 SNa    1    dm_ssXI
+    SP3 SN0    1    dm_ssX
+    SP3 SC5    1    dm_ssX
+    SP3 SC4    1    dm_ssX
+    SP3 SC3    1    dm_ssX
+    SP3 SC2    1    dm_ssX
+    SP3 SC1    1    dm_ssXI
+    SP3 SP1c   1    dm_rsX
+    SP2 SP2    1    dm_ssVII
+    SP2 SP1    1    dm_ssVIII
+    SP2 SNda   1    dm_ssXI
+    SP2 SNd    1    dm_ssXI
+    SP2 SNa    1    dm_ssXI
+    SP2 SN0    1    dm_ssIX
+    SP2 SC5    1    dm_ssVI
+    SP2 SC4    1    dm_ssVI
+    SP2 SC3    1    dm_ssVII
+    SP2 SC2    1    dm_ssVIII
+    SP2 SC1    1    dm_ssX
+    SP2 SP1c   1    dm_rsVIII
+    SP1 SP1    1    dm_ssVII
+    SP1 SNda   1    dm_ssVII
+    SP1 SNd    1    dm_ssVII
+    SP1 SNa    1    dm_ssVII
+    SP1 SN0    1    dm_ssVII
+    SP1 SC5    1    dm_ssVI
+    SP1 SC4    1    dm_ssVI
+    SP1 SC3    1    dm_ssVI
+    SP1 SC2    1    dm_ssVI
+    SP1 SC1    1    dm_ssVII
+    SP1 SP1c   1    dm_rsVII
+   SNda SNda   1    dm_ssVI
+   SNda SNd    1    dm_ssVI
+   SNda SNa    1    dm_ssVI
+   SNda SN0    1    dm_ssVII
+   SNda SC5    1    dm_ssVI
+   SNda SC4    1    dm_ssVI
+   SNda SC3    1    dm_ssVI
+   SNda SC2    1    dm_ssVI
+   SNda SC1    1    dm_ssVI
+   SNda SP1c   1    dm_rsVII
+    SNd SNd    1    dm_ssVII
+    SNd SNa    1    dm_ssVI
+    SNd SN0    1    dm_ssVII
+    SNd SC5    1    dm_ssVI
+    SNd SC4    1    dm_ssVI
+    SNd SC3    1    dm_ssVI
+    SNd SC2    1    dm_ssVI
+    SNd SC1    1    dm_ssVI
+    SNd SP1c   1    dm_rsVII
+    SNa SNa    1    dm_ssVII
+    SNa SN0    1    dm_ssVII
+    SNa SC5    1    dm_ssVI
+    SNa SC4    1    dm_ssVI
+    SNa SC3    1    dm_ssVI
+    SNa SC2    1    dm_ssVI
+    SNa SC1    1    dm_ssVI
+    SNa SP1c   1    dm_rsVII
+    SN0 SN0    1    dm_ssV
+    SN0 SC5    1    dm_ssV
+    SN0 SC4    1    dm_ssIV
+    SN0 SC3    1    dm_ssIV
+    SN0 SC2    1    dm_ssIV
+    SN0 SC1    1    dm_ssIV
+    SN0 SP1c   1    dm_rsVII
+    SC5 SC5    1    dm_ssIII
+    SC5 SC4    1    dm_ssIII
+    SC5 SC3    1    dm_ssIII
+    SC5 SC2    1    dm_ssIII
+    SC5 SC1    1    dm_ssIII
+    SC5 SP1c   1    dm_rsVI
+    SC4 SC4    1    dm_ssII
+    SC4 SC3    1    dm_ssII
+    SC4 SC2    1    dm_ssIII
+    SC4 SC1    1    dm_ssIII
+    SC4 SP1c   1    dm_rsVI
+    SC3 SC3    1    dm_ssII
+    SC3 SC2    1    dm_ssII
+    SC3 SC1    1    dm_ssII
+    SC3 SP1c   1    dm_rsVI
+    SC2 SC2    1    dm_ssII
+    SC2 SC1    1    dm_ssII
+    SC2 SP1c   1    dm_rsVI
+    SC1 SC1    1    dm_ssII
+    SC1 SP1c   1    dm_rsVII
+   SP1c SP1c   1    dm_rsVII
+
+; martini-itp-generator.py -ff dry-martini21 dry-chol -ascii

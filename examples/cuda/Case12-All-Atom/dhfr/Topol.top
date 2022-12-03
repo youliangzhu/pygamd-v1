@@ -1,0 +1,16 @@
+#include "forcefield.itp"
+#include "ions.itp"
+#include "tip3p.itp"
+#include "ffnonbonded.itp"
+#include "ffbonded.itp"
+#include "protein.itp"
+
+[ system ]
+; Name
+Protein in water
+
+[ molecules ]
+; Compound        #mols
+Protein             1
+SOL         7023
+NA          11
