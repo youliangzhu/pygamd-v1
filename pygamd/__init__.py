@@ -96,7 +96,7 @@ from optparse import OptionParser
 
 
 
-PYGAMD_VERSION="1.1.3"
+PYGAMD_VERSION="1.1.4"
 
 print("PYGAMD v", PYGAMD_VERSION )
 print("PYGAMD - Python GPU-Accelerated Molecular Dynamics Software")

@@ -763,8 +763,8 @@ for i in range(0, len(Molecules)):
 			xml.write(k+'\n')
 		count += n
 if len(pos) != count:
-	print "number of pos ",len(pos),", number of charge " ,count
-	raise RuntimeError('Error particle charge number is wrong!')			
+	print ("number of pos ",len(pos),", number of charge " ,count)
+	raise RuntimeError('Error particle charge number is wrong!')
 xml.write('</charge>\n')
 
 xml.write('<type num="'+str(len(pos))+'">\n')	
@@ -927,7 +927,7 @@ def ParseItp():
 						findd=True
 						break
 				if not findd:
-					print la[3]
+					print (la[3])
 					raise RuntimeError('Error interaction not found in define!')	
 
 			if exist(nospace,'[nonbond_params]') or exist(nospace,'[pairtypes]'):
@@ -990,7 +990,7 @@ for i in range(0,len(atom_type)):
 			elif na0==p[1] and na1==p[0]:
 				existed=True
 		if existed==False:
-			print "no exist",na0,na1
+			print ("no exist",na0,na1)
 
 
 ff=open(grofile[0:len(grofile)-3]+"force_field","w")	

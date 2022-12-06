@@ -72,7 +72,7 @@ def parseNonbondParams(filename, atom_types):
 					findd=True
 					break
 			if not findd:
-				print la[3]
+				print (la[3])
 				raise RuntimeError('Error interaction not found in define!')
 
 		if read_pairtypes and len(la)==5 and existType(la[0], atom_types) and existType(la[1], atom_types):
@@ -171,7 +171,7 @@ def parseBondParams(filename, bond_types):
 				bond_params.append([btf[3], btf[4], btf[2]])
 				break
 		if not findd:
-			print bt
+			print (bt)
 			raise RuntimeError('Error bond parameter not found in itp file!')
 	itp.close()
 	ffb = open("bond-save.force_field","w")
@@ -230,7 +230,7 @@ def parseAngleParams(filename, angle_types):
 					angle_params.append([atf[4], atf[5], atf[6], atf[7], atf[3]])
 				break
 		if not findd:
-			print at
+			print (at)
 			raise RuntimeError('Error angle parameter not found in itp file!')
 	itp.close()
     
@@ -313,7 +313,7 @@ def parseDihedralParams(filename, dihedral_types):
 				dihedral_params.append(atf[4:]+[atf[4]])
 				break
 		if not findd:
-			print at
+			print (at)
 			raise RuntimeError('Error dihedral parameter not found in itp file!')
 	itp.close()	
 	ffd = open("dihedral-save.force_field","w")
