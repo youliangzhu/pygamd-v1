@@ -48,7 +48,7 @@ Description:
 .. py:class:: LJForce(all_info, nlist, r_cut)
 
    The constructor of LJ interaction calculation object.
-	  
+
    :param AllInfo all_info: The system information.
    :param NeighborList nlist: The neighbor list.  
    :param float r_cut: The cut-off radius.

@@ -40,7 +40,7 @@ Neighbor list
    
       adds 1-4 exclusion into exclusion list.
 	  
-   .. py:function:: addExclusionsFromBodys()
+   .. py:function:: addExclusionsFromBodies()
    
       adds body exclusion into exclusion list.
 	  

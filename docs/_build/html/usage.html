@@ -49,20 +49,21 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="system.html">System info</a></li>
-<li class="toctree-l1"><a class="reference internal" href="application.html">Application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="forcefield.html">Force field</a></li>
-<li class="toctree-l1"><a class="reference internal" href="integration.html">Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="module.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba/system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba/application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba/forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba/integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="numba/module.html">Modules</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="cu-rst/cu-system.html">System</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cu-rst/cu-application.html">Application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cu-rst/cu-forcefield.html">Force field</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cu-rst/cu-integration.html">Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cu-rst/cu-constraint.html">Constraint</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cu-rst/cu-module.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-system.html">System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-constraint.html">Constraint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-module.html">Modules</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Plug-Ins</span></p>
 <ul>
@@ -109,7 +110,7 @@
 </div></blockquote>
 <p>Where you could specify the GPU id (default value is 0) with the <code class="docutils literal notranslate"><span class="pre">--gpu=</span></code> option and output the screen information into <code class="docutils literal notranslate"><span class="pre">a.log</span></code> file.</p>
 <p>Here is an example of script for DPD simulation.</p>
-<p>Firstly, importing the pygamd module installed as a package of python3 and reading system information by <a class="reference internal" href="system-data-input.html#snapshot.read" title="snapshot.read"><code class="xref py py-class docutils literal notranslate"><span class="pre">snapshot.read</span></code></a> from a mst file</p>
+<p>Firstly, importing the pygamd module installed as a package of python3 and reading system information by <a class="reference internal" href="numba/system-data-input.html#snapshot.read" title="snapshot.read"><code class="xref py py-class docutils literal notranslate"><span class="pre">snapshot.read</span></code></a> from a mst file</p>
 <blockquote>
 <div><p>Examples:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygamd</span>
@@ -117,15 +118,15 @@
 </pre></div>
 </div>
 </div></blockquote>
-<p>After that, we need to build up an application by <a class="reference internal" href="application.html#application.dynamics" title="application.dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">application.dynamics</span></code></a> which will call defined and added objects.</p>
+<p>After that, we need to build up an application by <a class="reference internal" href="numba/application.html#application.dynamics" title="application.dynamics"><code class="xref py py-class docutils literal notranslate"><span class="pre">application.dynamics</span></code></a> which will call defined and added objects.</p>
 <blockquote>
 <div><p>Examples:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">application</span><span class="o">.</span><span class="n">dynamics</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></blockquote>
-<p>Further, we should define objects by the classes of pygamd and pass them to the application, such as the following example: DPD force <a class="reference internal" href="module-dpd.html#force.dpd" title="force.dpd"><code class="xref py py-class docutils literal notranslate"><span class="pre">force.dpd</span></code></a>
-, NVT thermostat with GWVV algorithm <a class="reference internal" href="module-dpd.html#integration.gwvv" title="integration.gwvv"><code class="xref py py-class docutils literal notranslate"><span class="pre">integration.gwvv</span></code></a>, and th dump of system collective information <a class="reference internal" href="system-data-output.html#dump.data" title="dump.data"><code class="xref py py-class docutils literal notranslate"><span class="pre">dump.data</span></code></a>.</p>
+<p>Further, we should define objects by the classes of pygamd and pass them to the application, such as the following example: DPD force <a class="reference internal" href="numba/module-dpd.html#force.dpd" title="force.dpd"><code class="xref py py-class docutils literal notranslate"><span class="pre">force.dpd</span></code></a>
+, NVT thermostat with GWVV algorithm <a class="reference internal" href="numba/module-dpd.html#integration.gwvv" title="integration.gwvv"><code class="xref py py-class docutils literal notranslate"><span class="pre">integration.gwvv</span></code></a>, and th dump of system collective information <a class="reference internal" href="numba/system-data-output.html#dump.data" title="dump.data"><code class="xref py py-class docutils literal notranslate"><span class="pre">dump.data</span></code></a>.</p>
 <blockquote>
 <div><p>Examples:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fn</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">force</span><span class="o">.</span><span class="n">dpd</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">rcut</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>

@@ -54,6 +54,7 @@ texrp = [
 ['NveRigid', 'NVERigid'],
 ['NvtRigid', 'NVTRigid'],
 ['galamost', 'gala'],
+['addExclusionsFromBodys', 'addExclusionsFromBodies'],
 ]
 
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Information &mdash; PYGAMD v1 documentation</title>
+  <title>Import libraries &mdash; PYGAMD v1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -59,7 +59,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cu-data.html">Data</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="cu-system.html">System</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Information</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Import libraries</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#import-cuda-lib">import cuda-lib</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#import-hip-lib">import hip-lib</a></li>
 </ul>
@@ -102,7 +102,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="cu-system.html">System</a> &raquo;</li>
-      <li>Information</li>
+      <li>Import libraries</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/cuda/cu-system-import.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -112,24 +112,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="information">
-<h1>Information<a class="headerlink" href="#information" title="Permalink to this headline"></a></h1>
+  <section id="import-libraries">
+<h1>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline"></a></h1>
 <section id="import-cuda-lib">
 <h2>import cuda-lib<a class="headerlink" href="#import-cuda-lib" title="Permalink to this headline"></a></h2>
 <p>Import the pygamd module from cuda libray for the simulations on NVIDIA GPU.</p>
 <blockquote>
 <div><p>Examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cu</span><span class="o">-</span><span class="n">gala</span> <span class="k">as</span> <span class="n">gala</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cu_gala</span> <span class="k">as</span> <span class="nn">gala</span>
 </pre></div>
 </div>
 </div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<blockquote>
+<div><p>if the cu_gala could not be found by Python, <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pygamd</span></code> before <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">cu_gala</span></code> may provide some help to find <code class="docutils literal notranslate"><span class="pre">cu_gala</span></code> by searching the built-in paths.
+This method is also adapt to some other libraries, such as <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">molgen</span></code> and <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">hip_gala</span></code>.</p>
+</div></blockquote>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygamd</span>
+<span class="kn">import</span> <span class="nn">cu_gala</span> <span class="k">as</span> <span class="nn">gala</span>
+</pre></div>
+</div>
+</div>
 </section>
 <section id="import-hip-lib">
 <h2>import hip-lib<a class="headerlink" href="#import-hip-lib" title="Permalink to this headline"></a></h2>
 <p>Import the pygamd module from hip libray for the simulations on DCU.</p>
 <blockquote>
 <div><p>Examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hip</span><span class="o">-</span><span class="n">gala</span> <span class="k">as</span> <span class="n">gala</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hip_gala</span> <span class="k">as</span> <span class="nn">gala</span>
 </pre></div>
 </div>
 </div></blockquote>
