@@ -34,7 +34,8 @@ import math
 import pygamd.snapshots.box
 import numpy as np
 import numba as nb
-from numba import cuda
+from numba import cuda,njit,jit
+from numba.experimental import jitclass
 
 
 @cuda.jit("void(int32, float32[:, :], int32[:], float32[:], float32[:], int32[:], float32[:, :, :], int32[:])")
@@ -86,18 +87,20 @@ def cu_zero(n, array):
 	if i < n:
 		array[i] = nb.int32(0)				
 
+@jitclass
 class clist:
 	#定义构造方法
 	def __init__(self, info, rcut):
 		self.rcut = rcut
 #		print(self.rcut)
 		self.info=info
+		self.info_box = np.asarray([info.box[0], info.box[1], info.box[2]], dtype=np.float32)
 		self.box = np.asarray([info.box[0], info.box[1], info.box[2]], dtype=np.float32)
 		self.dim = np.asarray([int(self.box[0]/rcut), int(self.box[1]/rcut), int(self.box[2]/rcut)], dtype=np.int32)
 		self.width = np.asarray([self.box[0]/float(self.dim[0]), self.box[1]/float(self.dim[1]), self.box[2]/float(self.dim[2])], dtype=np.float32)
 		self.inv_width = np.asarray([1.0/self.width[0], 1.0/self.width[1], 1.0/self.width[2]], dtype=np.float32)
 		self.box_low_boundary = np.asarray([-self.box[0]/2.0, -self.box[1]/2.0, -self.box[2]/2.0], dtype=np.float32)
-		self.ncell = self.dim[0]*self.dim[1]*self.dim[2]
+		self.ncell = (self.dim[0]*self.dim[1]*self.dim[2])
 		self.cell_adj = np.zeros([self.ncell, 27], dtype = np.int32)
 		self.nmax = self.info.npa//self.ncell
 		self.nmax = self.nmax + 8 - (self.nmax & 7)
@@ -186,9 +189,9 @@ class clist:
 		#--- device arrays				
 		self.d_inv_width = cuda.to_device(self.inv_width)
 		self.d_box_low_boundary = cuda.to_device(self.box_low_boundary)
-		
+	# @jit # Not possible -> Throw errors
 	def calculate(self):
-		if self.info.box[0] != self.box[0] or self.info.box[1] != self.box[1] or self.info.box[2] != self.box[2]:
+		if (self.info.box[0] != self.box[0] or self.info.box[1] != self.box[1] or self.info.box[2] != self.box[2]) :
 			self.update_cell_data()
 
 		build_list = True
@@ -200,9 +203,9 @@ class clist:
 			cu_cell_build[nblocks, self.block_size](self.info.npa, self.info.d_pos, self.d_dim, self.d_box_low_boundary, self.d_inv_width, self.d_cell_size, self.d_cell_list, self.d_situation)
 			self.situation = self.d_situation.copy_to_host()
 			if self.situation[0] > 0:
-				raise RuntimeError('Error position NaN of particle '+str(self.situation[0]-1)+' !')
+				raise RuntimeError('Error position NaN of particle ')# +str(self.situation[0]-1)+' !')
 			if self.situation[1] > 0:
-				raise RuntimeError('Error particle '+str(self.situation[1]-1)+' out of box !')
+				raise RuntimeError('Error particle ') # +str(self.situation[1]-1)+' out of box !')
 			if self.situation[2]>self.nmax:
 				self.nmax = self.situation[2]
 				self.nmax = self.nmax + 8 - (self.nmax & 7)

@@ -37,7 +37,7 @@ import numba as nb
 from numba import cuda
 import pygamd.plists.clist as clist
 import time
-
+from numba.experimental import jitclass
 
 @cuda.jit("void(int32, float32[:, :], int32[:], float32[:], float32[:], float32[:], int32[:, :], int32[:], float32[:, :, :], int32[:], int32[:, :], float32[:, :], float32, int32[:])")
 def cu_neighbor_build(npa, pos, dim, box_low_boundary, inv_width, box, cell_adj, cell_size, cell_list, neighbor_size, neighbor_list, last_pos, cutoff_rsq, situation):
@@ -153,7 +153,8 @@ def cu_zero(situation):
 	i = cuda.grid(1)
 	if i < 3:
 		situation[i] = nb.int32(0)			
-			
+
+@jitclass			
 class nlist:
 	#定义构造方法
 	def __init__(self, info, rcut, rbuff, exclusion):
