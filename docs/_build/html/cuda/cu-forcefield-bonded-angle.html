@@ -18,7 +18,9 @@
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dihedral torsion" href="cu-forcefield-bonded-dihedral.html" />
+    <link rel="prev" title="Bond stretching" href="cu-forcefield-bonded-bond.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,11 +57,29 @@
 <li class="toctree-l1"><a class="reference internal" href="../numba/module.html">Modules</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="cu-data.html">Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cu-system.html">System</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cu-application.html">Application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cu-forcefield.html">Force field</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cu-forcefield.html">Force field</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-nonbonded.html">Short range non-bonded interactions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="cu-forcefield-bonded.html">Bonded interactions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-bonded-bond.html">Bond stretching</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Angle bending</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#harmonic-angle-potential">Harmonic angle potential</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#harmonic-cosine-angle-potential">Harmonic cosine angle potential</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cosine-angle-potential">Cosine angle potential</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lnexp-angle-potential">LnExp angle potential</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html">Dihedral torsion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-numerical.html">Numerical interaction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-coulomb.html">Coulomb interaction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-files.html">Read force parameters</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="cu-integration.html">Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cu-constraint.html">Constraint</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cu-module.html">Modules</a></li>
@@ -88,6 +108,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="cu-forcefield.html">Force field</a> &raquo;</li>
+          <li><a href="cu-forcefield-bonded.html">Bonded interactions</a> &raquo;</li>
       <li>Angle bending</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/cuda/cu-forcefield-bonded-angle.rst.txt" rel="nofollow"> View page source</a>
@@ -305,7 +327,10 @@ equilibrium angle degree1, equilibrium angle degree2, parameter A, and parameter
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cu-forcefield-bonded-bond.html" class="btn btn-neutral float-left" title="Bond stretching" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cu-forcefield-bonded-dihedral.html" class="btn btn-neutral float-right" title="Dihedral torsion" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

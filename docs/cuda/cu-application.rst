@@ -14,11 +14,11 @@ added ``add()`` into or removed ``remove()`` from the application before runing 
    :param AllInfo all_info: system information
    :param float dt: integration time step	   
 
-   .. py:function:: add(boost::shared_ptr<*> object)
+   .. py:function:: add(object)
    
       adds an object to the application.
 	  
-   .. py:function:: remove(boost::shared_ptr<*> object)
+   .. py:function:: remove(object)
    
       removes an added object.
 	  
