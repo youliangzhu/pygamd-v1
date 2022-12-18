@@ -36,6 +36,9 @@ import os
 import zipfile
 import platform
 
+PYGAMD_VERSION="1.1.7"
+
+
 curr_file = os.path.abspath(__file__)
 poetry_path = ""
 node = "/"
@@ -94,9 +97,6 @@ from pygamd import dump
 from numba import cuda
 from optparse import OptionParser
 
-
-
-PYGAMD_VERSION="1.1.6"
 
 print("PYGAMD v", PYGAMD_VERSION )
 print("PYGAMD - Python GPU-Accelerated Molecular Dynamics Software")

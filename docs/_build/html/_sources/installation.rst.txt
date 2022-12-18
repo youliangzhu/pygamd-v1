@@ -5,8 +5,8 @@ Source code
 -----------
 
 The entire PYGAMD package is a Free Software under the GNU General Public License. 
-The **pygamd** engine, **molgen** plugin, and **galaTackle** plugin could be separately installed. 
-The installation instructions for **pygamd**, **molgen**, and **galaTackle** are as follows.
+The **pygamd** engine, **molgen** plugin, and **dataTackle** plugin could be separately installed. 
+The installation instructions for **pygamd**, **molgen**, and **dataTackle** are as follows.
 
 1. Installation for **pygamd**::
 	
