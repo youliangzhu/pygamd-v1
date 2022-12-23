@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import molgen
+from poetry import molgen
 
 mol1=molgen.Molecule(1000);
 mol1.setParticleTypes("C_33,C_32*998,C_33");
@@ -21,4 +21,4 @@ gen.addMolecule(mol1,50)
 gen.setMinimumDistance("C_33","C_33", 0.34)
 gen.setMinimumDistance("C_33","C_32", 0.35)
 gen.setMinimumDistance("C_32","C_32", 0.36)
-gen.outPutXml("PE-1000")
+gen.outPutXML("PE-1000")

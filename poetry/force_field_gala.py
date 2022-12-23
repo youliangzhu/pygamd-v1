@@ -1,4 +1,4 @@
-import galamost
+from poetry import cu_gala as gala 
 import math
 
 def exist(line ,name):
@@ -290,7 +290,7 @@ def parseWFParams(filename, atom_type):
 
 
 def HarmonicForce(all_info, neighbor_list, alpha, filename):
-	hf = galamost.HarmonicForce(all_info, neighbor_list, 1.0)
+	hf = gala.HarmonicForce(all_info, neighbor_list, 1.0)
 	atom_type = all_info.getBasicInfo().getParticleTypes()	
 	parseNonbondParams(filename, atom_type)
 	for i in range(0, len(nonbonded_params)):
@@ -299,7 +299,7 @@ def HarmonicForce(all_info, neighbor_list, alpha, filename):
 	return hf
 
 def LJEwaldForce(all_info, neighbor_list, rcut, filename):
-	lj = galamost.LJEwaldForce(all_info, neighbor_list, rcut)
+	lj = gala.LJEwaldForce(all_info, neighbor_list, rcut)
 	atom_type = all_info.getBasicInfo().getParticleTypes()	
 	parseNonbondParams(filename, atom_type)
 	for i in range(0, len(nonbonded_params)):
@@ -307,7 +307,7 @@ def LJEwaldForce(all_info, neighbor_list, rcut, filename):
 	return lj
 	
 def LJCoulombShiftForce(all_info, neighbor_list, rcut, rshift, epsilonr, filename):
-	lj = galamost.LJCoulombShiftForce(all_info, neighbor_list)
+	lj = gala.LJCoulombShiftForce(all_info, neighbor_list)
 	atom_type = all_info.getBasicInfo().getParticleTypes()	
 	lj.setCoulomb(rcut, rshift, epsilonr)
 	parseNonbondParams(filename, atom_type)
@@ -317,7 +317,7 @@ def LJCoulombShiftForce(all_info, neighbor_list, rcut, rshift, epsilonr, filenam
 	
 	
 def AHDHForce(all_info, neighbor_list, rcut, epsilon, debye_length, filename):
-	ahdh = galamost.AHDHForce(all_info, neighbor_list, rcut)
+	ahdh = gala.AHDHForce(all_info, neighbor_list, rcut)
 	atom_type = all_info.getBasicInfo().getParticleTypes()	
 	ahdh.setDebyeLength(debye_length)
 	parseAHParams(filename, atom_type)
@@ -327,7 +327,7 @@ def AHDHForce(all_info, neighbor_list, rcut, epsilon, debye_length, filename):
 	return ahdh
     
 def WFDHForce(all_info, neighbor_list, rcut, debye_length, filename):
-	wfdh = galamost.WFDHForce(all_info, neighbor_list, rcut)
+	wfdh = gala.WFDHForce(all_info, neighbor_list, rcut)
 	atom_type = all_info.getBasicInfo().getParticleTypes()	
 	wfdh.setDebyeLength(debye_length)
 	parseWFParams(filename, atom_type)
@@ -336,7 +336,7 @@ def WFDHForce(all_info, neighbor_list, rcut, debye_length, filename):
 	return wfdh
 	
 def BondForceHarmonic(all_info, filename):
-	bfh = galamost.BondForceHarmonic(all_info)
+	bfh = gala.BondForceHarmonic(all_info)
 	bond_type = all_info.getBondInfo().getBondTypes()	
 	parseBondParams(filename, bond_type)
 	for i in range(0, len(bond_params)):
@@ -345,7 +345,7 @@ def BondForceHarmonic(all_info, filename):
 	return bfh
 
 def AngleForceHarmonicCos(all_info, filename):
-	afh = galamost.AngleForceHarmonicCos(all_info)
+	afh = gala.AngleForceHarmonicCos(all_info)
 	angle_type = all_info.getAngleInfo().getAngleTypes()	
 	parseAngleParams(filename, angle_type)
 	for i in range(0, len(angle_params)):
@@ -354,7 +354,7 @@ def AngleForceHarmonicCos(all_info, filename):
 	return afh
 	
 def AngleForceHarmonic(all_info, filename):
-	afh = galamost.AngleForceHarmonic(all_info)
+	afh = gala.AngleForceHarmonic(all_info)
 	angle_type = all_info.getAngleInfo().getAngleTypes()	
 	parseAngleParams(filename, angle_type)
 	for i in range(0, len(angle_params)):
@@ -363,7 +363,7 @@ def AngleForceHarmonic(all_info, filename):
 	return afh	
 
 def AngleForceUreyBradley(all_info, filename):
-	afh = galamost.AngleForceUreyBradley(all_info)
+	afh = gala.AngleForceUreyBradley(all_info)
 	angle_type = all_info.getAngleInfo().getAngleTypes()	
 	parseAngleParams(filename, angle_type)
 	for i in range(0, len(angle_params)):
@@ -372,30 +372,30 @@ def AngleForceUreyBradley(all_info, filename):
 	return afh	
 
 def DihedralForceAmberCosine(all_info, filename):
-	dfh = galamost.DihedralForceAmberCosine(all_info)
+	dfh = gala.DihedralForceAmberCosine(all_info)
 	dihedral_type = all_info.getDihedralInfo().getDihedralTypes()	
 	parseDihedralParams(filename, dihedral_type)
 	for i in range(0, len(dihedral_params)):
 		dp = dihedral_params[i]
 		if int(dp[9])==4:
-#			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "galamost.DihedralForceAmberCosine.Prop.improper"
-			dfh.setParams(dp[0], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), galamost.DihedralForceAmberCosine.Prop.improper)
+#			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "gala.DihedralForceAmberCosine.Prop.improper"
+			dfh.setParams(dp[0], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.DihedralForceAmberCosine.Prop.improper)
 		elif int(dp[9])==9:
-#			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "galamost.DihedralForceAmberCosine.Prop.proper"
-			dfh.setParams(dp[0], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), galamost.DihedralForceAmberCosine.Prop.proper) 
+#			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "gala.DihedralForceAmberCosine.Prop.proper"
+			dfh.setParams(dp[0], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.DihedralForceAmberCosine.Prop.proper) 
 		else:
 			raise RuntimeError('Error dihedral function type is not 4 or 9!')
 	return dfh	
 	
 	
 def DihedralForceRyckaertBellemans(all_info, filename):
-	dfh = galamost.DihedralForceRyckaertBellemans(all_info)
+	dfh = gala.DihedralForceRyckaertBellemans(all_info)
 	dfh.setDividedFactorVDWELEC(0.5, 0.5)
 	dihedral_type = all_info.getDihedralInfo().getDihedralTypes()	
 	parseDihedralParams(filename, dihedral_type)
 	for i in range(0, len(dihedral_params)):
 		dp = dihedral_params[i]
-#			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "galamost.DihedralForceAmberCosine.Prop.improper"
+#			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "gala.DihedralForceAmberCosine.Prop.improper"
 		if int(dp[7])==3:
 			dfh.setParams(dp[0], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]))
 		else:
@@ -404,7 +404,7 @@ def DihedralForceRyckaertBellemans(all_info, filename):
 	return dfh		
 
 def DihedralForceHarmonic(all_info, filename):
-	dfh = galamost.DihedralForceHarmonic(all_info)
+	dfh = gala.DihedralForceHarmonic(all_info)
 	dihedral_type = all_info.getDihedralInfo().getDihedralTypes()	
 	parseDihedralParams(filename, dihedral_type)
 	for i in range(0, len(dihedral_params)):
@@ -413,13 +413,13 @@ def DihedralForceHarmonic(all_info, filename):
 			angle=float(dp[1])
 			if angle<0.0:
 				angle += 360.0
-			dfh.setParams(dp[0], float(dp[2]), angle, galamost.DihedralForceHarmonic.Prop.improper)
+			dfh.setParams(dp[0], float(dp[2]), angle, gala.DihedralForceHarmonic.Prop.improper)
 		else:
 			raise RuntimeError('Error dihedral function type is not 2!')
 	return dfh		
 	
 def BondConstraint(all_info, filename):
-	bc = galamost.BondConstraint(all_info)
+	bc = gala.BondConstraint(all_info)
 	constraint_type = all_info.getConstraintInfo().getConstraintTypes()	
 	parseConstraintParams(filename, constraint_type)
 	for i in range(0, len(constraint_params)):
@@ -428,15 +428,15 @@ def BondConstraint(all_info, filename):
 	return bc
 	
 def Vsite(all_info, filename):
-	vs = galamost.Vsite(all_info)
+	vs = gala.Vsite(all_info)
 	vsite_type = all_info.getVsiteInfo().getVsiteTypes()	
 	parseVsiteParams(filename, vsite_type)
 	for i in range(0, len(vsite_params)):
 		vp = vsite_params[i]
 		if int(vp[4])==1:
-			vs.setParams(vp[0], float(vp[1]), float(vp[2]), float(vp[3]), galamost.Vsite.VST.v3)
+			vs.setParams(vp[0], float(vp[1]), float(vp[2]), float(vp[3]), gala.Vsite.VST.v3)
 		elif int(vp[4])==4:
-			vs.setParams(vp[0], float(vp[1]), float(vp[2]), float(vp[3]), galamost.Vsite.VST.v3out)
+			vs.setParams(vp[0], float(vp[1]), float(vp[2]), float(vp[3]), gala.Vsite.VST.v3out)
 		else:
 			raise RuntimeError('Error Vsite function type is not 1 and 4!')			
 	return vs			

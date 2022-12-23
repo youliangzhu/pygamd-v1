@@ -1,11 +1,6 @@
 #!/usr/bin/python
-import cu_gala as gala 
-from optparse import OptionParser
- 
-global _options
-parser = OptionParser()
-parser.add_option('--gpu', dest='gpu',help='GPU on which to execute')
-(_options, args) = parser.parse_args()
+from poetry import cu_gala as gala 
+from poetry import _options
  
 filename = 'ps50.xml'
 build_method = gala.XMLReader(filename)
@@ -106,6 +101,5 @@ xml.setOutputBond(True)
 xml.setOutputCharge(True)
 app.add(xml)
  
-comp_info.setNdof(app.getNdof())
 #ready ro run
 app.run(3000000)#(How many steps to run)

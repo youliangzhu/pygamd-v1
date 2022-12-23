@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import molgen
+from poetry import molgen
 
 mol1=molgen.Molecule(10)#particle number
 mol1.setParticleTypes("A,A,A,A,A,B,B,B,B,B")#type
@@ -10,4 +10,4 @@ mol1.setMass(1.0)#mass
 
 gen=molgen.Generators(20,20,20) # box size in x, y, and z direction
 gen.addMolecule(mol1,2400)#molecule, the number of molecules
-gen.outPutXml("A5B5") #file name
+gen.outPutXML("A5B5") #file name

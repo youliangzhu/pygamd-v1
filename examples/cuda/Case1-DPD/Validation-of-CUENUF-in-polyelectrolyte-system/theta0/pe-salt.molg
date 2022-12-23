@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import molgen
+from poetry import molgen
 import math
 
 er=78.0
@@ -38,4 +38,4 @@ gen.addMolecule(mol2,75);
 gen.addMolecule(mol3,75);
 gen.addMolecule(mol4,9925);
 
-gen.outPutXml("ps0");
+gen.outPutXML("ps0");

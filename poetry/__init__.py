@@ -29,39 +29,9 @@ CORRESPONDENCE
 	Dr. You-Liang Zhu
 	Email: ylzhu@pygamd.com
 '''
-
-from setuptools import setup, find_packages
-
-with open("README.rst", "r") as fh:
-    long_description = fh.read()
-
-setup(name='pygamd',
-      version='1.1.8',
-      description='Python GPU-Accelerated Molecular Dynamics Software',
-      long_description=long_description,
-      classifiers=[
-        'Development Status :: 3 - Alpha',
-        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
-        'Programming Language :: Python :: 3',
-        'Intended Audience :: Science/Research',
-        'Operating System :: POSIX :: Linux',
-        'Topic :: Scientific/Engineering :: Physics',
-        'Topic :: Scientific/Engineering :: Chemistry'
-      ],
-      # python_requires='>=3.6',
-      keywords='molecular dynamics',
-      url='https://github.com/ylzhu/pygamd.py',
-      author='You-Liang Zhu',
-      author_email='ylzhu@pygamd.com',
-      license='GNU General Public License v3 (GPLv3)',
-	  packages = find_packages(),
-      install_requires=[
-          'numpy',
-          'numba'
-      ],
-      package_data={
-      'poetry': ['poetry/poetry.zip', 'poetry/READ.md', 'poetry/*.so', 'poetry/dataTackle',],
-      },
-      include_package_data=True,
-      python_requires='>=3',
-      zip_safe=False)
+from optparse import OptionParser
+ 
+global _options
+parser = OptionParser()
+parser.add_option('--gpu', dest='gpu',help='GPU on which to execute')
+(_options, args) = parser.parse_args()

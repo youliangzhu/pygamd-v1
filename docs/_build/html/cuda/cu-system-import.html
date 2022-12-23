@@ -60,8 +60,9 @@
 <li class="toctree-l1"><a class="reference internal" href="cu-data.html">Data</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="cu-system.html">System</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Import libraries</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#import-cuda-lib">import cuda-lib</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#import-hip-lib">import hip-lib</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#import-cuda-lib-linux">import cuda lib (Linux)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#import-hip-lib-linux">import hip lib (Linux)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#import-cuda-lib-windows">import cuda lib (Windows)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="cu-system-information.html">Information</a></li>
@@ -80,7 +81,7 @@
 <p class="caption" role="heading"><span class="caption-text">Plug-Ins</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../molgen.html">molgen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dataTackle.html">galaTackle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dataTackle.html">dataTackle</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Announcement</span></p>
 <ul>
@@ -114,34 +115,32 @@
              
   <section id="import-libraries">
 <h1>Import libraries<a class="headerlink" href="#import-libraries" title="Permalink to this headline"></a></h1>
-<section id="import-cuda-lib">
-<h2>import cuda-lib<a class="headerlink" href="#import-cuda-lib" title="Permalink to this headline"></a></h2>
+<section id="import-cuda-lib-linux">
+<h2>import cuda lib (Linux)<a class="headerlink" href="#import-cuda-lib-linux" title="Permalink to this headline"></a></h2>
 <p>Import the pygamd module from cuda libray for the simulations on NVIDIA GPU.</p>
 <blockquote>
 <div><p>Examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cu_gala</span> <span class="k">as</span> <span class="nn">gala</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">poetry</span> <span class="kn">import</span> <span class="n">cu_gala</span> <span class="k">as</span> <span class="n">gala</span>
 </pre></div>
 </div>
 </div></blockquote>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<blockquote>
-<div><p>if the cu_gala could not be found by Python, <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pygamd</span></code> before <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">cu_gala</span></code> may provide some help to find <code class="docutils literal notranslate"><span class="pre">cu_gala</span></code> by searching the built-in paths.
-This method is also adapt to some other libraries, such as <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">molgen</span></code> and <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">hip_gala</span></code>.</p>
-</div></blockquote>
-<p>Examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygamd</span>
-<span class="kn">import</span> <span class="nn">cu_gala</span> <span class="k">as</span> <span class="nn">gala</span>
-</pre></div>
-</div>
-</div>
 </section>
-<section id="import-hip-lib">
-<h2>import hip-lib<a class="headerlink" href="#import-hip-lib" title="Permalink to this headline"></a></h2>
+<section id="import-hip-lib-linux">
+<h2>import hip lib (Linux)<a class="headerlink" href="#import-hip-lib-linux" title="Permalink to this headline"></a></h2>
 <p>Import the pygamd module from hip libray for the simulations on DCU.</p>
 <blockquote>
 <div><p>Examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">hip_gala</span> <span class="k">as</span> <span class="nn">gala</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">poetry</span> <span class="kn">import</span> <span class="n">cu_gala</span> <span class="k">as</span> <span class="n">gala</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="import-cuda-lib-windows">
+<h2>import cuda lib (Windows)<a class="headerlink" href="#import-cuda-lib-windows" title="Permalink to this headline"></a></h2>
+<p>Import the pygamd module from cuda libray for the simulations on NVIDIA GPU.</p>
+<blockquote>
+<div><p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">poetry</span> <span class="kn">import</span> <span class="n">win_gala</span> <span class="k">as</span> <span class="n">gala</span>
 </pre></div>
 </div>
 </div></blockquote>

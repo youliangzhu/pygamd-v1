@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import molgen
+from poetry import molgen
 
 lx = 6.3
 ly = 6.4
@@ -31,4 +31,4 @@ gen.addMolecule(mol2, 2000)
 gen.setMinimumDistance(0.42)
 gen.setMinimumDistance('C1', 'Qa', 0.6)
 gen.setMinimumDistance('C1', 'Q0', 0.6)
-gen.outPutXml("dppc")
+gen.outPutXML("dppc")

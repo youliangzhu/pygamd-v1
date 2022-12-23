@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import molgen
+from poetry import molgen
 
 lx=30.0
 ly=30.0
@@ -22,5 +22,5 @@ gen=molgen.Generators(lx,ly,lz) # box size
 gen.addMolecule(mol0,1) # molecule type, number of molecules
 gen.addMolecule(mol1,20000) # molecule type, number of molecules
 gen.setMinimumDistance(0.9)# minimum distance between any two particles
-gen.outPutXml("gencon") # output filename
+gen.outPutXML("gencon") # output filename
 

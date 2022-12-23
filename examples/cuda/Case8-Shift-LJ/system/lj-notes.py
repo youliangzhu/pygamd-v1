@@ -1,11 +1,6 @@
 #!/usr/bin/python       #python 脚本声明
-import cu_gala as gala 
-from optparse import OptionParser      #导入option parser模块
- 
-global _options
-parser = OptionParser()
-parser.add_option('--gpu', dest='gpu',help='GPU on which to execute')
-(_options, args) = parser.parse_args() #这四行是解析 --gpu=命令， 得到GPU的id
+from poetry import cu_gala as gala 
+from poetry import _options
 
 filename = 'relax.xml'    
 build_method = gala.XMLReader(filename)  # 利用xml解析模块解读xml文件

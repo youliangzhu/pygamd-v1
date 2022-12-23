@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import molgen
+from poetry import molgen
 
 mol0=molgen.Molecule(1)
 mol0.setParticleTypes("A")
@@ -16,5 +16,5 @@ gen0.addMolecule(mol1, 500)
 gen0.setMinimumDistance("A","A",1.0)
 gen0.setMinimumDistance("A","B",2.0)
 gen0.setMinimumDistance("B","B",3.0)
-gen0.outPutXml("gbinit")
+gen0.outPutXML("gbinit")
 

@@ -1,15 +1,10 @@
 #!/usr/bin/python
-import cu_gala as gala 
-from optparse import OptionParser
- 
-global _options
-parser = OptionParser()
-parser.add_option('--gpu', dest='gpu',help='GPU on which to execute')
-(_options, args) = parser.parse_args()
+from poetry import cu_gala as gala 
+from poetry import _options
  
 filename = 'popg.xml'
 build_method = gala.XMLReader(filename)
-perform_config = gala.PerformConfig( int(_options.gpu))
+perform_config = gala.PerformConfig(_options.gpu)
 all_info = gala.AllInfo(build_method,perform_config)
  
 epsilonr=80.0

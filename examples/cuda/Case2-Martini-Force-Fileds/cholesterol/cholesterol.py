@@ -1,12 +1,7 @@
 #!/usr/bin/python
-import cu_gala as gala 
-import force_field_gala
-from optparse import OptionParser
- 
-global _options
-parser = OptionParser()
-parser.add_option('--gpu', dest='gpu',help='GPU on which to execute')
-(_options, args) = parser.parse_args()
+from poetry import force_field_gala
+from poetry import cu_gala as gala 
+from poetry import _options
  
 filename = 'Equ.xml'
 build_method = gala.XMLReader(filename)

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import molgen
+from poetry import molgen
 import math
 
 er=1.0
@@ -12,5 +12,5 @@ mol0.setChargeFactor(charge)
 gen=molgen.Generators(3.0, 3.0, 3.0)
 gen.addMolecule(mol0, 512)
 gen.setMinimumDistance("OW","OW",0.3)
-gen.outPutXml("water")
+gen.outPutXML("water")
 

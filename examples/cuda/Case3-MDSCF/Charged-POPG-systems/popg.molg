@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import molgen
+from poetry import molgen
 
 popg=molgen.Molecule(12)
 popg.setParticleTypes("L,P,G,G,C,C,C,C,C,D,C,C")#particle type
@@ -34,4 +34,4 @@ gen.addMolecule(popg, 1216)#molecule name, the number of molecules
 gen.addMolecule(ion, 1216)#molecule name, the number of molecules
 gen.addMolecule(water,64448)#molecule name, the number of molecules
 gen.setMinimumDistance(0.1)# the minimum distance for all nonbonded particles
-gen.outPutXml("popg")
+gen.outPutXML("popg")
