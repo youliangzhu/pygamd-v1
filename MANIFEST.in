@@ -1,1 +1,4 @@
 include poetry/*.so
+include poetry/dataTackle
+include poetry/poetry.zip
+include poetry/READ.md

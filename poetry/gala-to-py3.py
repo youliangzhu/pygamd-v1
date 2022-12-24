@@ -71,8 +71,11 @@ for files in os.listdir(curr_path):
                 continue
             elif line.find("sys.path.append") != -1:
                 continue
+            elif line.find("OptionParser") != -1 or line.find("global _options") != -1 or line.find("parser.") != -1:
+                continue
             elif line.find("import galamost") != -1:
-                outgala.write("import cu_gala as gala \n")
+                outgala.write("from poetry import cu_gala as gala\n")
+                outgala.write("from poetry import _options\n")
                 continue
                 
             for j in texrp:
