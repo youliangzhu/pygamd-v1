@@ -19,7 +19,7 @@ An object is defined by "Object" class with the number of particles and shape. O
 
    Head of script::
    
-      import molgen
+      from poetry import molgen
       # imports an extended Python module of molgen.
 	  
    Example for molecule::  
@@ -54,15 +54,20 @@ partially defined in the script.
       # add the bonds.
 	  
 If the configuration of a molecule (including particle positions, types, topology and so on)
-has been completely given in a MST file, we could generate the system by employing "object" to randomaly 
+has been completely given in a MST or XML file, we could generate the system by employing "object" to randomaly 
 place and rotate the molecule.
 
    Example::
    
-      mol1 = molgen.Object("mol1.mst", 65, molgen.Object.Shape.none)
+      mol1 = molgen.Object("mol1.mst", 65, molgen.Shape.none)
       gen=molgen.Generators(30,30,30)
       gen.addMolecule(mol1,20)
       gen.outPutMST("test")
+
+      mol1 = molgen.Object("mol1.xml", 65, molgen.Shape.none)
+      gen=molgen.Generators(30,30,30)
+      gen.addMolecule(mol1,20)
+      gen.outPutXML("test")
 
 Molecule definition
 -------------------
@@ -297,7 +302,7 @@ Objects definition
 	  
    Example::
    
-     mol0 = molgen.Object("sphere.MST", 65, molgen.Object.Shape.none)
+     mol0 = molgen.Object("sphere.MST", 65, molgen.Shape.none)
      # initializes an object by the reading file (containing 60 particles), 
      # the number of particles, and object shape.
      mol0.setParticleTypes("A*5")

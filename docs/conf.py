@@ -60,7 +60,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'PYGAMD'
-copyright = u'2021, You-Liang Zhu and Zhong-Yuan Lu, ylzhu@pygamd.com'
+copyright = u'2021-2022, You-Liang Zhu and Zhong-Yuan Lu, ylzhu@pygamd.com'
 author = u'You-Liang Zhu'
 
 # The version info for the project you're documenting, acts as replacement for

@@ -105,8 +105,7 @@ and box size in Z direction as 0.0 is necessary. Such as::
 
 
     #!/usr/bin/python
-    import sys
-    import molgen
+    from poetry import molgen
     
     mol=molgen.Molecule(4)
     mol.setParticleTypes("A,B,B,B")
@@ -121,6 +120,6 @@ and box size in Z direction as 0.0 is necessary. Such as::
     gen.addMolecule(mol, 2000)
     gen.setDimension(2)
     gen.setMinimumDistance(1.0)
-    gen.outPutXml("pn2d")
+    gen.outPutXML("pn2d")
 
   

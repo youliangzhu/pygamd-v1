@@ -58,8 +58,8 @@ All information
    Example::
    
       filename = 'PE-1000.xml'
-      build_method = gala.XmlReader(filename)
+      build_method = gala.XMLReader(filename)
       perform_config = gala.PerformConfig(_options.gpu)
-      all_info = gala.AllInfo(build_method,perform_config)
+      all_info = gala.AllInfo(build_method, perform_config)
 
 
