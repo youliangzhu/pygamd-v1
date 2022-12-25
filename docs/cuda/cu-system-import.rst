@@ -19,7 +19,7 @@ Import the pygamd module from hip libray for the simulations on DCU.
 
    Examples::
 
-      from poetry import cu_gala as gala
+      from poetry import hip_gala as gala
 
 
 import cuda lib (Windows)
