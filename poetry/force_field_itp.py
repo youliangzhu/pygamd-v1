@@ -1,4 +1,4 @@
-from poetry import cu_gala as gala 
+from poetry import cu_gala as gala
 import math
 import string
 
@@ -34,7 +34,7 @@ def parseNonbondParams(filename, atom_types):
 	read_nonbond_params=False
 	read_pairtypes=False
 	read_properties=False	
-	itp=file(filename)
+	itp=open(filename)
 	for line in itp:
 		if line.find("#define") != -1:
 			lin=line.strip('\n')
@@ -72,7 +72,7 @@ def parseNonbondParams(filename, atom_types):
 					findd=True
 					break
 			if not findd:
-				print la[3]
+				print (la[3])
 				raise RuntimeError('Error interaction not found in define!')
 
 		if read_pairtypes and len(la)==5 and existType(la[0], atom_types) and existType(la[1], atom_types):
@@ -132,7 +132,7 @@ bond_params = []
 def parseBondParams(filename, bond_types):
 	read_bond_params = False
 	bond_types_file = []
-	itp=file(filename)
+	itp=open(filename)
 	for line in itp:
 		if line.find("#define") != -1:
 			lin=line.strip('\n')
@@ -171,7 +171,7 @@ def parseBondParams(filename, bond_types):
 				bond_params.append([btf[3], btf[4], btf[2]])
 				break
 		if not findd:
-			print bt
+			print (bt)
 			raise RuntimeError('Error bond parameter not found in itp file!')
 	itp.close()
 	ffb = open("bond-save.force_field","w")
@@ -183,7 +183,7 @@ angle_params = []
 def parseAngleParams(filename, angle_types):
 	read_angle_params = False
 	angle_types_file = []
-	itp=file(filename)
+	itp=open(filename)
 	for line in itp:
 		if line.find("#define") != -1:
 			lin=line.strip('\n')
@@ -230,7 +230,7 @@ def parseAngleParams(filename, angle_types):
 					angle_params.append([atf[4], atf[5], atf[6], atf[7], atf[3]])
 				break
 		if not findd:
-			print at
+			print (at)
 			raise RuntimeError('Error angle parameter not found in itp file!')
 	itp.close()
     
@@ -247,7 +247,7 @@ def parseDihedralParams(filename, dihedral_types):
 	read_dihedral_params = False
 	dihedral_types_file_read = []
 	dihedral_types_file = []
-	itp=file(filename)
+	itp=open(filename)
 	for line in itp:
 		if line.find("#define") != -1:
 			lin=line.strip('\n')
@@ -313,7 +313,7 @@ def parseDihedralParams(filename, dihedral_types):
 				dihedral_params.append(atf[4:]+[atf[4]])
 				break
 		if not findd:
-			print at
+			print (at)
 			raise RuntimeError('Error dihedral parameter not found in itp file!')
 	itp.close()	
 	ffd = open("dihedral-save.force_field","w")
@@ -395,11 +395,11 @@ def DihedralForceAmberCosine(all_info, filename):
 	for i in range(0, len(dihedral_type)):
 		dp = dihedral_params[i]
 		if int(dp[0])==4:
-#			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "gala.DihedralForceAmberCosine.Prop.improper"
-			dfh.setParams(dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.DihedralForceAmberCosine.Prop.improper)
+#			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "gala.AmberProp.improper"
+			dfh.setParams(dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.AmberProp.improper)
 		elif int(dp[0])==9:
 #			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "gala.DihedralForceAmberCosine.Prop.proper"
-			dfh.setParams(dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.DihedralForceAmberCosine.Prop.proper) 
+			dfh.setParams(dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.AmberProp.proper) 
 		else:
 			raise RuntimeError('Error dihedral function type is not 4 or 9!')
 	return dfh	
@@ -411,7 +411,7 @@ def DihedralForceRyckaertBellemans(all_info, filename):
 	parseDihedralParams(filename, dihedral_type)
 	for i in range(0, len(dihedral_type)):
 		dp = dihedral_params[i]
-#		print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6])), "gala.DihedralForceAmberCosine.Prop.proper"
+#		print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6])), "gala.AmberProp.proper"
 		dfh.setParams(dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]))
 	return dfh	
 	

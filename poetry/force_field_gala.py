@@ -1,4 +1,4 @@
-from poetry import cu_gala as gala 
+from poetry import cu_gala as gala
 import math
 
 def exist(line ,name):
@@ -10,7 +10,7 @@ nonbonded_params=[]
 def parseNonbondParams(filename, atom_type):
 	read_nonbond_params=False
 	nonbond_params_file=[]
-	gala=file(filename)
+	gala=open(filename)
 	for line in gala:		
 		line1=""
 		for cha in line:
@@ -45,7 +45,7 @@ bond_params = []
 def parseBondParams(filename, bond_type):
 	read_bond_params=False
 	bond_params_file=[]
-	gala=file(filename)
+	gala=open(filename)
 	for line in gala:		
 		line1=""
 		for cha in line:
@@ -79,7 +79,7 @@ angle_params = []
 def parseAngleParams(filename, angle_type):
 	read_angle_params=False
 	angle_params_file=[]
-	gala=file(filename)
+	gala=open(filename)
 	for line in gala:		
 		line1=""
 		for cha in line:
@@ -113,7 +113,7 @@ dihedral_params = []
 def parseDihedralParams(filename, dihedral_type):
 	read_dihedral_params=False
 	dihedral_params_file=[]
-	gala=file(filename)
+	gala=open(filename)
 	for line in gala:		
 		line1=""
 		for cha in line:
@@ -147,7 +147,7 @@ constraint_params = []
 def parseConstraintParams(filename, constraint_type):
 	read_constraint_params=False
 	constraint_params_file=[]
-	gala=file(filename)
+	gala=open(filename)
 	for line in gala:		
 		line1=""
 		for cha in line:
@@ -181,7 +181,7 @@ vsite_params = []
 def parseVsiteParams(filename, vsite_type):
 	read_vsite_params=False
 	vsite_params_file=[]
-	gala=file(filename)
+	gala=open(filename)
 	for line in gala:		
 		line1=""
 		for cha in line:
@@ -216,7 +216,7 @@ def parseAHParams(filename, atom_type):
 	read_ah_params=False
 	ah_params_file=[]
 	ah_params_file1=[]
-	gala=file(filename)
+	gala=open(filename)
 	for line in gala:		
 		line1=""
 		for cha in line:
@@ -257,7 +257,7 @@ wf_params = []
 def parseWFParams(filename, atom_type):
 	read_wf_params=False
 	wf_params_file=[]
-	gala=file(filename)
+	gala=open(filename)
 	for line in gala:		
 		line1=""
 		for cha in line:
@@ -379,10 +379,10 @@ def DihedralForceAmberCosine(all_info, filename):
 		dp = dihedral_params[i]
 		if int(dp[9])==4:
 #			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "gala.DihedralForceAmberCosine.Prop.improper"
-			dfh.setParams(dp[0], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.DihedralForceAmberCosine.Prop.improper)
+			dfh.setParams(dp[0], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.AmberProp.improper)
 		elif int(dp[9])==9:
 #			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "gala.DihedralForceAmberCosine.Prop.proper"
-			dfh.setParams(dp[0], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.DihedralForceAmberCosine.Prop.proper) 
+			dfh.setParams(dp[0], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.AmberProp.proper) 
 		else:
 			raise RuntimeError('Error dihedral function type is not 4 or 9!')
 	return dfh	
@@ -413,7 +413,7 @@ def DihedralForceHarmonic(all_info, filename):
 			angle=float(dp[1])
 			if angle<0.0:
 				angle += 360.0
-			dfh.setParams(dp[0], float(dp[2]), angle, gala.DihedralForceHarmonic.Prop.improper)
+			dfh.setParams(dp[0], float(dp[2]), angle, gala.HarmonicProp.improper)
 		else:
 			raise RuntimeError('Error dihedral function type is not 2!')
 	return dfh		
@@ -434,9 +434,9 @@ def Vsite(all_info, filename):
 	for i in range(0, len(vsite_params)):
 		vp = vsite_params[i]
 		if int(vp[4])==1:
-			vs.setParams(vp[0], float(vp[1]), float(vp[2]), float(vp[3]), gala.Vsite.VST.v3)
+			vs.setParams(vp[0], float(vp[1]), float(vp[2]), float(vp[3]), gala.VST.v3)
 		elif int(vp[4])==4:
-			vs.setParams(vp[0], float(vp[1]), float(vp[2]), float(vp[3]), gala.Vsite.VST.v3out)
+			vs.setParams(vp[0], float(vp[1]), float(vp[2]), float(vp[3]), gala.VST.v3out)
 		else:
 			raise RuntimeError('Error Vsite function type is not 1 and 4!')			
 	return vs			

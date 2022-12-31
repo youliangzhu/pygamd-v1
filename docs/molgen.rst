@@ -63,7 +63,7 @@ place and rotate the molecule.
       gen=molgen.Generators(30,30,30)
       gen.addMolecule(mol1,20)
       gen.outPutMST("test")
-
+      or
       mol1 = molgen.Object("mol1.xml", 65, molgen.Shape.none)
       gen=molgen.Generators(30,30,30)
       gen.addMolecule(mol1,20)

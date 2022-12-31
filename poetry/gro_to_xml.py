@@ -289,6 +289,7 @@ pairs_all=[]
 virtual_all=[]
 angle_all=[]
 dihedral_all=[]
+exclusion_all=[]
 alia = []
 for i in Molecules:
     print (str(i))
@@ -302,6 +303,7 @@ for i in Molecules:
     read_virtual=False
     read_angle=False
     read_dihedral=False
+    read_exclusion=False
     atom=[]
     bond=[]
     constraint=[]
@@ -309,6 +311,7 @@ for i in Molecules:
     virtual=[]  
     angle=[]
     dihedral=[]
+    exclusion=[]
     for filename in ItpFiles:
         itp=open(filename)
         for line in itp:
@@ -337,6 +340,7 @@ for i in Molecules:
                 read_virtual=False
                 read_angle=False
                 read_dihedral=False
+                read_exclusion=False
             if read_atom and len(la)>=7:
                 atom.append(la)
                 # print la
@@ -424,6 +428,14 @@ for i in Molecules:
                     print(atom[int(la[0])-1][1],atom[int(la[1])-1][1],atom[int(la[2])-1][1] ,atom[int(la[3])-1][1],la[4])
                     print(nametotype[atom[int(la[0])-1][1]], nametotype[atom[int(la[1])-1][1]], nametotype[atom[int(la[2])-1][1]], nametotype[atom[int(la[3])-1][1]], la[4])
                     raise RuntimeError('Error dihedral not found in forcefield!')
+                    
+            if read_exclusion:
+                for pj in range(1, len(la)):
+                    if int(la[0])>0 and int(la[pj]) >0:
+                        exclusion.append([int(la[0])-1, int(la[pj])-1])
+                    else:
+                        raise RuntimeError('Error exclusion index!')
+                    
                 
             if read_atom and len(la)<7:
                 read_atom = False
@@ -439,6 +451,8 @@ for i in Molecules:
                 read_angle = False
             if read_dihedral and len(la)<5:
                 read_dihedral = False
+            if read_exclusion and len(la)<2:
+                read_exclusion = False
             if read_molecule and exist(nospace, "[moleculetype]"):
                 read_molecule = False
             
@@ -451,7 +465,7 @@ for i in Molecules:
                 read_atom=False
             if read_molecule and exist(nospace, "[pairs]"):
                 read_bond=False
-                read_pair =True
+                read_pair=True
             if read_molecule and exist(nospace, "[constraints]"):
                 read_constraints=True
                 read_atom=False
@@ -467,12 +481,16 @@ for i in Molecules:
                 read_virtual=False
                 read_constraints=False
                 read_atom=False
-                read_bond=False 
-
-                read_constraints=False              
             if read_molecule and exist(nospace, "[dihedrals]"):
                 read_dihedral=True
                 read_angle=False
+            if read_molecule and exist(nospace, "[exclusions]"):
+                read_exclusion=True
+                read_bond=False
+                read_angle=False
+                read_virtual=False
+                read_constraints=False
+                read_dihedral=False
 
         itp.close()
     atom_all.append(atom)
@@ -481,6 +499,7 @@ for i in Molecules:
     virtual_all.append(virtual) 
     angle_all.append(angle)
     dihedral_all.append(dihedral)
+    exclusion_all.append(exclusion)
 # print (alia)
 
 #---------------
@@ -1176,5 +1195,29 @@ if len(dihedral_type)>0:
     
 ff.close()
 
+
+
+#---------------
+# out put exclusion file
+#---------------        
+count=0
+for i in range(0, len(Molecules)):
+    eli = exclusion_all[i]
+    count += len(eli)
+if count > 0:
+    counta = 0
+    el = open("exlusion_list.dat", "w")
+    print("output to exlusion_list.dat")
+    for i in range(0, len(Molecules)):
+        eli = exclusion_all[i]
+        mol_num=int(Molecules[i][1])
+        atom =atom_all_new[i]
+        np=len(atom) 
+        # print(Molecules[i][0], Molecules[i][1], len(eli))
+        for j in range(0, mol_num):
+            for k in eli:
+                el.write(str(k[0]+counta)+" "+str(k[1]+counta)+"\n")
+            counta += np
+    el.close()
 print ("success!")
             
