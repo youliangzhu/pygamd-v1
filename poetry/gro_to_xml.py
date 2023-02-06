@@ -1206,8 +1206,8 @@ for i in range(0, len(Molecules)):
     count += len(eli)
 if count > 0:
     counta = 0
-    el = open("exlusion_list.dat", "w")
-    print("output to exlusion_list.dat")
+    el = open("exclusion_list.dat", "w")
+    print("output to exclusion_list.dat")
     for i in range(0, len(Molecules)):
         eli = exclusion_all[i]
         mol_num=int(Molecules[i][1])
