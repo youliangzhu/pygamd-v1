@@ -4,15 +4,16 @@ import math
 import re
 import platform
 
-curr_path = os.path.abspath(__file__)
-node = "/"
-plat = platform.system().lower()
-if plat == 'windows':
-	print('Runing on windows')
-	node = '\\'
-p=curr_path.rfind(node)
-if p!=-1:
-	curr_path = curr_path[0:p]
+#curr_path = os.path.abspath(__file__)
+curr_path = os.getcwd()
+# node = "/"
+# plat = platform.system().lower()
+# if plat == 'windows':
+	# print('Runing on windows')
+	# node = '\\'
+# p=curr_path.rfind(node)
+# if p!=-1:
+	# curr_path = curr_path[0:p]
 
 texrp = [
 ['XmlReader', 'XMLReader'],
@@ -55,6 +56,7 @@ texrp = [
 ['NvtRigid', 'NVTRigid'],
 ['galamost', 'gala'],
 ['addExclusionsFromBodys', 'addExclusionsFromBodies'],
+['outPutXml', 'outPutXML'],
 ]
 
 
@@ -83,4 +85,24 @@ for files in os.listdir(curr_path):
                 line = strinfo.sub(j[1],line)
         #       print(line, j)
             outgala.write(line)
-    
+    elif files.find(".molg") != -1:
+        infile = files
+        outfile = files[0:files.find(".molg")]+"_new.molg"
+        print("convert ", infile," to " ,outfile)
+        ingala = open(infile)
+        outgala = open(outfile,"w")
+        
+        for line in ingala:
+            if line.find("import sys") != -1:
+                continue
+            elif line.find("sys.path.append") != -1:
+                continue
+            elif line.find("import molgen") != -1:
+                outgala.write("from poetry import molgen\n")
+                continue
+                
+            for j in texrp:
+                strinfo = re.compile(j[0])
+                line = strinfo.sub(j[1],line)
+        #       print(line, j)
+            outgala.write(line)

@@ -55,6 +55,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Data output</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#collective-information">Collective information</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mst-dump">MST dump</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xml-dump">XML dump</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="system-group.html">Group</a></li>
@@ -159,6 +160,34 @@
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dm</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">dump</span><span class="o">.</span><span class="n">mst</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s1">&#39;p.mst&#39;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dm</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="xml-dump">
+<h2>XML dump<a class="headerlink" href="#xml-dump" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="dump.xml">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dump.</span></span><span class="sig-name descname"><span class="pre">xml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dump.xml" title="Permalink to this definition"></a></dt>
+<dd><p>Constructor of an object to dump XML files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>info</strong> – system information.</p></li>
+<li><p><strong>group</strong> – a group of particles.</p></li>
+<li><p><strong>file</strong> – the name of output file.</p></li>
+<li><p><strong>period</strong> – the period of data output.</p></li>
+<li><p><strong>properties</strong> – the properties for output, candidates are
+‘position’, ‘type’, ‘velocity’, ‘mass’, ‘image’, ‘force’,
+‘potential’, ‘virial’, ‘bond’, ‘angle’, ‘dihedral’</p></li>
+<li><p><strong>split</strong> – if the trajectory file is splited into separated snapshot files</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dx</span> <span class="o">=</span> <span class="n">pygamd</span><span class="o">.</span><span class="n">dump</span><span class="o">.</span><span class="n">xml</span><span class="p">(</span><span class="n">info</span><span class="o">=</span><span class="n">mst</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dx</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>

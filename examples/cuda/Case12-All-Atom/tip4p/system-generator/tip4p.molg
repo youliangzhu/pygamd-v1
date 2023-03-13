@@ -5,7 +5,7 @@ import math
 er=1.0
 gama= 138.935
 charge = math.sqrt(gama/er)
-mol0=molgen.Object("tip4p-one.xml", 4, molgen.Object.Shape.none)
+mol0=molgen.Object("tip4p-one.xml", 4, molgen.Shape.none)
 mol0.setChargeFactor(charge)
 
 
