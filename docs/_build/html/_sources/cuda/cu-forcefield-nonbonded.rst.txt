@@ -436,11 +436,11 @@ Script commands
    :param AllInfo all_info: The system information.
    :param NeighborList nlist: The neighbor list.  
 
-   .. py:function:: setParams(string type1, string type2, float param0, float param1, float param2, float r_cut, Func function)
+   .. py:function:: setParams(string type1, string type2, float param0, float param1, float param2, float r_cut, PairFunc function)
    
       specifies the interaction and its parameters with type1, type2, parameter0, parameter1, parameter2, cut-off radius, and potential type.
    
-   .. py:function:: setShiftParams(string type1, string type2, float param0, float param1, float param2, float r_cut, float r_shift, Func function)
+   .. py:function:: setShiftParams(string type1, string type2, float param0, float param1, float param2, float r_cut, float r_shift, PairFunc function)
    
       specifies the interaction and its parameters with type1, type2, parameter0, parameter1, parameter2, cut-off radius, shift radius, and potential type.
       This method employs a shift function introduced by GROMACS by which potential and force are smoothed at the boundaries.
@@ -460,8 +460,8 @@ Script commands
    Example::
    
       pair = gala.PairForce(all_info, neighbor_list)
-      pair.setParams('A', 'A', 100.0, 0.0, 0.0, 1.0, gala.PairForce.Func.harmonic)
-      pair.setParams('A', 'B',  10.0, 1.0, 0.0, 1.0, gala.PairForce.Func.gauss)
-      pair.setParams('B', 'B',  10.0, 1.0,   2, 1.0, gala.PairForce.Func.ipl)
+      pair.setParams('A', 'A', 100.0, 0.0, 0.0, 1.0, gala.PairFunc.harmonic)
+      pair.setParams('A', 'B',  10.0, 1.0, 0.0, 1.0, gala.PairFunc.gauss)
+      pair.setParams('B', 'B',  10.0, 1.0,   2, 1.0, gala.PairFunc.ipl)
       app.add(pair)	 
  

@@ -54,9 +54,13 @@ texrp = [
 ['NptRigid', 'NPTRigid'],
 ['NveRigid', 'NVERigid'],
 ['NvtRigid', 'NVTRigid'],
-['galamost', 'gala'],
+['galamost.', 'gala.'],
 ['addExclusionsFromBodys', 'addExclusionsFromBodies'],
 ['outPutXml', 'outPutXML'],
+['molgen.Object.Shape', 'molgen.Shape'],
+['molgen.Protein.Model', 'molgen.Model'],
+['molgen.DNAchain.Strand', 'molgen.Strand'],
+['PairForce.Fun', 'PairFun'],
 ]
 
 

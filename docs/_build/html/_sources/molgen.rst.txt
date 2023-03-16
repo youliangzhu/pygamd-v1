@@ -288,7 +288,7 @@ Objects definition
    :param int np: The number of particles.   	  
    :param Shape shape: The shape of object.
    
-.. py:class:: Object(string filename, unsigned int, Object::Shape)
+.. py:class:: Object(string filename, unsigned int, Shape)
 
    The constructor of an object by reading partial data from a file with file name, the number of particles, and shape (the candidates are "none" and "sphere").
 	  
