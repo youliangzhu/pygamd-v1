@@ -11,7 +11,7 @@ dt = 0.001
 app = gala.Application(all_info, dt)  # build up an application with system information and integration time-step
 
 neighbor_list = gala.NeighborList(all_info, 1.12246 ,0.2)#(,rcut,rbuffer)
-dpdThermoLJForce = gala.DpdThermoLJForce(all_info, neighbor_list, 1.12246 ,12371)#(,,rcut,seed for RNG)
+dpdThermoLJForce = gala.DPDThermoLJForce(all_info, neighbor_list, 1.12246 ,12371)#(,,rcut,seed for RNG)
 dpdThermoLJForce.setSigma(3.0) # the parameter sigma for DPD thermostat
 dpdThermoLJForce.setParams('A', 'A' ,0.0 ,1.0 ,1.0)#(type,type,epsilon,sigma,alpha)
 dpdThermoLJForce.setParams('A', 'B' ,0.0 ,1.0 ,1.0)#(type,type,epsilon,sigma,alpha)
