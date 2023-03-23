@@ -18,7 +18,7 @@ gen0.addMolecule(mol1, 1)
 gen0.setMinimumDistance(0.42)
 gen0.outPutXml("dppc")  # generate 1 molecule
 
-mol1 = molgen.Object("dppc.xml", 12, molgen.Object.Shape.none)# all particles read from the file
+mol1 = molgen.Object("dppc.xml", 12, molgen.Shape.none)# all particles read from the file
 mol2=molgen.Molecule(1)#number
 mol2.setParticleTypes("W")
 mol2.setMass(72.0)

@@ -13,7 +13,7 @@ app = gala.Application(all_info, dt)
 # Build neighbor list object
 neighbor_list = gala.NeighborList(all_info, 4.0, 0.8)
 # neighbor_list.setDataReproducibility() #Data Reproducibility 
-neighbor_list.addExclusionsFromBodys()
+neighbor_list.addExclusionsFromBodies()
 
 # build ani force calcualte object
 pbgb = gala.PBGBForce(all_info, neighbor_list)
