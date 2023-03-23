@@ -15,9 +15,9 @@ neighbor_list.addExclusionsFromBonds()
 neighbor_list.addExclusionsFromAngles()
 
 pf = gala.PairForce(all_info, neighbor_list)
-pf.setParams('A', 'A',  25.0,  0.0, 0.0, 1.0, gala.PairForce.Func.harmonic) # A*epsilon, sigma, n,rcut
-pf.setParams('B', 'B',  25.0,  0.0, 0.0, 1.0, gala.PairForce.Func.harmonic) # A*epsilon, sigma, n,rcut
-pf.setParams('A', 'B',  25.0,  0.0, 0.0, 1.0, gala.PairForce.Func.harmonic) # A*epsilon, sigma, n,rcut
+pf.setParams('A', 'A',  25.0,  0.0, 0.0, 1.0, gala.PairFunc.harmonic) # A*epsilon, sigma, n,rcut
+pf.setParams('B', 'B',  25.0,  0.0, 0.0, 1.0, gala.PairFunc.harmonic) # A*epsilon, sigma, n,rcut
+pf.setParams('A', 'B',  25.0,  0.0, 0.0, 1.0, gala.PairFunc.harmonic) # A*epsilon, sigma, n,rcut
 app.add(pf)
 
 bf = gala.BondForceHarmonic(all_info)

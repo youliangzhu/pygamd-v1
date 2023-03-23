@@ -57,10 +57,13 @@ texrp = [
 ['galamost.', 'gala.'],
 ['addExclusionsFromBodys', 'addExclusionsFromBodies'],
 ['outPutXml', 'outPutXML'],
+['Vsite.VST', 'VST'],
 ['molgen.Object.Shape', 'molgen.Shape'],
 ['molgen.Protein.Model', 'molgen.Model'],
 ['molgen.DNAchain.Strand', 'molgen.Strand'],
 ['PairForce.Fun', 'PairFun'],
+['PerformConfig(int(_options.gpu))', 'PerformConfig(_options.gpu)'],
+['PerformConfig( int(_options.gpu))', 'PerformConfig(_options.gpu)'],
 ]
 
 

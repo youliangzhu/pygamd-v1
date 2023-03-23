@@ -4,7 +4,7 @@ from poetry import _options
 
 filename = 'patchyinit.xml'
 build_method = gala.XMLReader(filename)
-perform_config = gala.PerformConfig( int(_options.gpu))
+perform_config = gala.PerformConfig(_options.gpu)
 all_info = gala.AllInfo(build_method,perform_config)
 
 dt = 0.002

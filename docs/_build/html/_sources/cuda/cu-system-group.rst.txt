@@ -33,7 +33,11 @@ Particle set
   
    .. py:function:: ParticleSet combine(ParticleSet group1, ParticleSet group2)
    
-      combines two particle groups into one.	  
+      combines two particle groups into one.
+
+   .. py:function:: getNumMembers()
+   
+      return the number of group members .
    
    Example::
    

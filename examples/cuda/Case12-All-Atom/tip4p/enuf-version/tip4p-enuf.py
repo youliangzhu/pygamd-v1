@@ -39,7 +39,7 @@ enuf.setParams(kappa, 2.0, 2, 32, 32, 32) #  alpha, sigma, precision, grid numbe
 app.add(enuf)
 
 vs = gala.Vsite(all_info)#virtual interaction sites
-vs.setParams('v', 0.128012065, 0.128012065, 0.0, gala.Vsite.VST.v3 )
+vs.setParams('v', 0.128012065, 0.128012065, 0.0, gala.VST.v3 )
 app.add(vs)
 
 Temperature = 298.000  #k

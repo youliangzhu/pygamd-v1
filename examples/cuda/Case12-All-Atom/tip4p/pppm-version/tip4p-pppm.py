@@ -39,7 +39,7 @@ pppm.setParams(0.12, 4, 0.9) #grid space, spread order, rcut in real space
 app.add(pppm)
 
 vs = gala.Vsite(all_info)#virtual interaction sites
-vs.setParams('v', 0.128012065, 0.128012065, 0.0, gala.Vsite.VST.v3 )
+vs.setParams('v', 0.128012065, 0.128012065, 0.0, gala.VST.v3 )
 app.add(vs)
 
 Temperature = 298.000  #k
