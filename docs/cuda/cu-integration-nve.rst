@@ -4,8 +4,8 @@ NVE ensemble
 **Overview**
 
 ========================   =====================
-:ref:`nve`                 :py:class:`Nve`
-:ref:`nve-rigid`           :py:class:`NveRigid`
+:ref:`nve`                 :py:class:`NVE`
+:ref:`nve-rigid`           :py:class:`NVERigid`
 :ref:`nve-rigid-tunable`   :py:class:`TranRigid`
 ========================   =====================
 
@@ -71,8 +71,8 @@ NVE for rigid body with tunable freedoms
 	  
    Example::
    
-      bdrigidnvt = gala.TranRigid (all_info, bgroup)
-      bdrigidnvt.setTraDimension(True, True, True)
-      bdrigidnvt.setRotDimension(True, True, True)
-      app.add(bdrigidnvt)
+      rigidnve = gala.TranRigid (all_info, bgroup)
+      rigidnve.setTraDimension(True, True, True)
+      rigidnve.setRotDimension(True, True, True)
+      app.add(rigidnve)
 	  

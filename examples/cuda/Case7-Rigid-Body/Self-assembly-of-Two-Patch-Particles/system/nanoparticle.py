@@ -22,8 +22,8 @@ app.add(lj)
 
 # Brownian dynamics for rigid bodies
 bgroup = gala.ParticleSet(all_info, 'body') # the group of the body particles
-bdnvt_rigid = gala.BDNVTRigid(all_info, bgroup, 0.5, 123) # temperature, seed for random number generator 
-app.add(bdnvt_rigid)
+nvt_rigid = gala.LangevinNVTRigid(all_info, bgroup, 0.5, 123) # temperature, seed for random number generator 
+app.add(nvt_rigid)
 
 group = gala.ParticleSet(all_info,'all') # all particles 
 comp_info = gala.ComputeInfo(all_info, group) # calculating system informations, such as temperature, pressure, and momentum

@@ -31,7 +31,7 @@ group = gala.ParticleSet(all_info, 'all')
 comp_info = gala.ComputeInfo(all_info, group)
 
 T=1.8
-Bd = gala.BDNVT(all_info, group, T, 123)#(,,temperature, seed)
+Bd = gala.LangevinNVT(all_info, group, T, 123)#(,,temperature, seed)
 Bd.setGamma('A', 1.0)#(,gama)
 Bd.setGamma('B', 1.0)#(,gama)
 Bd.setGamma('C', 1.0)#(,gama)

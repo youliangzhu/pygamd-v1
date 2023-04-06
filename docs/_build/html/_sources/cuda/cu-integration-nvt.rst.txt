@@ -3,14 +3,14 @@ NVT ensemble
 
 **Overview**
 
-====================   =========================
-:ref:`nh-nvt`          :py:class:`NoseHooverNvt`
-:ref:`berendsen-nvt`   :py:class:`BerendsenNvt`
-:ref:`andersen-nvt`    :py:class:`AndersenNvt`
-:ref:`bd-nvt`          :py:class:`BdNvt`
-:ref:`nvt-rigid`       :py:class:`NvtRigid`
-:ref:`bd-nvt-rigid`    :py:class:`BdNvtRigid`
-====================   =========================
+=========================      ============================
+:ref:`nh-nvt`                  :py:class:`NoseHooverNVT`
+:ref:`berendsen-nvt`           :py:class:`BerendsenNVT`
+:ref:`andersen-nvt`            :py:class:`AndersenNVT`
+:ref:`langevin-nvt`            :py:class:`LangevinNVT`
+:ref:`nvt-rigid`               :py:class:`NVTRigid`
+:ref:`langevin-nvt-rigid`      :py:class:`LangevinNVTRigid`
+=========================      ============================
 
 
 .. _nh-nvt:
@@ -94,9 +94,9 @@ Andersen thermostat
       an = gala.AndersenNVT(all_info,group,1.0,10.0, 12345)
       app.add(an)
 
-.. _bd-nvt:	  
+.. _langevin-nvt:	  
 	  
-Brownian dynamic thermostat
+Langevin dynamic thermostat
 ---------------------------
 
 Description:
@@ -119,9 +119,9 @@ Description:
     the random force is chosen via the fluctuation-dissipation theorem to be consistent with the specified drag and temperature, :math:`T`.
     When :math:`kT=0`, the random force :math:`\vec{F}_\mathrm{R}=0`.
 
-.. py:class:: BDNVT(all_info, group, T, seed)
+.. py:class:: LangevinNVT(all_info, group, T, seed)
 
-   The constructor of a Brownian NVT thermostat object for a group of particles.
+   The constructor of a Langevin NVT thermostat object for a group of particles.
 	  
    :param AllInfo all_info: The system information.
    :param ParticleSet group: The group of particles.	
@@ -147,8 +147,8 @@ Description:
    Example::
    
       group = gala.ParticleSet(all_info, 'all')
-      bdnvt = gala.BDNVT(all_info, group, 1.0, 123)
-      app.add(bdnvt)
+      lnvt = gala.LangevinNVT(all_info, group, 1.0, 123)
+      app.add(lnvt)
 
 .. _nvt-rigid:
 
@@ -178,16 +178,16 @@ NVT for rigid body
       rigidnvt = gala.NVTRigid(all_info, bgroup, 1.0, 10.0)
       app.add(rigidnvt)
 
-.. _bd-nvt-rigid:	  
+.. _langevin-nvt-rigid:	  
 	  
-Brownian dynamic for rigid body
+Langevin dynamic for rigid body
 -------------------------------
 
-Please see :ref:`bd-nvt` for the theory.
+Please see :ref:`langevin-nvt` for the theory.
 
-.. py:class:: BDNVTRigid(all_info, group, T, seed)
+.. py:class:: LangevinNVTRigid(all_info, group, T, seed)
 
-   The constructor of a Brownian NVT thermostat object for rigid bodies.
+   The constructor of a Langevin NVT thermostat object for rigid bodies.
 	  
    :param AllInfo all_info: The system information.
    :param ParticleSet group: The group of particles.	
@@ -196,11 +196,11 @@ Please see :ref:`bd-nvt` for the theory.
 
    .. py:function:: setGamma(float gamma)
    
-      specifies the gamma of Brownian method with a constant value.
+      specifies the gamma of Langevin method with a constant value.
 	  
    .. py:function:: setGamma(const std::string & type, float gamma)
    
-      specifies the gamma of Brownian method of a particle type.
+      specifies the gamma of Langevin method of a particle type.
 	  
    .. py:function:: setT(float T)
    
@@ -213,5 +213,5 @@ Please see :ref:`bd-nvt` for the theory.
    Example::
    
       bgroup = gala.ParticleSet(all_info, 'body')
-      bdrigidnvt = gala.BDNVTRigid(all_info, bgroup, 1.0, 123)
-      app.add(bdrigidnvt)
+      lrigidnvt = gala.LangevinNVTRigid(all_info, bgroup, 1.0, 123)
+      app.add(lrigidnvt)

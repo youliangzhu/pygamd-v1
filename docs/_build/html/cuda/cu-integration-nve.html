@@ -120,10 +120,10 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nve"><span class="std std-ref">NVE thermostat</span></a></p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">Nve</span></code></p></td>
+<td><p><a class="reference internal" href="#NVE" title="NVE"><code class="xref py py-class docutils literal notranslate"><span class="pre">NVE</span></code></a></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#nve-rigid"><span class="std std-ref">NVE for rigid body</span></a></p></td>
-<td><p><code class="xref py py-class docutils literal notranslate"><span class="pre">NveRigid</span></code></p></td>
+<td><p><a class="reference internal" href="#NVERigid" title="NVERigid"><code class="xref py py-class docutils literal notranslate"><span class="pre">NVERigid</span></code></a></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#nve-rigid-tunable"><span class="std std-ref">NVE for rigid body with tunable freedoms</span></a></p></td>
 <td><p><a class="reference internal" href="#TranRigid" title="TranRigid"><code class="xref py py-class docutils literal notranslate"><span class="pre">TranRigid</span></code></a></p></td>
@@ -209,10 +209,10 @@
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bdrigidnvt</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">TranRigid</span> <span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">bgroup</span><span class="p">)</span>
-<span class="n">bdrigidnvt</span><span class="o">.</span><span class="n">setTraDimension</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-<span class="n">bdrigidnvt</span><span class="o">.</span><span class="n">setRotDimension</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bdrigidnvt</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rigidnve</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">TranRigid</span> <span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">bgroup</span><span class="p">)</span>
+<span class="n">rigidnve</span><span class="o">.</span><span class="n">setTraDimension</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">rigidnve</span><span class="o">.</span><span class="n">setRotDimension</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rigidnve</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>

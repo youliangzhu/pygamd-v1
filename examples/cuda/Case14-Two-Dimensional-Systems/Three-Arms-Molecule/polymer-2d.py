@@ -33,9 +33,8 @@ app.add(af)
 group = gala.ParticleSet(all_info,'all')
 comp_info = gala.ComputeInfo(all_info, group)
 
-
 T = 1.0                                    #reduced unit
-bd=gala.BDNVT(all_info, group, T, 123) # all_info, group, T, seed
+bd=gala.LangevinNVT(all_info, group, T, 123) # all_info, group, T, seed
 app.add(bd)
 
 sort_method = gala.Sort(all_info)

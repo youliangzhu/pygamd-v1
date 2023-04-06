@@ -4,8 +4,8 @@ NPT ensemble
 **Overview**
 
 ===================   ====================
-:ref:`andersen-npt`   :py:class:`Npt`
-:ref:`npt-rigid`      :py:class:`NptRigid`
+:ref:`andersen-npt`   :py:class:`NPT`
+:ref:`npt-rigid`      :py:class:`NPTRigid`
 ===================   ====================
 
 .. _andersen-npt:
