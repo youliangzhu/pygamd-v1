@@ -62,6 +62,8 @@ texrp = [
 ['molgen.Protein.Model', 'molgen.Model'],
 ['molgen.DNAchain.Strand', 'molgen.Strand'],
 ['PairForce.Fun', 'PairFun'],
+['Polymerization.Func', 'PolyFunc'],
+['DePolymerization.Func', 'DePolyFunc'],
 ['PerformConfig(int(_options.gpu))', 'PerformConfig(_options.gpu)'],
 ['PerformConfig( int(_options.gpu))', 'PerformConfig(_options.gpu)'],
 ]

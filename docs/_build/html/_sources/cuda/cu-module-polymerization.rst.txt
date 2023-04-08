@@ -52,7 +52,7 @@ Polymerization model
    
       specifies the type of newly generated bonds by reaction.
 
-   .. py:function:: setFuncReactRule(bool switch, float K, float r_0, float b_0, float epsilon0, Func function)
+   .. py:function:: setFuncReactRule(bool switch, float K, float r_0, float b_0, float epsilon0, PolyFunc function)
    
       switches the rule of the reaction according to energy and specifies the rule with spring constant K, the maximum length for FENE r_0, the equilibrium length of bond b_0, the energy to shift epsilon0, and bond potential type (the candidates are harmonic and FENE).
 	  
@@ -67,7 +67,7 @@ Polymerization model
    Example::
    
       reaction = gala.Polymerization(all_info, neighbor_list, 1.12246 ,16361)
-      reaction.setFuncReactRule(True, 1250.000, 1.0,0.470, 10.0, gala.Polymerization.Func.harmonic)
+      reaction.setFuncReactRule(True, 1250.000, 1.0,0.470, 10.0, gala.PolyFunc.harmonic)
       reaction.setPr(0.002)
       reaction.setMaxCris('B',3)
       # sets the connected bond upper limited number.
@@ -85,7 +85,7 @@ Depolymerization model
    :param float T: The temperature.
    :param int seed: The seed of random number generator  
 
-   .. py:function:: setParams(string type, float K, float r_0, float b_0, float epsilon0, float Pr, Func function)
+   .. py:function:: setParams(string type, float K, float r_0, float b_0, float epsilon0, float Pr, DePolyFunc function)
    
       specifies the depolymerization probability with bond type, spring constant K, the maximum length for FENE r_0, the equilibrium length of bond b_0, the energy to shift epsilon0, and bond potential type (the candidates are harmonic, FENE, and NoFunc. For “NoFunc”, only probability works for the judgement of bond rupture).
 	  
@@ -100,7 +100,7 @@ Depolymerization model
    Example::
    
       reaction = gala.DePolymerization(all_info, 1.0, 16361)  
-      reaction.setParams('sticky', 10.0, 1.5, 0.96, 10.0, 0.2, gala.DePolymerization.Func.harmonic)
+      reaction.setParams('sticky', 10.0, 1.5, 0.96, 10.0, 0.2, gala.DePolyFunc.harmonic)
       # sets bondname, K, r_0, b_0, epsilon0, Pr, and function.
       reaction.setPeriod(1) 
       # sets how many steps to react.
