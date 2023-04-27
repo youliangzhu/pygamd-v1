@@ -59,7 +59,7 @@ Example: DPD simulation of diblock copolymer
 
 ::
 
-   import molgen
+   from poetry import molgen
 
    mol1=molgen.Molecule(10)#particle number
    mol1.setParticleTypes("A,A,A,A,A,B,B,B,B,B")#type
