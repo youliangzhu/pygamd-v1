@@ -64,6 +64,7 @@ texrp = [
 ['galamost.', 'gala.'],
 ['addExclusionsFromBodys', 'addExclusionsFromBodies'],
 ['outPutXml', 'outPutXML'],
+['outPutMol2', 'outPutMOL2'],
 ['Vsite\.VST', 'VST'],
 ['molgen\.Object.Shape', 'molgen.Shape'],
 ['molgen\.Protein.Model', 'molgen.Model'],

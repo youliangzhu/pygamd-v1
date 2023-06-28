@@ -54,7 +54,7 @@ Polymerization model
 
    .. py:function:: setFuncReactRule(bool switch, float K, float r_0, float b_0, float epsilon0, PolyFunc function)
    
-      switches the rule of the reaction according to energy and specifies the rule with spring constant K, the maximum length for FENE r_0, the equilibrium length of bond b_0, the energy to shift epsilon0, and bond potential type (the candidates are harmonic and FENE).
+      switches the rule of the reaction according to energy and specifies the rule with spring constant K, the maximum length for FENE r_0, the equilibrium length of bond b_0, the energy to shift epsilon0, and bond potential type (the candidates are harmonic and FENE). Please refer to "Macromolecules 2016, 49, 7510−7524".
 	  
    .. py:function:: setMinDisReactRule(bool switch)
    
