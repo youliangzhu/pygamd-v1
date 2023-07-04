@@ -32,10 +32,11 @@ Welcome to PYGAMD's documentation!
    
    cuda/cu-data
    cuda/cu-system
-   cuda/cu-application   
+   cuda/cu-application
    cuda/cu-forcefield
    cuda/cu-integration
-   cuda/cu-constraint  
+   cuda/cu-constraint
+   cuda/cu-externalfield
    cuda/cu-module
    
 .. toctree::

@@ -36,5 +36,5 @@ parser = OptionParser()
 parser.add_option('--gpu', dest='gpu',help='GPU on which to execute')
 (_options, args) = parser.parse_args()
 if _options.gpu == None:
-    print("Warning, please specify GPU id by '--gpu=', the default GPU id is 0!")
+#    print("Warning, please specify GPU id by '--gpu=', the default GPU id is 0!")
     _options.gpu = "0"

@@ -64,12 +64,14 @@
 <li class="toctree-l1"><a class="reference internal" href="cuda/cu-forcefield.html">Force field</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cuda/cu-integration.html">Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cuda/cu-constraint.html">Constraint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-externalfield.html">External field</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cuda/cu-module.html">Modules</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Plug-Ins</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="molgen.html">molgen</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">dataTackle</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#load-datatackle">Load dataTackle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#rg-2">1  Rg^2:</a></li>
@@ -127,15 +129,19 @@
              
   <section id="datatackle">
 <h1>dataTackle<a class="headerlink" href="#datatackle" title="Permalink to this headline"></a></h1>
+<section id="load-datatackle">
+<h2>Load dataTackle<a class="headerlink" href="#load-datatackle" title="Permalink to this headline"></a></h2>
+<p>The <strong>dataTackle</strong> can be loaded by the command “from poetry import dataTackle”. Then you can use <strong>dataTackle</strong> locally by the command “./dataTackle”.</p>
+</section>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
 <p>The <strong>dataTackle</strong> is a plugin of PYGAMD to analyze some important properties by reading the generated configuration files.
 The <strong>dataTackle</strong> can be compiled and installed by “sh compile.sh”. You can use this tool to analyze one or more files at a time.</p>
 <blockquote>
 <div><p>Examples for running:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dataTackle</span> <span class="n">particle</span><span class="o">.</span><span class="n">mst</span>
-<span class="n">dataTackle</span> <span class="n">particle0</span><span class="o">.</span><span class="n">mst</span> <span class="n">particle1</span><span class="o">.</span><span class="n">mst</span>
-<span class="n">dataTackle</span> <span class="o">*.</span><span class="n">mst</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">dataTackle</span> <span class="n">particle</span><span class="o">.</span><span class="n">mst</span>
+<span class="o">./</span><span class="n">dataTackle</span> <span class="n">particle0</span><span class="o">.</span><span class="n">mst</span> <span class="n">particle1</span><span class="o">.</span><span class="n">mst</span>
+<span class="o">./</span><span class="n">dataTackle</span> <span class="o">*.</span><span class="n">mst</span>
 </pre></div>
 </div>
 </div></blockquote>

@@ -1,6 +1,11 @@
 dataTackle
 ==========
 
+Load dataTackle
+---------------
+
+The **dataTackle** can be loaded by the command "from poetry import dataTackle". Then you can use **dataTackle** locally by the command "./dataTackle".
+
 Usage
 -----
 
@@ -9,9 +14,9 @@ The **dataTackle** can be compiled and installed by "sh compile.sh". You can use
 
    Examples for running::
    
-      dataTackle particle.mst
-      dataTackle particle0.mst particle1.mst
-      dataTackle *.mst
+      ./dataTackle particle.mst
+      ./dataTackle particle0.mst particle1.mst
+      ./dataTackle *.mst
 	  
 After pressing enter, a menu of function options will be listed. You can choose one or more functions by 
 the number indexes separated by blank. The parameters for a function can be input after ":" and seperated by "|". 

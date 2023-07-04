@@ -60,6 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="cuda/cu-forcefield.html">Force field</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cuda/cu-integration.html">Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cuda/cu-constraint.html">Constraint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cuda/cu-externalfield.html">External field</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cuda/cu-module.html">Modules</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Plug-Ins</span></p>
@@ -306,13 +307,13 @@
         <li><a href="cuda/cu-application.html#Application.setDt">built-in function</a>
 </li>
       </ul></li>
-      <li><a href="cuda/cu-constraint-external_interaction.html#AxialStretching">AxialStretching (built-in class)</a>
+      <li><a href="cuda/cu-externalfield-stretching.html#AxialStretching">AxialStretching (built-in class)</a>
 </li>
       <li>
     AxialStretching.setBoxLength()
 
       <ul>
-        <li><a href="cuda/cu-constraint-external_interaction.html#AxialStretching.setBoxLength">built-in function</a>
+        <li><a href="cuda/cu-externalfield-stretching.html#AxialStretching.setBoxLength">built-in function</a>
 </li>
       </ul></li>
   </ul></td>
@@ -563,7 +564,7 @@
 </li>
         <li><a href="cuda/cu-application.html#Application.setDt">Application.setDt()</a>
 </li>
-        <li><a href="cuda/cu-constraint-external_interaction.html#AxialStretching.setBoxLength">AxialStretching.setBoxLength()</a>
+        <li><a href="cuda/cu-externalfield-stretching.html#AxialStretching.setBoxLength">AxialStretching.setBoxLength()</a>
 </li>
         <li><a href="cuda/cu-module-anisotropic.html#BerendsenAniNVT.setT">BerendsenAniNVT.setT()</a>, <a href="cuda/cu-module-anisotropic.html#id0">[1]</a>
 </li>
@@ -685,9 +686,9 @@
 </li>
         <li><a href="cuda/cu-forcefield-coulomb.html#EwaldForce.setParams">EwaldForce.setParams()</a>, <a href="cuda/cu-forcefield-coulomb.html#id0">[1]</a>
 </li>
-        <li><a href="cuda/cu-constraint-external_interaction.html#ExternalForce.setForce">ExternalForce.setForce()</a>, <a href="cuda/cu-constraint-external_interaction.html#id0">[1]</a>
+        <li><a href="cuda/cu-externalfield-interaction.html#ExternalForce.setForce">ExternalForce.setForce()</a>, <a href="cuda/cu-externalfield-interaction.html#id0">[1]</a>
 </li>
-        <li><a href="cuda/cu-constraint-external_interaction.html#ExternalForce.setParams">ExternalForce.setParams()</a>, <a href="cuda/cu-constraint-external_interaction.html#id1">[1]</a>
+        <li><a href="cuda/cu-externalfield-interaction.html#ExternalForce.setParams">ExternalForce.setParams()</a>, <a href="cuda/cu-externalfield-interaction.html#id1">[1]</a>
 </li>
         <li><a href="numba/forcefield-bonded-angle.html#force.angle.setParams">force.angle.setParams()</a>
 </li>
@@ -898,6 +899,16 @@
         <li><a href="cuda/cu-module-polymerization.html#Polymerization.setPrFactor">Polymerization.setPrFactor()</a>, <a href="cuda/cu-module-polymerization.html#id2">[1]</a>
 </li>
         <li><a href="cuda/cu-forcefield-coulomb.html#PPPMForce.setParams">PPPMForce.setParams()</a>, <a href="cuda/cu-forcefield-coulomb.html#id2">[1]</a>
+</li>
+        <li><a href="cuda/cu-externalfield-rnemd.html#RNEMD.setPeriod">RNEMD.setPeriod()</a>
+</li>
+        <li><a href="cuda/cu-externalfield-rnemd.html#RNEMD.setProfVelPeriod">RNEMD.setProfVelPeriod()</a>
+</li>
+        <li><a href="cuda/cu-externalfield-rnemd.html#RNEMD.setSwapGroup">RNEMD.setSwapGroup()</a>
+</li>
+        <li><a href="cuda/cu-externalfield-rnemd.html#RNEMD.setSwapPeriod">RNEMD.setSwapPeriod()</a>
+</li>
+        <li><a href="cuda/cu-externalfield-rnemd.html#RNEMD.setVelProfile">RNEMD.setVelProfile()</a>
 </li>
         <li><a href="cuda/cu-forcefield-nonbonded.html#SLJForce.setEnergy_shift">SLJForce.setEnergy_shift()</a>
 </li>
@@ -1290,20 +1301,20 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="cuda/cu-constraint-external_interaction.html#ExternalForce">ExternalForce (built-in class)</a>
+      <li><a href="cuda/cu-externalfield-interaction.html#ExternalForce">ExternalForce (built-in class)</a>
 </li>
       <li>
     ExternalForce.setForce()
 
       <ul>
-        <li><a href="cuda/cu-constraint-external_interaction.html#ExternalForce.setForce">built-in function</a>, <a href="cuda/cu-constraint-external_interaction.html#id0">[1]</a>
+        <li><a href="cuda/cu-externalfield-interaction.html#ExternalForce.setForce">built-in function</a>, <a href="cuda/cu-externalfield-interaction.html#id0">[1]</a>
 </li>
       </ul></li>
       <li>
     ExternalForce.setParams()
 
       <ul>
-        <li><a href="cuda/cu-constraint-external_interaction.html#ExternalForce.setParams">built-in function</a>, <a href="cuda/cu-constraint-external_interaction.html#id1">[1]</a>
+        <li><a href="cuda/cu-externalfield-interaction.html#ExternalForce.setParams">built-in function</a>, <a href="cuda/cu-externalfield-interaction.html#id1">[1]</a>
 </li>
       </ul></li>
   </ul></td>
@@ -2193,6 +2204,45 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cuda/cu-data-input.html#Reader">Reader (built-in class)</a>
 </li>
+      <li><a href="cuda/cu-externalfield-rnemd.html#RNEMD">RNEMD (built-in class)</a>
+</li>
+      <li>
+    RNEMD.setPeriod()
+
+      <ul>
+        <li><a href="cuda/cu-externalfield-rnemd.html#RNEMD.setPeriod">built-in function</a>
+</li>
+      </ul></li>
+      <li>
+    RNEMD.setProfVelPeriod()
+
+      <ul>
+        <li><a href="cuda/cu-externalfield-rnemd.html#RNEMD.setProfVelPeriod">built-in function</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    RNEMD.setSwapGroup()
+
+      <ul>
+        <li><a href="cuda/cu-externalfield-rnemd.html#RNEMD.setSwapGroup">built-in function</a>
+</li>
+      </ul></li>
+      <li>
+    RNEMD.setSwapPeriod()
+
+      <ul>
+        <li><a href="cuda/cu-externalfield-rnemd.html#RNEMD.setSwapPeriod">built-in function</a>
+</li>
+      </ul></li>
+      <li>
+    RNEMD.setVelProfile()
+
+      <ul>
+        <li><a href="cuda/cu-externalfield-rnemd.html#RNEMD.setVelProfile">built-in function</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
