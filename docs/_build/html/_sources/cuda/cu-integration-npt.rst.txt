@@ -176,9 +176,9 @@ Reference: G. J. Martyna, D. J. Tobias, and M. L. Klein, J. Chem. Phys., 1994, 1
       group = gala.ParticleSet(all_info,'all')
       comp_info = gala.ComputeInfo(all_info, group)   
 
-      bgroup = gala.ParticleSet(all_info, 'body')
-      comp_info_b = gala.ComputeInfo(all_info, bgroup)	  
+      groupb = gala.ParticleSet(all_info, 'body')
+      comp_info_b = gala.ComputeInfo(all_info, groupb)	  
 	  
-      npt = gala.NPTMTK(all_info, groupb, comp_infob, comp_info, 1.0, 0.1, 0.5, 1.0)
+      npt = gala.NPTMTKRigid(all_info, groupb, comp_info_b, comp_info, 1.0, 0.1, 0.5, 1.0)
       npt.setSemiisotropic(0.1, 0.1)
-      app.add(npt)	  
+      app.add(npt)

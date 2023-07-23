@@ -4,7 +4,7 @@ dataTackle
 Load dataTackle
 ---------------
 
-The **dataTackle** can be loaded by the command "from poetry import dataTackle". Then you can use **dataTackle** locally by the command "./dataTackle".
+The **dataTackle** can be loaded by the command "from poetry import dataTackle" in Python3. Then you can use **dataTackle** locally by the command "./dataTackle".
 
 Usage
 -----

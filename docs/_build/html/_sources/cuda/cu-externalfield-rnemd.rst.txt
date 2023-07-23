@@ -27,7 +27,7 @@ Reference: F. Müller-Plathe, Phys. Rev. E 59, 4894, 1999.
 	  
    .. py:function:: setProfVelPeriod(unsigned int profvel_period)
    
-      specifies the period of profiling velocity of slabs.
+      specifies the period of profiling velocity of slabs, the default value is 10.
 	  
    .. py:function:: setSwapGroup(ParticleSet group)
    
@@ -39,7 +39,7 @@ Reference: F. Müller-Plathe, Phys. Rev. E 59, 4894, 1999.
 	 
    .. py:function:: setPeriod(unsigned int period)
    
-      specifies the period of data output.
+      specifies the period of data output in which the velocity profile and momentum plus will be averaged.
 	  
    Example::
    
