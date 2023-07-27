@@ -29,8 +29,8 @@ pygamd:
 Requirements:
 ~~~~~~~~~~~~~
 
-1. Python3 including numba, numpy, and pybind11 packages
-2. NVIDIA CUDA Toolkit >= 7.0
+1. Python3.11 including numba, numpy, and pybind11 packages
+2. NVIDIA CUDA Toolkit 12
 
 Citation
 --------
