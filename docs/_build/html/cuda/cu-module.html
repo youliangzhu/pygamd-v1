@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Modules &mdash; PYGAMD v1 documentation</title>
@@ -11,10 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,14 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -69,6 +74,7 @@
 <li class="toctree-l2"><a class="reference internal" href="cu-module-polymerization.html">Polymerization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cu-module-anisotropic.html">Anisotropic particle</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cu-module-dpd.html">Dissipative particle dynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-module-changetype.html">Particle type change</a></li>
 </ul>
 </li>
 </ul>
@@ -95,8 +101,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Modules</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Modules</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/cuda/cu-module.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -107,17 +113,30 @@
            <div itemprop="articleBody">
              
   <section id="modules">
-<h1>Modules<a class="headerlink" href="#modules" title="Permalink to this headline"></a></h1>
+<h1>Modules<a class="headerlink" href="#modules" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cu-module-mdscf.html">MD-SCF</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cu-module-mdscf.html#mdscf-force">MDSCF force</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-module-mdscf.html#mdscf-electrostatic-force">MDSCF electrostatic force</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-module-mdscf.html#mdscf-force">MDSCF force</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-module-mdscf.html#MDSCFForce"><code class="docutils literal notranslate"><span class="pre">MDSCFForce</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-module-mdscf.html#mdscf-electrostatic-force">MDSCF electrostatic force</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-module-mdscf.html#PFMEForce"><code class="docutils literal notranslate"><span class="pre">PFMEForce</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cu-module-polymerization.html">Polymerization</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cu-module-polymerization.html#polymerization-model">Polymerization model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-module-polymerization.html#depolymerization-model">Depolymerization model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-module-polymerization.html#polymerization-model">Polymerization model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-module-polymerization.html#Polymerization"><code class="docutils literal notranslate"><span class="pre">Polymerization</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cu-module-polymerization.html#id0"><code class="docutils literal notranslate"><span class="pre">Polymerization</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-module-polymerization.html#depolymerization-model">Depolymerization model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-module-polymerization.html#DePolymerization"><code class="docutils literal notranslate"><span class="pre">DePolymerization</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cu-module-anisotropic.html">Anisotropic particle</a><ul>
@@ -137,9 +156,23 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cu-module-dpd.html">Dissipative particle dynamics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cu-module-dpd.html#dpd-force">DPD force</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-module-dpd.html#gwvv-integration">GWVV integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-module-dpd.html#dpd-force">DPD force</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-module-dpd.html#DPDForce"><code class="docutils literal notranslate"><span class="pre">DPDForce</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cu-module-dpd.html#id0"><code class="docutils literal notranslate"><span class="pre">DPDForce</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-module-dpd.html#gwvv-integration">GWVV integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-module-dpd.html#DPDGWVV"><code class="docutils literal notranslate"><span class="pre">DPDGWVV</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cu-module-dpd.html#coulomb-interaction-in-dpd">Coulomb interaction in DPD</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cu-module-changetype.html">Particle type change</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cu-module-changetype.html#changetype">ChangeType</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-module-changetype.html#ChangeType"><code class="docutils literal notranslate"><span class="pre">ChangeType</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

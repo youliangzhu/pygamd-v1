@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Force field &mdash; PYGAMD v1 documentation</title>
@@ -11,10 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,14 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -96,8 +101,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Force field</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Force field</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/cuda/cu-forcefield.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -108,15 +113,30 @@
            <div itemprop="articleBody">
              
   <section id="force-field">
-<h1>Force field<a class="headerlink" href="#force-field" title="Permalink to this headline"></a></h1>
+<h1>Force field<a class="headerlink" href="#force-field" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cu-forcefield-nonbonded.html">Short range non-bonded interactions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-nonbonded.html#lennard-jones-lj-interaction">Lennard-Jones (LJ) interaction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-nonbonded.html#shift-lennard-jones-lj-interaction">Shift Lennard-Jones (LJ) interaction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-nonbonded.html#linear-molecule-pi-pi-interaction">Linear molecule <span class="math notranslate nohighlight">\(\pi\)</span>-<span class="math notranslate nohighlight">\(\pi\)</span> interaction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-nonbonded.html#generalized-exponential-model">Generalized exponential model</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-nonbonded.html#lennard-jones-and-ewald-short-range-interaction">Lennard-Jones and Ewald (short range) interaction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-nonbonded.html#lennard-jones-lj-interaction">Lennard-Jones (LJ) interaction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-nonbonded.html#LJForce"><code class="docutils literal notranslate"><span class="pre">LJForce</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-nonbonded.html#shift-lennard-jones-lj-interaction">Shift Lennard-Jones (LJ) interaction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-nonbonded.html#SLJForce"><code class="docutils literal notranslate"><span class="pre">SLJForce</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-nonbonded.html#linear-molecule-pi-pi-interaction">Linear molecule <span class="math notranslate nohighlight">\(\pi\)</span>-<span class="math notranslate nohighlight">\(\pi\)</span> interaction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-nonbonded.html#CenterForce"><code class="docutils literal notranslate"><span class="pre">CenterForce</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-nonbonded.html#generalized-exponential-model">Generalized exponential model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-nonbonded.html#GEMForce"><code class="docutils literal notranslate"><span class="pre">GEMForce</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-nonbonded.html#lennard-jones-and-ewald-short-range-interaction">Lennard-Jones and Ewald (short range) interaction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-nonbonded.html#LJEwaldForce"><code class="docutils literal notranslate"><span class="pre">LJEwaldForce</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cu-forcefield-nonbonded.html#pair-interaction">Pair interaction</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="cu-forcefield-nonbonded.html#lj9-6-interaction">LJ9_6 interaction</a></li>
 <li class="toctree-l3"><a class="reference internal" href="cu-forcefield-nonbonded.html#harmonic-repulsion">Harmonic repulsion</a></li>
@@ -155,23 +175,58 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cu-forcefield-numerical.html">Numerical interaction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cu-forcefield-numerical.html#theory-description">Theory description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-numerical.html#non-bonded-interaction">Non-bonded interaction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-numerical.html#bond-interaction">Bond interaction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-numerical.html#angle-interaction">Angle interaction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-numerical.html#dihedral-interaction">Dihedral interaction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-numerical.html#non-bonded-interaction">Non-bonded interaction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-numerical.html#PairForceTable"><code class="docutils literal notranslate"><span class="pre">PairForceTable</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-numerical.html#bond-interaction">Bond interaction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-numerical.html#BondForceTable"><code class="docutils literal notranslate"><span class="pre">BondForceTable</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-numerical.html#angle-interaction">Angle interaction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-numerical.html#AngleForceTable"><code class="docutils literal notranslate"><span class="pre">AngleForceTable</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-numerical.html#dihedral-interaction">Dihedral interaction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-numerical.html#DihedralForceTable"><code class="docutils literal notranslate"><span class="pre">DihedralForceTable</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cu-forcefield-coulomb.html">Coulomb interaction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cu-forcefield-coulomb.html#ewald-summation-theory">Ewald summation theory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-coulomb.html#ewald-short-range">Ewald (short-range)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-coulomb.html#ewald-for-dpd-short-range">Ewald for DPD (short-range)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-coulomb.html#pppm-long-range">PPPM (long-range)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-coulomb.html#enuf-long-range">ENUF (long-range)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-coulomb.html#ewald-short-range">Ewald (short-range)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-coulomb.html#EwaldForce"><code class="docutils literal notranslate"><span class="pre">EwaldForce</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-coulomb.html#ewald-for-dpd-short-range">Ewald for DPD (short-range)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-coulomb.html#DPDEwaldForce"><code class="docutils literal notranslate"><span class="pre">DPDEwaldForce</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-coulomb.html#pppm-long-range">PPPM (long-range)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-coulomb.html#PPPMForce"><code class="docutils literal notranslate"><span class="pre">PPPMForce</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-coulomb.html#enuf-long-range">ENUF (long-range)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-coulomb.html#ENUFForce"><code class="docutils literal notranslate"><span class="pre">ENUFForce</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cu-forcefield-files.html">Read force parameters</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="cu-forcefield-files.html#force-field-format">Force field format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-files.html#use-force-fields">Use force fields</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-files.html#use-force-fields">Use force fields</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-files.html#LJCoulombShiftForce"><code class="docutils literal notranslate"><span class="pre">LJCoulombShiftForce</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-files.html#LJEwaldForce"><code class="docutils literal notranslate"><span class="pre">LJEwaldForce</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-files.html#BondForceHarmonic"><code class="docutils literal notranslate"><span class="pre">BondForceHarmonic</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-files.html#AngleForceHarmonicCos"><code class="docutils literal notranslate"><span class="pre">AngleForceHarmonicCos</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-files.html#AngleForceHarmonic"><code class="docutils literal notranslate"><span class="pre">AngleForceHarmonic</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-files.html#DihedralForceAmberCosine"><code class="docutils literal notranslate"><span class="pre">DihedralForceAmberCosine</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-files.html#DihedralForceHarmonic"><code class="docutils literal notranslate"><span class="pre">DihedralForceHarmonic</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-files.html#BondConstraint"><code class="docutils literal notranslate"><span class="pre">BondConstraint</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-files.html#Vsite"><code class="docutils literal notranslate"><span class="pre">Vsite</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cu-forcefield-files.html#use-gromacs-force-fields">Use GROMACS force fields</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cu-forcefield-files.html#convert-gromacs-files">Convert GROMACS files</a></li>
 </ul>

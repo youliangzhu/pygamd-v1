@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>dataTackle &mdash; PYGAMD v1 documentation</title>
@@ -11,10 +11,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -28,14 +29,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -116,8 +121,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>dataTackle</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">dataTackle</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/dataTackle.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -128,13 +133,13 @@
            <div itemprop="articleBody">
              
   <section id="datatackle">
-<h1>dataTackle<a class="headerlink" href="#datatackle" title="Permalink to this headline"></a></h1>
+<h1>dataTackle<a class="headerlink" href="#datatackle" title="Permalink to this heading"></a></h1>
 <section id="load-datatackle">
-<h2>Load dataTackle<a class="headerlink" href="#load-datatackle" title="Permalink to this headline"></a></h2>
+<h2>Load dataTackle<a class="headerlink" href="#load-datatackle" title="Permalink to this heading"></a></h2>
 <p>The <strong>dataTackle</strong> can be loaded by the command “from poetry import dataTackle” in Python3. Then you can use <strong>dataTackle</strong> locally by the command “./dataTackle”.</p>
 </section>
 <section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline"></a></h2>
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
 <p>The <strong>dataTackle</strong> is a plugin of PYGAMD to analyze some important properties by reading the generated configuration files.
 The <strong>dataTackle</strong> can be compiled and installed by “sh compile.sh”. You can use this tool to analyze one or more files at a time.</p>
 <blockquote>
@@ -178,7 +183,7 @@ a MST file for particles attributes and topological information.</p>
 </div></blockquote>
 </section>
 <section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline"></a></h2>
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h2>
 <blockquote>
 <div><p>Function list:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-------------------------------------------------------------</span>
@@ -202,7 +207,7 @@ a MST file for particles attributes and topological information.</p>
 </div>
 </div></blockquote>
 <section id="rg-2">
-<h3>1  Rg^2:<a class="headerlink" href="#rg-2" title="Permalink to this headline"></a></h3>
+<h3>1  Rg^2:<a class="headerlink" href="#rg-2" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl>
 <dt>Description:</dt><dd><blockquote>
@@ -221,7 +226,7 @@ a MST file for particles attributes and topological information.</p>
 </div></blockquote>
 </section>
 <section id="ed-2">
-<h3>2  Ed^2:<a class="headerlink" href="#ed-2" title="Permalink to this headline"></a></h3>
+<h3>2  Ed^2:<a class="headerlink" href="#ed-2" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl>
 <dt>Description:</dt><dd><blockquote>
@@ -239,7 +244,7 @@ a MST file for particles attributes and topological information.</p>
 </div></blockquote>
 </section>
 <section id="rdf">
-<h3>3  RDF:<a class="headerlink" href="#rdf" title="Permalink to this headline"></a></h3>
+<h3>3  RDF:<a class="headerlink" href="#rdf" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>Description:</dt><dd><p>The radial distribution function of all particles is calculated and output to <code class="docutils literal notranslate"><span class="pre">filename.rdf</span></code>.
@@ -251,7 +256,7 @@ Averaged value among files will be output to <code class="docutils literal notra
 </div></blockquote>
 </section>
 <section id="bond-distri">
-<h3>4  bond_distri:<a class="headerlink" href="#bond-distri" title="Permalink to this headline"></a></h3>
+<h3>4  bond_distri:<a class="headerlink" href="#bond-distri" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl>
 <dt>Description:</dt><dd><blockquote>
@@ -273,7 +278,7 @@ Averaged value among files will be output to <code class="docutils literal notra
 </div></blockquote>
 </section>
 <section id="angle-distri">
-<h3>5  angle_distri:<a class="headerlink" href="#angle-distri" title="Permalink to this headline"></a></h3>
+<h3>5  angle_distri:<a class="headerlink" href="#angle-distri" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl>
 <dt>Description:</dt><dd><blockquote>
@@ -295,7 +300,7 @@ Averaged value among files will be output to <code class="docutils literal notra
 </div></blockquote>
 </section>
 <section id="dihedral-distri">
-<h3>6  dihedral_distri:<a class="headerlink" href="#dihedral-distri" title="Permalink to this headline"></a></h3>
+<h3>6  dihedral_distri:<a class="headerlink" href="#dihedral-distri" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl>
 <dt>Description:</dt><dd><blockquote>
@@ -317,7 +322,7 @@ Averaged value among files will be output to <code class="docutils literal notra
 </div></blockquote>
 </section>
 <section id="stress-tensor">
-<h3>7  stress tensor:<a class="headerlink" href="#stress-tensor" title="Permalink to this headline"></a></h3>
+<h3>7  stress tensor:<a class="headerlink" href="#stress-tensor" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>Description:</dt><dd><p>Stress tensor is calculated by inputing the parameters for force calculation. Result will be output to <code class="docutils literal notranslate"><span class="pre">stress_tensor.log</span></code>.</p>
@@ -328,7 +333,7 @@ Averaged value among files will be output to <code class="docutils literal notra
 </div></blockquote>
 </section>
 <section id="density">
-<h3>8  density:<a class="headerlink" href="#density" title="Permalink to this headline"></a></h3>
+<h3>8  density:<a class="headerlink" href="#density" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>Description:</dt><dd><p>Real density (g/cm^3) with basic units [amu] and [nm] is calculated and output to <code class="docutils literal notranslate"><span class="pre">density.log</span></code>.</p>
@@ -337,7 +342,7 @@ Averaged value among files will be output to <code class="docutils literal notra
 </div></blockquote>
 </section>
 <section id="unwrapping">
-<h3>9  unwrapping:<a class="headerlink" href="#unwrapping" title="Permalink to this headline"></a></h3>
+<h3>9  unwrapping:<a class="headerlink" href="#unwrapping" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>Description:</dt><dd><p>This function would unwrap or shift molecules by changing image or position of particles. New configuration
@@ -351,7 +356,7 @@ remove_bond_cross_box=false|body_keep=false</p>
 </div></blockquote>
 </section>
 <section id="msd">
-<h3>10 MSD:<a class="headerlink" href="#msd" title="Permalink to this headline"></a></h3>
+<h3>10 MSD:<a class="headerlink" href="#msd" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>Description:</dt><dd><p>The mean square displacement of all particles is calculated and output to <code class="docutils literal notranslate"><span class="pre">msd.log</span></code>.</p>
@@ -362,7 +367,7 @@ remove_bond_cross_box=false|body_keep=false</p>
 </div></blockquote>
 </section>
 <section id="rdf-cm">
-<h3>11 RDF-CM:<a class="headerlink" href="#rdf-cm" title="Permalink to this headline"></a></h3>
+<h3>11 RDF-CM:<a class="headerlink" href="#rdf-cm" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>Description:</dt><dd><p>The radial distribution function of the mass center of molecules is calculated and output to <code class="docutils literal notranslate"><span class="pre">rdf_cm.log</span></code>.</p>
@@ -373,7 +378,7 @@ remove_bond_cross_box=false|body_keep=false</p>
 </div></blockquote>
 </section>
 <section id="msd-cm">
-<h3>12 MSD-CM:<a class="headerlink" href="#msd-cm" title="Permalink to this headline"></a></h3>
+<h3>12 MSD-CM:<a class="headerlink" href="#msd-cm" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>Description:</dt><dd><p>The mean square displacement of the mass center of molecules is calculated and output to <code class="docutils literal notranslate"><span class="pre">msd_cm.log</span></code>.</p>
@@ -384,7 +389,7 @@ remove_bond_cross_box=false|body_keep=false</p>
 </div></blockquote>
 </section>
 <section id="ents">
-<h3>13 ents:<a class="headerlink" href="#ents" title="Permalink to this headline"></a></h3>
+<h3>13 ents:<a class="headerlink" href="#ents" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>Description:</dt><dd><p>This function would analyze the entanglements of polymers. Result will be output to <code class="docutils literal notranslate"><span class="pre">ents.log</span></code>.</p>
@@ -393,7 +398,7 @@ remove_bond_cross_box=false|body_keep=false</p>
 </div></blockquote>
 </section>
 <section id="strfac">
-<h3>14 strfac:<a class="headerlink" href="#strfac" title="Permalink to this headline"></a></h3>
+<h3>14 strfac:<a class="headerlink" href="#strfac" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>Description:</dt><dd><p>The structure factor of particles is calculated and output to <code class="docutils literal notranslate"><span class="pre">filename.strf</span></code>.
@@ -405,7 +410,7 @@ The averaged value among files is output to <code class="docutils literal notran
 </div></blockquote>
 </section>
 <section id="domain-size">
-<h3>15 domain size:<a class="headerlink" href="#domain-size" title="Permalink to this headline"></a></h3>
+<h3>15 domain size:<a class="headerlink" href="#domain-size" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>Description:</dt><dd><p>The domain size of components in mixtures is calculated and output to <code class="docutils literal notranslate"><span class="pre">domsize.log</span></code>.</p>
@@ -416,7 +421,7 @@ The averaged value among files is output to <code class="docutils literal notran
 </div></blockquote>
 </section>
 <section id="dynamic-strfac">
-<h3>16 dynamic strfac:<a class="headerlink" href="#dynamic-strfac" title="Permalink to this headline"></a></h3>
+<h3>16 dynamic strfac:<a class="headerlink" href="#dynamic-strfac" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl>
 <dt>Description:</dt><dd><p>Dynamic structure factor (incoherent intermediate) measures the decorrelation of the positions
@@ -431,7 +436,7 @@ of individual monomers with the time on length scale <span class="math notransla
 </div></blockquote>
 </section>
 <section id="config-check">
-<h3>17 config check:<a class="headerlink" href="#config-check" title="Permalink to this headline"></a></h3>
+<h3>17 config check:<a class="headerlink" href="#config-check" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>Description:</dt><dd><p>This function would check the configuration including the minimum distance of particles, and the maximum and minimum length of bonds, etc.
@@ -443,7 +448,7 @@ Result will be output to <code class="docutils literal notranslate"><span class=
 </div></blockquote>
 </section>
 <section id="rdf-between-types">
-<h3>18 RDF between types:<a class="headerlink" href="#rdf-between-types" title="Permalink to this headline"></a></h3>
+<h3>18 RDF between types:<a class="headerlink" href="#rdf-between-types" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>Description:</dt><dd><p>The radial distribution function between types is calculated and output to <code class="docutils literal notranslate"><span class="pre">filename.type.rdf</span></code>.
@@ -455,7 +460,7 @@ The averaged value among files will be output to <code class="docutils literal n
 </div></blockquote>
 </section>
 <section id="mst-conversion">
-<h3>19 MST conversion:<a class="headerlink" href="#mst-conversion" title="Permalink to this headline"></a></h3>
+<h3>19 MST conversion:<a class="headerlink" href="#mst-conversion" title="Permalink to this heading"></a></h3>
 <blockquote>
 <div><dl class="simple">
 <dt>Description:</dt><dd><p>This function would convert MST files into new files with another format.</p>

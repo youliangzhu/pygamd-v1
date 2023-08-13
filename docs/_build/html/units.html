@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Units &mdash; PYGAMD v1 documentation</title>
@@ -11,10 +11,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -28,14 +29,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -97,8 +102,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Units</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Units</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/units.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -109,11 +114,11 @@
            <div itemprop="articleBody">
              
   <section id="units">
-<span id="page-units"></span><h1>Units<a class="headerlink" href="#units" title="Permalink to this headline"></a></h1>
+<span id="page-units"></span><h1>Units<a class="headerlink" href="#units" title="Permalink to this heading"></a></h1>
 <p>PYGAMD stores and computes all values in reduced units. The quantities in real units can be converted into
 the ones in reduced units by defining a set of fundamental units by user himself.</p>
 <section id="fundamental-units">
-<h2>Fundamental Units<a class="headerlink" href="#fundamental-units" title="Permalink to this headline"></a></h2>
+<h2>Fundamental Units<a class="headerlink" href="#fundamental-units" title="Permalink to this heading"></a></h2>
 <p>The three fundamental units are:</p>
 <ul class="simple">
 <li><p>distance - <span class="math notranslate nohighlight">\(\mathcal{\sigma}\)</span></p></li>
@@ -122,13 +127,13 @@ the ones in reduced units by defining a set of fundamental units by user himself
 </ul>
 </section>
 <section id="temperature-units-thermal-energy">
-<h2>Temperature units (thermal energy)<a class="headerlink" href="#temperature-units-thermal-energy" title="Permalink to this headline"></a></h2>
+<h2>Temperature units (thermal energy)<a class="headerlink" href="#temperature-units-thermal-energy" title="Permalink to this heading"></a></h2>
 <p>PYGAMD accepts all temperature inputs and provides all temperature output values in units of energy:
 <span class="math notranslate nohighlight">\(k_{B} T\)</span>, where <span class="math notranslate nohighlight">\(k_{B}\)</span> is Boltzmann’s constant. In reduced units, one usually reports the value
 <span class="math notranslate nohighlight">\(T^* = k_{B}T/\mathcal{\varepsilon}\)</span>.</p>
 </section>
 <section id="charge-units">
-<span id="id1"></span><h2>Charge units<a class="headerlink" href="#charge-units" title="Permalink to this headline"></a></h2>
+<span id="id1"></span><h2>Charge units<a class="headerlink" href="#charge-units" title="Permalink to this heading"></a></h2>
 <p>The charge used in PYGAMD is also reduced. The units of charge are:
 <span class="math notranslate nohighlight">\((4 \pi \epsilon_0 \epsilon_r \mathcal{\sigma} \mathcal{\varepsilon})^{1/2}\)</span>, where
 <span class="math notranslate nohighlight">\(\epsilon_0\)</span> is vacuum permittivity and <span class="math notranslate nohighlight">\(\epsilon_r\)</span> is relative permittivity.</p>
@@ -138,7 +143,7 @@ the units of charge are:
 Divide a given charge by this quantity to convert it into an input value for PYGAMD.</p>
 </section>
 <section id="common-derived-units">
-<h2>Common derived units<a class="headerlink" href="#common-derived-units" title="Permalink to this headline"></a></h2>
+<h2>Common derived units<a class="headerlink" href="#common-derived-units" title="Permalink to this heading"></a></h2>
 <p>Here are some commonly used derived units:</p>
 <ul class="simple">
 <li><p>time - <span class="math notranslate nohighlight">\(\tau = \sqrt{\mathcal{m} \mathcal{\sigma}^2/\mathcal{\varepsilon}}\)</span></p></li>
@@ -151,7 +156,7 @@ Divide a given charge by this quantity to convert it into an input value for PYG
 </ul>
 </section>
 <section id="example-physical-units">
-<h2>Example physical units<a class="headerlink" href="#example-physical-units" title="Permalink to this headline"></a></h2>
+<h2>Example physical units<a class="headerlink" href="#example-physical-units" title="Permalink to this heading"></a></h2>
 <p>There are many possible choices of physical units that one can assign. One common choice is:</p>
 <ul class="simple">
 <li><p>distance - <span class="math notranslate nohighlight">\(\mathcal{\sigma} = \mathrm{nm}\)</span></p></li>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Integration &mdash; PYGAMD v1 documentation</title>
@@ -11,10 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,14 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -94,8 +99,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Integration</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Integration</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/cuda/cu-integration.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -106,29 +111,68 @@
            <div itemprop="articleBody">
              
   <section id="integration">
-<h1>Integration<a class="headerlink" href="#integration" title="Permalink to this headline"></a></h1>
+<h1>Integration<a class="headerlink" href="#integration" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cu-integration-nve.html">NVE ensemble</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cu-integration-nve.html#nve-thermostat">NVE thermostat</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-integration-nve.html#nve-for-rigid-body">NVE for rigid body</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-integration-nve.html#nve-for-rigid-body-with-tunable-freedoms">NVE for rigid body with tunable freedoms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-integration-nve.html#nve-thermostat">NVE thermostat</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-integration-nve.html#NVE"><code class="docutils literal notranslate"><span class="pre">NVE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-integration-nve.html#nve-for-rigid-body">NVE for rigid body</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-integration-nve.html#NVERigid"><code class="docutils literal notranslate"><span class="pre">NVERigid</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-integration-nve.html#nve-for-rigid-body-with-tunable-freedoms">NVE for rigid body with tunable freedoms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-integration-nve.html#TranRigid"><code class="docutils literal notranslate"><span class="pre">TranRigid</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cu-integration-nvt.html">NVT ensemble</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cu-integration-nvt.html#nose-hoover-thermostat">Nose Hoover thermostat</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-integration-nvt.html#berendsen-thermostat">Berendsen thermostat</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-integration-nvt.html#andersen-thermostat">Andersen thermostat</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-integration-nvt.html#langevin-dynamic-thermostat">Langevin dynamic thermostat</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-integration-nvt.html#nvt-for-rigid-body">NVT for rigid body</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-integration-nvt.html#langevin-dynamic-for-rigid-body">Langevin dynamic for rigid body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-integration-nvt.html#nose-hoover-thermostat">Nose Hoover thermostat</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-integration-nvt.html#NoseHooverNVT"><code class="docutils literal notranslate"><span class="pre">NoseHooverNVT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-integration-nvt.html#berendsen-thermostat">Berendsen thermostat</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-integration-nvt.html#BerendsenNVT"><code class="docutils literal notranslate"><span class="pre">BerendsenNVT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-integration-nvt.html#andersen-thermostat">Andersen thermostat</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-integration-nvt.html#AndersenNVT"><code class="docutils literal notranslate"><span class="pre">AndersenNVT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-integration-nvt.html#langevin-dynamic-thermostat">Langevin dynamic thermostat</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-integration-nvt.html#LangevinNVT"><code class="docutils literal notranslate"><span class="pre">LangevinNVT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-integration-nvt.html#nvt-for-rigid-body">NVT for rigid body</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-integration-nvt.html#NVTRigid"><code class="docutils literal notranslate"><span class="pre">NVTRigid</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-integration-nvt.html#langevin-dynamic-for-rigid-body">Langevin dynamic for rigid body</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-integration-nvt.html#LangevinNVTRigid"><code class="docutils literal notranslate"><span class="pre">LangevinNVTRigid</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cu-integration-npt.html">NPT ensemble</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cu-integration-npt.html#andersen-barostat">Andersen barostat</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-integration-npt.html#npt-for-rigid-body">NPT for rigid body</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-integration-npt.html#martyna-tobias-klein-barostat">Martyna-Tobias-Klein barostat</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-integration-npt.html#martyna-tobias-klein-barostat-for-rigid-body">Martyna-Tobias-Klein barostat for rigid body</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-integration-npt.html#andersen-barostat">Andersen barostat</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-integration-npt.html#NPT"><code class="docutils literal notranslate"><span class="pre">NPT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-integration-npt.html#npt-for-rigid-body">NPT for rigid body</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-integration-npt.html#NPTRigid"><code class="docutils literal notranslate"><span class="pre">NPTRigid</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-integration-npt.html#martyna-tobias-klein-barostat">Martyna-Tobias-Klein barostat</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-integration-npt.html#NPTMTK"><code class="docutils literal notranslate"><span class="pre">NPTMTK</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-integration-npt.html#martyna-tobias-klein-barostat-for-rigid-body">Martyna-Tobias-Klein barostat for rigid body</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-integration-npt.html#NPTMTKRigid"><code class="docutils literal notranslate"><span class="pre">NPTMTKRigid</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

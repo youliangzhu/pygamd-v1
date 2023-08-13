@@ -10,10 +10,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -24,14 +25,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -86,8 +91,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Index</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Index</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -626,6 +631,16 @@
 </li>
         <li><a href="cuda/cu-forcefield-nonbonded.html#CenterForce.setPreNextShift">CenterForce.setPreNextShift()</a>
 </li>
+        <li><a href="cuda/cu-module-changetype.html#ChangeType.setInterface">ChangeType.setInterface()</a>
+</li>
+        <li><a href="cuda/cu-module-changetype.html#ChangeType.setNPTargetType">ChangeType.setNPTargetType()</a>
+</li>
+        <li><a href="cuda/cu-module-changetype.html#ChangeType.setPr">ChangeType.setPr()</a>
+</li>
+        <li><a href="cuda/cu-module-changetype.html#ChangeType.setSite">ChangeType.setSite()</a>
+</li>
+        <li><a href="cuda/cu-module-changetype.html#ChangeType.setWall">ChangeType.setWall()</a>
+</li>
         <li><a href="cuda/cu-system-compute.html#ComputeInfo.setNdof">ComputeInfo.setNdof()</a>
 </li>
         <li><a href="cuda/cu-data-output.html#DCDDump.unpbc">DCDDump.unpbc()</a>
@@ -910,6 +925,10 @@
 </li>
         <li><a href="cuda/cu-externalfield-rnemd.html#RNEMD.setVelProfile">RNEMD.setVelProfile()</a>
 </li>
+        <li><a href="cuda/cu-data-output.html#setHead">setHead()</a>
+</li>
+        <li><a href="cuda/cu-data-output.html#setPrecision">setPrecision()</a>
+</li>
         <li><a href="cuda/cu-forcefield-nonbonded.html#SLJForce.setEnergy_shift">SLJForce.setEnergy_shift()</a>
 </li>
         <li><a href="cuda/cu-forcefield-nonbonded.html#SLJForce.setParams">SLJForce.setParams()</a>, <a href="cuda/cu-forcefield-nonbonded.html#id1">[1]</a>
@@ -1021,8 +1040,6 @@
         <li><a href="cuda/cu-system-list.html#CellList.setNominalDim">built-in function</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     CellList.setNominalWidth()
 
@@ -1037,6 +1054,45 @@
 
       <ul>
         <li><a href="cuda/cu-forcefield-nonbonded.html#CenterForce.setPreNextShift">built-in function</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cuda/cu-module-changetype.html#ChangeType">ChangeType (built-in class)</a>
+</li>
+      <li>
+    ChangeType.setInterface()
+
+      <ul>
+        <li><a href="cuda/cu-module-changetype.html#ChangeType.setInterface">built-in function</a>
+</li>
+      </ul></li>
+      <li>
+    ChangeType.setNPTargetType()
+
+      <ul>
+        <li><a href="cuda/cu-module-changetype.html#ChangeType.setNPTargetType">built-in function</a>
+</li>
+      </ul></li>
+      <li>
+    ChangeType.setPr()
+
+      <ul>
+        <li><a href="cuda/cu-module-changetype.html#ChangeType.setPr">built-in function</a>
+</li>
+      </ul></li>
+      <li>
+    ChangeType.setSite()
+
+      <ul>
+        <li><a href="cuda/cu-module-changetype.html#ChangeType.setSite">built-in function</a>
+</li>
+      </ul></li>
+      <li>
+    ChangeType.setWall()
+
+      <ul>
+        <li><a href="cuda/cu-module-changetype.html#ChangeType.setWall">built-in function</a>
 </li>
       </ul></li>
       <li><a href="numba/system-group.html#chare.particle_set">chare.particle_set (built-in class)</a>
@@ -2249,6 +2305,20 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    setHead()
+
+      <ul>
+        <li><a href="cuda/cu-data-output.html#setHead">built-in function</a>
+</li>
+      </ul></li>
+      <li>
+    setPrecision()
+
+      <ul>
+        <li><a href="cuda/cu-data-output.html#setPrecision">built-in function</a>
+</li>
+      </ul></li>
       <li><a href="cuda/cu-forcefield-nonbonded.html#SLJForce">SLJForce (built-in class)</a>
 </li>
       <li>
@@ -2258,6 +2328,8 @@
         <li><a href="cuda/cu-forcefield-nonbonded.html#SLJForce.setEnergy_shift">built-in function</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     SLJForce.setParams()
 
@@ -2265,8 +2337,6 @@
         <li><a href="cuda/cu-forcefield-nonbonded.html#SLJForce.setParams">built-in function</a>, <a href="cuda/cu-forcefield-nonbonded.html#id1">[1]</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="numba/system-data-input.html#snapshot">snapshot (built-in class)</a>
 </li>
       <li><a href="numba/system-data-input.html#snapshot.read">snapshot.read (built-in class)</a>

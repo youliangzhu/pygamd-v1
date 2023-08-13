@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Read force parameters &mdash; PYGAMD v1 documentation</title>
@@ -11,10 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,14 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -67,7 +72,18 @@
 <li class="toctree-l2"><a class="reference internal" href="cu-forcefield-coulomb.html">Coulomb interaction</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Read force parameters</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#force-field-format">Force field format</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#use-force-fields">Use force fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#use-force-fields">Use force fields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#LJCoulombShiftForce"><code class="docutils literal notranslate"><span class="pre">LJCoulombShiftForce</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#LJEwaldForce"><code class="docutils literal notranslate"><span class="pre">LJEwaldForce</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#BondForceHarmonic"><code class="docutils literal notranslate"><span class="pre">BondForceHarmonic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#AngleForceHarmonicCos"><code class="docutils literal notranslate"><span class="pre">AngleForceHarmonicCos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#AngleForceHarmonic"><code class="docutils literal notranslate"><span class="pre">AngleForceHarmonic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DihedralForceAmberCosine"><code class="docutils literal notranslate"><span class="pre">DihedralForceAmberCosine</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#DihedralForceHarmonic"><code class="docutils literal notranslate"><span class="pre">DihedralForceHarmonic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#BondConstraint"><code class="docutils literal notranslate"><span class="pre">BondConstraint</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Vsite"><code class="docutils literal notranslate"><span class="pre">Vsite</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#use-gromacs-force-fields">Use GROMACS force fields</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#convert-gromacs-files">Convert GROMACS files</a></li>
 </ul>
@@ -102,9 +118,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="cu-forcefield.html">Force field</a> &raquo;</li>
-      <li>Read force parameters</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="cu-forcefield.html">Force field</a></li>
+      <li class="breadcrumb-item active">Read force parameters</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/cuda/cu-forcefield-files.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -115,9 +131,9 @@
            <div itemprop="articleBody">
              
   <section id="read-force-parameters">
-<h1>Read force parameters<a class="headerlink" href="#read-force-parameters" title="Permalink to this headline"></a></h1>
+<h1>Read force parameters<a class="headerlink" href="#read-force-parameters" title="Permalink to this heading"></a></h1>
 <section id="force-field-format">
-<h2>Force field format<a class="headerlink" href="#force-field-format" title="Permalink to this headline"></a></h2>
+<h2>Force field format<a class="headerlink" href="#force-field-format" title="Permalink to this heading"></a></h2>
 <p>Force field for non-boned interactions:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">pair_params</span><span class="o">&gt;</span>
 <span class="n">particle_type1</span>  <span class="n">particle_type2</span>  <span class="n">epsilon</span>  <span class="n">sigma</span>  <span class="n">alpha</span>
@@ -232,7 +248,7 @@
 </div>
 </section>
 <section id="use-force-fields">
-<h2>Use force fields<a class="headerlink" href="#use-force-fields" title="Permalink to this headline"></a></h2>
+<h2>Use force fields<a class="headerlink" href="#use-force-fields" title="Permalink to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>Force fields in the format could be read by <code class="docutils literal notranslate"><span class="pre">force_field_gala</span></code> module. The classes of <code class="docutils literal notranslate"><span class="pre">force_field_gala</span></code> module are listed as following.</p>
@@ -242,7 +258,7 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LJCoulombShiftForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rshift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJCoulombShiftForce" title="Permalink to this definition"></a></dt>
 <dd><p>Constructor of an object to simutaneously calculate modified Lennard-Jones and Coulomb interactions which are smoothed by a shift function same to GROMACS.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
 <li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – Neighbor list.</p></li>
@@ -267,7 +283,7 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LJEwaldForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJEwaldForce" title="Permalink to this definition"></a></dt>
 <dd><p>Constructor of an object to simutaneously calculate Lennard-Jones and the short-part Coulomb interactions.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
 <li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – Neighbor list.</p></li>
@@ -303,7 +319,7 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceHarmonic" title="Permalink to this definition"></a></dt>
 <dd><p>Constructor of an object to calculate harmonic bond interactions.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
 <li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
@@ -322,7 +338,7 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AngleForceHarmonicCos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceHarmonicCos" title="Permalink to this definition"></a></dt>
 <dd><p>Constructor of an object to calculate harmonic cosine angle interactions.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
 <li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
@@ -341,7 +357,7 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AngleForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceHarmonic" title="Permalink to this definition"></a></dt>
 <dd><p>Constructor of an object to calculate harmonic angle interactions.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
 <li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
@@ -360,7 +376,7 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceAmberCosine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceAmberCosine" title="Permalink to this definition"></a></dt>
 <dd><p>Constructor of an object to calculate Amber cosine dihedral interactions.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
 <li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
@@ -379,7 +395,7 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceHarmonic" title="Permalink to this definition"></a></dt>
 <dd><p>Constructor of an object to calculate harmonic dihedral interactions.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
 <li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
@@ -398,7 +414,7 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondConstraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondConstraint" title="Permalink to this definition"></a></dt>
 <dd><p>Constructor of an object to implement bond constraints.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
 <li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
@@ -431,7 +447,7 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Vsite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Vsite" title="Permalink to this definition"></a></dt>
 <dd><p>Constructor of an object to implement virtual sites using a same method to GROMACS.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
 <li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
@@ -447,7 +463,7 @@
 
 </section>
 <section id="use-gromacs-force-fields">
-<h2>Use GROMACS force fields<a class="headerlink" href="#use-gromacs-force-fields" title="Permalink to this headline"></a></h2>
+<h2>Use GROMACS force fields<a class="headerlink" href="#use-gromacs-force-fields" title="Permalink to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>Force fields in GROMACS format are supported by <code class="docutils literal notranslate"><span class="pre">force_field_itp</span></code> module. The usage and methods are same to <code class="docutils literal notranslate"><span class="pre">force_field_gala</span></code> module, but for reading the force fields in GROMACS format from itp files.</p>
@@ -462,7 +478,7 @@
 </div>
 </section>
 <section id="convert-gromacs-files">
-<h2>Convert GROMACS files<a class="headerlink" href="#convert-gromacs-files" title="Permalink to this headline"></a></h2>
+<h2>Convert GROMACS files<a class="headerlink" href="#convert-gromacs-files" title="Permalink to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>Convert GROMACS files to GALA files including configuration and force fields by <code class="docutils literal notranslate"><span class="pre">gro_to_xml</span></code> module.

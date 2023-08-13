@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Axial stretching &mdash; PYGAMD v1 documentation</title>
@@ -11,10 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,14 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -65,7 +70,13 @@
 <li class="toctree-l1"><a class="reference internal" href="cu-constraint.html">Constraint</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="cu-externalfield.html">External field</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="cu-externalfield-interaction.html">External force</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Axial stretching</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Axial stretching</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#AxialStretching"><code class="docutils literal notranslate"><span class="pre">AxialStretching</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#AxialStretching.setBoxLength"><code class="docutils literal notranslate"><span class="pre">AxialStretching.setBoxLength()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cu-externalfield-rnemd.html">RNEMD</a></li>
 </ul>
 </li>
@@ -94,9 +105,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="cu-externalfield.html">External field</a> &raquo;</li>
-      <li>Axial stretching</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="cu-externalfield.html">External field</a></li>
+      <li class="breadcrumb-item active">Axial stretching</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/cuda/cu-externalfield-stretching.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -107,13 +118,13 @@
            <div itemprop="articleBody">
              
   <section id="axial-stretching">
-<h1>Axial stretching<a class="headerlink" href="#axial-stretching" title="Permalink to this headline"></a></h1>
+<h1>Axial stretching<a class="headerlink" href="#axial-stretching" title="Permalink to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="AxialStretching">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AxialStretching</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AxialStretching" title="Permalink to this definition"></a></dt>
 <dd><p>The constructor of a stretching object of the box for a group of particles.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
 <li><p><strong>group</strong> (<a class="reference internal" href="cu-system-group.html#id2" title="ParticleSet"><em>ParticleSet</em></a>) – The group of particles.</p></li>

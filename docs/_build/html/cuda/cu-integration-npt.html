@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NPT ensemble &mdash; PYGAMD v1 documentation</title>
@@ -11,10 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,14 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -65,10 +70,22 @@
 <li class="toctree-l2"><a class="reference internal" href="cu-integration-nve.html">NVE ensemble</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cu-integration-nvt.html">NVT ensemble</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">NPT ensemble</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#andersen-barostat">Andersen barostat</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#npt-for-rigid-body">NPT for rigid body</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#martyna-tobias-klein-barostat">Martyna-Tobias-Klein barostat</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#martyna-tobias-klein-barostat-for-rigid-body">Martyna-Tobias-Klein barostat for rigid body</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#andersen-barostat">Andersen barostat</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#NPT"><code class="docutils literal notranslate"><span class="pre">NPT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#npt-for-rigid-body">NPT for rigid body</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#NPTRigid"><code class="docutils literal notranslate"><span class="pre">NPTRigid</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#martyna-tobias-klein-barostat">Martyna-Tobias-Klein barostat</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#NPTMTK"><code class="docutils literal notranslate"><span class="pre">NPTMTK</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#martyna-tobias-klein-barostat-for-rigid-body">Martyna-Tobias-Klein barostat for rigid body</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#NPTMTKRigid"><code class="docutils literal notranslate"><span class="pre">NPTMTKRigid</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -100,9 +117,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="cu-integration.html">Integration</a> &raquo;</li>
-      <li>NPT ensemble</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="cu-integration.html">Integration</a></li>
+      <li class="breadcrumb-item active">NPT ensemble</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/cuda/cu-integration-npt.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -113,13 +130,9 @@
            <div itemprop="articleBody">
              
   <section id="npt-ensemble">
-<h1>NPT ensemble<a class="headerlink" href="#npt-ensemble" title="Permalink to this headline"></a></h1>
+<h1>NPT ensemble<a class="headerlink" href="#npt-ensemble" title="Permalink to this heading"></a></h1>
 <p><strong>Overview</strong></p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 51%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#andersen-npt"><span class="std std-ref">Andersen barostat</span></a></p></td>
 <td><p><a class="reference internal" href="#NPT" title="NPT"><code class="xref py py-class docutils literal notranslate"><span class="pre">NPT</span></code></a></p></td>
@@ -130,14 +143,14 @@
 </tbody>
 </table>
 <section id="andersen-barostat">
-<span id="andersen-npt"></span><h2>Andersen barostat<a class="headerlink" href="#andersen-barostat" title="Permalink to this headline"></a></h2>
+<span id="andersen-npt"></span><h2>Andersen barostat<a class="headerlink" href="#andersen-barostat" title="Permalink to this heading"></a></h2>
 <p>Reference: H. C. Andersen, J. Chem. Phys., 1980, 72(4), 2384-2393.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="NPT">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NPT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPT" title="Permalink to this definition"></a></dt>
 <dd><p>The constructor of a NPT thermostat object for a group of particles.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
 <li><p><strong>group</strong> (<a class="reference internal" href="cu-system-group.html#id2" title="ParticleSet"><em>ParticleSet</em></a>) – The group of particles.</p></li>
@@ -177,13 +190,13 @@
 
 </section>
 <section id="npt-for-rigid-body">
-<span id="npt-rigid"></span><h2>NPT for rigid body<a class="headerlink" href="#npt-for-rigid-body" title="Permalink to this headline"></a></h2>
+<span id="npt-rigid"></span><h2>NPT for rigid body<a class="headerlink" href="#npt-for-rigid-body" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="NPTRigid">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NPTRigid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTRigid" title="Permalink to this definition"></a></dt>
 <dd><p>The constructor of a NPT thermostat object for rigid bodies.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
 <li><p><strong>group</strong> (<a class="reference internal" href="cu-system-group.html#id2" title="ParticleSet"><em>ParticleSet</em></a>) – The group of particles.</p></li>
@@ -229,14 +242,14 @@
 
 </section>
 <section id="martyna-tobias-klein-barostat">
-<h2>Martyna-Tobias-Klein barostat<a class="headerlink" href="#martyna-tobias-klein-barostat" title="Permalink to this headline"></a></h2>
+<h2>Martyna-Tobias-Klein barostat<a class="headerlink" href="#martyna-tobias-klein-barostat" title="Permalink to this heading"></a></h2>
 <p>Reference: G. J. Martyna, D. J. Tobias, and M. L. Klein, J. Chem. Phys., 1994, 101(5), 4177-4189.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="NPTMTK">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NPTMTK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTK" title="Permalink to this definition"></a></dt>
 <dd><p>The constructor of a NPTMTK thermostat object for a group of particles.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
 <li><p><strong>group</strong> (<a class="reference internal" href="cu-system-group.html#id2" title="ParticleSet"><em>ParticleSet</em></a>) – The group of particles.</p></li>
@@ -292,14 +305,14 @@
 
 </section>
 <section id="martyna-tobias-klein-barostat-for-rigid-body">
-<h2>Martyna-Tobias-Klein barostat for rigid body<a class="headerlink" href="#martyna-tobias-klein-barostat-for-rigid-body" title="Permalink to this headline"></a></h2>
+<h2>Martyna-Tobias-Klein barostat for rigid body<a class="headerlink" href="#martyna-tobias-klein-barostat-for-rigid-body" title="Permalink to this heading"></a></h2>
 <p>Reference: G. J. Martyna, D. J. Tobias, and M. L. Klein, J. Chem. Phys., 1994, 101(5), 4177-4189.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="NPTMTKRigid">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NPTMTKRigid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTKRigid" title="Permalink to this definition"></a></dt>
 <dd><p>The constructor of a NPTMTK thermostat object for rigid bodies.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
 <li><p><strong>group</strong> (<a class="reference internal" href="cu-system-group.html#id2" title="ParticleSet"><em>ParticleSet</em></a>) – The group of particles.</p></li>

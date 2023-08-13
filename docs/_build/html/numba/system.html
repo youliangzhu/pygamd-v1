@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>System info &mdash; PYGAMD v1 documentation</title>
@@ -11,10 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,14 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -95,8 +100,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>System info</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">System info</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/numba/system.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -107,7 +112,7 @@
            <div itemprop="articleBody">
              
   <section id="system-info">
-<h1>System info<a class="headerlink" href="#system-info" title="Permalink to this headline"></a></h1>
+<h1>System info<a class="headerlink" href="#system-info" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="system-data-format.html">Data format</a><ul>
@@ -119,16 +124,32 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="system-data-input.html">Data input</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="system-data-input.html#mst-reader">MST reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-data-input.html#snapshot"><code class="docutils literal notranslate"><span class="pre">snapshot</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-data-input.html#mst-reader">MST reader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="system-data-input.html#snapshot.read"><code class="docutils literal notranslate"><span class="pre">snapshot.read</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="system-data-output.html">Data output</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="system-data-output.html#collective-information">Collective information</a></li>
-<li class="toctree-l2"><a class="reference internal" href="system-data-output.html#mst-dump">MST dump</a></li>
-<li class="toctree-l2"><a class="reference internal" href="system-data-output.html#xml-dump">XML dump</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-data-output.html#collective-information">Collective information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="system-data-output.html#dump.data"><code class="docutils literal notranslate"><span class="pre">dump.data</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="system-group.html">Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system-data-output.html#mst-dump">MST dump</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="system-data-output.html#dump.mst"><code class="docutils literal notranslate"><span class="pre">dump.mst</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="system-data-output.html#xml-dump">XML dump</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="system-data-output.html#dump.xml"><code class="docutils literal notranslate"><span class="pre">dump.xml</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="system-group.html">Group</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="system-group.html#chare.particle_set"><code class="docutils literal notranslate"><span class="pre">chare.particle_set</span></code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>

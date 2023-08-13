@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Angle bending &mdash; PYGAMD v1 documentation</title>
@@ -11,10 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -28,14 +29,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -108,10 +113,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="cu-forcefield.html">Force field</a> &raquo;</li>
-          <li><a href="cu-forcefield-bonded.html">Bonded interactions</a> &raquo;</li>
-      <li>Angle bending</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="cu-forcefield.html">Force field</a></li>
+          <li class="breadcrumb-item"><a href="cu-forcefield-bonded.html">Bonded interactions</a></li>
+      <li class="breadcrumb-item active">Angle bending</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/cuda/cu-forcefield-bonded-angle.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -122,7 +127,7 @@
            <div itemprop="articleBody">
              
   <section id="angle-bending">
-<h1>Angle bending<a class="headerlink" href="#angle-bending" title="Permalink to this headline"></a></h1>
+<h1>Angle bending<a class="headerlink" href="#angle-bending" title="Permalink to this heading"></a></h1>
 <p><strong>Overview</strong></p>
 <p>Angles impose forces on specific triplets of particles to model chemical angles between two bonds.
 The angles are specified in <a class="reference internal" href="cu-data-format.html#xml-format"><span class="std std-ref">XML format</span></a> configuration file with the format:</p>
@@ -134,10 +139,6 @@ The angles are specified in <a class="reference internal" href="cu-data-format.h
 </div>
 <p>By themselves, angles do nothing. Only when you specify an angle force in script(i.e. <a class="reference internal" href="cu-forcefield-files.html#AngleForceHarmonic" title="AngleForceHarmonic"><code class="xref py py-class docutils literal notranslate"><span class="pre">AngleForceHarmonic</span></code></a>), are forces actually calculated between the listed particles.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 46%" />
-<col style="width: 54%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#harmonic-angle"><span class="std std-ref">Harmonic angle potential</span></a></p></td>
 <td><p><a class="reference internal" href="cu-forcefield-files.html#AngleForceHarmonic" title="AngleForceHarmonic"><code class="xref py py-class docutils literal notranslate"><span class="pre">AngleForceHarmonic</span></code></a></p></td>
@@ -155,7 +156,7 @@ The angles are specified in <a class="reference internal" href="cu-data-format.h
 </table>
 <a class="reference internal image-reference" href="../_images/angle.png"><img alt="Principle of angle bending" class="align-center" src="../_images/angle.png" style="width: 250px;" /></a>
 <section id="harmonic-angle-potential">
-<span id="harmonic-angle"></span><h2>Harmonic angle potential<a class="headerlink" href="#harmonic-angle-potential" title="Permalink to this headline"></a></h2>
+<span id="harmonic-angle"></span><h2>Harmonic angle potential<a class="headerlink" href="#harmonic-angle-potential" title="Permalink to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -176,7 +177,7 @@ V_{\mathrm{angle}}(\theta) = \frac{1}{2}k\left( \theta -\theta_{0} \right)^{2}
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AngleForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceHarmonic" title="Permalink to this definition"></a></dt>
 <dd><p>The constructor of angle harmonic interaction object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p>
 </dd>
 </dl>
@@ -196,7 +197,7 @@ V_{\mathrm{angle}}(\theta) = \frac{1}{2}k\left( \theta -\theta_{0} \right)^{2}
 
 </section>
 <section id="harmonic-cosine-angle-potential">
-<span id="harmonic-cosine-angle"></span><h2>Harmonic cosine angle potential<a class="headerlink" href="#harmonic-cosine-angle-potential" title="Permalink to this headline"></a></h2>
+<span id="harmonic-cosine-angle"></span><h2>Harmonic cosine angle potential<a class="headerlink" href="#harmonic-cosine-angle-potential" title="Permalink to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -217,7 +218,7 @@ V_{\mathrm{angle}}(\theta)=\frac{1}{2}k\left[\cos \left( \theta \right)-\cos \le
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AngleForceHarmonicCos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceHarmonicCos" title="Permalink to this definition"></a></dt>
 <dd><p>The constructor of angle cosine harmonic interaction object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p>
 </dd>
 </dl>
@@ -237,7 +238,7 @@ V_{\mathrm{angle}}(\theta)=\frac{1}{2}k\left[\cos \left( \theta \right)-\cos \le
 
 </section>
 <section id="cosine-angle-potential">
-<span id="cosine-angle"></span><h2>Cosine angle potential<a class="headerlink" href="#cosine-angle-potential" title="Permalink to this headline"></a></h2>
+<span id="cosine-angle"></span><h2>Cosine angle potential<a class="headerlink" href="#cosine-angle-potential" title="Permalink to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -259,7 +260,7 @@ V_{\mathrm{angle}}(\theta)=k\left[ 1-\cos \left( \theta - {\theta}_{0} \right) \
 <dd><blockquote>
 <div><p>The constructor of angle cosine interaction object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">param AllInfo all_info</dt>
+<dt class="field-odd">param AllInfo all_info<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The system information.</p>
 </dd>
 </dl>
@@ -280,7 +281,7 @@ V_{\mathrm{angle}}(\theta)=k\left[ 1-\cos \left( \theta - {\theta}_{0} \right) \
 
 </section>
 <section id="lnexp-angle-potential">
-<span id="lnexp-angle"></span><h2>LnExp angle potential<a class="headerlink" href="#lnexp-angle-potential" title="Permalink to this headline"></a></h2>
+<span id="lnexp-angle"></span><h2>LnExp angle potential<a class="headerlink" href="#lnexp-angle-potential" title="Permalink to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -303,7 +304,7 @@ V_{\mathrm{angle}}(\theta)= -\frac{1}{2} k \log \left[ A \exp \left( -k_1 \left(
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AngleForceLnExp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceLnExp" title="Permalink to this definition"></a></dt>
 <dd><p>The constructor of angle cosine interaction object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p>
 </dd>
 </dl>

@@ -8,3 +8,4 @@ Modules
    cu-module-polymerization
    cu-module-anisotropic 
    cu-module-dpd   
+   cu-module-changetype

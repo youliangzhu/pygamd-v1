@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bond interactions &mdash; PYGAMD v1 documentation</title>
@@ -11,10 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -28,14 +29,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -103,10 +108,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="forcefield.html">Force field</a> &raquo;</li>
-          <li><a href="forcefield-bonded.html">Bonded interactions</a> &raquo;</li>
-      <li>Bond interactions</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="forcefield.html">Force field</a></li>
+          <li class="breadcrumb-item"><a href="forcefield-bonded.html">Bonded interactions</a></li>
+      <li class="breadcrumb-item active">Bond interactions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/numba/forcefield-bonded-bond.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -117,7 +122,7 @@
            <div itemprop="articleBody">
              
   <section id="bond-interactions">
-<h1>Bond interactions<a class="headerlink" href="#bond-interactions" title="Permalink to this headline"></a></h1>
+<h1>Bond interactions<a class="headerlink" href="#bond-interactions" title="Permalink to this heading"></a></h1>
 <p><strong>Overview</strong></p>
 <p>Bonds impose connected forces on specific pairs of particles to model chemical bonds.
 The bonds are specified in <a class="reference internal" href="system-data-format.html#mst-format"><span class="std std-ref">MST format</span></a> configuration file with the format:</p>
@@ -128,10 +133,6 @@ The bonds are specified in <a class="reference internal" href="system-data-forma
 </div>
 <p>By themselves, bonds do nothing. Only when a bond force object is instantiated in script(i.e. <a class="reference internal" href="#force.bond" title="force.bond"><code class="xref py py-class docutils literal notranslate"><span class="pre">force.bond</span></code></a>), are bond forces actually calculated.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 48%" />
-<col style="width: 52%" />
-</colgroup>
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#bond-function"><span class="std std-ref">Bond functions</span></a></p></td>
 <td><p><a class="reference internal" href="#force.bond" title="force.bond"><code class="xref py py-class docutils literal notranslate"><span class="pre">force.bond</span></code></a></p></td>
@@ -140,7 +141,7 @@ The bonds are specified in <a class="reference internal" href="system-data-forma
 </table>
 <a class="reference internal image-reference" href="../_images/bond1.png"><img alt="Principle of bond stretching" class="align-center" src="../_images/bond1.png" style="width: 250px;" /></a>
 <section id="bond-functions">
-<span id="bond-function"></span><h2>Bond functions<a class="headerlink" href="#bond-functions" title="Permalink to this headline"></a></h2>
+<span id="bond-function"></span><h2>Bond functions<a class="headerlink" href="#bond-functions" title="Permalink to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>Function of bond interactions could be either the one called from bond interaction function libary, or the one defined by user himself.
@@ -162,7 +163,7 @@ V_{\mathrm{bond}}(r) = \frac{1}{2}k\left( r - r_{0} \right)^{2}
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">force.</span></span><span class="sig-name descname"><span class="pre">bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#force.bond" title="Permalink to this definition"></a></dt>
 <dd><p>Constructor of a bond interaction object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>info</strong> – system information.</p></li>
 <li><p><strong>func</strong> – function that is either a string or a device function.</p></li>
@@ -187,7 +188,7 @@ V_{\mathrm{bond}}(r) = \frac{1}{2}k\left( r - r_{0} \right)^{2}
 
 </section>
 <section id="self-defined-bond-functions">
-<h2>Self-defined bond functions<a class="headerlink" href="#self-defined-bond-functions" title="Permalink to this headline"></a></h2>
+<h2>Self-defined bond functions<a class="headerlink" href="#self-defined-bond-functions" title="Permalink to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>The device function for bond interactions could be written in script and conveyed

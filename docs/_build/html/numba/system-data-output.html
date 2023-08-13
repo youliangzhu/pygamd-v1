@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Data output &mdash; PYGAMD v1 documentation</title>
@@ -11,10 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,14 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -53,9 +58,18 @@
 <li class="toctree-l2"><a class="reference internal" href="system-data-format.html">Data format</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system-data-input.html">Data input</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Data output</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#collective-information">Collective information</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mst-dump">MST dump</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xml-dump">XML dump</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#collective-information">Collective information</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dump.data"><code class="docutils literal notranslate"><span class="pre">dump.data</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#mst-dump">MST dump</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dump.mst"><code class="docutils literal notranslate"><span class="pre">dump.mst</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#xml-dump">XML dump</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dump.xml"><code class="docutils literal notranslate"><span class="pre">dump.xml</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="system-group.html">Group</a></li>
@@ -100,9 +114,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="system.html">System info</a> &raquo;</li>
-      <li>Data output</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="system.html">System info</a></li>
+      <li class="breadcrumb-item active">Data output</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/numba/system-data-output.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -113,15 +127,15 @@
            <div itemprop="articleBody">
              
   <section id="data-output">
-<h1>Data output<a class="headerlink" href="#data-output" title="Permalink to this headline"></a></h1>
+<h1>Data output<a class="headerlink" href="#data-output" title="Permalink to this heading"></a></h1>
 <section id="collective-information">
-<h2>Collective information<a class="headerlink" href="#collective-information" title="Permalink to this headline"></a></h2>
+<h2>Collective information<a class="headerlink" href="#collective-information" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="dump.data">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dump.</span></span><span class="sig-name descname"><span class="pre">data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dump.data" title="Permalink to this definition"></a></dt>
 <dd><p>Constructor of an information dump object for a group of particles.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>info</strong> – system information.</p></li>
 <li><p><strong>group</strong> – a group of particles.</p></li>
@@ -139,13 +153,13 @@
 
 </section>
 <section id="mst-dump">
-<h2>MST dump<a class="headerlink" href="#mst-dump" title="Permalink to this headline"></a></h2>
+<h2>MST dump<a class="headerlink" href="#mst-dump" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="dump.mst">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dump.</span></span><span class="sig-name descname"><span class="pre">mst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dump.mst" title="Permalink to this definition"></a></dt>
 <dd><p>Constructor of an object to dump MST files.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>info</strong> – system information.</p></li>
 <li><p><strong>group</strong> – a group of particles.</p></li>
@@ -167,13 +181,13 @@
 
 </section>
 <section id="xml-dump">
-<h2>XML dump<a class="headerlink" href="#xml-dump" title="Permalink to this headline"></a></h2>
+<h2>XML dump<a class="headerlink" href="#xml-dump" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="dump.xml">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">dump.</span></span><span class="sig-name descname"><span class="pre">xml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#dump.xml" title="Permalink to this definition"></a></dt>
 <dd><p>Constructor of an object to dump XML files.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>info</strong> – system information.</p></li>
 <li><p><strong>group</strong> – a group of particles.</p></li>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Data &mdash; PYGAMD v1 documentation</title>
@@ -11,10 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,14 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -94,8 +99,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Data</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Data</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/cuda/cu-data.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -106,7 +111,7 @@
            <div itemprop="articleBody">
              
   <section id="data">
-<h1>Data<a class="headerlink" href="#data" title="Permalink to this headline"></a></h1>
+<h1>Data<a class="headerlink" href="#data" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cu-data-format.html">Data format</a><ul>
@@ -114,16 +119,45 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cu-data-input.html">Data input</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cu-data-input.html#xml-reader">XML reader</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-data-input.html#binary-reader">Binary reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-data-input.html#Reader"><code class="docutils literal notranslate"><span class="pre">Reader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-data-input.html#xml-reader">XML reader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-data-input.html#XMLReader"><code class="docutils literal notranslate"><span class="pre">XMLReader</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-data-input.html#binary-reader">Binary reader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-data-input.html#BinaryReader"><code class="docutils literal notranslate"><span class="pre">BinaryReader</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cu-data-output.html">Data output</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cu-data-output.html#collective-information">Collective information</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-data-output.html#mol2-dump">MOL2 dump</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-data-output.html#xml-dump">XML dump</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-data-output.html#dcd-trajectory-dump">DCD trajectory dump</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-data-output.html#binary-dump">Binary dump</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-data-output.html#common-functions-for-data-output">Common functions for Data output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-data-output.html#setPrecision"><code class="docutils literal notranslate"><span class="pre">setPrecision()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cu-data-output.html#setHead"><code class="docutils literal notranslate"><span class="pre">setHead()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-data-output.html#collective-information">Collective information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-data-output.html#DumpInfo"><code class="docutils literal notranslate"><span class="pre">DumpInfo</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-data-output.html#mol2-dump">MOL2 dump</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-data-output.html#MOL2Dump"><code class="docutils literal notranslate"><span class="pre">MOL2Dump</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-data-output.html#xml-dump">XML dump</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-data-output.html#XMLDump"><code class="docutils literal notranslate"><span class="pre">XMLDump</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cu-data-output.html#id0"><code class="docutils literal notranslate"><span class="pre">XMLDump</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-data-output.html#dcd-trajectory-dump">DCD trajectory dump</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-data-output.html#DCDDump"><code class="docutils literal notranslate"><span class="pre">DCDDump</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="cu-data-output.html#id3"><code class="docutils literal notranslate"><span class="pre">DCDDump</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-data-output.html#binary-dump">Binary dump</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-data-output.html#BinaryDump"><code class="docutils literal notranslate"><span class="pre">BinaryDump</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

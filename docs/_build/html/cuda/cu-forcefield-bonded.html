@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bonded interactions &mdash; PYGAMD v1 documentation</title>
@@ -11,10 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,14 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -101,9 +106,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="cu-forcefield.html">Force field</a> &raquo;</li>
-      <li>Bonded interactions</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="cu-forcefield.html">Force field</a></li>
+      <li class="breadcrumb-item active">Bonded interactions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/cuda/cu-forcefield-bonded.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -114,29 +119,68 @@
            <div itemprop="articleBody">
              
   <section id="bonded-interactions">
-<h1>Bonded interactions<a class="headerlink" href="#bonded-interactions" title="Permalink to this headline"></a></h1>
+<h1>Bonded interactions<a class="headerlink" href="#bonded-interactions" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="cu-forcefield-bonded-bond.html">Bond stretching</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-bond.html#harmonic-bond-potential">Harmonic bond potential</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-bond.html#fene-bond-potential">FENE bond potential</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-bond.html#polynominal-bond-potential">Polynominal bond potential</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-bond.html#morse-bond-potential">Morse bond potential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-bond.html#harmonic-bond-potential">Harmonic bond potential</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-bonded-bond.html#BondForceHarmonic"><code class="docutils literal notranslate"><span class="pre">BondForceHarmonic</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-bond.html#fene-bond-potential">FENE bond potential</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-bonded-bond.html#BondForceFENE"><code class="docutils literal notranslate"><span class="pre">BondForceFENE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-bond.html#polynominal-bond-potential">Polynominal bond potential</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-bonded-bond.html#BondForcePolynomial"><code class="docutils literal notranslate"><span class="pre">BondForcePolynomial</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-bond.html#morse-bond-potential">Morse bond potential</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-bonded-bond.html#BondForceMorse"><code class="docutils literal notranslate"><span class="pre">BondForceMorse</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cu-forcefield-bonded-angle.html">Angle bending</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-angle.html#harmonic-angle-potential">Harmonic angle potential</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-angle.html#harmonic-cosine-angle-potential">Harmonic cosine angle potential</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-angle.html#cosine-angle-potential">Cosine angle potential</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-angle.html#lnexp-angle-potential">LnExp angle potential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-angle.html#harmonic-angle-potential">Harmonic angle potential</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-bonded-angle.html#AngleForceHarmonic"><code class="docutils literal notranslate"><span class="pre">AngleForceHarmonic</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-angle.html#harmonic-cosine-angle-potential">Harmonic cosine angle potential</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-bonded-angle.html#AngleForceHarmonicCos"><code class="docutils literal notranslate"><span class="pre">AngleForceHarmonicCos</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-angle.html#cosine-angle-potential">Cosine angle potential</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-bonded-angle.html#AngleForceCos"><code class="docutils literal notranslate"><span class="pre">AngleForceCos</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-angle.html#lnexp-angle-potential">LnExp angle potential</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-bonded-angle.html#AngleForceLnExp"><code class="docutils literal notranslate"><span class="pre">AngleForceLnExp</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html">Dihedral torsion</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html#harmonic-dihedral-potential-proper">Harmonic dihedral potential (proper)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html#harmonic-dihedral-potential-improper">Harmonic dihedral potential (improper)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html#opls-dihedral-potential-proper">OPLS dihedral potential (proper)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html#ryckaert-bellemans-potential-proper">Ryckaert-Bellemans potential (proper)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html#amber-potential-proper-and-improper">Amber potential (proper and improper)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html#harmonic-dihedral-potential-proper">Harmonic dihedral potential (proper)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html#DihedralForceHarmonic"><code class="docutils literal notranslate"><span class="pre">DihedralForceHarmonic</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html#harmonic-dihedral-potential-improper">Harmonic dihedral potential (improper)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html#id0"><code class="docutils literal notranslate"><span class="pre">DihedralForceHarmonic</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html#opls-dihedral-potential-proper">OPLS dihedral potential (proper)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html#DihedralForceOPLSCosine"><code class="docutils literal notranslate"><span class="pre">DihedralForceOPLSCosine</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html#ryckaert-bellemans-potential-proper">Ryckaert-Bellemans potential (proper)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html#DihedralForceRyckaertBellemans"><code class="docutils literal notranslate"><span class="pre">DihedralForceRyckaertBellemans</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html#amber-potential-proper-and-improper">Amber potential (proper and improper)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cu-forcefield-bonded-dihedral.html#DihedralForceAmberCosine"><code class="docutils literal notranslate"><span class="pre">DihedralForceAmberCosine</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

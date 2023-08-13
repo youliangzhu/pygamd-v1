@@ -1,6 +1,18 @@
 Data output
 ===========
 
+Common functions for Data output
+--------------------------------
+
+   .. py:function:: setPrecision(int npre)
+   
+      Set the number of places after decimal point.
+	  
+   .. py:function:: setHead(int nhead) 
+   
+      Set the number of places before decimal point.
+	  
+	  
 Collective information
 ----------------------
 

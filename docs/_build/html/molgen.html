@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>molgen &mdash; PYGAMD v1 documentation</title>
@@ -11,10 +11,11 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -27,14 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -70,9 +75,79 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">molgen</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#description-of-molgen">Description of molgen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#molecule-definition">Molecule definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#objects-definition">Objects definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#generator-definition">Generator definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#molecule-definition">Molecule definition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Molecule"><code class="docutils literal notranslate"><span class="pre">Molecule</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">Molecule</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setParticleTypes"><code class="docutils literal notranslate"><span class="pre">Molecule.setParticleTypes()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setTopology"><code class="docutils literal notranslate"><span class="pre">Molecule.setTopology()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setIsotactic"><code class="docutils literal notranslate"><span class="pre">Molecule.setIsotactic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setBondLength"><code class="docutils literal notranslate"><span class="pre">Molecule.setBondLength()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">Molecule.setBondLength()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setAngleDegree"><code class="docutils literal notranslate"><span class="pre">Molecule.setAngleDegree()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">Molecule.setAngleDegree()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setDihedralDegree"><code class="docutils literal notranslate"><span class="pre">Molecule.setDihedralDegree()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">Molecule.setDihedralDegree()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setMass"><code class="docutils literal notranslate"><span class="pre">Molecule.setMass()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">Molecule.setMass()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">Molecule.setMass()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setCharge"><code class="docutils literal notranslate"><span class="pre">Molecule.setCharge()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">Molecule.setCharge()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8"><code class="docutils literal notranslate"><span class="pre">Molecule.setCharge()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setOrientation"><code class="docutils literal notranslate"><span class="pre">Molecule.setOrientation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9"><code class="docutils literal notranslate"><span class="pre">Molecule.setOrientation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10"><code class="docutils literal notranslate"><span class="pre">Molecule.setOrientation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setInert"><code class="docutils literal notranslate"><span class="pre">Molecule.setInert()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11"><code class="docutils literal notranslate"><span class="pre">Molecule.setInert()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12"><code class="docutils literal notranslate"><span class="pre">Molecule.setInert()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setQuaternion"><code class="docutils literal notranslate"><span class="pre">Molecule.setQuaternion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13"><code class="docutils literal notranslate"><span class="pre">Molecule.setQuaternion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14"><code class="docutils literal notranslate"><span class="pre">Molecule.setQuaternion()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setDiameter"><code class="docutils literal notranslate"><span class="pre">Molecule.setDiameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15"><code class="docutils literal notranslate"><span class="pre">Molecule.setDiameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id16"><code class="docutils literal notranslate"><span class="pre">Molecule.setDiameter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setCris"><code class="docutils literal notranslate"><span class="pre">Molecule.setCris()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id17"><code class="docutils literal notranslate"><span class="pre">Molecule.setCris()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18"><code class="docutils literal notranslate"><span class="pre">Molecule.setCris()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setInit"><code class="docutils literal notranslate"><span class="pre">Molecule.setInit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19"><code class="docutils literal notranslate"><span class="pre">Molecule.setInit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id20"><code class="docutils literal notranslate"><span class="pre">Molecule.setInit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setBody"><code class="docutils literal notranslate"><span class="pre">Molecule.setBody()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id21"><code class="docutils literal notranslate"><span class="pre">Molecule.setBody()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id22"><code class="docutils literal notranslate"><span class="pre">Molecule.setBody()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setMolecule"><code class="docutils literal notranslate"><span class="pre">Molecule.setMolecule()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23"><code class="docutils literal notranslate"><span class="pre">Molecule.setMolecule()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24"><code class="docutils literal notranslate"><span class="pre">Molecule.setMolecule()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setBox"><code class="docutils literal notranslate"><span class="pre">Molecule.setBox()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25"><code class="docutils literal notranslate"><span class="pre">Molecule.setBox()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setSphere"><code class="docutils literal notranslate"><span class="pre">Molecule.setSphere()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setCylinder"><code class="docutils literal notranslate"><span class="pre">Molecule.setCylinder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Molecule.setBodyEvacuation"><code class="docutils literal notranslate"><span class="pre">Molecule.setBodyEvacuation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#objects-definition">Objects definition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Object"><code class="docutils literal notranslate"><span class="pre">Object</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id26"><code class="docutils literal notranslate"><span class="pre">Object</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Object.setRadius"><code class="docutils literal notranslate"><span class="pre">Object.setRadius()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#generator-definition">Generator definition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Generators"><code class="docutils literal notranslate"><span class="pre">Generators</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Generators.addMolecule"><code class="docutils literal notranslate"><span class="pre">Generators.addMolecule()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Generators.setMinimumDistance"><code class="docutils literal notranslate"><span class="pre">Generators.setMinimumDistance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id27"><code class="docutils literal notranslate"><span class="pre">Generators.setMinimumDistance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Generators.setParam"><code class="docutils literal notranslate"><span class="pre">Generators.setParam()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Generators.setDimension"><code class="docutils literal notranslate"><span class="pre">Generators.setDimension()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Generators.outPutMST"><code class="docutils literal notranslate"><span class="pre">Generators.outPutMST()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Generators.outPutMol2"><code class="docutils literal notranslate"><span class="pre">Generators.outPutMol2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Generators.outPutXML"><code class="docutils literal notranslate"><span class="pre">Generators.outPutXML()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dataTackle.html">dataTackle</a></li>
@@ -95,8 +170,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>molgen</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">molgen</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/molgen.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -107,9 +182,9 @@
            <div itemprop="articleBody">
              
   <section id="molgen">
-<span id="id1"></span><h1>molgen<a class="headerlink" href="#molgen" title="Permalink to this headline"></a></h1>
+<span id="id1"></span><h1>molgen<a class="headerlink" href="#molgen" title="Permalink to this heading"></a></h1>
 <section id="description-of-molgen">
-<h2>Description of molgen<a class="headerlink" href="#description-of-molgen" title="Permalink to this headline"></a></h2>
+<h2>Description of molgen<a class="headerlink" href="#description-of-molgen" title="Permalink to this heading"></a></h2>
 <p>The initial configuration of simulation systems could be generated by employing a plugin of PYGAMD (named <strong>molgen</strong>, the abbreviation of “molecule generator”).
 The format of output files could be MST, Mol2 or XML.</p>
 <p>The <strong>molgen</strong> is composed of two parts:</p>
@@ -177,13 +252,13 @@ place and rotate the molecule.</p>
 </div></blockquote>
 </section>
 <section id="molecule-definition">
-<h2>Molecule definition<a class="headerlink" href="#molecule-definition" title="Permalink to this headline"></a></h2>
+<h2>Molecule definition<a class="headerlink" href="#molecule-definition" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="Molecule">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Molecule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">np</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Molecule" title="Permalink to this definition"></a></dt>
 <dd><p>The constructor of a molecule with the number of particles.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>np</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The number of particles.</p>
 </dd>
 </dl>
@@ -194,7 +269,7 @@ place and rotate the molecule.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Molecule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">np</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
 <dd><p>The constructor of a molecule and reads particles data from the MST file with file name and the number of particles.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The name of inputting file.</p></li>
 <li><p><strong>np</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The number of particles.</p></li>
@@ -484,13 +559,13 @@ place and rotate the molecule.</p>
 
 </section>
 <section id="objects-definition">
-<h2>Objects definition<a class="headerlink" href="#objects-definition" title="Permalink to this headline"></a></h2>
+<h2>Objects definition<a class="headerlink" href="#objects-definition" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="Object">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">np</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Object" title="Permalink to this definition"></a></dt>
 <dd><p>The constructor of an object with the number of particles and shape.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>np</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The number of particles.</p></li>
 <li><p><strong>shape</strong> (<em>Shape</em>) – The shape of object.</p></li>
@@ -504,7 +579,7 @@ place and rotate the molecule.</p>
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsigned</span> <span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Shape</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id26" title="Permalink to this definition"></a></dt>
 <dd><p>The constructor of an object by reading partial data from a file with file name, the number of particles, and shape (the candidates are “none” and “sphere”).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The name of inputting file.</p></li>
 <li><p><strong>np</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The number of particles.</p></li>
@@ -534,13 +609,13 @@ place and rotate the molecule.</p>
 
 </section>
 <section id="generator-definition">
-<h2>Generator definition<a class="headerlink" href="#generator-definition" title="Permalink to this headline"></a></h2>
+<h2>Generator definition<a class="headerlink" href="#generator-definition" title="Permalink to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="Generators">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Generators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">lx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">ly</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">lz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Generators" title="Permalink to this definition"></a></dt>
 <dd><p>The constructor of a molecule generator with box length in x y z directions.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The box length in x direction.</p></li>
 <li><p><strong>ly</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The box length in y direction.</p></li>

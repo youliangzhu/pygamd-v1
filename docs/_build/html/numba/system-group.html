@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Group &mdash; PYGAMD v1 documentation</title>
@@ -11,10 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -27,14 +28,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> PYGAMD
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PYGAMD
           </a>
               <div class="version">
                 v1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -53,7 +58,10 @@
 <li class="toctree-l2"><a class="reference internal" href="system-data-format.html">Data format</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system-data-input.html">Data input</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system-data-output.html">Data output</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Group</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Group</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#chare.particle_set"><code class="docutils literal notranslate"><span class="pre">chare.particle_set</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="application.html">Application</a></li>
@@ -95,9 +103,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="system.html">System info</a> &raquo;</li>
-      <li>Group</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="system.html">System info</a></li>
+      <li class="breadcrumb-item active">Group</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/numba/system-group.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -108,7 +116,7 @@
            <div itemprop="articleBody">
              
   <section id="group">
-<h1>Group<a class="headerlink" href="#group" title="Permalink to this headline"></a></h1>
+<h1>Group<a class="headerlink" href="#group" title="Permalink to this heading"></a></h1>
 <p>A group specifies the particles for certain functions, such as integration and data output. Group objects
 will not be defined in script. Instead, they will be defined in other objects. And then, ususally only keywords or a list of
 particle types and particle indexes are needed to indicate the particles.</p>
@@ -116,7 +124,7 @@ particle types and particle indexes are needed to indicate the particles.</p>
 <dt class="sig sig-object py" id="chare.particle_set">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">chare.</span></span><span class="sig-name descname"><span class="pre">particle_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#chare.particle_set" title="Permalink to this definition"></a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>info</strong> – system information.</p></li>
 <li><p><strong>group</strong> – either a string or a python list. The string is a keyword with candidates “all”, “body”, “charge”, and “nonbody”.
