@@ -172,10 +172,70 @@ Dihedral interaction
       dihedral.setParams('111', "table.dat", 0, 3) 
       app.add(dihedral)
 
+Self-defined functions
+----------------------
+  
+   Numerical module supports self-defined functions with following codes::
+   
+		def pair(width, func, rmin, rmax, coeff):
+			ptable = gala.vector_real2()
+			dr = rmax/width
+			for i in range(0, width):
+				r = dr * i
+				if r<rmin:
+					potential = func(rmin, **coeff)
+				else:
+					potential = func(r, **coeff)
+				ptable.append(gala.ToReal2(r, potential))
+			return ptable
+			
+		def bond(width, func, rmin, rmax, coeff):
+			ptable = gala.vector_real2()
+			dr= rmax/width
+			for i in range(0, width):
+				r = dr * i
+				if r<rmin:
+					potential = func(rmin, **coeff)
+				else:
+					potential = func(r, **coeff)
+				ptable.append(gala.ToReal2(r, potential))
+			return ptable
+			
+		def angle(width, func, coeff):
+			ptable = gala.vector_real2()
+			dth = math.pi/width
+			for i in range(0, width):
+				th = dth * i
+				potential = func(th, **coeff)
+				ptable.append(gala.ToReal2(th, potential))
+			return ptable
+			
+		def dihedral(width, func, coeff):
+			ptable = gala.vector_real2()
+			dth = 2.0*math.pi/width
+			for i in range(0, width):
+				th = dth * i
+				potential = func(th, **coeff)
+				ptable.append(gala.ToReal2(th, potential))
+			return ptable	
 
 
 
-
+   Example for LJ potential::
+		
+		from poetry import numerical
+		
+		def lj(r, epsilon, sigma):
+			v = 4.0 * epsilon * ( (sigma / r)**12 - (sigma / r)**6)
+			return v
+		
+		epsilon0 = 1.0
+		sigma0 = 1.0
+		
+		pair = gala.PairForceTable(all_info, neighbor_list,  2000) # (,,the number of data points)
+		pair.setPotential('A', 'A' , numerical.pair(width=2000, func=lj, rmin=0.3, rmax=3.0, coeff=dict(epsilon=epsilon0, sigma=sigma0)))
+		app.add(pair)
+		# rmin < r to avoid the potential exceeding the upper limit of numerical float.
 
 
 	  
