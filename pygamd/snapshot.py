@@ -33,6 +33,7 @@ CORRESPONDENCE
 from pygamd import snapshots
 import numpy as np
 import numba as nb
+from numpy import unicode
 from numba import cuda
 
 # read a snapshot file with certain format
@@ -83,31 +84,29 @@ class read:
 		
 		
 		for i in range(0, self.npa):
-			self.pos[i][0] = self.data.position[i][0]
-			self.pos[i][1] = self.data.position[i][1]
-			self.pos[i][2] = self.data.position[i][2]
-			type_i = self.data.type[i]
-			type_id = self.add_name_to_id(type_i)
-			self.pos[i][3] = np.float32(type_id)
+			self.pos[i][0] = self.data.position[i*3]
+			self.pos[i][1] = self.data.position[i*3+1]
+			self.pos[i][2] = self.data.position[i*3+2]
+			self.pos[i][3] = self.data.type[i]
 			self.tag[i] = i 
 			self.rtag[i] = i
 
 			
 		for i in range(0, self.npa):
-			if len(self.data.velocity)==self.npa:
-				self.vel[i][0] = self.data.velocity[i][0]
-				self.vel[i][1] = self.data.velocity[i][1]
-				self.vel[i][2] = self.data.velocity[i][2]
+			if len(self.data.velocity)==3*self.npa:
+				self.vel[i][0] = self.data.velocity[i*3+0]
+				self.vel[i][1] = self.data.velocity[i*3+1]
+				self.vel[i][2] = self.data.velocity[i*3+2]
 			if len(self.data.mass)==self.npa:
 				self.vel[i][3] = self.data.mass[i]
 			else:
 				self.vel[i][3] = 1.0		
 
-		if len(self.data.image)==self.npa:
+		if len(self.data.image)== 3*self.npa:
 			for i in range(0, self.npa):
-				self.image[i][0] = self.data.image[i][0]
-				self.image[i][1] = self.data.image[i][1]
-				self.image[i][2] = self.data.image[i][2]
+				self.image[i][0] = self.data.image[i*3]
+				self.image[i][1] = self.data.image[i*3+1]
+				self.image[i][2] = self.data.image[i*3+2]
 				
 		if len(self.data.charge)==self.npa:
 			self.charge = np.zeros(self.npa, dtype=np.float32)
@@ -139,40 +138,64 @@ class read:
 			for i in range(0, self.npa):
 				self.cris[i] = self.data.cris[i]
 				
-		if len(self.data.orientation)==self.npa:
+		if len(self.data.orientation)==3*self.npa:
 			self.orientation = np.zeros([self.npa, 3], dtype=np.float32)
 			for i in range(0, self.npa):
-				self.orientation[i][0] = self.data.orientation[i][0]
-				self.orientation[i][1] = self.data.orientation[i][1]
-				self.orientation[i][2] = self.data.orientation[i][2]
+				self.orientation[i][0] = self.data.orientation[i*3]
+				self.orientation[i][1] = self.data.orientation[i*3+1]
+				self.orientation[i][2] = self.data.orientation[i*3+2]
 
-		if len(self.data.quaternion)==self.npa:
+		if len(self.data.quaternion)==4*self.npa:
 			self.quaternion = np.zeros([self.npa, 4], dtype=np.float32)
 			for i in range(0, self.npa):
-				self.quaternion[i][0] = self.data.quaternion[i][0]
-				self.quaternion[i][1] = self.data.quaternion[i][1]
-				self.quaternion[i][2] = self.data.quaternion[i][2]
-				self.quaternion[i][3] = self.data.quaternion[i][3]
+				self.quaternion[i][0] = self.data.quaternion[i*4]
+				self.quaternion[i][1] = self.data.quaternion[i*4+1]
+				self.quaternion[i][2] = self.data.quaternion[i*4+2]
+				self.quaternion[i][3] = self.data.quaternion[i*4+3]
 
-		if len(self.data.inert)==self.npa:
+		if len(self.data.inert)==3*self.npa:
 			self.inert = np.zeros([self.npa, 3], dtype=np.float32)
 			for i in range(0, self.npa):
-				self.inert[i][0] = self.data.inert[i][0]
-				self.inert[i][1] = self.data.inert[i][1]
-				self.inert[i][2] = self.data.inert[i][2]
-				
+				self.inert[i][0] = self.data.inert[i*3]
+				self.inert[i][1] = self.data.inert[i*3+1]
+				self.inert[i][2] = self.data.inert[i*3+2]
+
+		if len(self.data.bond)==3*self.npa:
+			self.bond_pre = np.zeros([self.npa, 3], dtype=np.float32)
+			for i in range(0, self.npa):
+				self.bond_pre[i][0] = self.data.bond[i*3]
+				self.bond_pre[i][1] = self.data.bond[i*3+1]
+				self.bond_pre[i][2] = self.data.bond[i*3+2]
+
+		if len(self.data.angle)==4*self.npa:
+			self.angle_pre = np.zeros([self.npa, 4], dtype=np.float32)
+			for i in range(0, self.npa):
+				self.angle_pre[i][0] = self.data.angle[i*4]
+				self.angle_pre[i][1] = self.data.angle[i*4+1]
+				self.angle_pre[i][2] = self.data.angle[i*4+2]
+				self.angle_pre[i][3] = self.data.angle[i*4+3]
+
+		if len(self.data.dihedral)==5*self.npa:
+			self.dihedral_pre = np.zeros([self.npa, 5], dtype=np.float32)
+			for i in range(0, self.npa):
+				self.dihedral_pre[i][0] = self.data.dihedral[i*5]
+				self.dihedral_pre[i][1] = self.data.dihedral[i*5+1]
+				self.dihedral_pre[i][2] = self.data.dihedral[i*5+2]
+				self.dihedral_pre[i][3] = self.data.dihedral[i*5+3]
+				self.dihedral_pre[i][4] = self.data.dihedral[i*5+4]
+
 		self.force = np.zeros([self.npa, 3], dtype=np.float32)
 		self.virial_potential = np.zeros([self.npa, 2], dtype=np.float32)
 		self.ntypes=len(self.typemap)
 		
 		if len(self.data.bond)>0:
-			self.bond = snapshots.bonded_data.bond_data(self, self.data.bond)
+			self.bond = snapshots.bonded_data.bond_data(self, self.data.bond_pre)
 			
 		if len(self.data.angle)>0:
-			self.angle = snapshots.bonded_data.angle_data(self, self.data.angle)
+			self.angle = snapshots.bonded_data.angle_data(self, self.data.angle_pre)
 
 		if len(self.data.dihedral)>0:
-			self.dihedral = snapshots.bonded_data.dihedral_data(self, self.data.dihedral)			
+			self.dihedral = snapshots.bonded_data.dihedral_data(self, self.data.dihedral_pre)			
 
 		# device arrays		
 		self.d_pos = cuda.to_device(self.pos)

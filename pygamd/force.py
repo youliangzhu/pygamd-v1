@@ -33,7 +33,9 @@ CORRESPONDENCE
 from pygamd import forces
 from pygamd import plist
 import math
+from numba.experimental import jitclass
 
+@jitclass
 class nonbonded:
 	def __init__(self, info, rcut, func, exclusion=None):
 		nl = info.find_plist(rcut, exclusion)
@@ -63,6 +65,7 @@ class nonbonded:
 				if not self.check[idx]:
 					raise RuntimeError('Error! the parameters between type ',self.info.typemap[i],' and type ',self.info.typemap[j],' has not been set!')
 
+@jitclass
 class nonbonded_c:
 	def __init__(self, info, rcut, func, exclusion=None):
 		nl = info.find_plist(rcut, exclusion)
@@ -92,6 +95,7 @@ class nonbonded_c:
 				if not self.check[idx]:
 					raise RuntimeError('Error! the parameters between type ',self.info.typemap[i],' and type ',self.info.typemap[j],' has not been set!')
 
+@jitclass
 class dpd:
 	def __init__(self, info, rcut=1.0):
 		nl = info.find_plist(rcut, None)
@@ -122,6 +126,7 @@ class dpd:
 				if not self.check[idx]:
 					raise RuntimeError('Error! the parameters between type ',self.info.typemap[i],' and type ',self.info.typemap[j],' have not been set!')
 
+@jitclass
 class slj:
 	def __init__(self, info, rcut=1.0):
 		# check d_diameter    
@@ -176,6 +181,7 @@ class slj:
 				if not self.check[idx]:
 					raise RuntimeError('Error! the parameters between type ', self.info.typemap[i], ' and type ', self.info.typemap[j], ' have not been set!')
 
+@jitclass
 class bond:
 	def __init__(self, info, func):	
 		self.info = info
@@ -199,7 +205,7 @@ class bond:
 			if not self.check[i]:
 				raise RuntimeError('Error! the parameters for bond type ',self.info.bond.typemap[i],' have not been set!')		
 				
-				
+@jitclass			
 class angle:
 	def __init__(self, info, func):	
 		self.info = info
@@ -223,7 +229,7 @@ class angle:
 			if not self.check[i]:
 				raise RuntimeError('Error! the parameters for angle type ',self.info.angle.typemap[i],' have not been set!')		
 				
-				
+@jitclass				
 class dihedral:
 	def __init__(self, info, func):	
 		self.info = info

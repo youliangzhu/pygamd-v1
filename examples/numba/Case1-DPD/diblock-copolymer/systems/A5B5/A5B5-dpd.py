@@ -1,8 +1,14 @@
+import sys
+sys.path.insert(0, "/home/aswinkumar99/pygamd-v1")
+
 import pygamd
+
+print("Using pygamd from:", pygamd.__path__)
 
 mst = pygamd.snapshot.read("A5B5.mst")
 app = pygamd.application.dynamics(info=mst, dt=0.04)
 
+print(type(mst))
 fn = pygamd.force.dpd(info=mst, rcut=1.0)
 fn.setParams(type_i="A", type_j="A", alpha=25.0, sigma=3.0)
 fn.setParams(type_i="A", type_j="B", alpha=40.0, sigma=3.0)
