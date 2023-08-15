@@ -26,11 +26,20 @@ pygamd:
 
    pip install pygamd
 
+Installation time < half of an hour.
+
+
 Requirements:
 ~~~~~~~~~~~~~
 
+OS:       Linux
+Hardware: NVIDIA GPU, AMD GPU or DCU.
+
+Dependencies
+
 1. Python3.11 including numba, numpy, and pybind11 packages
 2. NVIDIA CUDA Toolkit 12
+
 
 Citation
 --------
@@ -104,6 +113,10 @@ Example: DPD simulation of diblock copolymer
 
    app.run(500000)
 
+
+Runing time < 2 hours.
+Results are the snapshots for the transition from disordered structure to a lamellar phase.
+
 Contributing
 ------------
 
@@ -115,3 +128,8 @@ or writing an email to the author Dr. You-Liang Zhu (Email:
 ylzhu@pygamd.com) so that we can talk about it. Please note that this
 project is released with a Contributor Code of Conduct. By participating
 in this project you agree to abide by its terms.
+
+License
+-------
+
+GNU General Public License v3 (GPLv3)
