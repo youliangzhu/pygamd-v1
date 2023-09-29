@@ -129,71 +129,79 @@ XML dump
 	  
    .. py:function:: setOutputPosition(bool switch)
    
-      Outputs positions (default value is true).
+      Outputs particle position (default value is true).
 	  
    .. py:function:: setOutputType (bool switch)
    
-      Outputs particle types (default value is true).
+      Outputs particle type (default value is true).
 	  
    .. py:function:: setOutputImage(bool switch)
    
-      Outputs images.
+      Outputs particle image.
 	  
    .. py:function:: setOutputVelocity(bool switch)
    
-      Outputs velocities.
+      Outputs particle velocity.
 	  
    .. py:function:: setOutputMass(bool switch)
    
-      Outputs masses.
+      Outputs particle mass.
 	  
    .. py:function:: setOutputCharge(bool switch)
    
-      Outputs charges.
+      Outputs particle charge.
 	  
    .. py:function:: setOutputDiameter(bool switch)
    
-      Outputs diameters.
+      Outputs particle diameter.
 	  
    .. py:function:: setOutputBody(bool switch)
    
-      Outputs bodies.
+      Outputs particle body.
 	  
    .. py:function:: setOutputVirial(bool switch)
    
-      Outputs virials.
+      Outputs particle virial.
 	  
    .. py:function:: setOutputForce(bool switch)
    
-      Outputs forces.
+      Outputs particle force (x, y, z).
+	  
+   .. py:function:: setOutputPotential(bool switch)
+   
+      Outputs particle potential.
 	  
    .. py:function:: setOutputOrientation(bool switch)
    
-      Outputs orientations.
+      Outputs particle orientation.
 	  
    .. py:function:: setOutputQuaternion(bool switch)
    
-      Outputs quaternions.
+      Outputs particle quaternion.
 	  
    .. py:function:: setOutputRotation(bool switch)
    
-      Outputs rotation velocities.
+      Outputs particle rotation velocity.
+	  
+   .. py:function:: setOutputRotangle(bool switch)
+   
+      Outputs particle accumulated rotated angle at the direction of (0, 0, 1) in 3D or (0, 1, 0) in 2D.
 	  
    .. py:function:: setOutputTorque(bool switch)
    
-      Outputs torques.
+      Outputs particle torque.
 	  
    .. py:function:: setOutputInert(bool switch)
    
-      Outputs inert tensors.
+      Outputs particle inert tensor.
 	  
    .. py:function:: setOutputInit(bool switch)
    
-      Outputs initiator indicators.
+      Outputs particle initiator indicator.
 	  
    .. py:function:: setOutputCris(bool switch)
    
-      Outputs cross-linking indicators.
+      Outputs particle cross-linking indicator.
 	  
    .. py:function:: setOutputBond(bool switch)
    
@@ -213,19 +221,19 @@ XML dump
 		
    .. py:function:: setOutputVsite(bool switch)
    
-      Outputs virual sites.    
+      Outputs virual sites.
 		
    .. py:function:: setOutputLocalForce(Force object)
    
-      Outputs particle forces for a Force object.
+      Outputs particle force(x, y, z and w where w is potential) of a Force object.
 
    .. py:function:: setOutputLocalVirial(Force object)
    
-      Outputs particle virials for a Force object.   
+      Outputs particle virial of a Force object.   
 		
    .. py:function:: setOutputLocalVirialMatrix(Force object)
    
-       Outputs particle virial matrixes for a Force object.  
+       Outputs particle virial matrix of a Force object.  
 		
    .. py:function:: setOutputPatch(AniForce object)	
    
