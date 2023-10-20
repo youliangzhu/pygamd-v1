@@ -1,0 +1,45 @@
+#!/usr/bin/python
+from poetry import molgen
+import os
+import string
+import math
+import re
+import random
+
+lx = 30.0
+ly = 30.0
+lz = 0.0
+
+mol0=molgen.Molecule(1)
+mol0.setParticleTypes("A")
+mol0.setInit(0)
+mol0.setCris(0)
+
+mol1=molgen.Molecule(2)
+mol1.setTopology("0-1")
+mol1.setParticleTypes("B,B")
+mol1.setBondLength(1.0)
+mol1.setInit(0)
+mol1.setCris(0)
+
+mol2=molgen.Molecule(2)
+mol2.setTopology("0-1")
+mol2.setParticleTypes("C,C")
+mol2.setBondLength(1.0)
+mol2.setInit(1)
+mol2.setCris(0)
+
+
+gen0=molgen.Generators(lx,ly,lz)
+gen0.addMolecule(mol1,50)
+gen0.addMolecule(mol2,50)
+gen0.addMolecule(mol0,460)
+gen0.setDimension(2)
+gen0.setMinimumDistance(0.9)
+gen0.outPutXML("gencon")
+
+
+
+
+
+

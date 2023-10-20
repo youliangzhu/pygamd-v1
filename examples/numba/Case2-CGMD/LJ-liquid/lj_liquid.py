@@ -16,4 +16,7 @@ app.add(dd)
 dm = pygamd.dump.mst(info=mst, group='all', file='p.mst', period=10000)
 app.add(dm)
 
+xml = pygamd.dump.xml(info=mst, group='all', file='p', period=10000)
+app.add(xml)
+
 app.run(20000)

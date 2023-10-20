@@ -25,5 +25,8 @@ app.add(di)
 dm = pygamd.dump.mst(info=mst, group='all', file='p.mst', period=100000)
 app.add(dm)
 
+xml = pygamd.dump.xml(info=mst, group='all', file='p', period=10000)
+app.add(xml)
+
 #ready ro run
 app.run(500000)#(the number of steps to run)

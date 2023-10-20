@@ -1,0 +1,18 @@
+#!/usr/bin/python
+from poetry import molgen
+
+mol0=molgen.Molecule(4)
+mol0.setParticleTypes("A,B,B,B")
+mol0.setTopology("0-1,0-2,0-3")
+mol0.setBondLength("A","B", 1.0)
+mol0.setAngleDegree("B", "A", "B", 120)
+mol0.setInit("B", 1)
+mol0.setCris("A", 1)
+
+
+gen0=molgen.Generators(200, 200, 0.0)
+gen0.addMolecule(mol0, 2000)
+gen0.setDimension(2)
+gen0.setMinimumDistance(1.0)
+gen0.outPutXML("pn2d")
+

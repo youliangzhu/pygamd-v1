@@ -454,13 +454,13 @@ class read_mst:
 		if len(self.inert) > 0:
 			if len(self.inert) != self.num_particles:
 				raise RuntimeError('Error! number of inert ', len(self.inert), ' is not equal to the number of particles ', self.num_particles)
-			print("info :", len(self.inert), "inerts")			
+			print("info :", len(self.inert), "inerts")
 
 		if len(self.asphere) > 0:
 			print("info :", len(self.asphere), "aspheres")
 			
 		if len(self.patch) > 0:
-			print("info :", len(self.patch), "patches")			
+			print("info :", len(self.patch), "patches")
 			
 		if len(self.bond) > 0:
 			print("info :", len(self.bond), "bonds")
@@ -472,19 +472,19 @@ class read_mst:
 			print("info :", len(self.dihedral), "dihedrals")
 
 		if len(self.vsite) > 0:
-			print("info :", len(self.vsite), "vsites")			
+			print("info :", len(self.vsite), "vsites")
 
 	def init_data(self):
 		# data
-		if not self.read_indicator['box']:				
+		if not self.read_indicator['box']:
 			self.box=[]
-		if not self.read_indicator['position']:				
+		if not self.read_indicator['position']:
 			self.position=[]
-		if not self.read_indicator['type']:			
+		if not self.read_indicator['type']:
 			self.type=[]
-		if not self.read_indicator['image']:			
+		if not self.read_indicator['image']:
 			self.image=[]
-		if not self.read_indicator['mass']:			
+		if not self.read_indicator['mass']:
 			self.mass=[]
 		if not self.read_indicator['velocity']:
 			self.velocity=[]
@@ -495,8 +495,8 @@ class read_mst:
 		if not self.read_indicator['diameter']:
 			self.diameter=[]
 		if not self.read_indicator['rotangle']:
-			self.rotangle=[]				
-		if not self.read_indicator['force']:			
+			self.rotangle=[]
+		if not self.read_indicator['force']:
 			self.force=[]
 		if not self.read_indicator['virial']:
 			self.virial=[]

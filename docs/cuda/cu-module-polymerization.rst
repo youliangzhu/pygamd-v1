@@ -42,7 +42,19 @@ Polymerization model
 	  
    .. py:function:: setExchangePr(string type1, string type2, string  type3, float probability)
    
-      specifies the reaction probability of replacing type3 to connect to type 2 by type1. This function will activate ExchMode
+      specifies the reaction probability of replacing type3 by type1 in the connection to type 2. The init of type2 should be 1. This function will activate ExchMode
+	  
+   .. py:function:: setInsertionPr(string type1, string type2, string  type3, float probability)
+   
+      specifies the reaction probability of inserting type1 to type2-type3 and forming type2-type1-typ3. The init of type2 should be 1. This function will activate setInsertionMode.
+	  
+   .. py:function:: setChangeTypeInReaction(string name_origin, string name_new)
+   
+      specifies the type change in reaction in which the particle type will be changed from name_origin to name_new.
+	  
+   .. py:function:: setInitInitReaction(bool reaction)
+	  
+      allows the reaction between particle i with init=1 and particle j with init=1.
 	  
    .. py:function:: setMaxCris(string type, unsigned int cris_max)
    
@@ -88,6 +100,10 @@ Polymerization model
    
       switches the rule of the reaction only with the nearest particle.
 	  
+   .. py:function:: setInitDieProb
+   
+      specifies the die probability of initiators.
+	  
    .. py:function:: initExPoint()
    
       switches on initializing reactive point for exchange reaction.
@@ -103,6 +119,10 @@ Polymerization model
    .. py:function:: setExchMode()
    
       specifies the mode of polymerization to be chain exchange. setExchangePr function will activate this mode. 
+	  
+   .. py:function:: setInsertionMode()
+   
+      specifies the mode of polymerization to be insertion. setInsertionPr function will activate this mode. 
 
    Example::
    
