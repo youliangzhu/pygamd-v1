@@ -1,6 +1,7 @@
 include poetry/*.so
 include poetry/*.pyd
 include poetry/dataTackle
+include poetry/hw_dataTackle
 include poetry/dataTackle.exe
 include poetry/poetry.zip
 include poetry/READ.md
