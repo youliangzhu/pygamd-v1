@@ -11,8 +11,6 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -134,9 +132,9 @@
            <div itemprop="articleBody">
              
   <section id="coulomb-interaction">
-<h1>Coulomb interaction<a class="headerlink" href="#coulomb-interaction" title="Link to this heading"></a></h1>
+<h1>Coulomb interaction<a class="headerlink" href="#coulomb-interaction" title="Link to this heading">¶</a></h1>
 <section id="ewald-summation-theory">
-<span id="ewald-theory"></span><h2>Ewald summation theory<a class="headerlink" href="#ewald-summation-theory" title="Link to this heading"></a></h2>
+<span id="ewald-theory"></span><h2>Ewald summation theory<a class="headerlink" href="#ewald-summation-theory" title="Link to this heading">¶</a></h2>
 <p>The Coulomb interaction between two charge particles is given by:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -190,7 +188,7 @@ The long-range part inlcuding <a class="reference internal" href="#PPPMForce" ti
 </div></blockquote>
 </section>
 <section id="ewald-short-range">
-<span id="ewald-short"></span><h2>Ewald (short-range)<a class="headerlink" href="#ewald-short-range" title="Link to this heading"></a></h2>
+<span id="ewald-short"></span><h2>Ewald (short-range)<a class="headerlink" href="#ewald-short-range" title="Link to this heading">¶</a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>The short-range term is exactly handled in the direct sum.</p>
@@ -204,7 +202,7 @@ The long-range part inlcuding <a class="reference internal" href="#PPPMForce" ti
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="EwaldForce">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EwaldForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EwaldForce" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EwaldForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EwaldForce" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of an direct Ewald force object for a group of charged particles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -218,13 +216,13 @@ The long-range part inlcuding <a class="reference internal" href="#PPPMForce" ti
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="EwaldForce.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typei</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typej</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">kappa</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EwaldForce.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typei</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typej</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">kappa</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EwaldForce.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the kappa per unique pair of particle types.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">kappa</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">kappa</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the kappa for all pairs of particle types.</p>
 </dd></dl>
 
@@ -240,7 +238,7 @@ The long-range part inlcuding <a class="reference internal" href="#PPPMForce" ti
 
 </section>
 <section id="ewald-for-dpd-short-range">
-<span id="ewald-short-dpd"></span><h2>Ewald for DPD (short-range)<a class="headerlink" href="#ewald-for-dpd-short-range" title="Link to this heading"></a></h2>
+<span id="ewald-short-dpd"></span><h2>Ewald for DPD (short-range)<a class="headerlink" href="#ewald-for-dpd-short-range" title="Link to this heading">¶</a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>In order to remove the divergency at <span class="math notranslate nohighlight">\(r=0\)</span>, a Slater-type charge density is used to describe the charged DPD particles.</p>
@@ -262,7 +260,7 @@ The long-range part inlcuding <a class="reference internal" href="#PPPMForce" ti
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="DPDEwaldForce">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DPDEwaldForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDEwaldForce" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DPDEwaldForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDEwaldForce" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of an direct Ewald force object for a group of charged particles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -276,19 +274,19 @@ The long-range part inlcuding <a class="reference internal" href="#PPPMForce" ti
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="DPDEwaldForce.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typei</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typej</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">kappa</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDEwaldForce.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typei</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typej</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">kappa</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDEwaldForce.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the kappa per unique pair of particle types.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">kappa</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">kappa</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the kappa for all pairs of particle types.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="DPDEwaldForce.setBeta">
-<span class="sig-name descname"><span class="pre">setBeta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">beta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDEwaldForce.setBeta" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setBeta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">beta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDEwaldForce.setBeta" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the beta for all pairs of particle types.</p>
 </dd></dl>
 
@@ -304,7 +302,7 @@ The long-range part inlcuding <a class="reference internal" href="#PPPMForce" ti
 
 </section>
 <section id="pppm-long-range">
-<span id="pppm-long"></span><h2>PPPM (long-range)<a class="headerlink" href="#pppm-long-range" title="Link to this heading"></a></h2>
+<span id="pppm-long"></span><h2>PPPM (long-range)<a class="headerlink" href="#pppm-long-range" title="Link to this heading">¶</a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>The long-range term is exactly handled in the reciprocal sum.</p>
@@ -322,7 +320,7 @@ The long-range part inlcuding <a class="reference internal" href="#PPPMForce" ti
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="PPPMForce">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PPPMForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PPPMForce" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PPPMForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PPPMForce" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of a PPPM force object for a group of charged particles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -335,13 +333,13 @@ The long-range part inlcuding <a class="reference internal" href="#PPPMForce" ti
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="PPPMForce.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">nx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ny</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">nz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PPPMForce.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">nx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ny</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">nz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PPPMForce.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the PPPM force with the number of grid points in x, y, and z direction, the order of interpolation, and the cutoff radius of direct force.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">fourierspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">fourierspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the PPPM force with the fourier space, the order of interpolation, and the cutoff radius of direct force.
 The number of grid points will be derived automatically.</p>
 </dd></dl>
@@ -363,10 +361,10 @@ The number of grid points will be derived automatically.</p>
 
 </section>
 <section id="enuf-long-range">
-<span id="enuf-long"></span><h2>ENUF (long-range)<a class="headerlink" href="#enuf-long-range" title="Link to this heading"></a></h2>
+<span id="enuf-long"></span><h2>ENUF (long-range)<a class="headerlink" href="#enuf-long-range" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="ENUFForce">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ENUFForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ENUFForce" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ENUFForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ENUFForce" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of an ENUF force object for a group of charged particles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -379,7 +377,7 @@ The number of grid points will be derived automatically.</p>
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="ENUFForce.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">precision</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">Nx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">Ny</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">Nz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ENUFForce.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">precision</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">Nx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">Ny</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">Nz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ENUFForce.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the ENUF force with alpha, hyper sampling factor sigma, precision determine the order of interpolation (precision*2+2), and the number of grid points in x, y, and z direction.</p>
 </dd></dl>
 

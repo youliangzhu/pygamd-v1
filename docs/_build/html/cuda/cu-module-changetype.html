@@ -11,8 +11,6 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -120,14 +118,14 @@
            <div itemprop="articleBody">
              
   <section id="particle-type-change">
-<h1>Particle type change<a class="headerlink" href="#particle-type-change" title="Link to this heading"></a></h1>
+<h1>Particle type change<a class="headerlink" href="#particle-type-change" title="Link to this heading">¶</a></h1>
 <p>A particle type change method can be used for the coarse-grained simulation of catalytic reaction of small molecules.</p>
 <a class="reference internal image-reference" href="../_images/changetype.png"><img alt="illustration of particle type change method" class="align-center" src="../_images/changetype.png" style="width: 512px;" /></a>
 <section id="changetype">
-<h2>ChangeType<a class="headerlink" href="#changetype" title="Link to this heading"></a></h2>
+<h2>ChangeType<a class="headerlink" href="#changetype" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="ChangeType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ChangeType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChangeType" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ChangeType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChangeType" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of an object of ChangeType.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -140,31 +138,31 @@
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="ChangeType.setPr">
-<span class="sig-name descname"><span class="pre">setPr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">prob</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChangeType.setPr" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setPr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">prob</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChangeType.setPr" title="Link to this definition">¶</a></dt>
 <dd><p>specifies reaction probability.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ChangeType.setSite">
-<span class="sig-name descname"><span class="pre">setSite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">NeighborList</span> <span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">site_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rcut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChangeType.setSite" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setSite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">NeighborList</span> <span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">site_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rcut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChangeType.setSite" title="Link to this definition">¶</a></dt>
 <dd><p>changing source particles to target particles, triggered by the sites (with site_type) in the neighbor list (nlist) of source particles within a cutoff of radius (rcut).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ChangeType.setWall">
-<span class="sig-name descname"><span class="pre">setWall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">o_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">o_y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">o_z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">d_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">d_y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">d_z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChangeType.setWall" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setWall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">o_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">o_y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">o_z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">d_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">d_y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">d_z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChangeType.setWall" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the wall with original point(o_x, o_y, o_z) and normal direction(d_x, d_y, d_z), going through which the source particles will be changed to target particles.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ChangeType.setInterface">
-<span class="sig-name descname"><span class="pre">setInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">NeighborList</span> <span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rcut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChangeType.setInterface" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">NeighborList</span> <span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rcut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChangeType.setInterface" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the interface between type1 particles and type2 particles, going through which the source particles will be changed to target particles. The interface is calculated from the neighbor list of sorce particles with a cutoff radius(rcut).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ChangeType.setNPTargetType">
-<span class="sig-name descname"><span class="pre">setNPTargetType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">np</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChangeType.setNPTargetType" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setNPTargetType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">np</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ChangeType.setNPTargetType" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the number of target particles.</p>
 </dd></dl>
 

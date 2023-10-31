@@ -11,8 +11,6 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -124,9 +122,9 @@
            <div itemprop="articleBody">
              
   <section id="md-scf">
-<h1>MD-SCF<a class="headerlink" href="#md-scf" title="Link to this heading"></a></h1>
+<h1>MD-SCF<a class="headerlink" href="#md-scf" title="Link to this heading">¶</a></h1>
 <section id="mdscf-force">
-<h2>MDSCF force<a class="headerlink" href="#mdscf-force" title="Link to this heading"></a></h2>
+<h2>MDSCF force<a class="headerlink" href="#mdscf-force" title="Link to this heading">¶</a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>Using hybrid particle-field technique to accelerate CGMD simulations (G. Milano and T. Kawakatsu, J. Chem. Phys. 130, 214106, 2009).
@@ -135,7 +133,7 @@ of polymeric systems.</p>
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="MDSCFForce">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MDSCFForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">AllInfo</span> <span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">nx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ny</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">nz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">comp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MDSCFForce" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MDSCFForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">AllInfo</span> <span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">nx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ny</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">nz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">comp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MDSCFForce" title="Link to this definition">¶</a></dt>
 <dd><p>Constructor of an object of MD-SCF force.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -150,19 +148,19 @@ of polymeric systems.</p>
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="MDSCFForce.setPeriodScf">
-<span class="sig-name descname"><span class="pre">setPeriodScf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">idl2_step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">idl_step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MDSCFForce.setPeriodScf" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setPeriodScf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">idl2_step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">idl_step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MDSCFForce.setPeriodScf" title="Link to this definition">¶</a></dt>
 <dd><p>sets the periods of computing density field and updating density field.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="MDSCFForce.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">chi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MDSCFForce.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">chi</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MDSCFForce.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the MD-SCF interaction parameters by pair types with type1, type2, chi parameter.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="MDSCFForce.setNewVersion">
-<span class="sig-name descname"><span class="pre">setNewVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">switch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MDSCFForce.setNewVersion" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setNewVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">switch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#MDSCFForce.setNewVersion" title="Link to this definition">¶</a></dt>
 <dd><p>switches the function of newly developed method of implementation.</p>
 </dd></dl>
 
@@ -182,10 +180,10 @@ of polymeric systems.</p>
 
 </section>
 <section id="mdscf-electrostatic-force">
-<h2>MDSCF electrostatic force<a class="headerlink" href="#mdscf-electrostatic-force" title="Link to this heading"></a></h2>
+<h2>MDSCF electrostatic force<a class="headerlink" href="#mdscf-electrostatic-force" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="PFMEForce">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PFMEForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">AllInfo</span> <span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">nx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ny</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">nz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">kappa</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilonr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PFMEForce" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PFMEForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">AllInfo</span> <span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">nx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ny</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">nz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">kappa</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilonr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PFMEForce" title="Link to this definition">¶</a></dt>
 <dd><p>Constructor of an object to calculate electrostatic forces in MD-SCF framework.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -201,13 +199,13 @@ of polymeric systems.</p>
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="PFMEForce.setPeriodPFME">
-<span class="sig-name descname"><span class="pre">setPeriodPFME</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">idl2_step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">idl_step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PFMEForce.setPeriodPFME" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setPeriodPFME</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">idl2_step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">idl_step</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PFMEForce.setPeriodPFME" title="Link to this definition">¶</a></dt>
 <dd><p>sets the periods of computing density field and updating density field.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="PFMEForce.setNewVersion">
-<span class="sig-name descname"><span class="pre">setNewVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">switch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PFMEForce.setNewVersion" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setNewVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">switch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PFMEForce.setNewVersion" title="Link to this definition">¶</a></dt>
 <dd><p>switches the function of newly developed method of implementation.</p>
 </dd></dl>
 

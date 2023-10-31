@@ -11,8 +11,6 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -135,9 +133,9 @@
            <div itemprop="articleBody">
              
   <section id="numerical-interaction">
-<h1>Numerical interaction<a class="headerlink" href="#numerical-interaction" title="Link to this heading"></a></h1>
+<h1>Numerical interaction<a class="headerlink" href="#numerical-interaction" title="Link to this heading">¶</a></h1>
 <section id="theory-description">
-<h2>Theory description<a class="headerlink" href="#theory-description" title="Link to this heading"></a></h2>
+<h2>Theory description<a class="headerlink" href="#theory-description" title="Link to this heading">¶</a></h2>
 <p>The numerical non-bonded, bond, angle, and torsion potentials can be derived from iterative Boltzmann inversion (IBI) or reverse Monte Carlo (RMC) method.
 With IBI method, the procedure starts with the potentials of mean force as guessed potentials and then optimizes
 the potentials iteratively by mapping the structural distributions (i.e., radial distribution function, RDF) onto
@@ -188,10 +186,10 @@ The distance or angle points in first column should be in equal interval and the
 The angles <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\varphi\)</span> are in radians. The other node names for bond, angle and dihedral are <code class="docutils literal notranslate"><span class="pre">BondPotential</span></code>, <code class="docutils literal notranslate"><span class="pre">AnglePotential</span></code>, and <code class="docutils literal notranslate"><span class="pre">Dihedralpotential</span></code>, respectively.</p>
 </section>
 <section id="non-bonded-interaction">
-<h2>Non-bonded interaction<a class="headerlink" href="#non-bonded-interaction" title="Link to this heading"></a></h2>
+<h2>Non-bonded interaction<a class="headerlink" href="#non-bonded-interaction" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="PairForceTable">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PairForceTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npoint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PairForceTable" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PairForceTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npoint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PairForceTable" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of an object of numerical pair force calculation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -204,19 +202,19 @@ The angles <span class="math notranslate nohighlight">\(\theta\)</span> and <spa
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="PairForceTable.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string&amp;</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PairForceTable.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string&amp;</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PairForceTable.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the numerical interaction parameters(C0,C1,C2,C3) with type1, type2, cut-off, inputting file name, start column, end column</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="PairForceTable.setPotential">
-<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std::vector&lt;float2&gt;</span> <span class="pre">potential</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PairForceTable.setPotential" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std::vector&lt;float2&gt;</span> <span class="pre">potential</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PairForceTable.setPotential" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the numerical potential with type1, type2, potential array(r, potential)</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the numerical potential with type1, type2, inputting file name, start column, end column.</p>
 </dd></dl>
 
@@ -230,10 +228,10 @@ The angles <span class="math notranslate nohighlight">\(\theta\)</span> and <spa
 
 </section>
 <section id="bond-interaction">
-<h2>Bond interaction<a class="headerlink" href="#bond-interaction" title="Link to this heading"></a></h2>
+<h2>Bond interaction<a class="headerlink" href="#bond-interaction" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="BondForceTable">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForceTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npoint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceTable" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForceTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npoint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceTable" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of an object of numerical bond force calculation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -245,19 +243,19 @@ The angles <span class="math notranslate nohighlight">\(\theta\)</span> and <spa
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="BondForceTable.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceTable.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceTable.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the numerical bond interaction parameters(C0,C1,C2,C3) with bond type, cut-off, inputting file name, start column, end column.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="BondForceTable.setPotential">
-<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std::vector&lt;float2&gt;</span> <span class="pre">potential</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceTable.setPotential" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std::vector&lt;float2&gt;</span> <span class="pre">potential</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceTable.setPotential" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the numerical potential with bond type and the array of potential.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the numerical potential with bond type, inputting file name, start column, and end column.</p>
 </dd></dl>
 
@@ -271,10 +269,10 @@ The angles <span class="math notranslate nohighlight">\(\theta\)</span> and <spa
 
 </section>
 <section id="angle-interaction">
-<h2>Angle interaction<a class="headerlink" href="#angle-interaction" title="Link to this heading"></a></h2>
+<h2>Angle interaction<a class="headerlink" href="#angle-interaction" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="AngleForceTable">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AngleForceTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npoint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceTable" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AngleForceTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npoint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceTable" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of an object of numerical angle force calculation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -286,19 +284,19 @@ The angles <span class="math notranslate nohighlight">\(\theta\)</span> and <spa
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="AngleForceTable.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">file</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceTable.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">file</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceTable.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the numerical angle force parameters(C0,C1,C2,C3) with angle type, inputting file name, start column, and end column.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="AngleForceTable.setPotential">
-<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std::vector&lt;float2&gt;</span> <span class="pre">potential</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceTable.setPotential" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std::vector&lt;float2&gt;</span> <span class="pre">potential</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceTable.setPotential" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the numerical potential with angle type and the array of potential(r, potential).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the numerical potential with angle type, inputting file name, start column, and end column.</p>
 </dd></dl>
 
@@ -312,10 +310,10 @@ The angles <span class="math notranslate nohighlight">\(\theta\)</span> and <spa
 
 </section>
 <section id="dihedral-interaction">
-<h2>Dihedral interaction<a class="headerlink" href="#dihedral-interaction" title="Link to this heading"></a></h2>
+<h2>Dihedral interaction<a class="headerlink" href="#dihedral-interaction" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="DihedralForceTable">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npoint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceTable" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">npoint</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceTable" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of an object of numerical dihedral force calculation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -327,19 +325,19 @@ The angles <span class="math notranslate nohighlight">\(\theta\)</span> and <spa
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="DihedralForceTable.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceTable.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceTable.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the numerical dihedral force parameters(C0,C1,C2,C3) with dihedral type, inputting file name, start column, end column.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="DihedralForceTable.setPotential">
-<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">dihedral_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std::vector&lt;float2&gt;</span> <span class="pre">potential</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceTable.setPotential" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">dihedral_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std::vector&lt;float2&gt;</span> <span class="pre">potential</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceTable.setPotential" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the numerical potential with dihedral type and the array of potential(r, potential).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id3">
-<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">dihedral_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setPotential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">dihedral_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">scol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">ecol</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the numerical potential with dihedral type, inputting file name, start column, end column.</p>
 </dd></dl>
 
@@ -353,7 +351,7 @@ The angles <span class="math notranslate nohighlight">\(\theta\)</span> and <spa
 
 </section>
 <section id="self-defined-functions">
-<h2>Self-defined functions<a class="headerlink" href="#self-defined-functions" title="Link to this heading"></a></h2>
+<h2>Self-defined functions<a class="headerlink" href="#self-defined-functions" title="Link to this heading">¶</a></h2>
 <blockquote>
 <div><p>Numerical module supports self-defined functions with following codes:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pair</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">rmin</span><span class="p">,</span> <span class="n">rmax</span><span class="p">,</span> <span class="n">coeff</span><span class="p">):</span>

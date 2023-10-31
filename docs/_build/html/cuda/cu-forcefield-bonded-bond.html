@@ -11,8 +11,6 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -127,7 +125,7 @@
            <div itemprop="articleBody">
              
   <section id="bond-stretching">
-<h1>Bond stretching<a class="headerlink" href="#bond-stretching" title="Link to this heading"></a></h1>
+<h1>Bond stretching<a class="headerlink" href="#bond-stretching" title="Link to this heading">¶</a></h1>
 <p><strong>Overview</strong></p>
 <p>Bonds impose connected forces on specific pairs of particles to model chemical bonds.
 The bonds are specified in <a class="reference internal" href="cu-data-format.html#xml-format"><span class="std std-ref">XML format</span></a> configuration file with the format:</p>
@@ -156,7 +154,7 @@ The bonds are specified in <a class="reference internal" href="cu-data-format.ht
 </table>
 <a class="reference internal image-reference" href="../_images/bond.png"><img alt="Principle of bond stretching" class="align-center" src="../_images/bond.png" style="width: 250px;" /></a>
 <section id="harmonic-bond-potential">
-<span id="harmonic-bond"></span><h2>Harmonic bond potential<a class="headerlink" href="#harmonic-bond-potential" title="Link to this heading"></a></h2>
+<span id="harmonic-bond"></span><h2>Harmonic bond potential<a class="headerlink" href="#harmonic-bond-potential" title="Link to this heading">¶</a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -170,7 +168,7 @@ V_{\mathrm{bond}}(r) = \frac{1}{2}k\left( r - r_{0} \right)^{2}
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="BondForceHarmonic">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceHarmonic" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceHarmonic" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of harmonic bond interaction object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -179,7 +177,7 @@ V_{\mathrm{bond}}(r) = \frac{1}{2}k\left( r - r_{0} \right)^{2}
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="BondForceHarmonic.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceHarmonic.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceHarmonic.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the bond interaction parameters with bond type, spring constant, and equilibrium length.</p>
 </dd></dl>
 
@@ -193,7 +191,7 @@ V_{\mathrm{bond}}(r) = \frac{1}{2}k\left( r - r_{0} \right)^{2}
 
 </section>
 <section id="fene-bond-potential">
-<span id="fene-bond"></span><h2>FENE bond potential<a class="headerlink" href="#fene-bond-potential" title="Link to this heading"></a></h2>
+<span id="fene-bond"></span><h2>FENE bond potential<a class="headerlink" href="#fene-bond-potential" title="Link to this heading">¶</a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -222,7 +220,7 @@ V_{\mathrm{bond}}(r)=-\frac{1}{2}k {r_{m}}^{2}\log \left[ 1-\frac{\left(r - r_{0
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="BondForceFENE">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForceFENE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceFENE" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForceFENE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceFENE" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of FENE bond interaction object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -231,25 +229,25 @@ V_{\mathrm{bond}}(r)=-\frac{1}{2}k {r_{m}}^{2}\log \left[ 1-\frac{\left(r - r_{0
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="BondForceFENE.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceFENE.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceFENE.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the FENE bond force parameters with bond type, spring constant, and the maximum length of the bond.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the FENE bond force parameters with bond type, spring constant, maximum length, and equilibrium length.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the FENE+WCA bond parameters with bond type, spring constant, maximum length of the bond, epsilon, sigma (the latter two parameters for WCA force between two bonded particles ).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="BondForceFENE.setConsiderDiameter">
-<span class="sig-name descname"><span class="pre">setConsiderDiameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">con_dia</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceFENE.setConsiderDiameter" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setConsiderDiameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">con_dia</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceFENE.setConsiderDiameter" title="Link to this definition">¶</a></dt>
 <dd><p>the diameter of particles will be considered or not</p>
 </dd></dl>
 
@@ -263,7 +261,7 @@ V_{\mathrm{bond}}(r)=-\frac{1}{2}k {r_{m}}^{2}\log \left[ 1-\frac{\left(r - r_{0
 
 </section>
 <section id="polynominal-bond-potential">
-<span id="polynominal-bond"></span><h2>Polynominal bond potential<a class="headerlink" href="#polynominal-bond-potential" title="Link to this heading"></a></h2>
+<span id="polynominal-bond"></span><h2>Polynominal bond potential<a class="headerlink" href="#polynominal-bond-potential" title="Link to this heading">¶</a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -278,7 +276,7 @@ V_{\mathrm{bond}}(r)=k_{1}\left( r - r_{0} \right)^{2}+k_{2}\left( r - r_{0} \ri
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="BondForcePolynomial">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForcePolynomial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForcePolynomial" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForcePolynomial</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForcePolynomial" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of polynomial bond interaction object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -287,7 +285,7 @@ V_{\mathrm{bond}}(r)=k_{1}\left( r - r_{0} \right)^{2}+k_{2}\left( r - r_{0} \ri
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="BondForcePolynomial.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForcePolynomial.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForcePolynomial.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the polynomial bond force parameters with bond type, spring constant k1, spring constant k2, and equilibrium bond length r0.</p>
 </dd></dl>
 
@@ -301,7 +299,7 @@ V_{\mathrm{bond}}(r)=k_{1}\left( r - r_{0} \right)^{2}+k_{2}\left( r - r_{0} \ri
 
 </section>
 <section id="morse-bond-potential">
-<span id="morse-bond"></span><h2>Morse bond potential<a class="headerlink" href="#morse-bond-potential" title="Link to this heading"></a></h2>
+<span id="morse-bond"></span><h2>Morse bond potential<a class="headerlink" href="#morse-bond-potential" title="Link to this heading">¶</a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -318,7 +316,7 @@ V_{\mathrm{bond}}(r)=&amp;k\left[ 1-e^{-\alpha \left( r-r_{0} \right)} \right]^{
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="BondForceMorse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForceMorse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceMorse" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForceMorse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceMorse" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of Morse bond interaction object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -327,7 +325,7 @@ V_{\mathrm{bond}}(r)=&amp;k\left[ 1-e^{-\alpha \left( r-r_{0} \right)} \right]^{
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="BondForceMorse.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceMorse.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">rm</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceMorse.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the Morse bond force parameters with bond type, spring constant, alpha controls the ‘width’ of the potential, equilibrium bond length, maximum interaction range.</p>
 </dd></dl>
 

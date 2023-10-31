@@ -11,8 +11,6 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -128,7 +126,7 @@
            <div itemprop="articleBody">
              
   <section id="dihedral-torsion">
-<h1>Dihedral torsion<a class="headerlink" href="#dihedral-torsion" title="Link to this heading"></a></h1>
+<h1>Dihedral torsion<a class="headerlink" href="#dihedral-torsion" title="Link to this heading">¶</a></h1>
 <p><strong>Overview</strong></p>
 <p>Dihedrals impose forces on specific quadruplets of particles to model the rotation about chemical bonds.
 The dihedrals are specified in <a class="reference internal" href="cu-data-format.html#xml-format"><span class="std std-ref">XML format</span></a> configuration file with the format:</p>
@@ -160,7 +158,7 @@ The dihedrals are specified in <a class="reference internal" href="cu-data-forma
 </table>
 <a class="reference internal image-reference" href="../_images/dihedral.png"><img alt="Principle of dihedral torsion" class="align-center" src="../_images/dihedral.png" style="width: 250px;" /></a>
 <section id="harmonic-dihedral-potential-proper">
-<span id="harmonic-dihedral"></span><h2>Harmonic dihedral potential (proper)<a class="headerlink" href="#harmonic-dihedral-potential-proper" title="Link to this heading"></a></h2>
+<span id="harmonic-dihedral"></span><h2>Harmonic dihedral potential (proper)<a class="headerlink" href="#harmonic-dihedral-potential-proper" title="Link to this heading">¶</a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -180,7 +178,7 @@ V_{\mathrm{dihedral}}(\varphi)=k\left[ 1+f\cos \left( \varphi-\delta \right) \ri
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="DihedralForceHarmonic">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceHarmonic" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceHarmonic" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of dihedral harmonic interaction object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -189,13 +187,13 @@ V_{\mathrm{dihedral}}(\varphi)=k\left[ 1+f\cos \left( \varphi-\delta \right) \ri
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="DihedralForceHarmonic.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceHarmonic.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceHarmonic.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the dihedral harmonic force parameters with dihedral type, multiplicative constant, and phase shift angle.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="DihedralForceHarmonic.setCosFactor">
-<span class="sig-name descname"><span class="pre">setCosFactor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceHarmonic.setCosFactor" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setCosFactor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceHarmonic.setCosFactor" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the dihedral harmonic force parameters with factor.</p>
 </dd></dl>
 
@@ -209,7 +207,7 @@ V_{\mathrm{dihedral}}(\varphi)=k\left[ 1+f\cos \left( \varphi-\delta \right) \ri
 
 </section>
 <section id="harmonic-dihedral-potential-improper">
-<span id="harmonic-dihedral-improper"></span><h2>Harmonic dihedral potential (improper)<a class="headerlink" href="#harmonic-dihedral-potential-improper" title="Link to this heading"></a></h2>
+<span id="harmonic-dihedral-improper"></span><h2>Harmonic dihedral potential (improper)<a class="headerlink" href="#harmonic-dihedral-potential-improper" title="Link to this heading">¶</a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -227,7 +225,7 @@ V_{\mathrm{dihedral}}(\varphi)=k\left( \varphi-\delta \right)^2
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="id0">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of dihedral harmonic interaction object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -236,13 +234,13 @@ V_{\mathrm{dihedral}}(\varphi)=k\left( \varphi-\delta \right)^2
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the dihedral harmonic force parameters with dihedral type, potential constant, and phase shift angle.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">property</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">property</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the dihedral harmonic force parameters with dihedral type, potential constant, phase shift angle, and the property of proper or improper.</p>
 </dd></dl>
 
@@ -256,7 +254,7 @@ V_{\mathrm{dihedral}}(\varphi)=k\left( \varphi-\delta \right)^2
 
 </section>
 <section id="opls-dihedral-potential-proper">
-<span id="opls-dihedral"></span><h2>OPLS dihedral potential (proper)<a class="headerlink" href="#opls-dihedral-potential-proper" title="Link to this heading"></a></h2>
+<span id="opls-dihedral"></span><h2>OPLS dihedral potential (proper)<a class="headerlink" href="#opls-dihedral-potential-proper" title="Link to this heading">¶</a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -275,7 +273,7 @@ V_{\mathrm{dihedral}}(\varphi)=k_{1}+k_{2}\left[ 1+\cos \left( \varphi-\delta \r
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="DihedralForceOPLSCosine">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceOPLSCosine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceOPLSCosine" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceOPLSCosine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceOPLSCosine" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of dihedral OPLS cosine interaction object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -284,13 +282,13 @@ V_{\mathrm{dihedral}}(\varphi)=k_{1}+k_{2}\left[ 1+\cos \left( \varphi-\delta \r
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="DihedralForceOPLSCosine.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceOPLSCosine.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceOPLSCosine.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the dihedral OPLS cosine force parameters with dihedral type, k1, k2, k3, k4, and phase shift angle. In this function, the default k5 is 0.0.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id3">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loat</span> <span class="pre">k5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loat</span> <span class="pre">k5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the dihedral OPLS cosine force parameters with dihedral type, k1, k2, k3, k4, k5, and phase shift angle.</p>
 </dd></dl>
 
@@ -304,7 +302,7 @@ V_{\mathrm{dihedral}}(\varphi)=k_{1}+k_{2}\left[ 1+\cos \left( \varphi-\delta \r
 
 </section>
 <section id="ryckaert-bellemans-potential-proper">
-<span id="rb-dihedral"></span><h2>Ryckaert-Bellemans potential (proper)<a class="headerlink" href="#ryckaert-bellemans-potential-proper" title="Link to this heading"></a></h2>
+<span id="rb-dihedral"></span><h2>Ryckaert-Bellemans potential (proper)<a class="headerlink" href="#ryckaert-bellemans-potential-proper" title="Link to this heading">¶</a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -317,7 +315,7 @@ V_{\mathrm{dihedral}}(\varphi)= \sum_{n=0}^{5}C_{n}\left( \cos \left( \varphi \r
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="DihedralForceRyckaertBellemans">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceRyckaertBellemans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceRyckaertBellemans" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceRyckaertBellemans</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceRyckaertBellemans" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of dihedral RB interaction object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -326,7 +324,7 @@ V_{\mathrm{dihedral}}(\varphi)= \sum_{n=0}^{5}C_{n}\left( \cos \left( \varphi \r
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="DihedralForceRyckaertBellemans.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">c0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">c1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">c2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">c3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">c4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">c5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceRyckaertBellemans.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">c0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">c1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">c2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">c3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">c4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">c5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceRyckaertBellemans.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the dihedral RB force parameters with dihedral type, c0, c1, c2, c3, c4, and c5.</p>
 </dd></dl>
 
@@ -340,7 +338,7 @@ V_{\mathrm{dihedral}}(\varphi)= \sum_{n=0}^{5}C_{n}\left( \cos \left( \varphi \r
 
 </section>
 <section id="amber-potential-proper-and-improper">
-<span id="amber-dihedral"></span><h2>Amber potential (proper and improper)<a class="headerlink" href="#amber-potential-proper-and-improper" title="Link to this heading"></a></h2>
+<span id="amber-dihedral"></span><h2>Amber potential (proper and improper)<a class="headerlink" href="#amber-potential-proper-and-improper" title="Link to this heading">¶</a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -359,7 +357,7 @@ V_{\mathrm{dihedral}}(\varphi)= k_{1} \left( 1 + \cos \left( \varphi - \delta_{1
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="DihedralForceAmberCosine">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceAmberCosine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceAmberCosine" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceAmberCosine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceAmberCosine" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of dihedral Amber interaction object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -368,7 +366,7 @@ V_{\mathrm{dihedral}}(\varphi)= k_{1} \left( 1 + \cos \left( \varphi - \delta_{1
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="DihedralForceAmberCosine.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">property</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceAmberCosine.setParams" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">delta4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">property</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceAmberCosine.setParams" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the dihedral Amber force parameters with dihedral type, k1, k2, k3, k4, delta1, delta2, delta3, delta4, and the property of proper or improper.</p>
 </dd></dl>
 

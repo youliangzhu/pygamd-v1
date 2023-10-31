@@ -11,8 +11,6 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -122,14 +120,14 @@
            <div itemprop="articleBody">
              
   <section id="rnemd">
-<h1>RNEMD<a class="headerlink" href="#rnemd" title="Link to this heading"></a></h1>
+<h1>RNEMD<a class="headerlink" href="#rnemd" title="Link to this heading">¶</a></h1>
 <p>A nonequilibrium method for calculating the shear viscosity is presented. It reverses the cause-and-effect picture customarily used in nonequilibrium molecular dynamics:
 the effect, the momentum flux or stress, is imposed, whereas the cause, the velocity gradient or shear rate, is obtained from the simulation.
 Reference: F. Müller-Plathe, Phys. Rev. E 59, 4894, 1999.</p>
 <a class="reference internal image-reference" href="../_images/rnemd.png"><img alt="Schematic view of the periodic simulation box" class="align-center" src="../_images/rnemd.png" style="width: 512px;" /></a>
 <dl class="py class">
 <dt class="sig sig-object py" id="RNEMD">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RNEMD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">np_per_swap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nslabs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#RNEMD" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RNEMD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">np_per_swap</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nslabs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#RNEMD" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of a RNEMD object to implement a shear field.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -145,31 +143,31 @@ Reference: F. Müller-Plathe, Phys. Rev. E 59, 4894, 1999.</p>
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="RNEMD.setSwapPeriod">
-<span class="sig-name descname"><span class="pre">setSwapPeriod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">swap_period</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#RNEMD.setSwapPeriod" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setSwapPeriod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">swap_period</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#RNEMD.setSwapPeriod" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the period of particle velocity swap.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="RNEMD.setProfVelPeriod">
-<span class="sig-name descname"><span class="pre">setProfVelPeriod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">profvel_period</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#RNEMD.setProfVelPeriod" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setProfVelPeriod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">profvel_period</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#RNEMD.setProfVelPeriod" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the period of profiling velocity of slabs, the default value is 10.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="RNEMD.setSwapGroup">
-<span class="sig-name descname"><span class="pre">setSwapGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ParticleSet</span> <span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#RNEMD.setSwapGroup" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setSwapGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ParticleSet</span> <span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#RNEMD.setSwapGroup" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the group of particles for velocity swap.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="RNEMD.setVelProfile">
-<span class="sig-name descname"><span class="pre">setVelProfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">vel_profile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#RNEMD.setVelProfile" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setVelProfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">vel_profile</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#RNEMD.setVelProfile" title="Link to this definition">¶</a></dt>
 <dd><p>True or False for profiling velocity of slabs.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="RNEMD.setPeriod">
-<span class="sig-name descname"><span class="pre">setPeriod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">period</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#RNEMD.setPeriod" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setPeriod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">period</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#RNEMD.setPeriod" title="Link to this definition">¶</a></dt>
 <dd><p>specifies the period of data output in which the velocity profile and momentum plus will be averaged.</p>
 </dd></dl>
 

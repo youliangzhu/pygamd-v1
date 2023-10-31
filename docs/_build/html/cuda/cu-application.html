@@ -11,8 +11,6 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js?v=5d32c60e"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -121,14 +119,14 @@
            <div itemprop="articleBody">
              
   <section id="application">
-<h1>Application<a class="headerlink" href="#application" title="Link to this heading"></a></h1>
+<h1>Application<a class="headerlink" href="#application" title="Link to this heading">¶</a></h1>
 <section id="modules-management">
-<h2>Modules management<a class="headerlink" href="#modules-management" title="Link to this heading"></a></h2>
+<h2>Modules management<a class="headerlink" href="#modules-management" title="Link to this heading">¶</a></h2>
 <p>Usually, we only define an application object in the context of script. The modules can be
 added <code class="docutils literal notranslate"><span class="pre">add()</span></code> into or removed <code class="docutils literal notranslate"><span class="pre">remove()</span></code> from the application before runing <code class="docutils literal notranslate"><span class="pre">run()</span></code> the simulation.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="Application">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Application</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Application" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Application</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Application" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of an application object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -140,31 +138,31 @@ added <code class="docutils literal notranslate"><span class="pre">add()</span><
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="Application.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Application.add" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Application.add" title="Link to this definition">¶</a></dt>
 <dd><p>adds an object to the application.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Application.remove">
-<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Application.remove" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Application.remove" title="Link to this definition">¶</a></dt>
 <dd><p>removes an added object.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Application.clear">
-<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Application.clear" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Application.clear" title="Link to this definition">¶</a></dt>
 <dd><p>removes all objects from the application.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Application.setDt">
-<span class="sig-name descname"><span class="pre">setDt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Application.setDt" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setDt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Application.setDt" title="Link to this definition">¶</a></dt>
 <dd><p>sets integration time step.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="Application.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Application.run" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Application.run" title="Link to this definition">¶</a></dt>
 <dd><p>runs the simulation for N time steps.</p>
 </dd></dl>
 
@@ -180,7 +178,7 @@ added <code class="docutils literal notranslate"><span class="pre">add()</span><
 
 </section>
 <section id="multi-stage-simulation">
-<h2>Multi-stage simulation<a class="headerlink" href="#multi-stage-simulation" title="Link to this heading"></a></h2>
+<h2>Multi-stage simulation<a class="headerlink" href="#multi-stage-simulation" title="Link to this heading">¶</a></h2>
 <p>An application can have single or multiple stage simulations. The commands in the context of script are executed sequentially.
 Every stage simulation is achieved with <code class="docutils literal notranslate"><span class="pre">run()</span></code>.  Before a stage of simulation, the modules and parameters can be adjusted.
 New modules can be added into the applicaitons by <code class="docutils literal notranslate"><span class="pre">add()</span></code>. The added modules at last stage can be removed from the application,
@@ -208,7 +206,7 @@ otherwise they will be kept. For example:</p>
 </ul>
 </section>
 <section id="two-dimensional-simulation">
-<h2>Two-dimensional simulation<a class="headerlink" href="#two-dimensional-simulation" title="Link to this heading"></a></h2>
+<h2>Two-dimensional simulation<a class="headerlink" href="#two-dimensional-simulation" title="Link to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Controlling script, i.e. ‘file.gala’ script is same for two- and three-dimensional simulations.</p></li>
 </ol>

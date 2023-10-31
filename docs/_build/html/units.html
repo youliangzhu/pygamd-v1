@@ -11,8 +11,6 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="_static/documentation_options.js?v=5cb08e4e"></script>
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -114,11 +112,11 @@
            <div itemprop="articleBody">
              
   <section id="units">
-<span id="page-units"></span><h1>Units<a class="headerlink" href="#units" title="Link to this heading"></a></h1>
+<span id="page-units"></span><h1>Units<a class="headerlink" href="#units" title="Link to this heading">¶</a></h1>
 <p>PYGAMD stores and computes all values in reduced units. The quantities in real units can be converted into
 the ones in reduced units by defining a set of fundamental units by user himself.</p>
 <section id="fundamental-units">
-<h2>Fundamental Units<a class="headerlink" href="#fundamental-units" title="Link to this heading"></a></h2>
+<h2>Fundamental Units<a class="headerlink" href="#fundamental-units" title="Link to this heading">¶</a></h2>
 <p>The three fundamental units are:</p>
 <ul class="simple">
 <li><p>distance - <span class="math notranslate nohighlight">\(\mathcal{\sigma}\)</span></p></li>
@@ -127,13 +125,13 @@ the ones in reduced units by defining a set of fundamental units by user himself
 </ul>
 </section>
 <section id="temperature-units-thermal-energy">
-<h2>Temperature units (thermal energy)<a class="headerlink" href="#temperature-units-thermal-energy" title="Link to this heading"></a></h2>
+<h2>Temperature units (thermal energy)<a class="headerlink" href="#temperature-units-thermal-energy" title="Link to this heading">¶</a></h2>
 <p>PYGAMD accepts all temperature inputs and provides all temperature output values in units of energy:
 <span class="math notranslate nohighlight">\(k_{B} T\)</span>, where <span class="math notranslate nohighlight">\(k_{B}\)</span> is Boltzmann’s constant. In reduced units, one usually reports the value
 <span class="math notranslate nohighlight">\(T^* = k_{B}T/\mathcal{\varepsilon}\)</span>.</p>
 </section>
 <section id="charge-units">
-<span id="id1"></span><h2>Charge units<a class="headerlink" href="#charge-units" title="Link to this heading"></a></h2>
+<span id="id1"></span><h2>Charge units<a class="headerlink" href="#charge-units" title="Link to this heading">¶</a></h2>
 <p>The charge used in PYGAMD is also reduced. The units of charge are:
 <span class="math notranslate nohighlight">\((4 \pi \epsilon_0 \epsilon_r \mathcal{\sigma} \mathcal{\varepsilon})^{1/2}\)</span>, where
 <span class="math notranslate nohighlight">\(\epsilon_0\)</span> is vacuum permittivity and <span class="math notranslate nohighlight">\(\epsilon_r\)</span> is relative permittivity.</p>
@@ -143,7 +141,7 @@ the units of charge are:
 Divide a given charge by this quantity to convert it into an input value for PYGAMD.</p>
 </section>
 <section id="common-derived-units">
-<h2>Common derived units<a class="headerlink" href="#common-derived-units" title="Link to this heading"></a></h2>
+<h2>Common derived units<a class="headerlink" href="#common-derived-units" title="Link to this heading">¶</a></h2>
 <p>Here are some commonly used derived units:</p>
 <ul class="simple">
 <li><p>time - <span class="math notranslate nohighlight">\(\tau = \sqrt{\mathcal{m} \mathcal{\sigma}^2/\mathcal{\varepsilon}}\)</span></p></li>
@@ -156,7 +154,7 @@ Divide a given charge by this quantity to convert it into an input value for PYG
 </ul>
 </section>
 <section id="example-physical-units">
-<h2>Example physical units<a class="headerlink" href="#example-physical-units" title="Link to this heading"></a></h2>
+<h2>Example physical units<a class="headerlink" href="#example-physical-units" title="Link to this heading">¶</a></h2>
 <p>There are many possible choices of physical units that one can assign. One common choice is:</p>
 <ul class="simple">
 <li><p>distance - <span class="math notranslate nohighlight">\(\mathcal{\sigma} = \mathrm{nm}\)</span></p></li>
