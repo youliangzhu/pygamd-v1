@@ -11,11 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -127,9 +127,9 @@
            <div itemprop="articleBody">
              
   <section id="dissipative-particle-dynamics">
-<h1>Dissipative particle dynamics<a class="headerlink" href="#dissipative-particle-dynamics" title="Permalink to this heading"></a></h1>
+<h1>Dissipative particle dynamics<a class="headerlink" href="#dissipative-particle-dynamics" title="Link to this heading"></a></h1>
 <section id="dpd-force">
-<h2>DPD force<a class="headerlink" href="#dpd-force" title="Permalink to this heading"></a></h2>
+<h2>DPD force<a class="headerlink" href="#dpd-force" title="Link to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>The DPD force consists of pair‐wise conservative, dissipative and random terms.</p>
@@ -155,7 +155,7 @@
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="DPDForce">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DPDForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand_num</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDForce" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DPDForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand_num</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDForce" title="Link to this definition"></a></dt>
 <dd><p>The constructor of a DPD interaction object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -172,7 +172,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="id0">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DPDForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand_num</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DPDForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rand_num</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
 <dd><p>The constructor of a DPD interaction object. The default temperature is 1.0.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -186,25 +186,25 @@
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="DPDForce.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typei</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typej</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDForce.setParams" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typei</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">typej</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDForce.setParams" title="Link to this definition"></a></dt>
 <dd><p>specifies the DPD interaction parameters per unique pair of particle types.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="DPDForce.setT">
-<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDForce.setT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDForce.setT" title="Link to this definition"></a></dt>
 <dd><p>specifies the temperature with a constant value.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
 <dd><p>specifies the temperature with a varying value by time step.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="DPDForce.setDPDVV">
-<span class="sig-name descname"><span class="pre">setDPDVV</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DPDForce.setDPDVV" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setDPDVV</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DPDForce.setDPDVV" title="Link to this definition"></a></dt>
 <dd><p>calls the function to enable DPDVV method (the default is GWVV).</p>
 </dd></dl>
 
@@ -218,7 +218,7 @@
 
 </section>
 <section id="gwvv-integration">
-<h2>GWVV integration<a class="headerlink" href="#gwvv-integration" title="Permalink to this heading"></a></h2>
+<h2>GWVV integration<a class="headerlink" href="#gwvv-integration" title="Link to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>Integration algorithm.</p>
@@ -236,7 +236,7 @@
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="DPDGWVV">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DPDGWVV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">AllInfo</span> <span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ParticleSet</span> <span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDGWVV" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DPDGWVV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">AllInfo</span> <span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ParticleSet</span> <span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDGWVV" title="Link to this definition"></a></dt>
 <dd><p>The constructor of a GWVV NVT thermostat for a group of DPD particles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -248,7 +248,7 @@
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="DPDGWVV.setLambda">
-<span class="sig-name descname"><span class="pre">setLambda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">lambda</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDGWVV.setLambda" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setLambda</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">lambda</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DPDGWVV.setLambda" title="Link to this definition"></a></dt>
 <dd><p>specifies lambda.</p>
 </dd></dl>
 
@@ -261,7 +261,7 @@
 
 </section>
 <section id="coulomb-interaction-in-dpd">
-<h2>Coulomb interaction in DPD<a class="headerlink" href="#coulomb-interaction-in-dpd" title="Permalink to this heading"></a></h2>
+<h2>Coulomb interaction in DPD<a class="headerlink" href="#coulomb-interaction-in-dpd" title="Link to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><blockquote>

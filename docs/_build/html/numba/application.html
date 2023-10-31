@@ -11,11 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -119,15 +119,15 @@
            <div itemprop="articleBody">
              
   <section id="application">
-<h1>Application<a class="headerlink" href="#application" title="Permalink to this heading"></a></h1>
+<h1>Application<a class="headerlink" href="#application" title="Link to this heading"></a></h1>
 <section id="modules-management">
-<h2>Modules management<a class="headerlink" href="#modules-management" title="Permalink to this heading"></a></h2>
+<h2>Modules management<a class="headerlink" href="#modules-management" title="Link to this heading"></a></h2>
 <p>PYGAMD is organized by being composed of modules. Application manages and calls modules, and thereby run simulations.
 Usually, we only define an application object in the context of script. The modules can be
 added into by <code class="docutils literal notranslate"><span class="pre">add()</span></code> or removed from by <code class="docutils literal notranslate"><span class="pre">remove()</span></code> the application before runing <code class="docutils literal notranslate"><span class="pre">run()</span></code> the simulation.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="application.dynamics">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">application.</span></span><span class="sig-name descname"><span class="pre">dynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#application.dynamics" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">application.</span></span><span class="sig-name descname"><span class="pre">dynamics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#application.dynamics" title="Link to this definition"></a></dt>
 <dd><p>Constructor of application object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -140,19 +140,19 @@ added into by <code class="docutils literal notranslate"><span class="pre">add()
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="application.dynamics.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#application.dynamics.add" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#application.dynamics.add" title="Link to this definition"></a></dt>
 <dd><p>adds an object to the application.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="application.dynamics.remove">
-<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#application.dynamics.remove" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#application.dynamics.remove" title="Link to this definition"></a></dt>
 <dd><p>removes an added object.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="application.dynamics.run">
-<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#application.dynamics.run" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">N</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#application.dynamics.run" title="Link to this definition"></a></dt>
 <dd><p>runs the simulation for N time steps.</p>
 </dd></dl>
 
@@ -167,7 +167,7 @@ added into by <code class="docutils literal notranslate"><span class="pre">add()
 
 </section>
 <section id="multi-stage-simulation">
-<h2>Multi-stage simulation<a class="headerlink" href="#multi-stage-simulation" title="Permalink to this heading"></a></h2>
+<h2>Multi-stage simulation<a class="headerlink" href="#multi-stage-simulation" title="Link to this heading"></a></h2>
 <p>An application can have single or multiple stage simulations. The commands in the context of script are executed sequentially.
 Every stage simulation is achieved with <code class="docutils literal notranslate"><span class="pre">run()</span></code>.  Before a stage of simulation, the modules and parameters can be adjusted.
 New modules can be added into the applicaitons by <code class="docutils literal notranslate"><span class="pre">add()</span></code>. The added modules at last stage can be removed from the application,
@@ -193,7 +193,7 @@ otherwise they will be kept. For example:</p>
 </ul>
 </section>
 <section id="two-dimensional-simulation">
-<h2>Two-dimensional simulation<a class="headerlink" href="#two-dimensional-simulation" title="Permalink to this heading"></a></h2>
+<h2>Two-dimensional simulation<a class="headerlink" href="#two-dimensional-simulation" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Controlling script, i.e. ‘file.py’ script is same for two- and three-dimensional simulations.</p></li>
 </ol>

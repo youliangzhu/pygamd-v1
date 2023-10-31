@@ -11,11 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -130,7 +130,7 @@
            <div itemprop="articleBody">
              
   <section id="npt-ensemble">
-<h1>NPT ensemble<a class="headerlink" href="#npt-ensemble" title="Permalink to this heading"></a></h1>
+<h1>NPT ensemble<a class="headerlink" href="#npt-ensemble" title="Link to this heading"></a></h1>
 <p><strong>Overview</strong></p>
 <table class="docutils align-default">
 <tbody>
@@ -143,11 +143,11 @@
 </tbody>
 </table>
 <section id="andersen-barostat">
-<span id="andersen-npt"></span><h2>Andersen barostat<a class="headerlink" href="#andersen-barostat" title="Permalink to this heading"></a></h2>
+<span id="andersen-npt"></span><h2>Andersen barostat<a class="headerlink" href="#andersen-barostat" title="Link to this heading"></a></h2>
 <p>Reference: H. C. Andersen, J. Chem. Phys., 1980, 72(4), 2384-2393.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="NPT">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NPT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPT" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NPT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPT" title="Link to this definition"></a></dt>
 <dd><p>The constructor of a NPT thermostat object for a group of particles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -165,19 +165,19 @@
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="NPT.setP">
-<span class="sig-name descname"><span class="pre">setP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">P</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPT.setP" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">P</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPT.setP" title="Link to this definition"></a></dt>
 <dd><p>specifies the pressure with a constant value.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="NPT.setT">
-<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPT.setT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPT.setT" title="Link to this definition"></a></dt>
 <dd><p>specifies the temperature with a constant value.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
 <dd><p>specifies the temperature with a varying value by time step.</p>
 </dd></dl>
 
@@ -190,10 +190,10 @@
 
 </section>
 <section id="npt-for-rigid-body">
-<span id="npt-rigid"></span><h2>NPT for rigid body<a class="headerlink" href="#npt-for-rigid-body" title="Permalink to this heading"></a></h2>
+<span id="npt-rigid"></span><h2>NPT for rigid body<a class="headerlink" href="#npt-for-rigid-body" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="NPTRigid">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NPTRigid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTRigid" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NPTRigid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTRigid" title="Link to this definition"></a></dt>
 <dd><p>The constructor of a NPT thermostat object for rigid bodies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -211,19 +211,19 @@
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="NPTRigid.setT">
-<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTRigid.setT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTRigid.setT" title="Link to this definition"></a></dt>
 <dd><p>specifies the temperature with a fixed value.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
 <dd><p>specifies the temperature with a varying value by time step.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="NPTRigid.setP">
-<span class="sig-name descname"><span class="pre">setP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">P</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTRigid.setP" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">P</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTRigid.setP" title="Link to this definition"></a></dt>
 <dd><p>specifies the pressure with a fixed value.</p>
 </dd></dl>
 
@@ -242,11 +242,11 @@
 
 </section>
 <section id="martyna-tobias-klein-barostat">
-<h2>Martyna-Tobias-Klein barostat<a class="headerlink" href="#martyna-tobias-klein-barostat" title="Permalink to this heading"></a></h2>
+<h2>Martyna-Tobias-Klein barostat<a class="headerlink" href="#martyna-tobias-klein-barostat" title="Link to this heading"></a></h2>
 <p>Reference: G. J. Martyna, D. J. Tobias, and M. L. Klein, J. Chem. Phys., 1994, 101(5), 4177-4189.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="NPTMTK">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NPTMTK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTK" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NPTMTK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTK" title="Link to this definition"></a></dt>
 <dd><p>The constructor of a NPTMTK thermostat object for a group of particles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -264,31 +264,31 @@
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="NPTMTK.setT">
-<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTK.setT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTK.setT" title="Link to this definition"></a></dt>
 <dd><p>specifies the temperature with a fixed value.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
 <dd><p>specifies the temperature with a varying value by time step.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="NPTMTK.setSemiisotropic">
-<span class="sig-name descname"><span class="pre">setSemiisotropic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressxy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTK.setSemiisotropic" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setSemiisotropic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressxy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTK.setSemiisotropic" title="Link to this definition"></a></dt>
 <dd><p>specifies the pressure with fixed values for XY and Z directions, respectively.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id3">
-<span class="sig-name descname"><span class="pre">setSemiisotropic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressxy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vpressz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id3" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setSemiisotropic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressxy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vpressz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
 <dd><p>specifies the pressure with a fixed value for XY direction and a varying value for Z direction, respectively.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="NPTMTK.setAnisotropic">
-<span class="sig-name descname"><span class="pre">setAnisotropic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTK.setAnisotropic" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setAnisotropic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTK.setAnisotropic" title="Link to this definition"></a></dt>
 <dd><p>specifies the pressure with fixed values for X, Y and Z directions, respectively.</p>
 </dd></dl>
 
@@ -305,11 +305,11 @@
 
 </section>
 <section id="martyna-tobias-klein-barostat-for-rigid-body">
-<h2>Martyna-Tobias-Klein barostat for rigid body<a class="headerlink" href="#martyna-tobias-klein-barostat-for-rigid-body" title="Permalink to this heading"></a></h2>
+<h2>Martyna-Tobias-Klein barostat for rigid body<a class="headerlink" href="#martyna-tobias-klein-barostat-for-rigid-body" title="Link to this heading"></a></h2>
 <p>Reference: G. J. Martyna, D. J. Tobias, and M. L. Klein, J. Chem. Phys., 1994, 101(5), 4177-4189.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="NPTMTKRigid">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NPTMTKRigid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTKRigid" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NPTMTKRigid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTKRigid" title="Link to this definition"></a></dt>
 <dd><p>The constructor of a NPTMTK thermostat object for rigid bodies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -327,31 +327,31 @@
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="NPTMTKRigid.setT">
-<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTKRigid.setT" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">T</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTKRigid.setT" title="Link to this definition"></a></dt>
 <dd><p>specifies the temperature with a fixed value.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id4">
-<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id4" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
 <dd><p>specifies the temperature with a varying value by time step.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="NPTMTKRigid.setSemiisotropic">
-<span class="sig-name descname"><span class="pre">setSemiisotropic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressxy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTKRigid.setSemiisotropic" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setSemiisotropic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressxy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTKRigid.setSemiisotropic" title="Link to this definition"></a></dt>
 <dd><p>specifies the pressure with fixed values for XY and Z directions, respectively.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id5">
-<span class="sig-name descname"><span class="pre">setSemiisotropic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressxy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vpressz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id5" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setSemiisotropic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressxy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vpressz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
 <dd><p>specifies the pressure with a fixed value for XY direction and a varying value for Z direction, respectively.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="NPTMTKRigid.setAnisotropic">
-<span class="sig-name descname"><span class="pre">setAnisotropic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTKRigid.setAnisotropic" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setAnisotropic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">pressz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTKRigid.setAnisotropic" title="Link to this definition"></a></dt>
 <dd><p>specifies the pressure with fixed values for X, Y and Z directions, respectively.</p>
 </dd></dl>
 

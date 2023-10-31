@@ -11,11 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -123,7 +123,7 @@
            <div itemprop="articleBody">
              
   <section id="constant-chemical-potential">
-<h1>Constant chemical potential<a class="headerlink" href="#constant-chemical-potential" title="Permalink to this heading"></a></h1>
+<h1>Constant chemical potential<a class="headerlink" href="#constant-chemical-potential" title="Link to this heading"></a></h1>
 <p>Constant Chemical Potential Molecular Dynamics (C <span class="math notranslate nohighlight">\(\mu\)</span> MD) method introduces an external force that controls the environment of the chemical process of interest.
 This external force, drawing molecules from a finite reservoir, maintains the chemical potential constant in the region where the process takes place.
 This method is able to study crystal growth dynamics under constant supersaturation conditions or evaporation dynamics under constant vapor pressure. Reference: C. Perego, M. Salvalaglio, and M. Parrinello, J. Chem. Phys., 2015, 142, 144113.</p>
@@ -144,7 +144,7 @@ F^{\mathrm{\mu}}(z) &amp;=&amp; k(n^{CR}-n_{0})G(z, Z_{F}) \\
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="CCPMD">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CCPMD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CCPMD" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CCPMD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CCPMD" title="Link to this definition"></a></dt>
 <dd><p>The constructor of a constant chemical potential object of a group of particles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -156,13 +156,13 @@ F^{\mathrm{\mu}}(z) &amp;=&amp; k(n^{CR}-n_{0})G(z, Z_{F}) \\
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="CCPMD.setWall">
-<span class="sig-name descname"><span class="pre">setWall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">ox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">oy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">oz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">dx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">dy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">dz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CCPMD.setWall" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setWall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">ox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">oy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">oz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">dx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">dy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">dz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CCPMD.setWall" title="Link to this definition"></a></dt>
 <dd><p>specifies external force region with plane center (ox, oy, oz) and direction (dx, dy, dz). If the normal direction of wall is in Z direction, the center position of plane is (0.0, 0.0, <span class="math notranslate nohighlight">\(Z_{F}\)</span>).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="CCPMD.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">n0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">Len_CR</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CCPMD.setParams" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">n0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">omega</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">Len_CR</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CCPMD.setParams" title="Link to this definition"></a></dt>
 <dd><p>specifies target concentration, spring constant, sigma, omega, and the length of control region.</p>
 </dd></dl>
 

@@ -11,11 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -124,7 +124,7 @@
            <div itemprop="articleBody">
              
   <section id="non-bonded-interactions">
-<h1>Non-bonded interactions<a class="headerlink" href="#non-bonded-interactions" title="Permalink to this heading"></a></h1>
+<h1>Non-bonded interactions<a class="headerlink" href="#non-bonded-interactions" title="Link to this heading"></a></h1>
 <p><strong>Overview</strong></p>
 <p>The pygamd MD engine provides a few of functions for non-bonded interactions.
 However, it supports well self-defined analytical functions via writting codes of
@@ -146,7 +146,7 @@ device function in script.</p>
 </tbody>
 </table>
 <section id="non-bonded-functions">
-<span id="non-bonded"></span><h2>Non-bonded functions<a class="headerlink" href="#non-bonded-functions" title="Permalink to this heading"></a></h2>
+<span id="non-bonded"></span><h2>Non-bonded functions<a class="headerlink" href="#non-bonded-functions" title="Link to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>The function describing non-bonded interactions could be either the one called from non-bonded interaction function libary, or the one defined by user himself in script.
@@ -180,7 +180,7 @@ V_{\mathrm{H}}(r) = \frac{1}{2}\alpha \left( r - r_{\mathrm{cut}} \right)^{2}, r
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="force.nonbonded">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">force.</span></span><span class="sig-name descname"><span class="pre">nonbonded</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclusion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#force.nonbonded" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">force.</span></span><span class="sig-name descname"><span class="pre">nonbonded</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclusion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#force.nonbonded" title="Link to this definition"></a></dt>
 <dd><p>Constructor of non-bonded interaction calculation object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -195,7 +195,7 @@ the default is None.</p></li>
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="force.nonbonded.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#force.nonbonded.setParams" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#force.nonbonded.setParams" title="Link to this definition"></a></dt>
 <dd><p>specifies interaction parameters with type_i, type_j, a list of parameters.</p>
 </dd></dl>
 
@@ -214,7 +214,7 @@ the default is None.</p></li>
 
 </section>
 <section id="self-defined-functions">
-<span id="self-defined-function"></span><h2>Self-defined functions<a class="headerlink" href="#self-defined-functions" title="Permalink to this heading"></a></h2>
+<span id="self-defined-function"></span><h2>Self-defined functions<a class="headerlink" href="#self-defined-functions" title="Link to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>The device function for non-bonded interactions could be written in script and conveyed
@@ -273,7 +273,7 @@ are square of distance, interaction parameters, and force and potential, respect
 </div></blockquote>
 </section>
 <section id="non-bonded-functions-for-charged-beads">
-<span id="non-bonded-c"></span><h2>Non-bonded functions for charged beads<a class="headerlink" href="#non-bonded-functions-for-charged-beads" title="Permalink to this heading"></a></h2>
+<span id="non-bonded-c"></span><h2>Non-bonded functions for charged beads<a class="headerlink" href="#non-bonded-functions-for-charged-beads" title="Link to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>The function describing non-bonded interactions including electrostatic part could be either the one called from non-bonded interaction function libary, or the one defined by user himself in script.</p>
@@ -297,7 +297,7 @@ V_{\mathrm{LJ}}(r)  = &amp; 4 \epsilon \left[ \left( \frac{\sigma}{r} \right)^{1
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="force.nonbonded_c">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">force.</span></span><span class="sig-name descname"><span class="pre">nonbonded_c</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclusion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#force.nonbonded_c" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">force.</span></span><span class="sig-name descname"><span class="pre">nonbonded_c</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclusion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#force.nonbonded_c" title="Link to this definition"></a></dt>
 <dd><p>Constructor of non-bonded interaction calculation object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -312,7 +312,7 @@ the default is None.</p></li>
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="force.nonbonded_c.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#force.nonbonded_c.setParams" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_j</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#force.nonbonded_c.setParams" title="Link to this definition"></a></dt>
 <dd><p>specifies interaction parameters with type_i, type_j, a list of parameters.</p>
 </dd></dl>
 
@@ -331,7 +331,7 @@ the default is None.</p></li>
 
 </section>
 <section id="self-defined-functions-for-charged-beads">
-<span id="self-defined-function-c"></span><h2>Self-defined functions for charged beads<a class="headerlink" href="#self-defined-functions-for-charged-beads" title="Permalink to this heading"></a></h2>
+<span id="self-defined-function-c"></span><h2>Self-defined functions for charged beads<a class="headerlink" href="#self-defined-functions-for-charged-beads" title="Link to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>The device function for non-bonded interactions could be written in script and conveyed

@@ -11,11 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -122,7 +122,7 @@
            <div itemprop="articleBody">
              
   <section id="bond-interactions">
-<h1>Bond interactions<a class="headerlink" href="#bond-interactions" title="Permalink to this heading"></a></h1>
+<h1>Bond interactions<a class="headerlink" href="#bond-interactions" title="Link to this heading"></a></h1>
 <p><strong>Overview</strong></p>
 <p>Bonds impose connected forces on specific pairs of particles to model chemical bonds.
 The bonds are specified in <a class="reference internal" href="system-data-format.html#mst-format"><span class="std std-ref">MST format</span></a> configuration file with the format:</p>
@@ -141,7 +141,7 @@ The bonds are specified in <a class="reference internal" href="system-data-forma
 </table>
 <a class="reference internal image-reference" href="../_images/bond1.png"><img alt="Principle of bond stretching" class="align-center" src="../_images/bond1.png" style="width: 250px;" /></a>
 <section id="bond-functions">
-<span id="bond-function"></span><h2>Bond functions<a class="headerlink" href="#bond-functions" title="Permalink to this heading"></a></h2>
+<span id="bond-function"></span><h2>Bond functions<a class="headerlink" href="#bond-functions" title="Link to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>Function of bond interactions could be either the one called from bond interaction function libary, or the one defined by user himself.
@@ -160,7 +160,7 @@ V_{\mathrm{bond}}(r) = \frac{1}{2}k\left( r - r_{0} \right)^{2}
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="force.bond">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">force.</span></span><span class="sig-name descname"><span class="pre">bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#force.bond" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">force.</span></span><span class="sig-name descname"><span class="pre">bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#force.bond" title="Link to this definition"></a></dt>
 <dd><p>Constructor of a bond interaction object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -172,7 +172,7 @@ V_{\mathrm{bond}}(r) = \frac{1}{2}k\left( r - r_{0} \right)^{2}
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="force.bond.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bond_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#force.bond.setParams" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bond_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#force.bond.setParams" title="Link to this definition"></a></dt>
 <dd><p>specifies the bond interaction parameters with bond type and a list of parameters.</p>
 </dd></dl>
 
@@ -188,7 +188,7 @@ V_{\mathrm{bond}}(r) = \frac{1}{2}k\left( r - r_{0} \right)^{2}
 
 </section>
 <section id="self-defined-bond-functions">
-<h2>Self-defined bond functions<a class="headerlink" href="#self-defined-bond-functions" title="Permalink to this heading"></a></h2>
+<h2>Self-defined bond functions<a class="headerlink" href="#self-defined-bond-functions" title="Link to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><p>The device function for bond interactions could be written in script and conveyed

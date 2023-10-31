@@ -11,11 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -146,7 +146,7 @@
            <div itemprop="articleBody">
              
   <section id="short-range-non-bonded-interactions">
-<h1>Short range non-bonded interactions<a class="headerlink" href="#short-range-non-bonded-interactions" title="Permalink to this heading"></a></h1>
+<h1>Short range non-bonded interactions<a class="headerlink" href="#short-range-non-bonded-interactions" title="Link to this heading"></a></h1>
 <p><strong>Overview</strong></p>
 <p>The net non-bonded force of each particle is produced by summing all the non-bonded forces of neighboring particles on the basis of a neighbor list that lists
 the interacting particles for each particle, built beforehand. Because of the independence of parallel CUDA threads, a pair of interacting particles is inevitably
@@ -187,7 +187,7 @@ functions are included.</p>
 </tbody>
 </table>
 <section id="lennard-jones-lj-interaction">
-<span id="lennard-jones"></span><h2>Lennard-Jones (LJ) interaction<a class="headerlink" href="#lennard-jones-lj-interaction" title="Permalink to this heading"></a></h2>
+<span id="lennard-jones"></span><h2>Lennard-Jones (LJ) interaction<a class="headerlink" href="#lennard-jones-lj-interaction" title="Link to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -206,7 +206,7 @@ V_{\mathrm{LJ}}(r)  = &amp; 4 \epsilon \left[ \left( \frac{\sigma}{r} \right)^{1
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="LJForce">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LJForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJForce" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LJForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJForce" title="Link to this definition"></a></dt>
 <dd><p>The constructor of LJ interaction calculation object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -219,25 +219,25 @@ V_{\mathrm{LJ}}(r)  = &amp; 4 \epsilon \left[ \left( \frac{\sigma}{r} \right)^{1
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="LJForce.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJForce.setParams" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJForce.setParams" title="Link to this definition"></a></dt>
 <dd><p>specifies the LJ interaction parameters with type1, type2, epsilon, sigma, and alpha.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
 <dd><p>specifies the LJ interaction parameters with type1, type2, epsilon, sigma, alpha, and cut-off of radius.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="LJForce.setEnergy_shift">
-<span class="sig-name descname"><span class="pre">setEnergy_shift</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LJForce.setEnergy_shift" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setEnergy_shift</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LJForce.setEnergy_shift" title="Link to this definition"></a></dt>
 <dd><p>calls the function to shift LJ potential to be zero at cut-off point.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="LJForce.setDispVirialCorr">
-<span class="sig-name descname"><span class="pre">setDispVirialCorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">open</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJForce.setDispVirialCorr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setDispVirialCorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">open</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJForce.setDispVirialCorr" title="Link to this definition"></a></dt>
 <dd><p>switches the dispersion virial correction.</p>
 </dd></dl>
 
@@ -252,7 +252,7 @@ V_{\mathrm{LJ}}(r)  = &amp; 4 \epsilon \left[ \left( \frac{\sigma}{r} \right)^{1
 
 </section>
 <section id="shift-lennard-jones-lj-interaction">
-<span id="shift-lennard-jones"></span><h2>Shift Lennard-Jones (LJ) interaction<a class="headerlink" href="#shift-lennard-jones-lj-interaction" title="Permalink to this heading"></a></h2>
+<span id="shift-lennard-jones"></span><h2>Shift Lennard-Jones (LJ) interaction<a class="headerlink" href="#shift-lennard-jones-lj-interaction" title="Link to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -272,7 +272,7 @@ V_{\mathrm{LJ}}(r)  = &amp; 4 \epsilon \left[ \left( \frac{\sigma}{r} \right)^{1
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="SLJForce">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SLJForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SLJForce" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SLJForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SLJForce" title="Link to this definition"></a></dt>
 <dd><p>The constructor of shift LJ interaction calculation object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -285,19 +285,19 @@ V_{\mathrm{LJ}}(r)  = &amp; 4 \epsilon \left[ \left( \frac{\sigma}{r} \right)^{1
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="SLJForce.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SLJForce.setParams" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SLJForce.setParams" title="Link to this definition"></a></dt>
 <dd><p>specifies the shift LJ interaction parameters with type1, type2, epsilon, sigma, and alpha.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
 <dd><p>specifies the shift LJ interaction parameters with type1, type 2, epsilon, sigma, alpha, and cut-off of radius.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="SLJForce.setEnergy_shift">
-<span class="sig-name descname"><span class="pre">setEnergy_shift</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SLJForce.setEnergy_shift" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setEnergy_shift</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SLJForce.setEnergy_shift" title="Link to this definition"></a></dt>
 <dd><p>calls the function to shift LJ potential to be zero at the cut-off point.</p>
 </dd></dl>
 
@@ -312,7 +312,7 @@ V_{\mathrm{LJ}}(r)  = &amp; 4 \epsilon \left[ \left( \frac{\sigma}{r} \right)^{1
 
 </section>
 <section id="linear-molecule-pi-pi-interaction">
-<span id="linear-pi-pi"></span><h2>Linear molecule <span class="math notranslate nohighlight">\(\pi\)</span>-<span class="math notranslate nohighlight">\(\pi\)</span> interaction<a class="headerlink" href="#linear-molecule-pi-pi-interaction" title="Permalink to this heading"></a></h2>
+<span id="linear-pi-pi"></span><h2>Linear molecule <span class="math notranslate nohighlight">\(\pi\)</span>-<span class="math notranslate nohighlight">\(\pi\)</span> interaction<a class="headerlink" href="#linear-molecule-pi-pi-interaction" title="Link to this heading"></a></h2>
 <p>An attractive potential to mimic <span class="math notranslate nohighlight">\(\pi-\pi\)</span> interactions of rod segments. Reference: Y.-L. Lin, H.-Y. Chang, and Y.-J. Sheng, Macromolecules 2012, 45, 7143-7156.</p>
 <p>Description:</p>
 <blockquote>
@@ -339,7 +339,7 @@ on the two neighbor particles of a center particle.</p>
 <a class="reference internal image-reference" href="../_images/pi-pi.png"><img alt="Principle of pi-pi interaction between linear molecules" class="align-center" src="../_images/pi-pi.png" style="width: 400px;" /></a>
 <dl class="py class">
 <dt class="sig sig-object py" id="CenterForce">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CenterForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CenterForce" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CenterForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CenterForce" title="Link to this definition"></a></dt>
 <dd><p>The constructor of a pi-pi interaction calculation object for linear molecules.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -354,7 +354,7 @@ on the two neighbor particles of a center particle.</p>
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="CenterForce.setPreNextShift">
-<span class="sig-name descname"><span class="pre">setPreNextShift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">prev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">next</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CenterForce.setPreNextShift" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setPreNextShift</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">prev</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">next</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CenterForce.setPreNextShift" title="Link to this definition"></a></dt>
 <dd><p>sets the previous particle and next particle of center particle with shift ID value, the default value is -1 and 1, respectively.</p>
 </dd></dl>
 
@@ -368,7 +368,7 @@ on the two neighbor particles of a center particle.</p>
 
 </section>
 <section id="generalized-exponential-model">
-<span id="gem"></span><h2>Generalized exponential model<a class="headerlink" href="#generalized-exponential-model" title="Permalink to this heading"></a></h2>
+<span id="gem"></span><h2>Generalized exponential model<a class="headerlink" href="#generalized-exponential-model" title="Link to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -388,7 +388,7 @@ on the two neighbor particles of a center particle.</p>
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="GEMForce">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GEMForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#GEMForce" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GEMForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#GEMForce" title="Link to this definition"></a></dt>
 <dd><p>The constructor of a generalized exponential model object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -401,13 +401,13 @@ on the two neighbor particles of a center particle.</p>
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="GEMForce.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#GEMForce.setParams" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#GEMForce.setParams" title="Link to this definition"></a></dt>
 <dd><p>specifies the GEM interaction parameters with type1, type2, epsilon, sigma, and n.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id2">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
 <dd><p>specifies the GEM interaction parameters with type1, type2, epsilon, sigma, n, and cut-off radius.</p>
 </dd></dl>
 
@@ -421,7 +421,7 @@ on the two neighbor particles of a center particle.</p>
 
 </section>
 <section id="lennard-jones-and-ewald-short-range-interaction">
-<span id="ljewald"></span><h2>Lennard-Jones and Ewald (short range) interaction<a class="headerlink" href="#lennard-jones-and-ewald-short-range-interaction" title="Permalink to this heading"></a></h2>
+<span id="ljewald"></span><h2>Lennard-Jones and Ewald (short range) interaction<a class="headerlink" href="#lennard-jones-and-ewald-short-range-interaction" title="Link to this heading"></a></h2>
 <p>Description:</p>
 <blockquote>
 <div><div class="math notranslate nohighlight">
@@ -444,7 +444,7 @@ V(r_{ij})  = &amp; 4 \epsilon \left[ \left( \frac{\sigma}{r_{ij}} \right)^{12} -
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="LJEwaldForce">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LJEwaldForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJEwaldForce" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LJEwaldForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJEwaldForce" title="Link to this definition"></a></dt>
 <dd><p>The constructor of LJ + Ewald in real space interaction calculation object. The <span class="math notranslate nohighlight">\(\kappa\)</span> parameter could be derived
 automatically.</p>
 <dl class="field-list simple">
@@ -458,25 +458,25 @@ automatically.</p>
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="LJEwaldForce.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJEwaldForce.setParams" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJEwaldForce.setParams" title="Link to this definition"></a></dt>
 <dd><p>specifies the LJ interaction parameters with type1, type2, epsilon, sigma, and alpha.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id3">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id3" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
 <dd><p>specifies the LJ interaction parameters with type1, type2, epsilon, sigma, alpha, and cut-off of radius.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="LJEwaldForce.setEnergy_shift">
-<span class="sig-name descname"><span class="pre">setEnergy_shift</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LJEwaldForce.setEnergy_shift" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setEnergy_shift</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#LJEwaldForce.setEnergy_shift" title="Link to this definition"></a></dt>
 <dd><p>calls the function to shift LJ potential to be zero at cut-off point.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="LJEwaldForce.setDispVirialCorr">
-<span class="sig-name descname"><span class="pre">setDispVirialCorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">open</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJEwaldForce.setDispVirialCorr" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setDispVirialCorr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bool</span> <span class="pre">open</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJEwaldForce.setDispVirialCorr" title="Link to this definition"></a></dt>
 <dd><p>switches the dispersion virial correction.</p>
 </dd></dl>
 
@@ -499,9 +499,9 @@ automatically.</p>
 
 </section>
 <section id="pair-interaction">
-<h2>Pair interaction<a class="headerlink" href="#pair-interaction" title="Permalink to this heading"></a></h2>
+<h2>Pair interaction<a class="headerlink" href="#pair-interaction" title="Link to this heading"></a></h2>
 <section id="lj9-6-interaction">
-<span id="lj9-6-repulsion"></span><h3>LJ9_6 interaction<a class="headerlink" href="#lj9-6-interaction" title="Permalink to this heading"></a></h3>
+<span id="lj9-6-repulsion"></span><h3>LJ9_6 interaction<a class="headerlink" href="#lj9-6-interaction" title="Link to this heading"></a></h3>
 <p>Description:</p>
 <blockquote>
 <div><blockquote>
@@ -522,7 +522,7 @@ V(r)  = &amp; 6.75 \epsilon \left[ \left( \frac{\sigma}{r} \right)^{9} -
 </div></blockquote>
 </section>
 <section id="harmonic-repulsion">
-<span id="id4"></span><h3>Harmonic repulsion<a class="headerlink" href="#harmonic-repulsion" title="Permalink to this heading"></a></h3>
+<span id="id4"></span><h3>Harmonic repulsion<a class="headerlink" href="#harmonic-repulsion" title="Link to this heading"></a></h3>
 <p>Description:</p>
 <blockquote>
 <div><blockquote>
@@ -540,7 +540,7 @@ V_{\mathrm{harmonic}}(r)=&amp;\frac{1}{2}\alpha \left(1-\frac{r}{r_{cut}} \right
 </div></blockquote>
 </section>
 <section id="gaussian-repulsion">
-<span id="id5"></span><h3>Gaussian repulsion<a class="headerlink" href="#gaussian-repulsion" title="Permalink to this heading"></a></h3>
+<span id="id5"></span><h3>Gaussian repulsion<a class="headerlink" href="#gaussian-repulsion" title="Link to this heading"></a></h3>
 <p>Description:</p>
 <blockquote>
 <div><blockquote>
@@ -559,7 +559,7 @@ V_{\mathrm{Gaussion}}(r)=&amp; \epsilon \exp \left[ -\frac{1}{2}{\left( \frac{r}
 </div></blockquote>
 </section>
 <section id="ipl-potential">
-<span id="id6"></span><h3>IPL potential<a class="headerlink" href="#ipl-potential" title="Permalink to this heading"></a></h3>
+<span id="id6"></span><h3>IPL potential<a class="headerlink" href="#ipl-potential" title="Link to this heading"></a></h3>
 <p>Description:</p>
 <blockquote>
 <div><blockquote>
@@ -579,7 +579,7 @@ V_{\mathrm{IPL}}(r)=&amp;\epsilon \left(\frac{\sigma}{r} \right)^{n} &amp; r &lt
 </div></blockquote>
 </section>
 <section id="short-range-coulomb-potential">
-<span id="coulomb-potential"></span><h3>Short-range Coulomb potential<a class="headerlink" href="#short-range-coulomb-potential" title="Permalink to this heading"></a></h3>
+<span id="coulomb-potential"></span><h3>Short-range Coulomb potential<a class="headerlink" href="#short-range-coulomb-potential" title="Link to this heading"></a></h3>
 <p>Description:</p>
 <blockquote>
 <div><blockquote>
@@ -597,10 +597,10 @@ U\left( r \right)=&amp;\frac{\alpha}{r} &amp; r &lt; r_{\mathrm{cut}} \\
 </div></blockquote>
 </section>
 <section id="script-commands">
-<span id="pair-sc-label"></span><h3>Script commands<a class="headerlink" href="#script-commands" title="Permalink to this heading"></a></h3>
+<span id="pair-sc-label"></span><h3>Script commands<a class="headerlink" href="#script-commands" title="Link to this heading"></a></h3>
 <dl class="py class">
 <dt class="sig sig-object py" id="PairForce">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PairForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PairForce" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PairForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PairForce" title="Link to this definition"></a></dt>
 <dd><p>The constructor of pair interaction calculation object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -612,13 +612,13 @@ U\left( r \right)=&amp;\frac{\alpha}{r} &amp; r &lt; r_{\mathrm{cut}} \\
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="PairForce.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">param0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">param1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">param2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PairFunc</span> <span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PairForce.setParams" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">param0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">param1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">param2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PairFunc</span> <span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PairForce.setParams" title="Link to this definition"></a></dt>
 <dd><p>specifies the interaction and its parameters with type1, type2, parameter0, parameter1, parameter2, cut-off radius, and potential type.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="PairForce.setShiftParams">
-<span class="sig-name descname"><span class="pre">setShiftParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">param0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">param1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">param2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_shift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PairFunc</span> <span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PairForce.setShiftParams" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setShiftParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">param0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">param1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">param2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_shift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PairFunc</span> <span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#PairForce.setShiftParams" title="Link to this definition"></a></dt>
 <dd><p>specifies the interaction and its parameters with type1, type2, parameter0, parameter1, parameter2, cut-off radius, shift radius, and potential type.
 This method employs a shift function introduced by GROMACS by which potential and force are smoothed at the boundaries.</p>
 </dd></dl>

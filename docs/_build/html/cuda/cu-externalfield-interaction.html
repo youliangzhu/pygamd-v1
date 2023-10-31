@@ -11,11 +11,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -121,10 +121,10 @@
            <div itemprop="articleBody">
              
   <section id="external-force">
-<h1>External force<a class="headerlink" href="#external-force" title="Permalink to this heading"></a></h1>
+<h1>External force<a class="headerlink" href="#external-force" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="ExternalForce">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ExternalForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ExternalForce" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ExternalForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ExternalForce" title="Link to this definition"></a></dt>
 <dd><p>The constructor of an external force object for a group of particles. The external force will be added on
 each particle.</p>
 <dl class="field-list simple">
@@ -137,25 +137,25 @@ each particle.</p>
 </dl>
 <dl class="py function">
 <dt class="sig sig-object py" id="ExternalForce.setForce">
-<span class="sig-name descname"><span class="pre">setForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std::string</span> <span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ExternalForce.setForce" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std::string</span> <span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ExternalForce.setForce" title="Link to this definition"></a></dt>
 <dd><p>specifies the force magnitude varying by time steps and direction (the candidates are “X”, “Y”, and “Z”).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id0">
-<span class="sig-name descname"><span class="pre">setForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Variant</span> <span class="pre">vf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">z</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
 <dd><p>specifies the force magnitude varying by time steps and direction vector (x, y, z).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="ExternalForce.setParams">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">factor</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ExternalForce.setParams" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">factor</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ExternalForce.setParams" title="Link to this definition"></a></dt>
 <dd><p>specifies the factor of external force for a particle type (the default value is 1.0).</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="id1">
-<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">factor</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">factor</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
 <dd><p>specifies the factor of external force for a particle with index.</p>
 </dd></dl>
 
