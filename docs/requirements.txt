@@ -1,1 +1,9 @@
-sphinx_rtd_theme
+ipython
+ipython_genutils
+nbconvert
+nbsphinx
+numpy
+pandoc
+sphinx
+furo
+tornado
