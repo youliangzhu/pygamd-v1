@@ -13,20 +13,24 @@ def separate_file(filepath):
     return tem
 
 var = os.getenv('CUDA_PATH')                      # CUDA安装中系统默认设置的环境变量名
+if var == None:
+    print('CUDA dependency not found！')
+    exit()
+
 cuda_path = var + '\\bin'
 poetry_path = os.path.dirname(__file__)           # 获取poetry路径
 cuda_path = separate_file(cuda_path)              # cuda文件
 poetry_cuda_path = separate_file(poetry_path)     # poetry下的cuda文件
 
 if len(cuda_path) == 0:
-    print('未找到CUDA依赖！')
+    print('CUDA dependency not found！')
     exit()
 
 if len(poetry_cuda_path) > 0:
-    print('pygamd在Win环境下的依赖文件已配置！')
+    print('pygamd dependency files in the Win environment have been configured！')
     exit()
 
 for dll in cuda_path:
-    os.system(f'copy {dll} {poetry_path}')
-print('pygamd在Win环境下依赖文件配置成功！')
+    os.system(f'copy "{dll}" "{poetry_path}"')
+print('pygamd dependency file is successfully configured in Win environment！')
 exit()

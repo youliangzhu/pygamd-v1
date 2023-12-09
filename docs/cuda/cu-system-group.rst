@@ -6,12 +6,12 @@ Particle set
    The constructor of particle set object with keyword.
   
    :param AllInfo all_info: The system information.
-   :param str keyword: The candidates of keyword are “all”, “body”, “non_body”, “charge”, and the string of particle type.
+   :param str keyword: Keywords or the python list of keywords. The candidates of keyword are “all”, “body”, “non_body”, “charge”, and particle type(string).
 
   
 .. py:class:: ParticleSet(all_info, min, max)
 
-   The constructor of particle set object with keyword.
+   The constructor of particle set object with the range of particle index.
   
    :param AllInfo all_info: The system information.
    :param int min: The particle index range from min to max.
@@ -63,5 +63,31 @@ Particle set
       # combines two particle sets into one set.
    
    
+Dynamic Particle Set
+====================
+
+.. py:class:: DynamicParticleSet(all_info, keyword)
+
+   The constructor of particle set object with keyword. The member of the particle set is automatically updated every time step.
+  
+   :param AllInfo all_info: The system information.
+   :param str keyword: Keywords or the python list of keywords. The candidates of keyword are particle type(string).
+
+  
+.. py:class:: DynamicParticleSet(all_info, lx_min, lx_max, ly_min, ly_max, lz_min, lz_max)
+
+   The constructor of particle set object with space range. The member of the particle set is automatically updated every time step.
+  
+   :param AllInfo all_info: The system information.
+   :param int lx_min: The particles in the box with lx >= lx_min.
+   :param int lx_max: The particles in the box with lx <  lx_max.
+   :param int ly_min: The particles in the box with ly >= ly_min.
+   :param int ly_max: The particles in the box with ly <  ly_max. 
+   :param int lz_min: The particles in the box with lz >= lz_min.
+   :param int lz_max: The particles in the box with lz <  lz_max. 
    
+   Example::
+   
+      groupC = gala.DynamicParticleSet(all_info, -10.0, 10.0, -10.0, 10.0, -2.0, 2.0)
+      # initializes a particle set object by spatial range.
    

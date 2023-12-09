@@ -157,6 +157,26 @@ Depolymerization model
    
       specifies the temperature with a varying value by time step.
 	  
+   .. py:function:: setCrisQualify()
+   
+      switches on the checking on the cris value of two connected particles i and j. Only when the cris_i >0 or cris_j > 0, the bond will be judged for breaking.
+	  
+   .. py:function:: setChangeTypeInReaction(string origin_type, string new_type)
+   
+      The type of particle will be changed after depolymerization from origin_type to new_type.
+	  
+   .. py:function:: setDegradeAngle()
+      
+      swithes on the function of degrading angle.
+		
+   .. py:function:: setDegradeDihedral()
+   
+      swithes on the function of degrading dihedral.
+	  
+   .. py:function:: setCountUnbonds(int period)
+   
+      swithes on the function of counting the number of broken bonds with a period for outputing the number.
+	  
    Example::
    
       reaction = gala.DePolymerization(all_info, 1.0, 16361)  
