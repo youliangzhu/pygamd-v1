@@ -244,7 +244,7 @@ def parseAHParams(filename, atom_type):
 	for i in range(len(atom_type)):
 		for k in ah_params_file:
 			if (k[0] == atom_type[i]):
-				ah_params_file1.append(k)					
+				ah_params_file1.append(k)
 
 	for i in range(len(atom_type)):
 		ahi = ah_params_file1[i]
@@ -316,15 +316,37 @@ def LJCoulombShiftForce(all_info, neighbor_list, rcut, rshift, epsilonr, filenam
 	return lj	
 	
 	
-def AHDHForce(all_info, neighbor_list, rcut, epsilon, debye_length, filename):
-	ahdh = gala.AHDHForce(all_info, neighbor_list, rcut)
-	atom_type = all_info.getBasicInfo().getParticleTypes()	
-	ahdh.setDebyeLength(debye_length)
-	parseAHParams(filename, atom_type)
-	alpha = 1.0
-	for i in range(0, len(ah_params)):
-		ahdh.setParams(ah_params[i][0], ah_params[i][1], epsilon, float(ah_params[i][2]), alpha, float(ah_params[i][3]))
-	return ahdh
+# def AHDHForce(all_info, neighbor_list, rcut, epsilon, debye_length, filename):
+	# ahdh = gala.AHDHForce(all_info, neighbor_list, rcut)
+	# atom_type = all_info.getBasicInfo().getParticleTypes()	
+	# ahdh.setDebyeLength(debye_length)
+	# parseAHParams(filename, atom_type)
+	# alpha = 1.0
+	# for i in range(0, len(ah_params)):
+		# ahdh.setParams(ah_params[i][0], ah_params[i][1], epsilon, float(ah_params[i][2]), alpha, float(ah_params[i][3]))
+	# return ahdh
+    
+def AHDHForce(all_info, neighbor_list, rcut, epsilon, debye_length, filename, dna=False, domain=False):
+    ahdh = gala.AHDHForce(all_info, neighbor_list, rcut)
+    atom_type = all_info.getBasicInfo().getParticleTypes()
+    print("AHDH Force Info: you atom types:", atom_type)
+    ahdh.setDebyeLength(debye_length)
+    parseAHParams(filename, atom_type)
+    alpha = 1.0
+    pro_domain_list = ['A', 'R', 'D', 'N', 'C', 'Q', 'E', 'H', 'I', 'G',
+                       'L', 'K', 'M', 'F', 'P', 'S', 'T', 'W', 'Y', 'V']
+    dna_list = ["Ab", "Gb", "Cb", "Tb", "Ph", "Su"]
+    for i in range(0, len(ah_params)):
+        if dna:
+            if ah_params[i][0] in dna_list and ah_params[i][1] in dna_list:
+                continue
+            if domain:
+                if ah_params[i][0] in dna_list and ah_params[i][1] in pro_domain_list:
+                    continue
+                if ah_params[i][0] in pro_domain_list and ah_params[i][1] in dna_list:
+                    continue
+        ahdh.setParams(ah_params[i][0], ah_params[i][1], epsilon, float(ah_params[i][2]), alpha, float(ah_params[i][3]))
+    return ahdh
     
 def WFDHForce(all_info, neighbor_list, rcut, debye_length, filename):
 	wfdh = gala.WFDHForce(all_info, neighbor_list, rcut)
@@ -379,7 +401,8 @@ def DihedralForceAmberCosine(all_info, filename):
 		dp = dihedral_params[i]
 		if int(dp[9])==4:
 #			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "gala.DihedralForceAmberCosine.Prop.improper"
-			dfh.setParams(dp[0], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.AmberProp.improper)
+#			dfh.setParams(dp[0], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.AmberProp.improper)
+			dfh.setParams(dp[0], 0.0, float(dp[2]), 0.0, 0.0, 0.0, float(dp[1]), 0.0, 0.0, gala.AmberProp.improper)
 		elif int(dp[9])==9:
 #			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "gala.DihedralForceAmberCosine.Prop.proper"
 			dfh.setParams(dp[0], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.AmberProp.proper) 

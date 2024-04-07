@@ -394,9 +394,10 @@ def DihedralForceAmberCosine(all_info, filename):
 	parseDihedralParams(filename, dihedral_type)
 	for i in range(0, len(dihedral_type)):
 		dp = dihedral_params[i]
+#		print(dp)
 		if int(dp[0])==4:
 #			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "gala.AmberProp.improper"
-			dfh.setParams(dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.AmberProp.improper)
+			dfh.setParams(dihedral_type[i], 0.0, float(dp[2]), 0.0, 0.0, 0.0, float(dp[1]), 0.0, 0.0, gala.AmberProp.improper)
 		elif int(dp[0])==9:
 #			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "gala.DihedralForceAmberCosine.Prop.proper"
 			dfh.setParams(dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.AmberProp.proper) 

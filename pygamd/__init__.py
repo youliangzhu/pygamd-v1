@@ -36,7 +36,7 @@ import os
 import zipfile
 import platform
 
-PYGAMD_VERSION="1.4.4"
+PYGAMD_VERSION="1.4.5"
 
 
 curr_file = os.path.abspath(__file__)

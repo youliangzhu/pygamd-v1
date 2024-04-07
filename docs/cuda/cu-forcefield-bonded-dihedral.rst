@@ -103,12 +103,12 @@ Description:
 	  
    .. py:function:: setParams(string name, float k, float delta, int property)
    
-      specifies the dihedral harmonic force parameters with dihedral type, potential constant, phase shift angle, and the property of proper or improper.	 	  
+      specifies the dihedral harmonic force parameters with dihedral type, potential constant, phase shift angle, and the property of HarmonicProp::proper or HarmonicProp::improper.	 	  
 	  
    Example::
    
       dihedralforce = gala.DihedralForceHarmonic(all_info)
-      dihedralforce.setParams('A-B-B-A', 10.0, 0.0, gala.DihedralForceHarmonic.Prop.improper)
+      dihedralforce.setParams('A-B-B-A', 10.0, 0.0, gala.HarmonicProp.improper)
       app.add(dihedralforce)
 
 .. _opls-dihedral:	  
@@ -219,13 +219,13 @@ Description:
 
    .. py:function:: setParams(string name, float k1, float k2, float k3, float k4, float delta1, float delta2, float delta3, float delta4, int property)
    
-      specifies the dihedral Amber force parameters with dihedral type, k1, k2, k3, k4, delta1, delta2, delta3, delta4, and the property of proper or improper.	
+      specifies the dihedral Amber force parameters with dihedral type, k1, k2, k3, k4, delta1, delta2, delta3, delta4, and the property of AmberProp::proper or AmberProp::improper.	
 	  
    Example::
    
       pfh = gala.DihedralForceAmberCosine(all_info)
       pfh.setParams("A-A-B-B", 1.0, 0.0, 0.0, 0.0, 180.0, 0.0, 0.0, 0.0, 
-		gala.DihedralForceAmberCosine.Prop.proper)
+		gala.AmberProp.proper)
       app.add(pfh)	 
 
 

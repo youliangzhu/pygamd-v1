@@ -72,6 +72,8 @@ texrp = [
 ['PairForce\.Fun', 'PairFun'],
 ['Polymerization\.Func', 'PolyFunc'],
 ['DePolymerization\.Func', 'DePolyFunc'],
+['DihedralForceHarmonic\.Prop', 'HarmonicProp'],
+['DihedralForceAmberCosine\.Prop', 'AmberProp'],
 ['PerformConfig\(int\(_options.gpu\)\)', 'PerformConfig(_options.gpu)'],
 ['PerformConfig\( int\(_options.gpu\)\)', 'PerformConfig(_options.gpu)'],
 ]
