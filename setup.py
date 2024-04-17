@@ -36,7 +36,7 @@ with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 setup(name='pygamd',
-      version='1.4.5',
+      version='1.4.6',
       description='Python GPU-Accelerated Molecular Dynamics Software',
       long_description=long_description,
       classifiers=[
