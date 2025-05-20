@@ -409,6 +409,17 @@ def DihedralForceAmberCosine(all_info, filename):
 			raise RuntimeError('Error dihedral function type is not 4 or 9!')
 	return dfh	
 	
+def DihedralForceOPLSCosine(all_info, filename):
+	dfh = gala.DihedralForceOPLSCosine(all_info)
+	dihedral_type = all_info.getDihedralInfo().getDihedralTypes()	
+	parseDihedralParams(filename, dihedral_type)
+	for i in range(0, len(dihedral_params)):
+		dp = dihedral_params[i]
+		if int(dp[5])==5:
+			dfh.setParams(dp[0], 0.0, float(dp[1])/2, float(dp[2])/2, float(dp[3])/2, float(dp[4])/2, 0.0) 
+		else:
+			raise RuntimeError('Error dihedral function type is not 5!')
+	return dfh	
 	
 def DihedralForceRyckaertBellemans(all_info, filename):
 	dfh = gala.DihedralForceRyckaertBellemans(all_info)

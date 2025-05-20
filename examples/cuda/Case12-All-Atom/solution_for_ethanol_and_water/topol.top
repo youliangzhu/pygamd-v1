@@ -1,0 +1,13 @@
+#include "forcefield.itp"
+#include "ffnonbonded.itp"
+#include "ffbonded.itp"
+#include "tip3p.itp"
+#include "Ethanol_modified.itp"
+
+[ system ]
+Ethanol and water solution.
+
+[ molecules ]
+; Molecule      nmols
+Bio              600
+SOL              2100

@@ -1,0 +1,16 @@
+#include "forcefield.itp"
+#include "ffnonbonded.itp"
+#include "ffbonded.itp"
+
+#include "protein.itp"
+#include "tip3p.itp"
+#include "ions.itp"
+
+[ system ]
+; Name
+UBIQUITIN in water
+
+[ molecules ]
+; Compound        #mols
+Protein_chain_A     1
+SOL              7061

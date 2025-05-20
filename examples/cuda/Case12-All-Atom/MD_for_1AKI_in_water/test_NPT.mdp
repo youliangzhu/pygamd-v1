@@ -1,0 +1,34 @@
+constraints         =  none
+integrator          =  md
+dt                  =  0.001    ; ps ! 
+nsteps              =  200000
+nstlist             =  10  
+ns_type             =  grid
+rlist               =  1 
+coulombtype         =  PME
+vdw-modifier        =  Potential-shift
+rcoulomb            =  1 
+rvdw                =  1 
+pbc                 =  xyz
+epsilon_rf	    =  0
+comm_mode           =  linear
+
+fourierspacing      = 0.15
+nstxout             = 0
+nstfout             = 0
+nstvout             = 0
+nstxtcout           = 0
+nstlog              = 100
+nstcalcenergy       = 100
+nstenergy           = 100
+
+tcoupl              = V-rescale
+tc-grps             = system
+tau-t               = 0.2
+ref-t               = 298
+
+pcoupl     = Berendsen
+pcoupltype = isotropic
+tau_p = 2.0
+ref_p = 1.0
+compressibility = 4.5e-5

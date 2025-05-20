@@ -1,0 +1,13 @@
+#!/usr/bin/python
+from poetry import molgen
+
+mol2=molgen.Molecule(1)#number
+mol2.setParticleTypes("A")#type
+mol2.setDiameter("A",1.0)
+
+gen=molgen.Generators(30, 30, 30) # Lx, Ly, Lz
+#gen.addMolecule(mol1, 1000)#molecule,number
+gen.addMolecule(mol2, 27000)#molecule,number
+gen.setMinimumDistance(0.5)
+gen.outPutXML("init_one")
+gen.outPutMST("init_one")

@@ -1,0 +1,43 @@
+<?xml version ="1.0" encoding ="UTF-8" ?>
+<galamost_xml version="1.3">
+<configuration time_step="0" dimensions="3" natoms="3" >
+<box lx="6.04689" ly="6.04689" lz="6.04689"/>
+<position num="3">
+2.253555	-1.4364450000000002	-1.5014450000000001
+2.2015549999999995	-1.3644450000000001	-1.4564450000000002
+2.1755549999999997	-1.4764450000000002	-1.5514450000000002
+</position>
+<velocity num="3">
+-0.1633  -0.2257	-0.3053
+0.3377  2.1608	1.4489
+1.5463  -1.1564	-4.0182
+</velocity>
+<image num="3">
+0  0	0
+0  0	0
+0  0	0
+</image>
+<charge num="3">
+-9.830415701281405
+4.915207850640702
+4.915207850640702
+</charge>
+<type num="3">
+OW
+HW
+HW
+</type>
+<mass num="3">
+16.00000
+1.00800
+1.00800
+</mass>
+<bond>
+OW-HW 0 1
+OW-HW 0 2
+</bond>
+<angle>
+HW-OW-HW 1 0 2
+</angle>
+</configuration>
+</galamost_xml>

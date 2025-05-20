@@ -41,12 +41,14 @@ class read:
 		file_array=filename.split(".")
 		if file_array[len(file_array)-1]=="mst":
 			self.data = snapshots.read_mst.read_mst(filename)
+		elif file_array[len(file_array)-1]=="xml":
+			self.data = snapshots.read_xml.read_xml(filename)
 		self.compute_properties = {'temperature':False, 'pressure':False, 'momentum':False, 'potential':False, 'stress_tensor':False}
 		self.variant = {'position':True, 'velocity':True, 'type':False, 'mass':False, 'image':True, 'box':False, 
 						'charge':False, 'body':False, 'diameter':False, 'init':True, 'cris':True,
 						'force':True, 'potential':True, 'virial':True, 'bond':False, 'angle':False, 'dihedral':False}
 		# system information
-		self.npa = self.data.num_particles
+		self.npa = int(self.data.num_particles)
 		self.pitch = (self.npa + (16 - (self.npa & 15)))
 		self.dt=0.001
 		self.timestep = self.data.timestep
@@ -72,6 +74,8 @@ class read:
 		self.angle = None
 		self.dihedral = None
 		self.vsite = None
+		self.multipole=None
+		
 		
 		# host arrays		
 		self.pos = np.zeros([self.npa, 4], dtype=np.float32)
@@ -83,16 +87,62 @@ class read:
 		
 		
 		for i in range(0, self.npa):
-			self.pos[i][0] = self.data.position[i][0]
-			self.pos[i][1] = self.data.position[i][1]
-			self.pos[i][2] = self.data.position[i][2]
+			pix = self.data.position[i][0]
+			piy = self.data.position[i][1]
+			piz = self.data.position[i][2]
+
+			if self.dimension == 3:
+				if pix<-self.box[0]/2.0:
+					pix += 0.0001
+					print("Warning, correct the coordinate of particle "+str(i)+" with "+str(pix)+" outside box in x diction!")
+				elif pix>=self.box[0]/2.0:
+					pix -= 0.0001
+					print("Warning, correct the coordinate of particle "+str(i)+" with "+str(pix)+" outside box in x diction!")
+				elif piy<-self.box[1]/2.0:
+					piy += 0.0001
+					print("Warning, correct the coordinate of particle "+str(i)+" with "+str(piy)+" outside box in y diction!")
+				elif piy>=self.box[1]/2.0:
+					piy -= 0.0001
+					print("Warning, correct the coordinate of particle "+str(i)+" with "+str(piy)+" outside box in y diction!")
+				elif piz<-self.box[2]/2.0:
+					piz += 0.0001
+					print("Warning, correct the coordinate of particle "+str(i)+" with "+str(piz)+" outside box in z diction!")
+				elif piz>=self.box[2]/2.0:
+					piz -= 0.0001
+					print("Warning, correct the coordinate of particle "+str(i)+" with "+str(piz)+" outside box in z diction!")
+
+				if pix<-self.box[0]/2.0 or pix>=self.box[0]/2.0 or piy<-self.box[1]/2.0 or piy>=self.box[1]/2.0 or piz<-self.box[2]/2.0 or piz>=self.box[2]/2.0:
+					raise RuntimeError('Error, particle '+str(i)+' out of box!')
+			elif self.dimension == 2:
+				if pix<-self.box[0]/2.0:
+					pix += 0.0001
+					print("Warning, correct the coordinate of particle "+str(i)+" with "+str(pix)+" outside box in x diction!")
+				elif pix>=self.box[0]/2.0:
+					pix -= 0.0001
+					print("Warning, correct the coordinate of particle "+str(i)+" with "+str(pix)+" outside box in x diction!")
+				elif piy<-self.box[1]/2.0:
+					piy += 0.0001
+					print("Warning, correct the coordinate of particle "+str(i)+" with "+str(piy)+" outside box in y diction!")
+				elif piy>=self.box[1]/2.0:
+					piy -= 0.0001
+					print("Warning, correct the coordinate of particle "+str(i)+" with "+str(piy)+" outside box in y diction!")
+				elif piz != 0.0:
+					piz = 0.0
+					print("Warning, correct the coordinate of particle "+str(i)+" with "+str(piz)+" not zero in z diction!")
+
+				if pix<-self.box[0]/2.0 or pix>=self.box[0]/2.0 or piy<-self.box[1]/2.0 or piy>=self.box[1]/2.0:
+					raise RuntimeError('Error, particle '+str(i)+' out of box!')
+
+			self.pos[i][0] = pix
+			self.pos[i][1] = piy
+			self.pos[i][2] = piz
+
 			type_i = self.data.type[i]
 			type_id = self.add_name_to_id(type_i)
 			self.pos[i][3] = np.float32(type_id)
 			self.tag[i] = i 
 			self.rtag[i] = i
 
-			
 		for i in range(0, self.npa):
 			if len(self.data.velocity)==self.npa:
 				self.vel[i][0] = self.data.velocity[i][0]
@@ -101,7 +151,7 @@ class read:
 			if len(self.data.mass)==self.npa:
 				self.vel[i][3] = self.data.mass[i]
 			else:
-				self.vel[i][3] = 1.0		
+				self.vel[i][3] = 1.0
 
 		if len(self.data.image)==self.npa:
 			for i in range(0, self.npa):
@@ -172,7 +222,7 @@ class read:
 			self.angle = snapshots.bonded_data.angle_data(self, self.data.angle)
 
 		if len(self.data.dihedral)>0:
-			self.dihedral = snapshots.bonded_data.dihedral_data(self, self.data.dihedral)			
+			self.dihedral = snapshots.bonded_data.dihedral_data(self, self.data.dihedral)
 
 		# device arrays		
 		self.d_pos = cuda.to_device(self.pos)
@@ -189,11 +239,22 @@ class read:
 		self.d_body = None
 		self.d_diameter = None
 		self.d_molecule = None
-		self.d_init = None		
+		self.d_init = None
 		self.d_cris = None
 		self.d_orientation = None
-		self.d_quaternion = None	
+		self.d_quaternion = None
 		self.d_inert = None
+        
+        
+		self.d_multipole = None
+		# jin
+		# small_value = 1e-10
+		# init_mp = [[small_value] * 10 for _ in range(self.npa)]
+		# self.d_multipole = cuda.to_device(init_mp)
+		# init_f_pol = np.full((self.npa, 3), small_value)
+		# self.d_fieldPol = cuda.to_device(init_f_pol)
+		# init_f_ct = np.full((self.npa, 3), small_value)
+		# self.d_fieldCt = cuda.to_device(init_f_ct)
 
 		if len(self.data.charge)==self.npa:
 			self.d_charge = cuda.to_device(self.charge)
@@ -252,5 +313,10 @@ class read:
 	def find_plist(self, rcut, exclusion):
 		for i in self.plist:
 			if i.rcut>=rcut and i.exclusion==exclusion:
-				return i			
-			
+				return i
+
+	def init_multipole_data(self):
+		if self.multipole is None:
+			self.multipole = snapshots.multipole_data.multipole_data(self, self.data.type, self.data.position)
+			self.d_multipole = cuda.to_device(self.multipole)
+

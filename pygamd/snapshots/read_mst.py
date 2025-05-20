@@ -44,7 +44,7 @@ class read_mst:
 							   'diameter':False, 'rotangle':False, 'force':False, 'virial':False, 'molecule':False, 'init':False, 'cris':False, 
 							   'orientation':False, 'quaternion':False, 'rotation':False, 'inert':False, 'asphere':False, 'patch':False,'bond':False, 
 							   'angle':False, 'dihedral':False, 'vsite':False }		
-		self.init_data()	
+		self.init_data()
 		self.read_file(filename)
 	
 	def read_file(self, filename):
@@ -68,12 +68,12 @@ class read_mst:
 				if self.mst_read:
 					if line_array[0]=="invariant_data":
 						self.invariant_data = True
-						self.variant_data = False						
+						self.variant_data = False
 						continue
 						
 					if line_array[0]=="variant_data":
 						self.invariant_data = False
-						self.variant_data = True	
+						self.variant_data = True
 						continue
 						
 					if line_array[0]=="frame":
@@ -96,7 +96,7 @@ class read_mst:
 					if line_array[0]=="dimension":
 						self.reset_params()
 						self.dimension_read=True
-						continue						
+						continue
 
 					if line_array[0]=="box":
 						self.reset_params()
@@ -106,17 +106,17 @@ class read_mst:
 						continue
 
 					if line_array[0]=="position":
-						self.reset_params()				
+						self.reset_params()
 						self.position_read=True
 						if self.invariant_data:
-							self.read_indicator['position'] = True						
+							self.read_indicator['position'] = True
 						continue
 					
 					if line_array[0]=="type":
 						self.reset_params()				
 						self.type_read=True
 						if self.invariant_data:
-							self.read_indicator['type'] = True						
+							self.read_indicator['type'] = True
 						continue
 						
 					if line_array[0]=="image":
@@ -130,7 +130,7 @@ class read_mst:
 						self.reset_params()
 						self.mass_read=True
 						if self.invariant_data:
-							self.read_indicator['mass'] = True						
+							self.read_indicator['mass'] = True
 						continue
 						
 					if line_array[0]=="velocity":
@@ -180,7 +180,7 @@ class read_mst:
 						self.virial_read=True
 						if self.invariant_data:
 							self.read_indicator['virial'] = True
-						continue						
+						continue
 
 					if line_array[0]=="molecule":
 						self.reset_params()
@@ -229,28 +229,28 @@ class read_mst:
 						self.inert_read=True
 						if self.invariant_data:
 							self.read_indicator['inert'] = True
-						continue						
+						continue
 
 					if line_array[0]=="asphere":
 						self.reset_params()
 						self.asphere_read=True	
 						if self.invariant_data:
 							self.read_indicator['asphere'] = True
-						continue	
+						continue
 
 					if line_array[0]=="patch":
 						self.reset_params()
 						self.patch_read=True	
 						if self.invariant_data:
 							self.read_indicator['patch'] = True
-						continue		
+						continue
 
 					if line_array[0]=="bond":
 						self.reset_params()
 						self.bond_read=True	
 						if self.invariant_data:
 							self.read_indicator['bond'] = True
-						continue						
+						continue
 						
 					if line_array[0]=="angle":
 						self.reset_params()
@@ -264,14 +264,14 @@ class read_mst:
 						self.dihedral_read=True
 						if self.invariant_data:
 							self.read_indicator['dihedral'] = True
-						continue					
+						continue
 				
 					if line_array[0]=="vsite":
 						self.reset_params()
 						self.vsite_read=True
 						if self.invariant_data:
 							self.read_indicator['vsite'] = True
-						continue					
+						continue
 						
 					# read data
 					if self.num_particles_read and len(line_array) == 1:
@@ -283,7 +283,7 @@ class read_mst:
 						print("info : timestep", self.timestep)
 						
 					if self.dimension_read and len(line_array) == 1:
-						self.dimension=int(line_array[0])		
+						self.dimension=int(line_array[0])
 						print("info : dimension", self.dimension)
 						
 					if self.box_read and len(line_array) == 3:
@@ -317,7 +317,7 @@ class read_mst:
 						self.diameter.append(float(line_array[0]))
 
 					if self.rotangle_read and len(line_array) == 3:
-						self.rotangle.append([float(line_array[0]), float(line_array[1]), float(line_array[2])])							
+						self.rotangle.append([float(line_array[0]), float(line_array[1]), float(line_array[2])])
 
 					if self.force_read and len(line_array) == 3:
 						self.force.append([float(line_array[0]), float(line_array[1]), float(line_array[2])])
@@ -335,7 +335,7 @@ class read_mst:
 						self.cris.append(int(line_array[0]))
 
 					if self.orientation_read and len(line_array) == 3:
-						self.orientation.append([float(line_array[0]), float(line_array[1]), float(line_array[2])])						
+						self.orientation.append([float(line_array[0]), float(line_array[1]), float(line_array[2])])
 
 					if self.quaternion_read and len(line_array) == 4:
 						self.quaternion.append([float(line_array[0]), float(line_array[1]), float(line_array[2]), float(line_array[3])])
@@ -347,10 +347,10 @@ class read_mst:
 						self.inert.append([float(line_array[0]), float(line_array[1]), float(line_array[2])])
 
 					if self.asphere_read and len(line_array) == 7:
-						self.asphere.append([line_array[0], float(line_array[1]), float(line_array[2]), float(line_array[3]), float(line_array[4]), float(line_array[5]), float(line_array[6])])						
+						self.asphere.append([line_array[0], float(line_array[1]), float(line_array[2]), float(line_array[3]), float(line_array[4]), float(line_array[5]), float(line_array[6])])
 
 					if self.patch_read and len(line_array) == 5:
-						self.patch.append([line_array[0], float(line_array[1]), float(line_array[2]), float(line_array[3]), float(line_array[4])])						
+						self.patch.append([line_array[0], float(line_array[1]), float(line_array[2]), float(line_array[3]), float(line_array[4])])
 
 					if self.bond_read and len(line_array) == 3:
 						self.bond.append([line_array[0], int(line_array[1]), int(line_array[2])])
@@ -409,7 +409,7 @@ class read_mst:
 		if len(self.rotangle) > 0:
 			if len(self.rotangle) != self.num_particles:
 				raise RuntimeError('Error! number of rotangle ', len(self.rotangle), ' is not equal to the number of particles ', self.num_particles)
-			print("info :", len(self.rotangle), "rotangles")			
+			print("info :", len(self.rotangle), "rotangles")
 			
 		if len(self.force) > 0:
 			if len(self.force) != self.num_particles:
@@ -532,14 +532,14 @@ class read_mst:
 		# indicators
 		self.num_particles_read=False
 		self.timestep_read=False
-		self.dimension_read=False		
-		self.box_read=False			
+		self.dimension_read=False
+		self.box_read=False
 		self.position_read=False
 		self.type_read=False
 		self.image_read=False
 		self.mass_read=False
 		self.velocity_read=False
-		self.charge_read=False	
+		self.charge_read=False
 		self.body_read=False
 		self.diameter_read=False
 		self.rotangle_read=False
@@ -552,8 +552,8 @@ class read_mst:
 		self.quaternion_read=False
 		self.rotation_read=False
 		self.inert_read=False
-		self.asphere_read=False	
-		self.patch_read=False			
+		self.asphere_read=False
+		self.patch_read=False
 		self.bond_read=False
 		self.angle_read=False
 		self.dihedral_read=False

@@ -1,0 +1,13 @@
+
+#include "forcefield.itp"
+#include "ffnonbonded.itp"
+#include "ffbonded.itp"
+#include "tip3p.itp"
+#include "chx_modified.itp"
+
+[ system ]
+biphasic systems for chx and water
+
+[ molecules ]
+CHX     545
+SOL     3024

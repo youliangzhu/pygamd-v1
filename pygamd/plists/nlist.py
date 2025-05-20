@@ -44,7 +44,7 @@ def cu_neighbor_build(npa, pos, dim, box_low_boundary, inv_width, box, cell_adj,
 	i = cuda.grid(1)
 	if i < npa:
 		pix = pos[i][0]
-		piy = pos[i][1]		
+		piy = pos[i][1]
 		piz = pos[i][2]
 		
 		dpix = pix - box_low_boundary[0]
@@ -53,11 +53,11 @@ def cu_neighbor_build(npa, pos, dim, box_low_boundary, inv_width, box, cell_adj,
 		
 		ix = nb.int32(dpix*inv_width[0])
 		iy = nb.int32(dpiy*inv_width[1])
-		iz = nb.int32(dpiz*inv_width[2])		
+		iz = nb.int32(dpiz*inv_width[2])
 		if ix == dim[0]:
 			ix = nb.int32(0)
 		if iy == dim[1]:
-			iy = nb.int32(0)			
+			iy = nb.int32(0)
 		if iz == dim[2]:
 			iz = nb.int32(0)
 
@@ -152,7 +152,7 @@ def filter_nlist(npa, neighbor_size, neighbor_list, ex_size, ex_list, offset):
 def cu_zero(situation):
 	i = cuda.grid(1)
 	if i < 3:
-		situation[i] = nb.int32(0)			
+		situation[i] = nb.int32(0)
 			
 class nlist:
 	#定义构造方法
@@ -168,7 +168,7 @@ class nlist:
 		self.nblocks = math.ceil(self.info.npa / self.block_size)
 		self.ex_list_host=[[] for i in range(self.info.npa)]
 
-		self.last_pos = np.zeros([self.info.npa, 3], dtype = np.float32)		
+		self.last_pos = np.zeros([self.info.npa, 3], dtype = np.float32)
 		self.neighbor_size = np.zeros(self.info.npa, dtype = np.int32)
 
 		self.situation = np.zeros(3, dtype = np.int32)
@@ -193,7 +193,7 @@ class nlist:
 				if i =="bond":
 					self.bond_exclusion()
 				elif i =="angle":
-					self.angle_exclusion()				
+					self.angle_exclusion()
 				elif i =="dihedral":
 					self.dihedral_exclusion()
 				else:
@@ -260,10 +260,10 @@ class nlist:
 			if len(self.ex_list_host[i]) > self.ex_max_size:
 				self.ex_max_size=len(self.ex_list_host[i])
 				
-		self.ex_list_tag = np.zeros([self.info.npa, self.ex_max_size], dtype = np.int32)	
+		self.ex_list_tag = np.zeros([self.info.npa, self.ex_max_size], dtype = np.int32)
 		self.ex_size_tag = np.zeros(self.info.npa, dtype = np.int32)
 		
-		self.ex_list = np.zeros([self.info.npa, self.ex_max_size], dtype = np.int32)	
+		self.ex_list = np.zeros([self.info.npa, self.ex_max_size], dtype = np.int32)
 		self.ex_size = np.zeros(self.info.npa, dtype = np.int32)
 
 		for i in range(self.info.npa):
@@ -297,7 +297,7 @@ class nlist:
 		# print("check build",end1 - start)
 		update_list = build_list
 		while build_list:
-			# end1 = time.time()				
+			# end1 = time.time()
 			self.clist.calculate()
 			# self.d_situation = cuda.to_device(self.situation_zero)
 			# cuda.synchronize()
@@ -349,11 +349,4 @@ class nlist:
 		if self.call - self.update_offset < np.int32(np.float32(self.update_period)*np.float32(0.8)):
 			return True
 		return False
-		
-
-		
-		
-		
-		
-		
 		

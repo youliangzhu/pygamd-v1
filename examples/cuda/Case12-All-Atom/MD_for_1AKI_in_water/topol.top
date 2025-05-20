@@ -1,0 +1,18 @@
+
+#include "forcefield.itp"
+#include "ffnonbonded.itp"
+#include "ffbonded.itp"
+
+#include "protein.itp"
+#include "tip3p.itp"
+#include "ions.itp"
+
+[ system ]
+; Name
+LYSOZYME in water
+
+[ molecules ]
+; Compound        #mols
+Protein_chain_A     1
+SOL         10636
+CL               8

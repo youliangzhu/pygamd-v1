@@ -1,0 +1,24 @@
+<?xml version ="1.0" encoding ="UTF-8" ?>
+<galamost_xml version="1.3">
+<configuration time_step="0" dimensions="3" natoms="1" >
+<box lx="6.94299" ly="6.94299" lz="6.94299"/>
+<position num="1">
+-2.031495	3.328505	1.8835050000000004
+</position>
+<velocity num="1">
+0.0071  -0.0692	-0.1562
+</velocity>
+<image num="1">
+0  0	0
+</image>
+<charge num="1">
+-11.787069186188736
+</charge>
+<type num="1">
+Cl
+</type>
+<mass num="1">
+35.45
+</mass>
+</configuration>
+</galamost_xml>

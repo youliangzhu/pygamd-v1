@@ -38,7 +38,8 @@ from pygamd.forces import pair
 from pygamd.forces import bond
 from pygamd.forces import angle
 from pygamd.forces import dihedral
-
+from pygamd.forces import threebody
+from pygamd.forces import dpk
 
 # if __name__ == '__main__':
     # print ('main program run')

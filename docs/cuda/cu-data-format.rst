@@ -97,7 +97,10 @@ However, this rule does not include topological relevant information, including 
       0
       </body>
 	  
-     # the image in x, y, and z directions of particles in int3 type.	  
+     # the image in x, y, and z directions of particles in int3 type, 
+     # which can be used for the calculation of pos0 with pos0 = pos + L*image, 
+     # where pos is the position in box, pos0 is the position without periodic boundary condition,
+     # and L is the length of box.
       <image num="4">
       0 0 0 
       0 0 0

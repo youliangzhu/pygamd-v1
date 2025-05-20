@@ -122,7 +122,11 @@ Reference: G. J. Martyna, D. J. Tobias, and M. L. Klein, J. Chem. Phys., 1994, 1
 		
    .. py:function:: setAnisotropic(float pressx, float pressy, float pressz)
 
-       specifies the pressure with fixed values for X, Y and Z directions, respectively.    
+       specifies the pressure with fixed values for X, Y and Z directions, respectively.
+	   
+   .. py:function:: setCompressibility(float cx, float cy, float cz)
+
+       specifies the compressibility in X, Y and Z directions, respectively. 0 represents incompressibility and fixed box size.
 	 
    Example::
 
@@ -170,7 +174,11 @@ Reference: G. J. Martyna, D. J. Tobias, and M. L. Klein, J. Chem. Phys., 1994, 1
    .. py:function:: setAnisotropic(float pressx, float pressy, float pressz)
 
        specifies the pressure with fixed values for X, Y and Z directions, respectively.    
-	 
+
+   .. py:function:: setCompressibility(float cx, float cy, float cz)
+
+       specifies the compressibility in X, Y and Z directions, respectively. 0 represents incompressibility and fixed box size.
+
    Example::
 
       group = gala.ParticleSet(all_info,'all')

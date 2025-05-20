@@ -5,6 +5,7 @@ NVT ensemble
 
 =========================      ============================
 :ref:`nh-nvt`                  :py:class:`NoseHooverNVT`
+:ref:`nhc-nvt`                 :py:class:`NoseHooverChainNVT`
 :ref:`berendsen-nvt`           :py:class:`BerendsenNVT`
 :ref:`andersen-nvt`            :py:class:`AndersenNVT`
 :ref:`langevin-nvt`            :py:class:`LangevinNVT`
@@ -42,6 +43,33 @@ Nose Hoover thermostat
       comp_info = gala.ComputeInfo(all_info, group)
       nh = gala.NoseHooverNVT(all_info, group, comp_info, 1.0, 0.5)
       app.add(nh)
+
+.. _nhc-nvt:
+
+Nose Hoover chain thermostat
+----------------------------
+
+.. py:class:: NoseHooverChainNVT(all_info, group, comp_info, T, tauT)
+
+   The constructor of a NVT NoseHoover chain thermostat object for a group of particles.
+	  
+   :param AllInfo all_info: The system information.
+   :param ParticleSet group: The group of particles.	
+   :param ComputeInfo comp_info: The object of calculation of collective information.	   
+   :param float T: The temperature.  
+   :param float tauT: The thermostat coupling.		  
+
+   .. py:function:: setTau(Real tauT)
+   
+      specifies the thermostat coupling.
+	  
+   Example::
+   
+      group = gala.ParticleSet(all_info, 'all')
+      comp_info = gala.ComputeInfo(all_info, group)
+      nhc = gala.NoseHooverChainNVT(all_info, group, comp_info, 1.0, 0.5)
+      app.add(nhc)
+
 
 .. _berendsen-nvt:
 

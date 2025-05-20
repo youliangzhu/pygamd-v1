@@ -116,7 +116,7 @@ class nose_hoover:
 			# print(i, self.info.pos[i][0], self.info.pos[i][1],  self.info.pos[i][2])
 		# self.info.vel = self.info.d_vel.copy_to_host()
 		# for i in range(0, self.info.vel.shape[0]):
-			# print(i, self.info.vel[i][0], self.info.vel[i][1],  self.info.vel[i][2])			
+			# print(i, self.info.vel[i][0], self.info.vel[i][1],  self.info.vel[i][2])
 	def secondstep(self, timestep):
 		self.ci.calculate(timestep)
 		self.xi += self.info.dt / (self.tau*self.tau) * (self.ci.temp / self.temp - 1.0)
@@ -128,7 +128,7 @@ class nose_hoover:
 			# print(i, self.info.pos[i][0], self.info.pos[i][1],  self.info.pos[i][2])
 		# self.info.vel = self.info.d_vel.copy_to_host()
 		# for i in range(0, self.info.vel.shape[0]):
-			# print(i, self.info.vel[i][0], self.info.vel[i][1],  self.info.vel[i][2])			
+			# print(i, self.info.vel[i][0], self.info.vel[i][1],  self.info.vel[i][2])
 		
 	def register(self, timestep):
-		self.info.compute_properties['temperature']=True		
+		self.info.compute_properties['temperature']=True

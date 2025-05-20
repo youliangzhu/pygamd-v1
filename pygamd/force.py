@@ -34,6 +34,16 @@ from pygamd import forces
 from pygamd import plist
 import math
 
+class dpk:
+	def __init__(self, info, model_file, poscar_file):
+		self.info = info
+		self.data = forces.dpk.dpk(info, model_file, poscar_file)
+		self.name = "force"
+		self.subname = "dpk"
+
+	def compute(self, timestep):
+		self.data.calculate(timestep)
+
 class nonbonded:
 	def __init__(self, info, rcut, func, exclusion=None):
 		nl = info.find_plist(rcut, exclusion)
@@ -62,6 +72,65 @@ class nonbonded:
 				idx = i * self.info.ntypes + j
 				if not self.check[idx]:
 					raise RuntimeError('Error! the parameters between type ',self.info.typemap[i],' and type ',self.info.typemap[j],' has not been set!')
+
+class nonbonded_p:
+	def __init__(self, info, rcut, func, exclusion=None):
+		nl = info.find_plist(rcut, exclusion)
+		if nl is None:
+			nl = plist.neighbor(info, rcut, exclusion)
+			info.plist.append(nl)
+		self.info = info
+		self.data=forces.pair.pair_p(info, nl, func)
+		self.name="force"
+		self.subname="nonbonded_p"
+		self.check=[False for i in range(self.info.ntypes*self.info.ntypes)]
+		self.first_compute = True
+		
+	def setParams(self, type_i, type_j, param):
+		self.data.setParams(type_i, type_j, param, self.check)
+
+	def compute(self, timestep):
+		if self.first_compute:
+			self.check_parameters()
+			self.first_compute = False
+		self.data.calculate(timestep)
+	
+	def check_parameters(self):
+		for i in range(self.info.ntypes):
+			for j in range(i, self.info.ntypes):
+				idx = i * self.info.ntypes + j
+				if not self.check[idx]:
+					raise RuntimeError('Error! the parameters between type ',self.info.typemap[i],' and type ',self.info.typemap[j],' has not been set!')
+                    
+class nonbonded_p_tri:
+	def __init__(self, info, rcut, func, exclusion=None):
+		nl = info.find_plist(rcut, exclusion)
+		if nl is None:
+			nl = plist.neighbor(info, rcut, exclusion)
+			info.plist.append(nl)
+		self.info = info
+		self.data=forces.threebody.threebody(info, nl, func)
+		self.name="force"
+		self.subname="nonbonded_p_tri"
+		self.check=[False for i in range(self.info.ntypes*self.info.ntypes*self.info.ntypes)]
+		self.first_compute = True
+		
+	def setParams(self, type_i, type_j, type_k, param):
+		self.data.setParams(type_i, type_j, type_k, param, self.check)
+
+	def compute(self, timestep):
+		if self.first_compute:
+			self.check_parameters()
+			self.first_compute = False
+		self.data.calculate(timestep)
+	
+	def check_parameters(self):
+		for i in range(self.info.ntypes):
+			for j in range(self.info.ntypes):
+				for k in range(i, self.info.ntypes):
+					idx = i * self.info.ntypes* self.info.ntypes + j* self.info.ntypes + k
+					if not self.check[idx]:
+						raise RuntimeError('Error! the parameters between type ',self.info.typemap[i],' and type ',self.info.typemap[j],' and type ',self.info.typemap[k],' has not been set!')
 
 class nonbonded_c:
 	def __init__(self, info, rcut, func, exclusion=None):

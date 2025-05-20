@@ -38,6 +38,7 @@ import os;
 from pygamd.snapshots import read_mst
 from pygamd.snapshots import box
 from pygamd.snapshots import bonded_data
+from pygamd.snapshots import read_xml
 
 # if __name__ == '__main__':
     # print ('main program run')

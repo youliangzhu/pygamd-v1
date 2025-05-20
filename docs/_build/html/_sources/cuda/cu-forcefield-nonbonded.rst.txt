@@ -8,18 +8,19 @@ the interacting particles for each particle, built beforehand. Because of the in
 included independently in neighbor list in the mode that one thread calculates and sums all non-bonded forces of a particle. The common non-bonded potential energy 
 functions are included.
 
-==========================   =======================
+==========================   ================================
 :ref:`lennard-jones`         :py:class:`LjForce`
 :ref:`shift-lennard-jones`   :py:class:`SljForce`
 :ref:`linear-pi-pi`          :py:class:`CenterForce`
 :ref:`gem`                   :py:class:`GEMForce`
 :ref:`ljewald`               :py:class:`LJEwaldForce`
+:ref:`ljcoulombshift`        :py:class:`LJCoulombShiftForce`
 :ref:`lj9_6-repulsion`       :py:class:`PairForce`
 :ref:`harmonic-repulsion`    :py:class:`PairForce`
 :ref:`gaussian-repulsion`    :py:class:`PairForce`
 :ref:`IPL-potential`         :py:class:`PairForce`
 :ref:`Coulomb-potential`     :py:class:`PairForce`
-==========================   =======================
+==========================   ================================
 
 .. _lennard-jones:
 
@@ -257,13 +258,16 @@ Description:
     - :math:`\epsilon` - *epsilon* (in energy units)
     - :math:`\sigma` - *sigma* (in distance units)
     - :math:`\alpha` - *alpha* (unitless)
-    - :math:`\kappa` - *kappa* (unitless)	
+    - :math:`\kappa` - *kappa* (unitless)
     - :math:`r_{\mathrm{cut}}` - *r_cut* (in distance units)
       - *optional*: defaults to the global r_cut specified in the pair command
 
 .. py:class:: LJEwaldForce(all_info, nlist, r_cut)
 
-   The constructor of LJ + Ewald in real space interaction calculation object. The :math:`\kappa` parameter could be derived
+   The constructor of LJ + Ewald in real space interaction calculation object. Ewald summation has two parts in real space (short-range) and in reciprocal space (long-range), respectively.
+   The complete Ewald summation additionally need a long-range method, the candidates of which are :ref:`pppm-long` and :ref:`enuf-long`.
+   
+   The :math:`\kappa` parameter could be derived
    automatically.
 	  
    :param AllInfo all_info: The system information.
@@ -299,8 +303,61 @@ Description:
       lj.setParams('HW',  'MW',  0.0, 0.47, 1.0)
       lj.setEnergy_shift()
       lj.setDispVirialCorr(True)
-      app.add(lj)	  
+      app.add(lj)
 	  
+
+.. _ljcoulombshift:
+	  
+Lennard-Jones and Coulomb shift interaction
+-------------------------------------------
+
+Description:
+
+    .. math::
+        :nowrap:
+
+        \begin{eqnarray*}
+        V(r_{ij})  = & 4 \epsilon \left[ \left( \frac{\sigma}{r_{ij}} \right)^{12} -
+                          \alpha \left( \frac{\sigma}{r_{ij}} \right)^{6} \right] 
+                         +\frac{f}{\epsilon_{r}}\frac{{q}_{i}{q}_{j}}{{r}_{ij}} 
+                          & r < r_{\mathrm{cut}}\\
+                            = & 0 & r \ge r_{\mathrm{cut}} \\
+        						
+        \end{eqnarray*}
+
+    The following coefficients must be set per unique pair of particle types:
+
+    - :math:`\epsilon` - *epsilon* (in energy units)
+    - :math:`\sigma` - *sigma* (in distance units)
+    - :math:`\alpha` - *alpha* (unitless)
+    - :math:`r_{\mathrm{cut}}` - *r_cut* (in distance units)
+      - *optional*: defaults to the global r_cut specified in the pair command
+
+.. py:class:: LJCoulombShiftForce(all_info, nlist)
+
+   The constructor of LJ + Coulomb with a shift function smoothing the energy and force of them to zero at cutoff point. 
+   This module is usually used for Martini force field.
+
+   :param AllInfo all_info: The system information.
+   :param NeighborList nlist: The neighbor list.  
+
+   .. py:function:: setParams(string type1, string type2, float epsilon, float sigma, float alpha, float r_cut, float r_shift)
+ 
+      specifies the LJ and Coulomb interaction parameters with type1, type2, epsilon, sigma, alpha, r_cut, and r_shift, where epsilon, sigma, and alpha are 
+      LJ parameters, r_cut is cutoff radius, and r_shift is the shift radius for a shift function working from shift radius to cutoff radius. 
+
+   Example::
+   
+      pf1 = gala.LJCoulombShiftForce(all_info, neighbor_list)
+      pf1.setParams('P4', 'P4', 5.0, 0.47, 1.0, 1.2, 0.9)
+      pf1.setParams('Na', 'Na', 4.0, 0.47, 1.0, 1.2, 0.9)
+      pf1.setParams('Qa', 'Qa', 5.0, 0.47, 1.0, 1.2, 0.9)
+      pf1.setParams('P4', 'Na', 4.0, 0.47, 1.0, 1.2, 0.9)
+      pf1.setParams('P4', 'Qa', 5.6, 0.47, 1.0, 1.2, 0.9)
+      pf1.setParams('Na', 'Qa', 4.0, 0.47, 1.0, 1.2, 0.9)
+      pf1.setCoulomb(1.2, 0.9, epsilon_r)
+      app.add(pf1)
+
 Pair interaction
 ----------------
 

@@ -1,4 +1,4 @@
-import molgen
+from poetry import molgen
 
 mol=molgen.Molecule(1)
 mol.setParticleTypes("a")

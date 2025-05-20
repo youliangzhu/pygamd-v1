@@ -84,7 +84,7 @@ def cu_cell_build(npa, pos, dim, box_low_boundary, inv_width, cell_size, cell_li
 def cu_zero(n, array):
 	i = cuda.grid(1)
 	if i < n:
-		array[i] = nb.int32(0)				
+		array[i] = nb.int32(0)
 
 class clist:
 	#定义构造方法

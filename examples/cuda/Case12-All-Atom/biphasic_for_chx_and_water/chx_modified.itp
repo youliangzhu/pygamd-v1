@@ -1,0 +1,214 @@
+; Created by AuToFF
+
+[ moleculetype ]
+; name          nrexcl
+CHX       3
+
+[ atoms ]
+;  Index    type       residue  resname    atom      cgnr     charge       mass
+     1    c3              1       chx      C01       1     -0.174200   12.010000
+     2    c3              1       chx      C02       1     -0.174400   12.010000
+     3    c3              1       chx      C03       1     -0.174200   12.010000
+     4    c3              1       chx      C04       1     -0.174300   12.010000
+     5    c3              1       chx      C05       1     -0.174300   12.010000
+     6    c3              1       chx      C06       1     -0.174200   12.010000
+     7    hc              1       chx      H07       1      0.086700    1.008000
+     8    hc              1       chx      H08       1      0.087600    1.008000
+     9    hc              1       chx      H09       1      0.086900    1.008000
+    10    hc              1       chx      H0A       1      0.087500    1.008000
+    11    hc              1       chx      H0B       1      0.087700    1.008000
+    12    hc              1       chx      H0C       1      0.086700    1.008000
+    13    hc              1       chx      H0D       1      0.086800    1.008000
+    14    hc              1       chx      H0E       1      0.087500    1.008000
+    15    hc              1       chx      H0F       1      0.087400    1.008000
+    16    hc              1       chx      H10       1      0.086800    1.008000
+    17    hc              1       chx      H11       1      0.086900    1.008000
+    18    hc              1       chx      H12       1      0.087100    1.008000
+
+[ bonds ]
+; atom_i  atom_j  functype     r0 (nm)   k (kJ/mol/nm^2)
+       1       2       1
+       2       3       1
+       3       4       1
+       4       5       1
+       5       6       1
+       6       1       1
+       1       7       1
+       1       8       1
+       2       9       1
+       2      10       1
+       3      11       1
+       3      12       1
+       4      13       1
+       4      14       1
+       5      15       1
+       5      16       1
+       6      17       1
+       6      18       1
+
+[ angles ]
+; atom_i  atom_j  atom_k  functype    a0 (Deg.)  k (kJ/mol/rad^2)
+       2       1       6       1
+       2       1       7       1
+       2       1       8       1
+       6       1       7       1
+       6       1       8       1
+       7       1       8       1
+       1       2       3       1
+       1       2       9       1
+       1       2      10       1
+       3       2       9       1
+       3       2      10       1
+       9       2      10       1
+       2       3       4       1
+       2       3      11       1
+       2       3      12       1
+       4       3      11       1
+       4       3      12       1
+      11       3      12       1
+       3       4       5       1
+       3       4      13       1
+       3       4      14       1
+       5       4      13       1
+       5       4      14       1
+      13       4      14       1
+       4       5       6       1
+       4       5      15       1
+       4       5      16       1
+       6       5      15       1
+       6       5      16       1
+      15       5      16       1
+       5       6      17       1
+       5       6      18       1
+       1       6       5       1
+       1       6      17       1
+       1       6      18       1
+      17       6      18       1
+
+[ dihedrals ]
+; PROPER DIHEDRAL ANGLES
+; atom_i  atom_j  atom_k  atom_l  functype     c0          c1          c2          c3          c4          c5
+       6       1       2       3       9
+       6       1       2       3       9
+       6       1       2       3       9
+       7       1       2       3       9
+       7       1       6       5       9
+       8       1       2       3       9
+       8       1       6       5       9
+       9       2       1       6       9
+       9       2       1       7       9
+       9       2       1       8       9
+       9       2       3       4       9
+      10       2       1       6       9
+      10       2       1       7       9
+      10       2       1       8       9
+      10       2       3       4       9
+       4       3       2       1       9
+       4       3       2       1       9
+       4       3       2       1       9
+      11       3       2       1       9
+      11       3       2       9       9
+      11       3       2      10       9
+      11       3       4       5       9
+      12       3       2       1       9
+      12       3       2       9       9
+      12       3       2      10       9
+      12       3       4       5       9
+       5       4       3       2       9
+       5       4       3       2       9
+       5       4       3       2       9
+      13       4       3       2       9
+      13       4       3      11       9
+      13       4       3      12       9
+      13       4       5       6       9
+      14       4       3       2       9
+      14       4       3      11       9
+      14       4       3      12       9
+      14       4       5       6       9
+       4       5       6       1       9
+       4       5       6       1       9
+       4       5       6       1       9
+       6       5       4       3       9
+       6       5       4       3       9
+       6       5       4       3       9
+      15       5       4       3       9
+      15       5       4      13       9
+      15       5       4      14       9
+      15       5       6       1       9
+      16       5       4       3       9
+      16       5       4      13       9
+      16       5       4      14       9
+      16       5       6       1       9
+       5       6       1       2       9
+       5       6       1       2       9
+       5       6       1       2       9
+      17       6       5       4       9
+      17       6       5      15       9
+      17       6       5      16       9
+      17       6       1       2       9
+      17       6       1       7       9
+      17       6       1       8       9
+      18       6       5       4       9
+      18       6       5      15       9
+      18       6       5      16       9
+      18       6       1       2       9
+      18       6       1       7       9
+      18       6       1       8       9
+
+; sigma_14 and epsilon_14 et.al here are calculated according to the mixing rules defined by force fields.
+; These parameters are commented out by default because the 'gen-pairs' is set to yes in the [ defaults ] directive.
+; If you want to risk mixing this toplogy file with other forcefields which has a different 1-4 scale factor, 
+; you can remove these comments and set 'gen-pairs' in [ defaults ] directive to no.
+[ pairs ]
+; atom_i  atom_j  functype
+       6       3       1
+       7       3       1
+       7       5       1
+       8       3       1
+       8       5       1
+       9       6       1
+       9       7       1
+       9       8       1
+       9       4       1
+      10       6       1
+      10       7       1
+      10       8       1
+      10       4       1
+       4       1       1
+      11       1       1
+      11       9       1
+      11      10       1
+      11       5       1
+      12       1       1
+      12       9       1
+      12      10       1
+      12       5       1
+       5       2       1
+      13       2       1
+      13      11       1
+      13      12       1
+      13       6       1
+      14       2       1
+      14      11       1
+      14      12       1
+      14       6       1
+      15       3       1
+      15      13       1
+      15      14       1
+      15       1       1
+      16       3       1
+      16      13       1
+      16      14       1
+      16       1       1
+      17       4       1
+      17      15       1
+      17      16       1
+      17       2       1
+      17       7       1
+      17       8       1
+      18       4       1
+      18      15       1
+      18      16       1
+      18       2       1
+      18       7       1
+      18       8       1

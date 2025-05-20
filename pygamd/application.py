@@ -113,6 +113,7 @@ class dynamics:
 			if self.sort:
 				self.psort.compute(ts)
 			self.tps_compute(ts)
+		self.begin = self.end
 		
 	def add(self, app):
 		if app.name=="force":
@@ -143,10 +144,10 @@ class dynamics:
 		if app.name=="dump":
 			for i in range(0, len(self.dumps)):
 				if self.dumps[i]==app:
-					del self.dumps[i]					
+					del self.dumps[i]
 					
 	def tps_compute(self, timestep):
-		if timestep==self.target:	
+		if timestep==self.target:
 			self.end_time = time.perf_counter()
 			elapsed = self.end_time - self.start_time
 			if elapsed <0.00000001 or elapsed>10000000.0:
@@ -171,6 +172,4 @@ class dynamics:
 			ii.data.register(timestep)
 				
 		for di in self.dumps:
-			di.register(timestep)				
- 
-					
+			di.register(timestep)

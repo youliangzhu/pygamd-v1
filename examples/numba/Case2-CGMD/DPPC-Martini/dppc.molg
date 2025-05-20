@@ -1,4 +1,4 @@
-import molgen
+from peotry import molgen
 
 lx = 6.3
 ly = 6.4

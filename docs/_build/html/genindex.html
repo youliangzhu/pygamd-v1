@@ -1,18 +1,18 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Index &mdash; PYGAMD v1 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
   
-        <script src="_static/documentation_options.js?v=5cb08e4e"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/documentation_options.js?v=5cb08e4e"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -29,9 +29,6 @@
           <a href="index.html" class="icon icon-home">
             PYGAMD
           </a>
-              <div class="version">
-                v1
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -771,6 +768,8 @@
 </li>
         <li><a href="cuda/cu-constraint-space_constraint.html#LJConstrainForce.setParams">LJConstrainForce.setParams()</a>
 </li>
+        <li><a href="cuda/cu-forcefield-nonbonded.html#LJCoulombShiftForce.setParams">LJCoulombShiftForce.setParams()</a>
+</li>
         <li><a href="cuda/cu-forcefield-files.html#LJEwaldForce.setDispVirialCorr">LJEwaldForce.setDispVirialCorr()</a>, <a href="cuda/cu-forcefield-nonbonded.html#LJEwaldForce.setDispVirialCorr">[1]</a>
 </li>
         <li><a href="cuda/cu-forcefield-files.html#LJEwaldForce.setEnergy_shift">LJEwaldForce.setEnergy_shift()</a>, <a href="cuda/cu-forcefield-nonbonded.html#LJEwaldForce.setEnergy_shift">[1]</a>
@@ -855,6 +854,8 @@
 </li>
         <li><a href="cuda/cu-system-list.html#NeighborList.setRCutPair">NeighborList.setRCutPair()</a>
 </li>
+        <li><a href="cuda/cu-integration-nvt.html#NoseHooverChainNVT.setTau">NoseHooverChainNVT.setTau()</a>
+</li>
         <li><a href="cuda/cu-integration-nvt.html#NoseHooverNVT.setT">NoseHooverNVT.setT()</a>, <a href="cuda/cu-integration-nvt.html#id0">[1]</a>
 </li>
         <li><a href="cuda/cu-integration-npt.html#NPT.setP">NPT.setP()</a>
@@ -863,11 +864,15 @@
 </li>
         <li><a href="cuda/cu-integration-npt.html#NPTMTK.setAnisotropic">NPTMTK.setAnisotropic()</a>
 </li>
+        <li><a href="cuda/cu-integration-npt.html#NPTMTK.setCompressibility">NPTMTK.setCompressibility()</a>
+</li>
         <li><a href="cuda/cu-integration-npt.html#NPTMTK.setSemiisotropic">NPTMTK.setSemiisotropic()</a>, <a href="cuda/cu-integration-npt.html#id3">[1]</a>
 </li>
         <li><a href="cuda/cu-integration-npt.html#NPTMTK.setT">NPTMTK.setT()</a>, <a href="cuda/cu-integration-npt.html#id2">[1]</a>
 </li>
         <li><a href="cuda/cu-integration-npt.html#NPTMTKRigid.setAnisotropic">NPTMTKRigid.setAnisotropic()</a>
+</li>
+        <li><a href="cuda/cu-integration-npt.html#NPTMTKRigid.setCompressibility">NPTMTKRigid.setCompressibility()</a>
 </li>
         <li><a href="cuda/cu-integration-npt.html#NPTMTKRigid.setSemiisotropic">NPTMTKRigid.setSemiisotropic()</a>, <a href="cuda/cu-integration-npt.html#id5">[1]</a>
 </li>
@@ -976,6 +981,10 @@
         <li><a href="cuda/cu-integration-nve.html#TranRigid.setTraDimension">TranRigid.setTraDimension()</a>
 </li>
         <li><a href="cuda/cu-constraint-variant.html#VariantLinear.setPoint">VariantLinear.setPoint()</a>
+</li>
+        <li><a href="cuda/cu-constraint-variant.html#VariantRsqrt.setFactor">VariantRsqrt.setFactor()</a>
+</li>
+        <li><a href="cuda/cu-constraint-variant.html#VariantRsqrt.setPoint">VariantRsqrt.setPoint()</a>
 </li>
         <li><a href="cuda/cu-constraint-variant.html#VariantSin.setPoint">VariantSin.setPoint()</a>
 </li>
@@ -1717,8 +1726,15 @@
         <li><a href="cuda/cu-constraint-space_constraint.html#LJConstrainForce.setParams">built-in function</a>
 </li>
       </ul></li>
-      <li><a href="cuda/cu-forcefield-files.html#LJCoulombShiftForce">LJCoulombShiftForce (built-in class)</a>
+      <li><a href="cuda/cu-forcefield-files.html#LJCoulombShiftForce">LJCoulombShiftForce (built-in class)</a>, <a href="cuda/cu-forcefield-nonbonded.html#LJCoulombShiftForce">[1]</a>
 </li>
+      <li>
+    LJCoulombShiftForce.setParams()
+
+      <ul>
+        <li><a href="cuda/cu-forcefield-nonbonded.html#LJCoulombShiftForce.setParams">built-in function</a>
+</li>
+      </ul></li>
       <li><a href="cuda/cu-forcefield-files.html#LJEwaldForce">LJEwaldForce (built-in class)</a>, <a href="cuda/cu-forcefield-nonbonded.html#LJEwaldForce">[1]</a>
 </li>
       <li>
@@ -2041,6 +2057,15 @@
         <li><a href="cuda/cu-system-list.html#NeighborList.setRCutPair">built-in function</a>
 </li>
       </ul></li>
+      <li><a href="cuda/cu-integration-nvt.html#NoseHooverChainNVT">NoseHooverChainNVT (built-in class)</a>
+</li>
+      <li>
+    NoseHooverChainNVT.setTau()
+
+      <ul>
+        <li><a href="cuda/cu-integration-nvt.html#NoseHooverChainNVT.setTau">built-in function</a>
+</li>
+      </ul></li>
       <li><a href="cuda/cu-integration-nvt.html#NoseHooverNVT">NoseHooverNVT (built-in class)</a>
 </li>
       <li>
@@ -2078,6 +2103,13 @@
 </li>
       </ul></li>
       <li>
+    NPTMTK.setCompressibility()
+
+      <ul>
+        <li><a href="cuda/cu-integration-npt.html#NPTMTK.setCompressibility">built-in function</a>
+</li>
+      </ul></li>
+      <li>
     NPTMTK.setSemiisotropic()
 
       <ul>
@@ -2098,6 +2130,13 @@
 
       <ul>
         <li><a href="cuda/cu-integration-npt.html#NPTMTKRigid.setAnisotropic">built-in function</a>
+</li>
+      </ul></li>
+      <li>
+    NPTMTKRigid.setCompressibility()
+
+      <ul>
+        <li><a href="cuda/cu-integration-npt.html#NPTMTKRigid.setCompressibility">built-in function</a>
 </li>
       </ul></li>
       <li>
@@ -2568,6 +2607,24 @@
         <li><a href="cuda/cu-constraint-variant.html#VariantLinear.setPoint">built-in function</a>
 </li>
       </ul></li>
+      <li><a href="cuda/cu-constraint-variant.html#VariantRsqrt">VariantRsqrt (built-in class)</a>
+</li>
+      <li>
+    VariantRsqrt.setFactor()
+
+      <ul>
+        <li><a href="cuda/cu-constraint-variant.html#VariantRsqrt.setFactor">built-in function</a>
+</li>
+      </ul></li>
+      <li>
+    VariantRsqrt.setPoint()
+
+      <ul>
+        <li><a href="cuda/cu-constraint-variant.html#VariantRsqrt.setPoint">built-in function</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cuda/cu-constraint-variant.html#VariantSin">VariantSin (built-in class)</a>
 </li>
       <li>
@@ -2577,8 +2634,6 @@
         <li><a href="cuda/cu-constraint-variant.html#VariantSin.setPoint">built-in function</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="cuda/cu-constraint-variant.html#VariantWell">VariantWell (built-in class)</a>
 </li>
       <li>

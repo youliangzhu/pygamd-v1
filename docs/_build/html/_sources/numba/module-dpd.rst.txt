@@ -14,7 +14,7 @@ Description:
        \begin{eqnarray*}
         \vec{F}_{ij}^{C}&=&\alpha\left(1-\frac{r_{ij}}{r_{cut}}\right)\vec{e}_{ij} \\
         \vec{F}_{ij}^{D}&=&-\gamma\omega^{D}(r_{ij})(\vec{e}_{ij} \cdot \vec{v}_{ij} )\vec{e}_{ij}  \\	
-        \vec{F}_{ij}^{R}&=&T\sigma\omega^{R}(r_{ij})\xi_{ij}\vec{e}_{ij} \\			
+        \vec{F}_{ij}^{R}&=&\sigma\omega^{R}(r_{ij})\xi_{ij}\vec{e}_{ij} \\			
        \end{eqnarray*}
 
 	   

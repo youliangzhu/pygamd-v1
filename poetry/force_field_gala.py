@@ -11,7 +11,7 @@ def parseNonbondParams(filename, atom_type):
 	read_nonbond_params=False
 	nonbond_params_file=[]
 	gala=open(filename)
-	for line in gala:		
+	for line in gala:
 		line1=""
 		for cha in line:
 			if cha!="#" and cha!=";":
@@ -39,14 +39,14 @@ def parseNonbondParams(filename, atom_type):
 		for j in range(i,len(atom_type)):
 			for k in nonbond_params_file:
 				if (k[0] == atom_type[i] and k[1] == atom_type[j]) or (k[0] == atom_type[j] and k[1] == atom_type[i]):
-					nonbonded_params.append(k)			
+					nonbonded_params.append(k)
 
 bond_params = []
 def parseBondParams(filename, bond_type):
 	read_bond_params=False
 	bond_params_file=[]
 	gala=open(filename)
-	for line in gala:		
+	for line in gala:
 		line1=""
 		for cha in line:
 			if cha!="#" and cha!=";":
@@ -80,7 +80,7 @@ def parseAngleParams(filename, angle_type):
 	read_angle_params=False
 	angle_params_file=[]
 	gala=open(filename)
-	for line in gala:		
+	for line in gala:
 		line1=""
 		for cha in line:
 			if cha!="#" and cha!=";":
@@ -114,7 +114,7 @@ def parseDihedralParams(filename, dihedral_type):
 	read_dihedral_params=False
 	dihedral_params_file=[]
 	gala=open(filename)
-	for line in gala:		
+	for line in gala:
 		line1=""
 		for cha in line:
 			if cha!="#" and cha!=";":
@@ -141,7 +141,7 @@ def parseDihedralParams(filename, dihedral_type):
 	for i in range(len(dihedral_type)):
 		for k in dihedral_params_file:
 			if (k[0] == dihedral_type[i]):
-				dihedral_params.append(k)	
+				dihedral_params.append(k)
 				
 constraint_params = []
 def parseConstraintParams(filename, constraint_type):
@@ -217,7 +217,7 @@ def parseAHParams(filename, atom_type):
 	ah_params_file=[]
 	ah_params_file1=[]
 	gala=open(filename)
-	for line in gala:		
+	for line in gala:
 		line1=""
 		for cha in line:
 			if cha!="#" and cha!=";":
@@ -258,7 +258,7 @@ def parseWFParams(filename, atom_type):
 	read_wf_params=False
 	wf_params_file=[]
 	gala=open(filename)
-	for line in gala:		
+	for line in gala:
 		line1=""
 		for cha in line:
 			if cha!="#" and cha!=";":
@@ -318,7 +318,7 @@ def LJCoulombShiftForce(all_info, neighbor_list, rcut, rshift, epsilonr, filenam
 	
 # def AHDHForce(all_info, neighbor_list, rcut, epsilon, debye_length, filename):
 	# ahdh = gala.AHDHForce(all_info, neighbor_list, rcut)
-	# atom_type = all_info.getBasicInfo().getParticleTypes()	
+	# atom_type = all_info.getBasicInfo().getParticleTypes()
 	# ahdh.setDebyeLength(debye_length)
 	# parseAHParams(filename, atom_type)
 	# alpha = 1.0
@@ -359,7 +359,7 @@ def WFDHForce(all_info, neighbor_list, rcut, debye_length, filename):
 	
 def BondForceHarmonic(all_info, filename):
 	bfh = gala.BondForceHarmonic(all_info)
-	bond_type = all_info.getBondInfo().getBondTypes()	
+	bond_type = all_info.getBondInfo().getBondTypes()
 	parseBondParams(filename, bond_type)
 	for i in range(0, len(bond_params)):
 #		print bond_params[i][0], float(bond_params[i][1]), float(bond_params[i][2])
@@ -368,25 +368,25 @@ def BondForceHarmonic(all_info, filename):
 
 def AngleForceHarmonicCos(all_info, filename):
 	afh = gala.AngleForceHarmonicCos(all_info)
-	angle_type = all_info.getAngleInfo().getAngleTypes()	
+	angle_type = all_info.getAngleInfo().getAngleTypes()
 	parseAngleParams(filename, angle_type)
 	for i in range(0, len(angle_params)):
 #		print angle_type[i], float(angle_params[i][1]), float(angle_params[i][0])	
 		afh.setParams(angle_params[i][0], float(angle_params[i][1]), float(angle_params[i][2]))
 	return afh
-	
+
 def AngleForceHarmonic(all_info, filename):
 	afh = gala.AngleForceHarmonic(all_info)
-	angle_type = all_info.getAngleInfo().getAngleTypes()	
+	angle_type = all_info.getAngleInfo().getAngleTypes()
 	parseAngleParams(filename, angle_type)
 	for i in range(0, len(angle_params)):
 #		print angle_type[i], float(angle_params[i][1]), float(angle_params[i][0])	
 		afh.setParams(angle_params[i][0], float(angle_params[i][1]), float(angle_params[i][2]))
-	return afh	
+	return afh
 
 def AngleForceUreyBradley(all_info, filename):
 	afh = gala.AngleForceUreyBradley(all_info)
-	angle_type = all_info.getAngleInfo().getAngleTypes()	
+	angle_type = all_info.getAngleInfo().getAngleTypes()
 	parseAngleParams(filename, angle_type)
 	for i in range(0, len(angle_params)):
 #		print angle_type[i], float(angle_params[i][1]), float(angle_params[i][0])	
@@ -409,8 +409,19 @@ def DihedralForceAmberCosine(all_info, filename):
 		else:
 			raise RuntimeError('Error dihedral function type is not 4 or 9!')
 	return dfh	
-	
-	
+
+def DihedralForceOPLSCosine(all_info, filename):
+	dfh = gala.DihedralForceOPLSCosine(all_info)
+	dihedral_type = all_info.getDihedralInfo().getDihedralTypes()
+	parseDihedralParams(filename, dihedral_type)
+	for i in range(0, len(dihedral_params)):
+		dp = dihedral_params[i]
+		if int(dp[5])==5:
+			dfh.setParams(dp[0], 0.0, float(dp[1])/2, float(dp[2])/2, float(dp[3])/2, float(dp[4])/2, 0.0)
+		else:
+			raise RuntimeError('Error dihedral function type is not 5!')
+	return dfh
+
 def DihedralForceRyckaertBellemans(all_info, filename):
 	dfh = gala.DihedralForceRyckaertBellemans(all_info)
 	dfh.setDividedFactorVDWELEC(0.5, 0.5)
@@ -424,11 +435,11 @@ def DihedralForceRyckaertBellemans(all_info, filename):
 		else:
 			raise RuntimeError('Error dihedral function type is not 3!')            
 #		print dp
-	return dfh		
+	return dfh
 
 def DihedralForceHarmonic(all_info, filename):
 	dfh = gala.DihedralForceHarmonic(all_info)
-	dihedral_type = all_info.getDihedralInfo().getDihedralTypes()	
+	dihedral_type = all_info.getDihedralInfo().getDihedralTypes()
 	parseDihedralParams(filename, dihedral_type)
 	for i in range(0, len(dihedral_params)):
 		dp = dihedral_params[i]
@@ -439,8 +450,8 @@ def DihedralForceHarmonic(all_info, filename):
 			dfh.setParams(dp[0], float(dp[2]), angle, gala.HarmonicProp.improper)
 		else:
 			raise RuntimeError('Error dihedral function type is not 2!')
-	return dfh		
-	
+	return dfh
+
 def BondConstraint(all_info, filename):
 	bc = gala.BondConstraint(all_info)
 	constraint_type = all_info.getConstraintInfo().getConstraintTypes()	
@@ -449,10 +460,10 @@ def BondConstraint(all_info, filename):
 		cp = constraint_params[i]
 		bc.setParams(cp[0], float(cp[1]))
 	return bc
-	
+
 def Vsite(all_info, filename):
 	vs = gala.Vsite(all_info)
-	vsite_type = all_info.getVsiteInfo().getVsiteTypes()	
+	vsite_type = all_info.getVsiteInfo().getVsiteTypes()
 	parseVsiteParams(filename, vsite_type)
 	for i in range(0, len(vsite_params)):
 		vp = vsite_params[i]
@@ -462,6 +473,6 @@ def Vsite(all_info, filename):
 			vs.setParams(vp[0], float(vp[1]), float(vp[2]), float(vp[3]), gala.VST.v3out)
 		else:
 			raise RuntimeError('Error Vsite function type is not 1 and 4!')			
-	return vs			
+	return vs
 
 

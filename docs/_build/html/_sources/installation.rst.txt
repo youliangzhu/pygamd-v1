@@ -24,3 +24,9 @@ The installation instructions for **pygamd**, **molgen**, and **dataTackle** are
     pip install pygamd
     python3 setup.py install
 
+3. Installation for Windows OS::
+
+	#additionally needs following command in python dialog box
+	from poetry import win_config
+
+

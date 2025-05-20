@@ -1,0 +1,11 @@
+from poetry import molgen
+
+mol=molgen.Molecule(1)
+mol.setParticleTypes("a")
+
+
+gen=molgen.Generators(100, 100, 100)
+gen.addMolecule(mol,850000)
+gen.setMinimumDistance(0.9);
+gen.outPutXML("lj")
+gen.outPutMST("lj")

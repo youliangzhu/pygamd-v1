@@ -1,20 +1,20 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Short range non-bonded interactions &mdash; PYGAMD v1 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
   
-        <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
-        <script src="../_static/doctools.js?v=888ff710"></script>
-        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -33,9 +33,6 @@
           <a href="../index.html" class="icon icon-home">
             PYGAMD
           </a>
-              <div class="version">
-                v1
-              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
@@ -84,6 +81,10 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#lennard-jones-and-ewald-short-range-interaction">Lennard-Jones and Ewald (short range) interaction</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#LJEwaldForce"><code class="docutils literal notranslate"><span class="pre">LJEwaldForce</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lennard-jones-and-coulomb-shift-interaction">Lennard-Jones and Coulomb shift interaction</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#LJCoulombShiftForce"><code class="docutils literal notranslate"><span class="pre">LJCoulombShiftForce</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#pair-interaction">Pair interaction</a><ul>
@@ -167,19 +168,22 @@ functions are included.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="#ljewald"><span class="std std-ref">Lennard-Jones and Ewald (short range) interaction</span></a></p></td>
 <td><p><a class="reference internal" href="#LJEwaldForce" title="LJEwaldForce"><code class="xref py py-class docutils literal notranslate"><span class="pre">LJEwaldForce</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#lj9-6-repulsion"><span class="std std-ref">LJ9_6 interaction</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ljcoulombshift"><span class="std std-ref">Lennard-Jones and Coulomb shift interaction</span></a></p></td>
+<td><p><a class="reference internal" href="#LJCoulombShiftForce" title="LJCoulombShiftForce"><code class="xref py py-class docutils literal notranslate"><span class="pre">LJCoulombShiftForce</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#lj9-6-repulsion"><span class="std std-ref">LJ9_6 interaction</span></a></p></td>
 <td><p><a class="reference internal" href="#PairForce" title="PairForce"><code class="xref py py-class docutils literal notranslate"><span class="pre">PairForce</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#harmonic-repulsion"><span class="std std-ref">Harmonic repulsion</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#harmonic-repulsion"><span class="std std-ref">Harmonic repulsion</span></a></p></td>
 <td><p><a class="reference internal" href="#PairForce" title="PairForce"><code class="xref py py-class docutils literal notranslate"><span class="pre">PairForce</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#gaussian-repulsion"><span class="std std-ref">Gaussian repulsion</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#gaussian-repulsion"><span class="std std-ref">Gaussian repulsion</span></a></p></td>
 <td><p><a class="reference internal" href="#PairForce" title="PairForce"><code class="xref py py-class docutils literal notranslate"><span class="pre">PairForce</span></code></a></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ipl-potential"><span class="std std-ref">IPL potential</span></a></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#ipl-potential"><span class="std std-ref">IPL potential</span></a></p></td>
 <td><p><a class="reference internal" href="#PairForce" title="PairForce"><code class="xref py py-class docutils literal notranslate"><span class="pre">PairForce</span></code></a></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#coulomb-potential"><span class="std std-ref">Short-range Coulomb potential</span></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#coulomb-potential"><span class="std std-ref">Short-range Coulomb potential</span></a></p></td>
 <td><p><a class="reference internal" href="#PairForce" title="PairForce"><code class="xref py py-class docutils literal notranslate"><span class="pre">PairForce</span></code></a></p></td>
 </tr>
 </tbody>
@@ -211,7 +215,7 @@ V_{\mathrm{LJ}}(r)  = &amp; 4 \epsilon \left[ \left( \frac{\sigma}{r} \right)^{1
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
 <li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
-<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The cut-off radius.</p></li>
+<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The cut-off radius.</p></li>
 </ul>
 </dd>
 </dl>
@@ -277,7 +281,7 @@ V_{\mathrm{LJ}}(r)  = &amp; 4 \epsilon \left[ \left( \frac{\sigma}{r} \right)^{1
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
 <li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
-<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The cut-off radius.</p></li>
+<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The cut-off radius.</p></li>
 </ul>
 </dd>
 </dl>
@@ -334,7 +338,8 @@ V_{\mathrm{LJ}}(r)  = &amp; 4 \epsilon \left[ \left( \frac{\sigma}{r} \right)^{1
 the center particles are needed for <a class="reference internal" href="#CenterForce" title="CenterForce"><code class="xref py py-class docutils literal notranslate"><span class="pre">CenterForce</span></code></a>. The rotational forces are added
 on the two neighbor particles of a center particle.</p>
 </div></blockquote>
-<a class="reference internal image-reference" href="../_images/pi-pi.png"><img alt="Principle of pi-pi interaction between linear molecules" class="align-center" src="../_images/pi-pi.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../_images/pi-pi.png"><img alt="Principle of pi-pi interaction between linear molecules" class="align-center" src="../_images/pi-pi.png" style="width: 400px;" />
+</a>
 <dl class="py class">
 <dt class="sig sig-object py" id="CenterForce">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CenterForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CenterForce" title="Link to this definition">¶</a></dt>
@@ -345,8 +350,8 @@ on the two neighbor particles of a center particle.</p>
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
 <li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
 <li><p><strong>group</strong> (<a class="reference internal" href="cu-system-group.html#id2" title="ParticleSet"><em>ParticleSet</em></a>) – The group of center particles.</p></li>
-<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The cut-off radius.</p></li>
-<li><p><strong>epsilon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – the depth of the potential well.</p></li>
+<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The cut-off radius.</p></li>
+<li><p><strong>epsilon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – the depth of the potential well.</p></li>
 </ul>
 </dd>
 </dl>
@@ -393,7 +398,7 @@ on the two neighbor particles of a center particle.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
 <li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
-<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The cut-off radius.</p></li>
+<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The cut-off radius.</p></li>
 </ul>
 </dd>
 </dl>
@@ -443,14 +448,16 @@ V(r_{ij})  = &amp; 4 \epsilon \left[ \left( \frac{\sigma}{r_{ij}} \right)^{12} -
 <dl class="py class">
 <dt class="sig sig-object py" id="LJEwaldForce">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LJEwaldForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_cut</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJEwaldForce" title="Link to this definition">¶</a></dt>
-<dd><p>The constructor of LJ + Ewald in real space interaction calculation object. The <span class="math notranslate nohighlight">\(\kappa\)</span> parameter could be derived
+<dd><p>The constructor of LJ + Ewald in real space interaction calculation object. Ewald summation has two parts in real space (short-range) and in reciprocal space (long-range), respectively.
+The complete Ewald summation additionally need a long-range method, the candidates of which are <a class="reference internal" href="cu-forcefield-coulomb.html#pppm-long"><span class="std std-ref">PPPM (long-range)</span></a> and <a class="reference internal" href="cu-forcefield-coulomb.html#enuf-long"><span class="std std-ref">ENUF (long-range)</span></a>.</p>
+<p>The <span class="math notranslate nohighlight">\(\kappa\)</span> parameter could be derived
 automatically.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
 <li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
-<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The cut-off radius.</p></li>
+<li><p><strong>r_cut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – The cut-off radius.</p></li>
 </ul>
 </dd>
 </dl>
@@ -491,6 +498,62 @@ automatically.</p>
 <span class="n">lj</span><span class="o">.</span><span class="n">setEnergy_shift</span><span class="p">()</span>
 <span class="n">lj</span><span class="o">.</span><span class="n">setDispVirialCorr</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lj</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="lennard-jones-and-coulomb-shift-interaction">
+<span id="ljcoulombshift"></span><h2>Lennard-Jones and Coulomb shift interaction<a class="headerlink" href="#lennard-jones-and-coulomb-shift-interaction" title="Link to this heading">¶</a></h2>
+<p>Description:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\begin{eqnarray*}
+V(r_{ij})  = &amp; 4 \epsilon \left[ \left( \frac{\sigma}{r_{ij}} \right)^{12} -
+                  \alpha \left( \frac{\sigma}{r_{ij}} \right)^{6} \right]
+                 +\frac{f}{\epsilon_{r}}\frac{{q}_{i}{q}_{j}}{{r}_{ij}}
+                  &amp; r &lt; r_{\mathrm{cut}}\\
+                    = &amp; 0 &amp; r \ge r_{\mathrm{cut}} \\
+
+\end{eqnarray*}</div><p>The following coefficients must be set per unique pair of particle types:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\epsilon\)</span> - <em>epsilon</em> (in energy units)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma\)</span> - <em>sigma</em> (in distance units)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> - <em>alpha</em> (unitless)</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_{\mathrm{cut}}\)</span> - <em>r_cut</em> (in distance units)
+- <em>optional</em>: defaults to the global r_cut specified in the pair command</p></li>
+</ul>
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py" id="LJCoulombShiftForce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LJCoulombShiftForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJCoulombShiftForce" title="Link to this definition">¶</a></dt>
+<dd><p>The constructor of LJ + Coulomb with a shift function smoothing the energy and force of them to zero at cutoff point.
+This module is usually used for Martini force field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – The system information.</p></li>
+<li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – The neighbor list.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="LJCoulombShiftForce.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">type2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">epsilon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">alpha</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_cut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">r_shift</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJCoulombShiftForce.setParams" title="Link to this definition">¶</a></dt>
+<dd><p>specifies the LJ and Coulomb interaction parameters with type1, type2, epsilon, sigma, alpha, r_cut, and r_shift, where epsilon, sigma, and alpha are
+LJ parameters, r_cut is cutoff radius, and r_shift is the shift radius for a shift function working from shift radius to cutoff radius.</p>
+</dd></dl>
+
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pf1</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">LJCoulombShiftForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">)</span>
+<span class="n">pf1</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;P4&#39;</span><span class="p">,</span> <span class="s1">&#39;P4&#39;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.47</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+<span class="n">pf1</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;Na&#39;</span><span class="p">,</span> <span class="s1">&#39;Na&#39;</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.47</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+<span class="n">pf1</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;Qa&#39;</span><span class="p">,</span> <span class="s1">&#39;Qa&#39;</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">0.47</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+<span class="n">pf1</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;P4&#39;</span><span class="p">,</span> <span class="s1">&#39;Na&#39;</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.47</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+<span class="n">pf1</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;P4&#39;</span><span class="p">,</span> <span class="s1">&#39;Qa&#39;</span><span class="p">,</span> <span class="mf">5.6</span><span class="p">,</span> <span class="mf">0.47</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+<span class="n">pf1</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;Na&#39;</span><span class="p">,</span> <span class="s1">&#39;Qa&#39;</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.47</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+<span class="n">pf1</span><span class="o">.</span><span class="n">setCoulomb</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">epsilon_r</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pf1</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>

@@ -101,8 +101,8 @@ def parseNonbondParams(filename, atom_types):
 	
 	if len(param)!=0:
 		for i in range(0,len(param)):
-			c6=string.atof(param[i][0])
-			c12=string.atof(param[i][1])
+			c6=float(param[i][0])
+			c12=float(param[i][1])
 			if c6!=0:
 				sigma6 = c12/c6
 				sigma = math.pow(sigma6,1.0/6.0) 
@@ -240,7 +240,7 @@ def parseAngleParams(filename, angle_types):
 			ffa.write(angle_types[i] +" " + angle_params[i][1] +" "+ angle_params[i][0]+" "+ angle_params[i][2]+"\n")
 		elif len(angle_params[i]) == 5:
 			ffa.write(angle_types[i] +" " + angle_params[i][1] +" "+ angle_params[i][0]+" "+ angle_params[i][3]+" "+ angle_params[i][2]+" "+ angle_params[i][4]+"\n")            
-	ffa.close()   	
+	ffa.close()
 	
 dihedral_params = []
 def parseDihedralParams(filename, dihedral_types):
@@ -282,20 +282,39 @@ def parseDihedralParams(filename, dihedral_types):
 	for k in range(0, len(dihedral_types_file_read)):
 		if len(dihedral_types_file_read[k])==8 and dihedral_types_file_read[k][4] == "9":
 			dtf = dihedral_types_file_read[k]
-			dihedral_types_file_sort = dtf[:5]+['0.0','0.0','0.0','0.0','0.0','0.0','0.0','0.0']
-			if dtf[7]=='1':
-				dihedral_types_file_sort[5]=dtf[6]
-				dihedral_types_file_sort[9]=dtf[5]
-			elif dtf[7]=='2':
-				dihedral_types_file_sort[6]=dtf[6]
-				dihedral_types_file_sort[10]=dtf[5]
-			elif dtf[7]=='3':
-				dihedral_types_file_sort[7]=dtf[6]
-				dihedral_types_file_sort[11]=dtf[5]
-			elif dtf[7]=='4':
-				dihedral_types_file_sort[8]=dtf[6]
-				dihedral_types_file_sort[12]=dtf[5]
-			dihedral_types_file.append(dihedral_types_file_sort)
+			find_exist = False
+			for di in range(0, len(dihedral_types_file)):
+				dih = dihedral_types_file[di]
+				if dih[0]==dtf[0] and dih[1]==dtf[1] and dih[2]==dtf[2] and dih[3]==dtf[3] and dih[4]=="9":
+					if dtf[7]=='1':
+						dihedral_types_file[di][5]=dtf[6]
+						dihedral_types_file[di][9]=dtf[5]
+					elif dtf[7]=='2':
+						dihedral_types_file[di][6]=dtf[6]
+						dihedral_types_file[di][10]=dtf[5]
+					elif dtf[7]=='3':
+						dihedral_types_file[di][7]=dtf[6]
+						dihedral_types_file[di][11]=dtf[5]
+					elif dtf[7]=='4':
+						dihedral_types_file[di][8]=dtf[6]
+						dihedral_types_file[di][12]=dtf[5]
+					find_exist = True
+					continue
+			if not find_exist:
+				dihedral_types_file_sort = dtf[:5]+['0.0','0.0','0.0','0.0','0.0','0.0','0.0','0.0']
+				if dtf[7]=='1':
+					dihedral_types_file_sort[5]=dtf[6]
+					dihedral_types_file_sort[9]=dtf[5]
+				elif dtf[7]=='2':
+					dihedral_types_file_sort[6]=dtf[6]
+					dihedral_types_file_sort[10]=dtf[5]
+				elif dtf[7]=='3':
+					dihedral_types_file_sort[7]=dtf[6]
+					dihedral_types_file_sort[11]=dtf[5]
+				elif dtf[7]=='4':
+					dihedral_types_file_sort[8]=dtf[6]
+					dihedral_types_file_sort[12]=dtf[5]
+				dihedral_types_file.append(dihedral_types_file_sort)
 		else:
 			dihedral_types_file.append(dihedral_types_file_read[k])
 
@@ -363,7 +382,7 @@ def BondForceHarmonic(all_info, filename):
 
 def AngleForceHarmonicCos(all_info, filename):
 	afh = gala.AngleForceHarmonicCos(all_info)
-	angle_type = all_info.getAngleInfo().getAngleTypes()	
+	angle_type = all_info.getAngleInfo().getAngleTypes()
 	parseAngleParams(filename, angle_type)
 	for i in range(0, len(angle_type)):
 #		print angle_type[i], float(angle_params[i][1]), float(angle_params[i][0])	
@@ -394,9 +413,10 @@ def DihedralForceAmberCosine(all_info, filename):
 	parseDihedralParams(filename, dihedral_type)
 	for i in range(0, len(dihedral_type)):
 		dp = dihedral_params[i]
+#		print(dp)
 		if int(dp[0])==4:
 #			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "gala.AmberProp.improper"
-			dfh.setParams(dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.AmberProp.improper)
+			dfh.setParams(dihedral_type[i], 0.0, float(dp[2]), 0.0, 0.0, 0.0, float(dp[1]), 0.0, 0.0, gala.AmberProp.improper)
 		elif int(dp[0])==9:
 #			print dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), "gala.DihedralForceAmberCosine.Prop.proper"
 			dfh.setParams(dihedral_type[i], float(dp[1]), float(dp[2]), float(dp[3]), float(dp[4]), float(dp[5]), float(dp[6]), float(dp[7]), float(dp[8]), gala.AmberProp.proper) 

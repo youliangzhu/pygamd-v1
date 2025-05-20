@@ -1,0 +1,82 @@
+; Created by AuToFF
+
+[ moleculetype ]
+; name          nrexcl
+Bio       3
+
+[ atoms ]
+;  Index    type       residue  resname    atom      cgnr     charge       mass
+     1    CT              1       Bio      C01       1     -0.289500   12.010000
+     2    CT              1       Bio      C02       1      0.009800   12.010000
+     3    OH              1       Bio      O03       1     -0.588200   16.000000
+     4    H1              1       Bio      H04       1      0.095200    1.008000
+     5    H1              1       Bio      H05       1      0.080200    1.008000
+     6    H1              1       Bio      H06       1      0.099100    1.008000
+     7    H1              1       Bio      H07       1      0.069300    1.008000
+     8    H1              1       Bio      H08       1      0.118100    1.008000
+     9    HO              1       Bio      H09       1      0.406000    1.008000
+
+[ bonds ]
+; atom_i  atom_j  functype     r0 (nm)   k (kJ/mol/nm^2)
+       1       2       1
+       2       3       1
+       1       4       1
+       1       5       1
+       1       6       1
+       2       7       1
+       2       8       1
+       3       9       1
+
+[ angles ]
+; atom_i  atom_j  atom_k  functype    a0 (Deg.)  k (kJ/mol/rad^2)
+       2       1       4       1
+       2       1       5       1
+       2       1       6       1
+       4       1       5       1
+       4       1       6       1
+       5       1       6       1
+       1       2       3       1
+       1       2       7       1
+       1       2       8       1
+       3       2       7       1
+       3       2       8       1
+       7       2       8       1
+       2       3       9       1
+
+[ dihedrals ]
+; PROPER DIHEDRAL ANGLES
+; atom_i  atom_j  atom_k  atom_l  functype     c0          c1          c2          c3          c4          c5
+       4       1       2       3       9
+       4       1       2       3       9
+       5       1       2       3       9
+       5       1       2       3       9
+       6       1       2       3       9
+       6       1       2       3       9
+       7       2       1       4       9
+       7       2       1       5       9
+       7       2       1       6       9
+       8       2       1       4       9
+       8       2       1       5       9
+       8       2       1       6       9
+       9       3       2       1       9
+       9       3       2       7       9
+       9       3       2       8       9
+
+; sigma_14 and epsilon_14 et.al here are calculated according to the mixing rules defined by force fields.
+; These parameters are commented out by default because the 'gen-pairs' is set to yes in the [ defaults ] directive.
+; If you want to risk mixing this toplogy file with other forcefields which has a different 1-4 scale factor, 
+; you can remove these comments and set 'gen-pairs' in [ defaults ] directive to no.
+[ pairs ]
+; atom_i  atom_j  functype
+       4       3       1
+       5       3       1
+       6       3       1
+       7       4       1
+       7       5       1
+       7       6       1
+       8       4       1
+       8       5       1
+       8       6       1
+       9       1       1
+       9       7       1
+       9       8       1

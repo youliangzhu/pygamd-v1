@@ -37,6 +37,7 @@ import os;
 from pygamd.integrations import nvt
 from pygamd.integrations import dpd
 from pygamd.integrations import bd
+from pygamd.integrations import nve
 
 # if __name__ == '__main__':
     # print ('main program run')

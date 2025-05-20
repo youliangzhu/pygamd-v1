@@ -44,6 +44,15 @@ class nvt:
 		self.name="integration"
 		self.subname="nvt"
 
+class nve:
+	def __init__(self, info, group):
+		ci = info.find_comp_info(group)
+		if ci is None:
+			ci = chare.comp_info(info, group)
+			info.comp_info.append(ci)
+		self.data = integrations.nve.nve(info, ci)
+		self.name = "integration"
+		self.subname = "nve"
 		
 class gwvv:
 	def __init__(self, info, group):
