@@ -369,7 +369,15 @@ def LJCoulombShiftForce(all_info, neighbor_list, rcut, rshift, epsilonr, filenam
 	for i in range(0, len(value)):
 		lj.setParams(pair[i][0], pair[i][1], value[i][0], value[i][1], 1.0, rcut, rshift)
 #		print pair[i][0], pair[i][1], value[i][0], value[i][1]
-	return lj	
+	return lj
+	
+def LJShiftForce(all_info, neighbor_list, rcut, rshift, filename):
+	lj = gala.LJShiftForce(all_info, neighbor_list)
+	atom_type = all_info.getBasicInfo().getParticleTypes()	
+	parseNonbondParams(filename, atom_type)
+	for i in range(0, len(value)):
+		lj.setParams(pair[i][0], pair[i][1], value[i][0], value[i][1], 1.0, rcut, rshift)
+	return lj
 	
 def BondForceHarmonic(all_info, filename):
 	bfh = gala.BondForceHarmonic(all_info)

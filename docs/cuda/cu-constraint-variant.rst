@@ -111,10 +111,10 @@ Description:
       vx.setPoint(80000000, 240) # time step, v1
       vx.setFactor(30)
       
-      v2 = gala.VariantRsqrt()   # the change of ly
-      v2.setPoint(0, 120)        # time step, v0
-      v2.setPoint(80000000, 240) # time step, v1
-      v2.setFactor(60)
+      vy = gala.VariantRsqrt()   # the change of ly
+      vy.setPoint(0, 120)        # time step, v0
+      vy.setPoint(80000000, 240) # time step, v1
+      vy.setFactor(60)
 
       # The stretching method to control the changes of box at three directions
       axs = gala.AxialStretching(all_info, group)

@@ -36,7 +36,7 @@ import os
 import zipfile
 import platform
 
-PYGAMD_VERSION="1.4.7"
+PYGAMD_VERSION="1.4.8"
 
 
 curr_file = os.path.abspath(__file__)
@@ -122,7 +122,7 @@ print("USER OBLIGATION " )
 print("	If any results obtained with PYGAMD are published in the scientific " )
 print("	literature, the users have an obligation to distribute this program " )
 print("	and acknowledge our efforts by citing the paper \"Y.-L. Zhu et al.," )
-print("	J. Comput. Chem. 2013, 34, 2197-2211\" in their article." )
+print("	MGE Advances. 2025, 3, e70019.\" in their article." )
 print("CORRESPONDENCE" )
 print("	Dr. You-Liang Zhu," ) 
 print("	Email: ylzhu@pygamd.com" )

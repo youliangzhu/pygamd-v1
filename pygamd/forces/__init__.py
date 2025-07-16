@@ -33,13 +33,17 @@ CORRESPONDENCE
 import sys;
 import ctypes;
 import os;
+import importlib.util
+
 
 from pygamd.forces import pair
 from pygamd.forces import bond
 from pygamd.forces import angle
 from pygamd.forces import dihedral
 from pygamd.forces import threebody
-from pygamd.forces import dpk
+
+if importlib.util.find_spec("dpdata") and importlib.util.find_spec("deepmd-kit"):
+    from pygamd.forces import dpk
 
 # if __name__ == '__main__':
     # print ('main program run')

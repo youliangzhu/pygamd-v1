@@ -313,7 +313,15 @@ def LJCoulombShiftForce(all_info, neighbor_list, rcut, rshift, epsilonr, filenam
 	parseNonbondParams(filename, atom_type)
 	for i in range(0, len(nonbonded_params)):
 		lj.setParams(nonbonded_params[i][0], nonbonded_params[i][1], float(nonbonded_params[i][2]), float(nonbonded_params[i][3]), float(nonbonded_params[i][4]), rcut, rshift)
-	return lj	
+	return lj
+	
+def LJShiftForce(all_info, neighbor_list, rcut, rshift, filename):
+	lj = gala.LJShiftForce(all_info, neighbor_list)
+	atom_type = all_info.getBasicInfo().getParticleTypes()
+	parseNonbondParams(filename, atom_type)
+	for i in range(0, len(nonbonded_params)):
+		lj.setParams(nonbonded_params[i][0], nonbonded_params[i][1], float(nonbonded_params[i][2]), float(nonbonded_params[i][3]), float(nonbonded_params[i][4]), rcut, rshift)
+	return lj
 	
 	
 # def AHDHForce(all_info, neighbor_list, rcut, epsilon, debye_length, filename):

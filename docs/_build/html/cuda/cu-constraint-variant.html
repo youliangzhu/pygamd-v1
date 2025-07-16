@@ -275,10 +275,10 @@ This method return factor*sqrt(v0/v) , where v is real time value of linear inte
 <span class="n">vx</span><span class="o">.</span><span class="n">setPoint</span><span class="p">(</span><span class="mi">80000000</span><span class="p">,</span> <span class="mi">240</span><span class="p">)</span> <span class="c1"># time step, v1</span>
 <span class="n">vx</span><span class="o">.</span><span class="n">setFactor</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
 
-<span class="n">v2</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">VariantRsqrt</span><span class="p">()</span>   <span class="c1"># the change of ly</span>
-<span class="n">v2</span><span class="o">.</span><span class="n">setPoint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>        <span class="c1"># time step, v0</span>
-<span class="n">v2</span><span class="o">.</span><span class="n">setPoint</span><span class="p">(</span><span class="mi">80000000</span><span class="p">,</span> <span class="mi">240</span><span class="p">)</span> <span class="c1"># time step, v1</span>
-<span class="n">v2</span><span class="o">.</span><span class="n">setFactor</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">vy</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">VariantRsqrt</span><span class="p">()</span>   <span class="c1"># the change of ly</span>
+<span class="n">vy</span><span class="o">.</span><span class="n">setPoint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>        <span class="c1"># time step, v0</span>
+<span class="n">vy</span><span class="o">.</span><span class="n">setPoint</span><span class="p">(</span><span class="mi">80000000</span><span class="p">,</span> <span class="mi">240</span><span class="p">)</span> <span class="c1"># time step, v1</span>
+<span class="n">vy</span><span class="o">.</span><span class="n">setFactor</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
 
 <span class="c1"># The stretching method to control the changes of box at three directions</span>
 <span class="n">axs</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">AxialStretching</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
