@@ -7,13 +7,13 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Data format &mdash; PYGAMD v1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -47,13 +47,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units.html">Units</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUPY)</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../numba/system.html">System info</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/application.html">Application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/forcefield.html">Force field</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/integration.html">Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/module.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/module.html">Modules</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
 <ul class="current">
@@ -64,6 +64,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="cu-data-input.html">Data input</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cu-data-output.html">Data output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-data-interface.html">Data interface</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cu-system.html">System</a></li>
@@ -123,29 +124,29 @@ For example, the coordinate of a particle in x, y, and z directions is written i
 However, this rule does not include topological relevant information, including bonds, angles and dihedrals.</p>
 <blockquote>
 <div><p>An example XML file with particles coordinates, velocities, types, masses …</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;galamost_xml version=&quot;1.3&quot;&gt;
-&lt;configuration time_step=&quot;0&quot; dimensions=&quot;3&quot; natoms=&quot;4&quot; &gt;
-&lt;box lx=&quot;10&quot; ly=&quot;10&quot; lz=&quot;10&quot;/&gt;
-&lt;position num=&quot;4&quot;&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;galamost_xml version="1.3"&gt;
+&lt;configuration time_step="0" dimensions="3" natoms="4" &gt;
+&lt;box lx="10" ly="10" lz="10"/&gt;
+&lt;position num="4"&gt;
 -1 2 -1
 -2 3 0
 -1 4 1
 -1 5 2
 &lt;/position&gt;
-&lt;velocity num=&quot;4&quot;&gt;
+&lt;velocity num="4"&gt;
 1 2 3
 1 0 0
 3 -2 1
 0 1 1
 &lt;/velocity&gt;
-&lt;type num=&quot;4&quot;&gt;
+&lt;type num="4"&gt;
 A
 B
 B
 A
 &lt;/type&gt;
-&lt;mass num=&quot;4&quot;&gt;
+&lt;mass num="4"&gt;
 1.0
 2.1
 1.0
@@ -156,28 +157,28 @@ A
 </pre></div>
 </div>
 <p>The file could include the nodes of bond, angle, dihedral …</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># bond with &#39;bond type, the index of particle i, j&#39;.</span>
- <span class="o">&lt;</span><span class="n">bond</span> <span class="n">num</span><span class="o">=</span><span class="s2">&quot;3&quot;</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># bond with 'bond type, the index of particle i, j'.</span>
+ <span class="o">&lt;</span><span class="n">bond</span> <span class="n">num</span><span class="o">=</span><span class="s2">"3"</span><span class="o">&gt;</span>
  <span class="n">polymer</span> <span class="mi">0</span> <span class="mi">1</span>
  <span class="n">polymer</span> <span class="mi">1</span> <span class="mi">2</span>
  <span class="n">polymer</span> <span class="mi">2</span> <span class="mi">3</span>
  <span class="o">&lt;/</span><span class="n">bond</span><span class="o">&gt;</span>
 
-<span class="c1"># angle with &#39;angle type, the index of particle i, j, k&#39;.</span>
- <span class="o">&lt;</span><span class="n">angle</span> <span class="n">num</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">&gt;</span>
+<span class="c1"># angle with 'angle type, the index of particle i, j, k'.</span>
+ <span class="o">&lt;</span><span class="n">angle</span> <span class="n">num</span><span class="o">=</span><span class="s2">"2"</span><span class="o">&gt;</span>
  <span class="n">theta</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span>
  <span class="n">theta</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
  <span class="o">&lt;/</span><span class="n">angle</span><span class="o">&gt;</span>
 
-<span class="c1"># dihedral with &#39;dihedral type, the index of particle i, j, k, l&#39;.</span>
- <span class="o">&lt;</span><span class="n">dihedral</span> <span class="n">num</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="o">&gt;</span>
+<span class="c1"># dihedral with 'dihedral type, the index of particle i, j, k, l'.</span>
+ <span class="o">&lt;</span><span class="n">dihedral</span> <span class="n">num</span><span class="o">=</span><span class="s2">"1"</span><span class="o">&gt;</span>
  <span class="n">phi</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
  <span class="o">&lt;/</span><span class="n">dihedral</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>The other nodes of XML …</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="c1"># the diameter of particles in float type.</span>
-  <span class="o">&lt;</span><span class="n">diameter</span> <span class="n">num</span><span class="o">=</span><span class="s2">&quot;4&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">diameter</span> <span class="n">num</span><span class="o">=</span><span class="s2">"4"</span><span class="o">&gt;</span>
   <span class="mf">1.0</span>
   <span class="mf">1.0</span>
   <span class="mf">1.0</span>
@@ -185,7 +186,7 @@ A
   <span class="o">&lt;/</span><span class="n">diameter</span><span class="o">&gt;</span>
 
  <span class="c1"># the charge of particles in float type.</span>
-  <span class="o">&lt;</span><span class="n">charge</span> <span class="n">num</span><span class="o">=</span><span class="s2">&quot;4&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">charge</span> <span class="n">num</span><span class="o">=</span><span class="s2">"4"</span><span class="o">&gt;</span>
    <span class="mf">1.333</span>
    <span class="mf">1.333</span>
   <span class="o">-</span><span class="mf">1.333</span>
@@ -193,7 +194,7 @@ A
   <span class="o">&lt;/</span><span class="n">charge</span><span class="o">&gt;</span>
 
  <span class="c1"># the body index of particles in int type, -1 for non-body particles.</span>
-  <span class="o">&lt;</span><span class="n">body</span> <span class="n">num</span><span class="o">=</span><span class="s2">&quot;4&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">body</span> <span class="n">num</span><span class="o">=</span><span class="s2">"4"</span><span class="o">&gt;</span>
   <span class="o">-</span><span class="mi">1</span>
   <span class="o">-</span><span class="mi">1</span>
   <span class="mi">0</span>
@@ -204,7 +205,7 @@ A
  <span class="c1"># which can be used for the calculation of pos0 with pos0 = pos + L*image,</span>
  <span class="c1"># where pos is the position in box, pos0 is the position without periodic boundary condition,</span>
  <span class="c1"># and L is the length of box.</span>
-  <span class="o">&lt;</span><span class="n">image</span> <span class="n">num</span><span class="o">=</span><span class="s2">&quot;4&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">image</span> <span class="n">num</span><span class="o">=</span><span class="s2">"4"</span><span class="o">&gt;</span>
   <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
   <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
   <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span>
@@ -212,7 +213,7 @@ A
   <span class="o">&lt;/</span><span class="n">image</span><span class="o">&gt;</span>
 
  <span class="c1"># the velocity in x, y, and z directions of particles in float3 type.</span>
-  <span class="o">&lt;</span><span class="n">velocity</span> <span class="n">num</span><span class="o">=</span><span class="s2">&quot;4&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">velocity</span> <span class="n">num</span><span class="o">=</span><span class="s2">"4"</span><span class="o">&gt;</span>
    <span class="mf">3.768</span>     <span class="o">-</span><span class="mf">2.595</span>    <span class="o">-</span><span class="mf">1.874</span>
   <span class="o">-</span><span class="mf">3.988</span>     <span class="o">-</span><span class="mf">1.148</span>     <span class="mf">2.800</span>
    <span class="mf">1.570</span>      <span class="mf">1.015</span>    <span class="o">-</span><span class="mf">3.167</span>
@@ -221,7 +222,7 @@ A
 
 
  <span class="c1"># the orientation vector (x, y, z) of particles in float3 type.</span>
-  <span class="o">&lt;</span><span class="n">orientation</span> <span class="n">num</span><span class="o">=</span><span class="s2">&quot;4&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">orientation</span> <span class="n">num</span><span class="o">=</span><span class="s2">"4"</span><span class="o">&gt;</span>
    <span class="o">-</span><span class="mf">0.922</span>     <span class="mf">0.085</span>     <span class="mf">0.376</span>
    <span class="o">-</span><span class="mf">0.411</span>    <span class="o">-</span><span class="mf">0.637</span>    <span class="o">-</span><span class="mf">0.651</span>
     <span class="mf">0.293</span>     <span class="mf">0.892</span>    <span class="o">-</span><span class="mf">0.342</span>
@@ -229,7 +230,7 @@ A
   <span class="o">&lt;/</span><span class="n">orientation</span><span class="o">&gt;</span>
 
  <span class="c1"># the quaternion vector (x, y, z, w) of particles in float4 type.</span>
-  <span class="o">&lt;</span><span class="n">quaternion</span> <span class="n">num</span><span class="o">=</span><span class="s2">&quot;4&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">quaternion</span> <span class="n">num</span><span class="o">=</span><span class="s2">"4"</span><span class="o">&gt;</span>
    <span class="mf">0.369</span>   <span class="mf">0.817</span>  <span class="o">-</span><span class="mf">0.143</span>   <span class="mf">0.418</span>
   <span class="o">-</span><span class="mf">0.516</span>  <span class="o">-</span><span class="mf">0.552</span>   <span class="mf">0.653</span>   <span class="mf">0.024</span>
   <span class="o">-</span><span class="mf">0.521</span>  <span class="o">-</span><span class="mf">0.002</span>   <span class="mf">0.131</span>   <span class="mf">0.843</span>
@@ -237,7 +238,7 @@ A
   <span class="o">&lt;/</span><span class="n">quaternion</span><span class="o">&gt;</span>
 
  <span class="c1"># the angular velocity of rotation in x, y, and z directions of particles in float3 type.</span>
-  <span class="o">&lt;</span><span class="n">rotation</span> <span class="n">num</span><span class="o">=</span><span class="s2">&quot;4&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">rotation</span> <span class="n">num</span><span class="o">=</span><span class="s2">"4"</span><span class="o">&gt;</span>
    <span class="o">-</span><span class="mf">0.640</span>    <span class="mf">0.571</span>   <span class="o">-</span><span class="mf">0.512</span>
    <span class="o">-</span><span class="mf">0.744</span>    <span class="mf">0.346</span>    <span class="mf">0.569</span>
     <span class="mf">0.620</span>   <span class="o">-</span><span class="mf">0.086</span>    <span class="mf">0.779</span>
@@ -245,7 +246,7 @@ A
   <span class="o">&lt;/</span><span class="n">rotation</span><span class="o">&gt;</span>
 
 <span class="c1"># the moment of inertia in x, y, and z directions of particles in float3 type.</span>
-  <span class="o">&lt;</span><span class="n">inert</span> <span class="n">num</span><span class="o">=</span><span class="s2">&quot;4&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">inert</span> <span class="n">num</span><span class="o">=</span><span class="s2">"4"</span><span class="o">&gt;</span>
   <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">3.0</span>
   <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">3.0</span>
   <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">3.0</span>
@@ -253,7 +254,7 @@ A
   <span class="o">&lt;/</span><span class="n">inert</span><span class="o">&gt;</span>
 
 <span class="c1"># the initiator indication of particles in int type, 1 for initiator.</span>
-  <span class="o">&lt;</span><span class="n">h_init</span> <span class="n">num</span><span class="o">=</span><span class="s2">&quot;4&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">h_init</span> <span class="n">num</span><span class="o">=</span><span class="s2">"4"</span><span class="o">&gt;</span>
   <span class="mi">0</span>
   <span class="mi">1</span>
   <span class="mi">0</span>
@@ -261,7 +262,7 @@ A
   <span class="o">&lt;/</span><span class="n">h_init</span><span class="o">&gt;</span>
 
 <span class="c1"># the crosslinking number of particles in int type, 0 for reactable monomer.</span>
-  <span class="o">&lt;</span><span class="n">h_cris</span> <span class="n">num</span><span class="o">=</span><span class="s2">&quot;4&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">h_cris</span> <span class="n">num</span><span class="o">=</span><span class="s2">"4"</span><span class="o">&gt;</span>
   <span class="mi">0</span>
   <span class="mi">0</span>
   <span class="mi">0</span>
@@ -269,7 +270,7 @@ A
   <span class="o">&lt;/</span><span class="n">h_cris</span><span class="o">&gt;</span>
 
 <span class="c1"># the molecule index of particles in int type.</span>
-  <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">num</span><span class="o">=</span><span class="s2">&quot;4&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">molecule</span> <span class="n">num</span><span class="o">=</span><span class="s2">"4"</span><span class="o">&gt;</span>
   <span class="mi">0</span>
   <span class="mi">0</span>
   <span class="mi">1</span>
@@ -278,21 +279,21 @@ A
 </pre></div>
 </div>
 <p>The nodes of anisotropic particle attribute …</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># the particle patch attribute with &#39;particle type, patch number&#39;</span>
-<span class="c1"># followd by &#39;patch type, patch size, patch position vector in x, y, z directions&#39;.</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># the particle patch attribute with 'particle type, patch number'</span>
+<span class="c1"># followd by 'patch type, patch size, patch position vector in x, y, z directions'.</span>
   <span class="o">&lt;</span><span class="n">Patches</span><span class="o">&gt;</span>
   <span class="n">B</span> <span class="mi">2</span>
   <span class="n">p1</span> <span class="mi">60</span>  <span class="mi">0</span>    <span class="mi">0</span>    <span class="mi">1</span>
   <span class="n">p1</span> <span class="mi">60</span>  <span class="mi">0</span>    <span class="mi">0</span>   <span class="o">-</span><span class="mi">1</span>
   <span class="o">&lt;/</span><span class="n">Patches</span><span class="o">&gt;</span>
 
-<span class="c1"># the patch-patch interaction parameter with &#39;patch type, patch type, gamma_epsilon, alpha&#39;.</span>
+<span class="c1"># the patch-patch interaction parameter with 'patch type, patch type, gamma_epsilon, alpha'.</span>
   <span class="o">&lt;</span><span class="n">PatchParams</span><span class="o">&gt;</span>
   <span class="n">p1</span> <span class="n">p1</span> <span class="mf">88.0</span> <span class="mf">0.5</span>
   <span class="o">&lt;/</span><span class="n">PatchParams</span><span class="o">&gt;</span>
 
-<span class="c1"># the particle shape attribute with &#39;particle type, diameter a, diameter b, diameter c,</span>
-<span class="c1"># epsion a, epsion b, epsion c&#39;. The a, b, c are along x, y, z directions in body frame,</span>
+<span class="c1"># the particle shape attribute with 'particle type, diameter a, diameter b, diameter c,</span>
+<span class="c1"># epsion a, epsion b, epsion c'. The a, b, c are along x, y, z directions in body frame,</span>
 <span class="c1"># respectively.</span>
   <span class="o">&lt;</span><span class="n">Aspheres</span><span class="o">&gt;</span>
   <span class="n">A</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">3.0</span> <span class="mf">3.0</span> <span class="mf">3.0</span>

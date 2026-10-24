@@ -17,13 +17,13 @@ Welcome to PYGAMD's documentation!
    
 .. toctree::
    :maxdepth: 3
-   :caption: Modules (NUMBA)
+   :caption: Modules (CUPY)
    
-   numba/system
-   numba/application   
-   numba/forcefield
-   numba/integration
-   numba/module   
+   cupy/system
+   cupy/application   
+   cupy/forcefield
+   cupy/integration
+   cupy/module   
 
    
 .. toctree::

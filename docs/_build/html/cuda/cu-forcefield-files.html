@@ -7,13 +7,13 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Read force parameters &mdash; PYGAMD v1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -47,13 +47,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units.html">Units</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUPY)</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../numba/system.html">System info</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/application.html">Application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/forcefield.html">Force field</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/integration.html">Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/module.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/module.html">Modules</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
 <ul class="current">
@@ -250,24 +250,24 @@
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="LJCoulombShiftForce">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LJCoulombShiftForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rshift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJCoulombShiftForce" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">LJCoulombShiftForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rshift</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon_r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJCoulombShiftForce" title="Link to this definition">¶</a></dt>
 <dd><p>Constructor of an object to simutaneously calculate modified Lennard-Jones and Coulomb interactions which are smoothed by a shift function same to GROMACS.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
 <li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – Neighbor list.</p></li>
-<li><p><strong>rcut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Cut-off radius.</p></li>
-<li><p><strong>rshift</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Shift radius.</p></li>
-<li><p><strong>epsilon_r</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Relative dielectric constant.</p></li>
+<li><p><strong>rcut</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – Cut-off radius.</p></li>
+<li><p><strong>rshift</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – Shift radius.</p></li>
+<li><p><strong>epsilon_r</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – Relative dielectric constant.</p></li>
 <li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
 </ul>
 </dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">force_field_gala</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">force_field_gala</span>
 <span class="n">e_r</span> <span class="o">=</span> <span class="mf">15.0</span>
-<span class="n">lj</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">LJCoulombShiftForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">nlist</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">e_r</span><span class="p">,</span> <span class="s2">&quot;Equ.force_field&quot;</span><span class="p">)</span>
+<span class="n">lj</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">LJCoulombShiftForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">nlist</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="n">e_r</span><span class="p">,</span> <span class="s2">"Equ.force_field"</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lj</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -275,14 +275,14 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="LJEwaldForce">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LJEwaldForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJEwaldForce" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">LJEwaldForce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nlist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rcut</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#LJEwaldForce" title="Link to this definition">¶</a></dt>
 <dd><p>Constructor of an object to simutaneously calculate Lennard-Jones and the short-part Coulomb interactions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>all_info</strong> (<a class="reference internal" href="cu-system-information.html#AllInfo" title="AllInfo"><em>AllInfo</em></a>) – System information.</p></li>
 <li><p><strong>nlist</strong> (<a class="reference internal" href="cu-system-list.html#NeighborList" title="NeighborList"><em>NeighborList</em></a>) – Neighbor list.</p></li>
-<li><p><strong>rcut</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – Cut-off radius.</p></li>
+<li><p><strong>rcut</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – Cut-off radius.</p></li>
 <li><p><strong>file</strong> (<em>string</em>) – Force field file.</p></li>
 </ul>
 </dd>
@@ -300,8 +300,8 @@
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">force_field_gala</span>
-<span class="n">lj</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">LJEwaldForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;ffnonbonded.force_field&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">force_field_gala</span>
+<span class="n">lj</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">LJEwaldForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">"ffnonbonded.force_field"</span><span class="p">)</span>
 <span class="n">lj</span><span class="o">.</span><span class="n">setEnergy_shift</span><span class="p">()</span>
 <span class="n">lj</span><span class="o">.</span><span class="n">setDispVirialCorr</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span><span class="c1">#dispersion virial correction</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lj</span><span class="p">)</span>
@@ -311,7 +311,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="BondForceHarmonic">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceHarmonic" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">BondForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondForceHarmonic" title="Link to this definition">¶</a></dt>
 <dd><p>Constructor of an object to calculate harmonic bond interactions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -322,7 +322,7 @@
 </dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bondforce</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">BondForceHarmonic</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;ffbonded.force_field&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bondforce</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">BondForceHarmonic</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">"ffbonded.force_field"</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bondforce</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -330,7 +330,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="AngleForceHarmonicCos">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AngleForceHarmonicCos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceHarmonicCos" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">AngleForceHarmonicCos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceHarmonicCos" title="Link to this definition">¶</a></dt>
 <dd><p>Constructor of an object to calculate harmonic cosine angle interactions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -341,7 +341,7 @@
 </dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">angleforce</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">AngleForceHarmonicCos</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;ffbonded.force_field&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">angleforce</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">AngleForceHarmonicCos</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">"ffbonded.force_field"</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">angleforce</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -349,7 +349,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="AngleForceHarmonic">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AngleForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceHarmonic" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">AngleForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceHarmonic" title="Link to this definition">¶</a></dt>
 <dd><p>Constructor of an object to calculate harmonic angle interactions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -360,7 +360,7 @@
 </dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">angleforce</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">AngleForceHarmonic</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;ffbonded.force_field&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">angleforce</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">AngleForceHarmonic</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">"ffbonded.force_field"</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">angleforce</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -368,7 +368,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="DihedralForceAmberCosine">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceAmberCosine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceAmberCosine" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DihedralForceAmberCosine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceAmberCosine" title="Link to this definition">¶</a></dt>
 <dd><p>Constructor of an object to calculate Amber cosine dihedral interactions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -379,7 +379,7 @@
 </dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dihedralforce</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">DihedralForceAmberCosine</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;ffbonded.force_field&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dihedralforce</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">DihedralForceAmberCosine</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">"ffbonded.force_field"</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dihedralforce</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -387,7 +387,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="DihedralForceHarmonic">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DihedralForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceHarmonic" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">DihedralForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DihedralForceHarmonic" title="Link to this definition">¶</a></dt>
 <dd><p>Constructor of an object to calculate harmonic dihedral interactions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -398,7 +398,7 @@
 </dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dihedralforce</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">DihedralForceHarmonic</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;ffbonded.force_field&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dihedralforce</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">DihedralForceHarmonic</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">"ffbonded.force_field"</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dihedralforce</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -406,7 +406,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="BondConstraint">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BondConstraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondConstraint" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">BondConstraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#BondConstraint" title="Link to this definition">¶</a></dt>
 <dd><p>Constructor of an object to implement bond constraints.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -429,7 +429,7 @@
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bond_constraint</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">BondConstraint</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;Equ.force_field&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bond_constraint</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">BondConstraint</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">"Equ.force_field"</span><span class="p">)</span>
 <span class="n">bond_constraint</span><span class="o">.</span><span class="n">setExpansionOrder</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">bond_constraint</span><span class="o">.</span><span class="n">setNumIters</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bond_constraint</span><span class="p">)</span>
@@ -439,7 +439,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="Vsite">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Vsite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Vsite" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Vsite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Vsite" title="Link to this definition">¶</a></dt>
 <dd><p>Constructor of an object to implement virtual sites using a same method to GROMACS.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -450,7 +450,7 @@
 </dd>
 </dl>
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vs</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">Vsite</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">&quot;Equ.force_field&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vs</span> <span class="o">=</span> <span class="n">force_field_gala</span><span class="o">.</span><span class="n">Vsite</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s2">"Equ.force_field"</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">vs</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -464,8 +464,8 @@
 <div><p>Force fields in GROMACS format are supported by <code class="docutils literal notranslate"><span class="pre">force_field_itp</span></code> module. The usage and methods are same to <code class="docutils literal notranslate"><span class="pre">force_field_gala</span></code> module, but for reading the force fields in GROMACS format from itp files.</p>
 </div></blockquote>
 <p>An example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">force_field_itp</span>
-<span class="n">lj</span> <span class="o">=</span> <span class="n">force_field_itp</span><span class="o">.</span><span class="n">LJEwaldForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;ffnonbonded.itp&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">force_field_itp</span>
+<span class="n">lj</span> <span class="o">=</span> <span class="n">force_field_itp</span><span class="o">.</span><span class="n">LJEwaldForce</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">neighbor_list</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">"ffnonbonded.itp"</span><span class="p">)</span>
 <span class="n">lj</span><span class="o">.</span><span class="n">setEnergy_shift</span><span class="p">()</span>
 <span class="n">lj</span><span class="o">.</span><span class="n">setDispVirialCorr</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span><span class="c1">#dispersion virial correction</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lj</span><span class="p">)</span>

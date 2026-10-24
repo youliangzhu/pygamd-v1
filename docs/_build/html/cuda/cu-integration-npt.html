@@ -7,13 +7,13 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NPT ensemble &mdash; PYGAMD v1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -47,13 +47,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units.html">Units</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUPY)</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../numba/system.html">System info</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/application.html">Application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/forcefield.html">Force field</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/integration.html">Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/module.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/module.html">Modules</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
 <ul class="current">
@@ -142,7 +142,7 @@
 <p>Reference: H. C. Andersen, J. Chem. Phys., 1980, 72(4), 2384-2393.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="NPT">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NPT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPT" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">NPT</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPT" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of a NPT thermostat object for a group of particles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -151,10 +151,10 @@
 <li><p><strong>group</strong> (<a class="reference internal" href="cu-system-group.html#id2" title="ParticleSet"><em>ParticleSet</em></a>) – The group of particles.</p></li>
 <li><p><strong>comp_info_group</strong> (<a class="reference internal" href="cu-system-compute.html#ComputeInfo" title="ComputeInfo"><em>ComputeInfo</em></a>) – The calculation of collective information of group particles.</p></li>
 <li><p><strong>comp_info_all</strong> (<a class="reference internal" href="cu-system-compute.html#ComputeInfo" title="ComputeInfo"><em>ComputeInfo</em></a>) – The calculation of collective information of all particles.</p></li>
-<li><p><strong>T</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The temperature.</p></li>
-<li><p><strong>P</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The pressure.</p></li>
-<li><p><strong>tauT</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The thermostat coupling.</p></li>
-<li><p><strong>tauP</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The barostat coupling.</p></li>
+<li><p><strong>T</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The temperature.</p></li>
+<li><p><strong>P</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The pressure.</p></li>
+<li><p><strong>tauT</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The thermostat coupling.</p></li>
+<li><p><strong>tauP</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The barostat coupling.</p></li>
 </ul>
 </dd>
 </dl>
@@ -188,7 +188,7 @@
 <span id="npt-rigid"></span><h2>NPT for rigid body<a class="headerlink" href="#npt-for-rigid-body" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="NPTRigid">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NPTRigid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTRigid" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">NPTRigid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTRigid" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of a NPT thermostat object for rigid bodies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -197,10 +197,10 @@
 <li><p><strong>group</strong> (<a class="reference internal" href="cu-system-group.html#id2" title="ParticleSet"><em>ParticleSet</em></a>) – The group of particles.</p></li>
 <li><p><strong>comp_info_group</strong> (<a class="reference internal" href="cu-system-compute.html#ComputeInfo" title="ComputeInfo"><em>ComputeInfo</em></a>) – The calculation of collective information of group particles.</p></li>
 <li><p><strong>comp_info_all</strong> (<a class="reference internal" href="cu-system-compute.html#ComputeInfo" title="ComputeInfo"><em>ComputeInfo</em></a>) – The calculation of collective information of all particles.</p></li>
-<li><p><strong>T</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The temperature.</p></li>
-<li><p><strong>P</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The pressure.</p></li>
-<li><p><strong>tauT</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The thermostat coupling.</p></li>
-<li><p><strong>tauP</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The barostat coupling.</p></li>
+<li><p><strong>T</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The temperature.</p></li>
+<li><p><strong>P</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The pressure.</p></li>
+<li><p><strong>tauT</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The thermostat coupling.</p></li>
+<li><p><strong>tauP</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The barostat coupling.</p></li>
 </ul>
 </dd>
 </dl>
@@ -223,10 +223,10 @@
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">group</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">group</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span><span class="s1">'all'</span><span class="p">)</span>
 <span class="n">comp_info</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ComputeInfo</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
 
-<span class="n">bgroup</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">)</span>
+<span class="n">bgroup</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s1">'body'</span><span class="p">)</span>
 <span class="n">comp_info_b</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ComputeInfo</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">bgroup</span><span class="p">)</span>
 
 <span class="n">rigidnpt</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">NPTRigid</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">bgroup</span><span class="p">,</span> <span class="n">comp_info_b</span><span class="p">,</span> <span class="n">comp_info</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
@@ -241,7 +241,7 @@
 <p>Reference: G. J. Martyna, D. J. Tobias, and M. L. Klein, J. Chem. Phys., 1994, 101(5), 4177-4189.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="NPTMTK">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NPTMTK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTK" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">NPTMTK</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTK" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of a NPTMTK thermostat object for a group of particles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -250,10 +250,10 @@
 <li><p><strong>group</strong> (<a class="reference internal" href="cu-system-group.html#id2" title="ParticleSet"><em>ParticleSet</em></a>) – The group of particles.</p></li>
 <li><p><strong>comp_info_group</strong> (<a class="reference internal" href="cu-system-compute.html#ComputeInfo" title="ComputeInfo"><em>ComputeInfo</em></a>) – The calculation of collective information of group particles.</p></li>
 <li><p><strong>comp_info_all</strong> (<a class="reference internal" href="cu-system-compute.html#ComputeInfo" title="ComputeInfo"><em>ComputeInfo</em></a>) – The calculation of collective information of all particles.</p></li>
-<li><p><strong>T</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The temperature.</p></li>
-<li><p><strong>P</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The pressure.</p></li>
-<li><p><strong>tauT</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The thermostat coupling.</p></li>
-<li><p><strong>tauP</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The barostat coupling.</p></li>
+<li><p><strong>T</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The temperature.</p></li>
+<li><p><strong>P</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The pressure.</p></li>
+<li><p><strong>tauT</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The thermostat coupling.</p></li>
+<li><p><strong>tauP</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The barostat coupling.</p></li>
 </ul>
 </dd>
 </dl>
@@ -294,7 +294,7 @@
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">group</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">group</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span><span class="s1">'all'</span><span class="p">)</span>
 <span class="n">comp_info</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ComputeInfo</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
 
 <span class="n">npt</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">NPTMTK</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">group</span><span class="p">,</span> <span class="n">comp_info</span><span class="p">,</span> <span class="n">comp_info</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
@@ -310,7 +310,7 @@
 <p>Reference: G. J. Martyna, D. J. Tobias, and M. L. Klein, J. Chem. Phys., 1994, 101(5), 4177-4189.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="NPTMTKRigid">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NPTMTKRigid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTKRigid" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">NPTMTKRigid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_info_all</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">T</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">P</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauT</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tauP</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#NPTMTKRigid" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of a NPTMTK thermostat object for rigid bodies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -319,10 +319,10 @@
 <li><p><strong>group</strong> (<a class="reference internal" href="cu-system-group.html#id2" title="ParticleSet"><em>ParticleSet</em></a>) – The group of particles.</p></li>
 <li><p><strong>comp_info_group</strong> (<a class="reference internal" href="cu-system-compute.html#ComputeInfo" title="ComputeInfo"><em>ComputeInfo</em></a>) – The calculation of collective information of group particles.</p></li>
 <li><p><strong>comp_info_all</strong> (<a class="reference internal" href="cu-system-compute.html#ComputeInfo" title="ComputeInfo"><em>ComputeInfo</em></a>) – The calculation of collective information of all particles.</p></li>
-<li><p><strong>T</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The temperature.</p></li>
-<li><p><strong>P</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The pressure.</p></li>
-<li><p><strong>tauT</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The thermostat coupling.</p></li>
-<li><p><strong>tauP</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The barostat coupling.</p></li>
+<li><p><strong>T</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The temperature.</p></li>
+<li><p><strong>P</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The pressure.</p></li>
+<li><p><strong>tauT</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The thermostat coupling.</p></li>
+<li><p><strong>tauP</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The barostat coupling.</p></li>
 </ul>
 </dd>
 </dl>
@@ -363,10 +363,10 @@
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">group</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">group</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span><span class="s1">'all'</span><span class="p">)</span>
 <span class="n">comp_info</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ComputeInfo</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
 
-<span class="n">groupb</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s1">&#39;body&#39;</span><span class="p">)</span>
+<span class="n">groupb</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ParticleSet</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="s1">'body'</span><span class="p">)</span>
 <span class="n">comp_info_b</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">ComputeInfo</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">groupb</span><span class="p">)</span>
 
 <span class="n">npt</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">NPTMTKRigid</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">groupb</span><span class="p">,</span> <span class="n">comp_info_b</span><span class="p">,</span> <span class="n">comp_info</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>

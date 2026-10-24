@@ -1,0 +1,176 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bonded interactions &mdash; PYGAMD v1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Bond interactions" href="forcefield-bonded-bond.html" />
+    <link rel="prev" title="Non-bonded interactions" href="forcefield-nonbonded.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            PYGAMD
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">General introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../units.html">Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUPY)</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="application.html">Application</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="forcefield.html">Force field</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="forcefield-nonbonded.html">Non-bonded interactions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Bonded interactions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="forcefield-bonded-bond.html">Bond interactions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="forcefield-bonded-angle.html">Angle bending</a></li>
+<li class="toctree-l3"><a class="reference internal" href="forcefield-bonded-dihedral.html">Dihedral torsion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/cu-data.html">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/cu-system.html">System</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/cu-application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/cu-forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/cu-integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/cu-constraint.html">Constraint</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/cu-externalfield.html">External field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cuda/cu-module.html">Modules</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Plug-Ins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../molgen.html">molgen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dataTackle.html">dataTackle</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Announcement</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PYGAMD</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="forcefield.html">Force field</a></li>
+      <li class="breadcrumb-item active">Bonded interactions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/cupy/forcefield-bonded.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bonded-interactions">
+<h1>Bonded interactions<a class="headerlink" href="#bonded-interactions" title="Link to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="forcefield-bonded-bond.html">Bond interactions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="forcefield-bonded-bond.html#bond-functions">Bond functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="forcefield-bonded-bond.html#force.bond"><code class="docutils literal notranslate"><span class="pre">force.bond</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="forcefield-bonded-bond.html#self-defined-bond-functions">Self-defined bond functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="forcefield-bonded-angle.html">Angle bending</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="forcefield-bonded-angle.html#angle-functions">Angle functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="forcefield-bonded-angle.html#force.angle"><code class="docutils literal notranslate"><span class="pre">force.angle</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="forcefield-bonded-angle.html#self-defined-bond-functions">Self-defined bond functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="forcefield-bonded-dihedral.html">Dihedral torsion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="forcefield-bonded-dihedral.html#dihedral-functions">Dihedral functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="forcefield-bonded-dihedral.html#force.dihedral"><code class="docutils literal notranslate"><span class="pre">force.dihedral</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="forcefield-bonded-dihedral.html#self-defined-bond-functions">Self-defined bond functions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="forcefield-nonbonded.html" class="btn btn-neutral float-left" title="Non-bonded interactions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="forcefield-bonded-bond.html" class="btn btn-neutral float-right" title="Bond interactions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2022, You-Liang Zhu and Zhong-Yuan Lu, ylzhu@pygamd.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

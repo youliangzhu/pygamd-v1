@@ -7,13 +7,13 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>molgen &mdash; PYGAMD v1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
 
   
       <script src="_static/documentation_options.js?v=5cb08e4e"></script>
-      <script src="_static/doctools.js?v=9bcbadda"></script>
-      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -47,13 +47,13 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="units.html">Units</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUPY)</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="numba/system.html">System info</a></li>
-<li class="toctree-l1"><a class="reference internal" href="numba/application.html">Application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="numba/forcefield.html">Force field</a></li>
-<li class="toctree-l1"><a class="reference internal" href="numba/integration.html">Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="numba/module.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cupy/system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cupy/application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cupy/forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cupy/integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cupy/module.html">Modules</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
 <ul>
@@ -191,17 +191,17 @@ The format of output files could be MST, Mol2 or XML.</p>
 An object is defined by “Object” class with the number of particles and shape. One or multiple molecules or objects can be defined in this way.</p>
 <blockquote>
 <div><p>Head of script:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">poetry</span> <span class="kn">import</span> <span class="n">molgen</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">poetry</span><span class="w"> </span><span class="kn">import</span> <span class="n">molgen</span>
 <span class="c1"># imports an extended Python module of molgen.</span>
 </pre></div>
 </div>
 <p>Example for molecule:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mol1</span><span class="o">=</span><span class="n">molgen</span><span class="o">.</span><span class="n">Molecule</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">mol1</span><span class="o">.</span><span class="n">setParticleTypes</span><span class="p">(</span><span class="s2">&quot;A,A,A,A&quot;</span><span class="p">)</span>
-<span class="n">mol1</span><span class="o">.</span><span class="n">setTopology</span><span class="p">(</span><span class="s2">&quot;0-1,1-2,2-3&quot;</span><span class="p">)</span>
+<span class="n">mol1</span><span class="o">.</span><span class="n">setParticleTypes</span><span class="p">(</span><span class="s2">"A,A,A,A"</span><span class="p">)</span>
+<span class="n">mol1</span><span class="o">.</span><span class="n">setTopology</span><span class="p">(</span><span class="s2">"0-1,1-2,2-3"</span><span class="p">)</span>
 <span class="n">mol1</span><span class="o">.</span><span class="n">setBondLength</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
 <span class="n">mol1</span><span class="o">.</span><span class="n">setMass</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
-<span class="n">mol1</span><span class="o">.</span><span class="n">setAngleDegree</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="mf">90.0</span><span class="p">)</span>
+<span class="n">mol1</span><span class="o">.</span><span class="n">setAngleDegree</span><span class="p">(</span><span class="s2">"A"</span><span class="p">,</span><span class="s2">"A"</span><span class="p">,</span><span class="s2">"A"</span><span class="p">,</span><span class="mf">90.0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -211,7 +211,7 @@ An object is defined by “Object” class with the number of particles and shap
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gen</span><span class="o">=</span><span class="n">molgen</span><span class="o">.</span><span class="n">Generators</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">gen</span><span class="o">.</span><span class="n">addMolecule</span><span class="p">(</span><span class="n">mol1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">gen</span><span class="o">.</span><span class="n">setMinimumDistance</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
-<span class="n">gen</span><span class="o">.</span><span class="n">outPutMST</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">outPutMST</span><span class="p">(</span><span class="s2">"test"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -219,11 +219,11 @@ An object is defined by “Object” class with the number of particles and shap
 partially defined in the script.</p>
 <blockquote>
 <div><p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mol0</span><span class="o">=</span><span class="n">molgen</span><span class="o">.</span><span class="n">Molecule</span><span class="p">(</span><span class="s2">&quot;sphere.mst&quot;</span><span class="p">,</span><span class="mi">65</span><span class="p">)</span>
-<span class="c1"># total 65 particles with 60 read from &quot;sphere.mst&quot;.</span>
-<span class="n">mol0</span><span class="o">.</span><span class="n">setParticleTypes</span><span class="p">(</span><span class="s2">&quot;B*5&quot;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mol0</span><span class="o">=</span><span class="n">molgen</span><span class="o">.</span><span class="n">Molecule</span><span class="p">(</span><span class="s2">"sphere.mst"</span><span class="p">,</span><span class="mi">65</span><span class="p">)</span>
+<span class="c1"># total 65 particles with 60 read from "sphere.mst".</span>
+<span class="n">mol0</span><span class="o">.</span><span class="n">setParticleTypes</span><span class="p">(</span><span class="s2">"B*5"</span><span class="p">)</span>
 <span class="c1"># define the types of the particles which will be generated.</span>
-<span class="n">mol0</span><span class="o">.</span><span class="n">setTopology</span><span class="p">(</span><span class="s2">&quot;59-60,60-61,61-62,62-63,63-64&quot;</span><span class="p">)</span>
+<span class="n">mol0</span><span class="o">.</span><span class="n">setTopology</span><span class="p">(</span><span class="s2">"59-60,60-61,61-62,62-63,63-64"</span><span class="p">)</span>
 <span class="c1"># add the bonds.</span>
 </pre></div>
 </div>
@@ -233,15 +233,15 @@ has been completely given in a MST or XML file, we could generate the system by 
 place and rotate the molecule.</p>
 <blockquote>
 <div><p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mol1</span> <span class="o">=</span> <span class="n">molgen</span><span class="o">.</span><span class="n">Object</span><span class="p">(</span><span class="s2">&quot;mol1.mst&quot;</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="n">molgen</span><span class="o">.</span><span class="n">Shape</span><span class="o">.</span><span class="n">none</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mol1</span> <span class="o">=</span> <span class="n">molgen</span><span class="o">.</span><span class="n">Object</span><span class="p">(</span><span class="s2">"mol1.mst"</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="n">molgen</span><span class="o">.</span><span class="n">Shape</span><span class="o">.</span><span class="n">none</span><span class="p">)</span>
 <span class="n">gen</span><span class="o">=</span><span class="n">molgen</span><span class="o">.</span><span class="n">Generators</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
 <span class="n">gen</span><span class="o">.</span><span class="n">addMolecule</span><span class="p">(</span><span class="n">mol1</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">gen</span><span class="o">.</span><span class="n">outPutMST</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">outPutMST</span><span class="p">(</span><span class="s2">"test"</span><span class="p">)</span>
 <span class="ow">or</span>
-<span class="n">mol1</span> <span class="o">=</span> <span class="n">molgen</span><span class="o">.</span><span class="n">Object</span><span class="p">(</span><span class="s2">&quot;mol1.xml&quot;</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="n">molgen</span><span class="o">.</span><span class="n">Shape</span><span class="o">.</span><span class="n">none</span><span class="p">)</span>
+<span class="n">mol1</span> <span class="o">=</span> <span class="n">molgen</span><span class="o">.</span><span class="n">Object</span><span class="p">(</span><span class="s2">"mol1.xml"</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="n">molgen</span><span class="o">.</span><span class="n">Shape</span><span class="o">.</span><span class="n">none</span><span class="p">)</span>
 <span class="n">gen</span><span class="o">=</span><span class="n">molgen</span><span class="o">.</span><span class="n">Generators</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">)</span>
 <span class="n">gen</span><span class="o">.</span><span class="n">addMolecule</span><span class="p">(</span><span class="n">mol1</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">gen</span><span class="o">.</span><span class="n">outPutXML</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">outPutXML</span><span class="p">(</span><span class="s2">"test"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -250,24 +250,24 @@ place and rotate the molecule.</p>
 <h2>Molecule definition<a class="headerlink" href="#molecule-definition" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="Molecule">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Molecule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">np</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Molecule" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Molecule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">np</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Molecule" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of a molecule with the number of particles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>np</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The number of particles.</p>
+<dd class="field-odd"><p><strong>np</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – The number of particles.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="id0">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Molecule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">np</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Molecule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">np</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of a molecule and reads particles data from the MST file with file name and the number of particles.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The name of inputting file.</p></li>
-<li><p><strong>np</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The number of particles.</p></li>
+<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – The name of inputting file.</p></li>
+<li><p><strong>np</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – The number of particles.</p></li>
 </ul>
 </dd>
 </dl>
@@ -538,15 +538,15 @@ place and rotate the molecule.</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mol0</span><span class="o">=</span><span class="n">molgen</span><span class="o">.</span><span class="n">Molecule</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
 <span class="c1"># initializes a molecule object with the number of particles.</span>
-<span class="n">mol0</span><span class="o">.</span><span class="n">setParticleTypes</span><span class="p">(</span><span class="s2">&quot;A,A,A,A,A,A,A,A&quot;</span><span class="p">)</span>
+<span class="n">mol0</span><span class="o">.</span><span class="n">setParticleTypes</span><span class="p">(</span><span class="s2">"A,A,A,A,A,A,A,A"</span><span class="p">)</span>
 <span class="c1"># sets particle types.</span>
-<span class="n">mol0</span><span class="o">.</span><span class="n">setTopology</span><span class="p">(</span><span class="s2">&quot;0-1,0-3,0-4,2-3,1-2,1-5,2-6,3-7,4-5,4-7,5-6,6-7&quot;</span><span class="p">)</span>
+<span class="n">mol0</span><span class="o">.</span><span class="n">setTopology</span><span class="p">(</span><span class="s2">"0-1,0-3,0-4,2-3,1-2,1-5,2-6,3-7,4-5,4-7,5-6,6-7"</span><span class="p">)</span>
 <span class="c1"># sets topology.</span>
 <span class="n">mol0</span><span class="o">.</span><span class="n">setBondLength</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
 <span class="c1"># sets bond length for all bonds.</span>
 <span class="n">mol0</span><span class="o">.</span><span class="n">setMass</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
 <span class="c1"># sets mass for all particle.</span>
-<span class="n">mol0</span><span class="o">.</span><span class="n">setAngleDegree</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="mf">90.0</span><span class="p">)</span>
+<span class="n">mol0</span><span class="o">.</span><span class="n">setAngleDegree</span><span class="p">(</span><span class="s2">"A"</span><span class="p">,</span><span class="s2">"A"</span><span class="p">,</span><span class="s2">"A"</span><span class="p">,</span><span class="mf">90.0</span><span class="p">)</span>
 <span class="c1"># sets the degree of the angle of particles with the type 1, 2 and 3.</span>
 </pre></div>
 </div>
@@ -557,12 +557,12 @@ place and rotate the molecule.</p>
 <h2>Objects definition<a class="headerlink" href="#objects-definition" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="Object">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">np</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Object" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">np</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Object" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of an object with the number of particles and shape.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>np</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The number of particles.</p></li>
+<li><p><strong>np</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – The number of particles.</p></li>
 <li><p><strong>shape</strong> (<em>Shape</em>) – The shape of object.</p></li>
 </ul>
 </dd>
@@ -571,13 +571,13 @@ place and rotate the molecule.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="id26">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsigned</span> <span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Shape</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id26" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span> <span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unsigned</span> <span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Shape</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id26" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of an object by reading partial data from a file with file name, the number of particles, and shape (the candidates are “none” and “sphere”).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – The name of inputting file.</p></li>
-<li><p><strong>np</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)"><em>int</em></a>) – The number of particles.</p></li>
+<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><em>str</em></a>) – The name of inputting file.</p></li>
+<li><p><strong>np</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><em>int</em></a>) – The number of particles.</p></li>
 <li><p><strong>shape</strong> (<em>Shape</em>) – The shape of object.</p></li>
 </ul>
 </dd>
@@ -589,15 +589,15 @@ place and rotate the molecule.</p>
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mol0</span> <span class="o">=</span> <span class="n">molgen</span><span class="o">.</span><span class="n">Object</span><span class="p">(</span><span class="s2">&quot;sphere.MST&quot;</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="n">molgen</span><span class="o">.</span><span class="n">Shape</span><span class="o">.</span><span class="n">none</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mol0</span> <span class="o">=</span> <span class="n">molgen</span><span class="o">.</span><span class="n">Object</span><span class="p">(</span><span class="s2">"sphere.MST"</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="n">molgen</span><span class="o">.</span><span class="n">Shape</span><span class="o">.</span><span class="n">none</span><span class="p">)</span>
 <span class="c1"># initializes an object by the reading file (containing 60 particles),</span>
 <span class="c1"># the number of particles, and object shape.</span>
-<span class="n">mol0</span><span class="o">.</span><span class="n">setParticleTypes</span><span class="p">(</span><span class="s2">&quot;A*5&quot;</span><span class="p">)</span>
+<span class="n">mol0</span><span class="o">.</span><span class="n">setParticleTypes</span><span class="p">(</span><span class="s2">"A*5"</span><span class="p">)</span>
 <span class="c1"># sets particle types (the former 60 types can be read form the file).</span>
-<span class="n">mol0</span><span class="o">.</span><span class="n">setTopology</span><span class="p">(</span><span class="s2">&quot;59-60,60-61,61-62,62-63,63-64&quot;</span><span class="p">)</span>
+<span class="n">mol0</span><span class="o">.</span><span class="n">setTopology</span><span class="p">(</span><span class="s2">"59-60,60-61,61-62,62-63,63-64"</span><span class="p">)</span>
 <span class="c1"># sets topology.</span>
-<span class="n">mol0</span><span class="o">.</span><span class="n">setBody</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="c1"># sets body index (the type &quot;C&quot; particles are thereby rigid body particles).</span>
+<span class="n">mol0</span><span class="o">.</span><span class="n">setBody</span><span class="p">(</span><span class="s2">"C"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="c1"># sets body index (the type "C" particles are thereby rigid body particles).</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -607,14 +607,14 @@ place and rotate the molecule.</p>
 <h2>Generator definition<a class="headerlink" href="#generator-definition" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="Generators">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Generators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">lx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">ly</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">lz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Generators" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Generators</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">lx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">ly</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double</span> <span class="pre">lz</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Generators" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of a molecule generator with box length in x y z directions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>lx</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The box length in x direction.</p></li>
-<li><p><strong>ly</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The box length in y direction.</p></li>
-<li><p><strong>lz</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The box length in z direction.</p></li>
+<li><p><strong>lx</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The box length in x direction.</p></li>
+<li><p><strong>ly</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The box length in y direction.</p></li>
+<li><p><strong>lz</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The box length in z direction.</p></li>
 </ul>
 </dd>
 </dl>
@@ -671,13 +671,13 @@ place and rotate the molecule.</p>
 <span class="c1"># initializes a generator object by box length in x, y, and z direction.</span>
 <span class="n">gen</span><span class="o">.</span><span class="n">addMolecule</span><span class="p">(</span><span class="n">mol0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="c1"># adds a molecule by molecule name and the number of molecules.</span>
-<span class="n">gen</span><span class="o">.</span><span class="n">setParam</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">setParam</span><span class="p">(</span><span class="s2">"A"</span><span class="p">,</span><span class="s2">"A"</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 <span class="c1"># sets the parameters of LJ potential which is used for Rosenblueth method.</span>
 <span class="n">gen</span><span class="o">.</span><span class="n">setMinimumDistance</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
 <span class="c1"># sets the minimum separated distance of all particles.</span>
-<span class="n">gen</span><span class="o">.</span><span class="n">setMinimumDistance</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">setMinimumDistance</span><span class="p">(</span><span class="s2">"A"</span><span class="p">,</span><span class="s2">"A"</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
 <span class="c1"># sets the minimum separated distance between the particle types.</span>
-<span class="n">gen</span><span class="o">.</span><span class="n">outPutMST</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="n">gen</span><span class="o">.</span><span class="n">outPutMST</span><span class="p">(</span><span class="s2">"test"</span><span class="p">)</span>
 <span class="c1"># sets the name of output MST file.</span>
 </pre></div>
 </div>

@@ -7,14 +7,14 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Angle bending &mdash; PYGAMD v1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -48,13 +48,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units.html">Units</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUPY)</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../numba/system.html">System info</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/application.html">Application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/forcefield.html">Force field</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/integration.html">Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/module.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/module.html">Modules</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
 <ul class="current">
@@ -170,7 +170,7 @@ V_{\mathrm{angle}}(\theta) = \frac{1}{2}k\left( \theta -\theta_{0} \right)^{2}
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="AngleForceHarmonic">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AngleForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceHarmonic" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">AngleForceHarmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceHarmonic" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of angle harmonic interaction object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -185,7 +185,7 @@ V_{\mathrm{angle}}(\theta) = \frac{1}{2}k\left( \theta -\theta_{0} \right)^{2}
 
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">angleforce</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">AngleForceHarmonic</span><span class="p">(</span><span class="n">all_info</span><span class="p">)</span>
-<span class="n">angleforce</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;P-G-G&#39;</span><span class="p">,</span> <span class="mf">25.000</span><span class="p">,</span> <span class="mf">120.000</span><span class="p">)</span>
+<span class="n">angleforce</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">'P-G-G'</span><span class="p">,</span> <span class="mf">25.000</span><span class="p">,</span> <span class="mf">120.000</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">angleforce</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -211,7 +211,7 @@ V_{\mathrm{angle}}(\theta)=\frac{1}{2}k\left[\cos \left( \theta \right)-\cos \le
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="AngleForceHarmonicCos">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AngleForceHarmonicCos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceHarmonicCos" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">AngleForceHarmonicCos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceHarmonicCos" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of angle cosine harmonic interaction object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -226,7 +226,7 @@ V_{\mathrm{angle}}(\theta)=\frac{1}{2}k\left[\cos \left( \theta \right)-\cos \le
 
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">angleforce</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">AngleForceHarmonicCos</span><span class="p">(</span><span class="n">all_info</span><span class="p">)</span>
-<span class="n">angleforce</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;P-G-G&#39;</span><span class="p">,</span><span class="mf">25.000</span><span class="p">,</span> <span class="mf">120.000</span><span class="p">)</span>
+<span class="n">angleforce</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">'P-G-G'</span><span class="p">,</span><span class="mf">25.000</span><span class="p">,</span> <span class="mf">120.000</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">angleforce</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -252,7 +252,7 @@ V_{\mathrm{angle}}(\theta)=k\left[ 1-\cos \left( \theta - {\theta}_{0} \right) \
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="AngleForceCos">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AngleForceCos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceCos" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">AngleForceCos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceCos" title="Link to this definition">¶</a></dt>
 <dd><blockquote>
 <div><p>The constructor of angle cosine interaction object.</p>
 <dl class="field-list simple">
@@ -268,7 +268,7 @@ V_{\mathrm{angle}}(\theta)=k\left[ 1-\cos \left( \theta - {\theta}_{0} \right) \
 
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">angleforce</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">AngleForceCos</span><span class="p">(</span><span class="n">all_info</span><span class="p">)</span>
-<span class="n">angleforce</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;P-G-G&#39;</span><span class="p">,</span> <span class="mf">25.000</span><span class="p">,</span> <span class="mf">120.000</span><span class="p">)</span>
+<span class="n">angleforce</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">'P-G-G'</span><span class="p">,</span> <span class="mf">25.000</span><span class="p">,</span> <span class="mf">120.000</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">angleforce</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -297,7 +297,7 @@ V_{\mathrm{angle}}(\theta)= -\frac{1}{2} k \log \left[ A \exp \left( -k_1 \left(
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="AngleForceLnExp">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AngleForceLnExp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceLnExp" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">AngleForceLnExp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AngleForceLnExp" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of angle cosine interaction object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -313,7 +313,7 @@ equilibrium angle degree1, equilibrium angle degree2, parameter A, and parameter
 
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">angleforce</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">AngleForceLnExp</span><span class="p">(</span><span class="n">all_info</span><span class="p">)</span>
-<span class="n">angleforce</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">&#39;P-G-G&#39;</span><span class="p">,</span> <span class="mf">25.000</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">,</span> <span class="mf">180.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="n">angleforce</span><span class="o">.</span><span class="n">setParams</span><span class="p">(</span><span class="s1">'P-G-G'</span><span class="p">,</span> <span class="mf">25.000</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">90.0</span><span class="p">,</span> <span class="mf">180.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">angleforce</span><span class="p">)</span>
 </pre></div>
 </div>

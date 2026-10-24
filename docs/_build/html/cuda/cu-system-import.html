@@ -7,13 +7,13 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Import libraries &mdash; PYGAMD v1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -47,13 +47,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units.html">Units</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUPY)</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../numba/system.html">System info</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/application.html">Application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/forcefield.html">Force field</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/integration.html">Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/module.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/module.html">Modules</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
 <ul class="current">
@@ -68,7 +68,7 @@
 <li class="toctree-l2"><a class="reference internal" href="cu-system-information.html">Information</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cu-system-list.html">Particle list</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cu-system-group.html">Particle set</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cu-system-group.html#dynamic-particle-set">Dynamic Particle Set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-system-group.html#dynamic-particle-set">Dynamic particle set</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cu-system-compute.html">Information computation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cu-system-sort.html">Memory sorting</a></li>
 </ul>
@@ -122,7 +122,7 @@
 <p>Import the pygamd module from cuda libray for the simulations on NVIDIA GPU.</p>
 <blockquote>
 <div><p>Examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">poetry</span> <span class="kn">import</span> <span class="n">cu_gala</span> <span class="k">as</span> <span class="n">gala</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">poetry</span><span class="w"> </span><span class="kn">import</span> <span class="n">cu_gala</span> <span class="k">as</span> <span class="n">gala</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -132,7 +132,7 @@
 <p>Import the pygamd module from hip libray for the simulations on DCU.</p>
 <blockquote>
 <div><p>Examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">poetry</span> <span class="kn">import</span> <span class="n">hip_gala</span> <span class="k">as</span> <span class="n">gala</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">poetry</span><span class="w"> </span><span class="kn">import</span> <span class="n">hip_gala</span> <span class="k">as</span> <span class="n">gala</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -142,7 +142,7 @@
 <p>Import the pygamd module from cuda libray for the simulations on NVIDIA GPU.</p>
 <blockquote>
 <div><p>Examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">poetry</span> <span class="kn">import</span> <span class="n">win_gala</span> <span class="k">as</span> <span class="n">gala</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">poetry</span><span class="w"> </span><span class="kn">import</span> <span class="n">win_gala</span> <span class="k">as</span> <span class="n">gala</span>
 </pre></div>
 </div>
 </div></blockquote>

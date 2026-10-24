@@ -7,13 +7,13 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Variant &mdash; PYGAMD v1 documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
 
   
       <script src="../_static/documentation_options.js?v=5cb08e4e"></script>
-      <script src="../_static/doctools.js?v=9bcbadda"></script>
-      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -47,13 +47,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../units.html">Units</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Modules (NUMBA)</span></p>
+<p class="caption" role="heading"><span class="caption-text">Modules (CUPY)</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../numba/system.html">System info</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/application.html">Application</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/forcefield.html">Force field</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/integration.html">Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../numba/module.html">Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/system.html">System info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/application.html">Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/forcefield.html">Force field</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/integration.html">Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cupy/module.html">Modules</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Modules (CUDA)</span></p>
 <ul class="current">
@@ -91,6 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="cu-constraint-ccpmd.html">Constant chemical potential</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cu-constraint-bond_constraint.html">Bond constraint</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cu-constraint-virtual_site.html">Virtual site</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cu-constraint-force_constraint.html">Force constraint</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cu-externalfield.html">External field</a></li>
@@ -141,11 +142,11 @@
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="VariantConst">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VariantConst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#VariantConst" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">VariantConst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#VariantConst" title="Link to this definition">¶</a></dt>
 <dd><p>The constructor of a constant value method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><em>float</em></a>) – The constant value.</p>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><em>float</em></a>) – The constant value.</p>
 </dd>
 </dl>
 <p>Example:</p>
@@ -163,7 +164,7 @@
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="VariantLinear">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VariantLinear</span></span><a class="headerlink" href="#VariantLinear" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">VariantLinear</span></span><a class="headerlink" href="#VariantLinear" title="Link to this definition">¶</a></dt>
 <dd><blockquote>
 <div><p>The constructor of a linearly varying value method.</p>
 </div></blockquote>
@@ -191,7 +192,7 @@
 <h2>Variant Sin<a class="headerlink" href="#variant-sin" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="VariantSin">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VariantSin</span></span><a class="headerlink" href="#VariantSin" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">VariantSin</span></span><a class="headerlink" href="#VariantSin" title="Link to this definition">¶</a></dt>
 <dd><blockquote>
 <div><p>The constructor of a sinusoidal curve varying object.</p>
 </div></blockquote>
@@ -218,7 +219,7 @@
 <h2>Variant Well<a class="headerlink" href="#variant-well" title="Link to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="VariantWell">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VariantWell</span></span><a class="headerlink" href="#VariantWell" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">VariantWell</span></span><a class="headerlink" href="#VariantWell" title="Link to this definition">¶</a></dt>
 <dd><blockquote>
 <div><p>The constructor of a well curve varying object.</p>
 </div></blockquote>
@@ -248,7 +249,7 @@ This method return factor*sqrt(v0/v) , where v is real time value of linear inte
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="VariantRsqrt">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">VariantRsqrt</span></span><a class="headerlink" href="#VariantRsqrt" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">VariantRsqrt</span></span><a class="headerlink" href="#VariantRsqrt" title="Link to this definition">¶</a></dt>
 <dd><blockquote>
 <div><p>The constructor of a reversed sqrt() varying object.</p>
 </div></blockquote>
@@ -282,9 +283,9 @@ This method return factor*sqrt(v0/v) , where v is real time value of linear inte
 
 <span class="c1"># The stretching method to control the changes of box at three directions</span>
 <span class="n">axs</span> <span class="o">=</span> <span class="n">gala</span><span class="o">.</span><span class="n">AxialStretching</span><span class="p">(</span><span class="n">all_info</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span>
-<span class="n">axs</span><span class="o">.</span><span class="n">setBoxLength</span><span class="p">(</span><span class="n">vz</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">)</span>
-<span class="n">axs</span><span class="o">.</span><span class="n">setBoxLength</span><span class="p">(</span><span class="n">vx</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">)</span>
-<span class="n">axs</span><span class="o">.</span><span class="n">setBoxLength</span><span class="p">(</span><span class="n">vy</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">setBoxLength</span><span class="p">(</span><span class="n">vz</span><span class="p">,</span> <span class="s1">'Z'</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">setBoxLength</span><span class="p">(</span><span class="n">vx</span><span class="p">,</span> <span class="s1">'X'</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">setBoxLength</span><span class="p">(</span><span class="n">vy</span><span class="p">,</span> <span class="s1">'Y'</span><span class="p">)</span>
 <span class="n">axs</span><span class="o">.</span><span class="n">setPeriod</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">axs</span><span class="p">)</span>
 </pre></div>
