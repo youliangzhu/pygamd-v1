@@ -345,7 +345,7 @@ def parseDihedralParams(filename, dihedral_types):
 
 def LJEwaldForce(all_info, neighbor_list, rcut, filename):
 	lj = gala.LJEwaldForce(all_info, neighbor_list, rcut)
-	atom_type = all_info.getBasicInfo().getParticleTypes()	
+	atom_type = all_info.getBasicInfo().getParticleTypeMap()	
 	parseNonbondParams(filename, atom_type)
 	for i in range(0, len(value)):
 		lj.setParams(pair[i][0], pair[i][1], value[i][0], value[i][1], 1.0)
@@ -354,7 +354,7 @@ def LJEwaldForce(all_info, neighbor_list, rcut, filename):
     
 def HarmonicForce(all_info, neighbor_list, alpha, filename):
 	hf = gala.HarmonicForce(all_info, neighbor_list, 1.0)
-	atom_type = all_info.getBasicInfo().getParticleTypes()	
+	atom_type = all_info.getBasicInfo().getParticleTypeMap()	
 	parseNonbondParams(filename, atom_type)
 	for i in range(0, len(value)):
 		hf.setParams(pair[i][0], pair[i][1], alpha, value[i][1]*1.2)
@@ -363,7 +363,7 @@ def HarmonicForce(all_info, neighbor_list, alpha, filename):
 	
 def LJCoulombShiftForce(all_info, neighbor_list, rcut, rshift, epsilonr, filename):
 	lj = gala.LJCoulombShiftForce(all_info, neighbor_list)
-	atom_type = all_info.getBasicInfo().getParticleTypes()	
+	atom_type = all_info.getBasicInfo().getParticleTypeMap()	
 	lj.setCoulomb(rcut, rshift, epsilonr)
 	parseNonbondParams(filename, atom_type)
 	for i in range(0, len(value)):
@@ -373,7 +373,7 @@ def LJCoulombShiftForce(all_info, neighbor_list, rcut, rshift, epsilonr, filenam
 
 def LJShiftForce(all_info, neighbor_list, rcut, rshift, filename):
 	lj = gala.LJShiftForce(all_info, neighbor_list)
-	atom_type = all_info.getBasicInfo().getParticleTypes()	
+	atom_type = all_info.getBasicInfo().getParticleTypeMap()	
 	parseNonbondParams(filename, atom_type)
 	for i in range(0, len(value)):
 		lj.setParams(pair[i][0], pair[i][1], value[i][0], value[i][1], 1.0, rcut, rshift)

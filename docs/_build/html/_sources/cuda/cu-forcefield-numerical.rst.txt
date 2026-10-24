@@ -57,7 +57,7 @@ For convenience, the potentials also can be read directively from two columns in
 
 With the potential input format, :math:`x` corresponds to :math:`r` for distance and :math:`F=-\partial V(r)/\partial r`. 
 The distance or angle points in first column should be in equal interval and the potentials at the corresponding points are given in second column. 
-The angles :math:`\theta` and :math:`\varphi` are in radians. The other node names for bond, angle and dihedral are ``BondPotential``, ``AnglePotential``, and ``Dihedralpotential``, respectively.
+The angles :math:`\theta` and :math:`\varphi` are in radians. The other node names for bond, angle and dihedral are ``BondPotential``, ``AnglePotential``, and ``DihedralPotential``, respectively.
 	  
 Non-bonded interaction
 ----------------------

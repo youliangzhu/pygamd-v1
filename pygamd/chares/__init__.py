@@ -30,11 +30,19 @@ CORRESPONDENCE
 	Email: ylzhu@pygamd.com
 '''
 
-import sys;
-import ctypes;
-import os;
+# [CuPy-native MVP] CuPy-native group property reductions (momentum / temperature
+# / pressure / potential) for dump.data.  LAZY: imported on first access
+# (chares.compute_properties); importing this package needs no CUDA driver.
+__all__ = ["compute_properties"]
 
-from pygamd.chares import compute_properties
+
+def __getattr__(name):
+    if name in __all__:
+        import importlib
+        module = importlib.import_module("." + name, __name__)
+        globals()[name] = module
+        return module
+    raise AttributeError("module %r has no attribute %r" % (__name__, name))
 
 # if __name__ == '__main__':
     # print ('main program run')

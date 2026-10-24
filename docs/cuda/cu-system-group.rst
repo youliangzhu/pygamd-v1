@@ -63,7 +63,7 @@ Particle set
       # combines two particle sets into one set.
    
    
-Dynamic Particle Set
+Dynamic particle set
 ====================
 
 .. py:class:: DynamicParticleSet(all_info, keyword)

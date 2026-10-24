@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<galamost_xml version="1.3">
+<configuration time_step="0" dimensions="3" natoms="2" >
+<box lx="5.0" ly="5.0" lz="5.0"/>
+<position num="2">
+0.0 0.0 0.0
+0.154 0.0 0.0
+</position>
+<type num="2">
+M
+M
+</type>
+<bond num="1">
+M-M 0 1
+</bond>
+</configuration>
+</galamost_xml>

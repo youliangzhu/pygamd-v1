@@ -1,0 +1,19 @@
+# linux安装环境设置
+linux=true
+{
+gpu=nvidia 4080
+open-mpi=false
+}
+
+
+# windows安装环境设置
+windows=false
+{
+gpu=nvidia 4060 Ti
+}
+
+# conda环境名设置
+conda-python-name=pygamd-python312
+
+# 启动安装后的检测运行
+run-examine=false

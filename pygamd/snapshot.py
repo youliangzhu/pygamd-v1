@@ -30,14 +30,20 @@ CORRESPONDENCE
 	Email: ylzhu@pygamd.com
 '''
 
+# [CuPy-native MVP] device-data PRODUCER: CuInfo (CuPy).  read(..., backend="cupy")
+# (the default and only supported backend) parses the XML/MST on host (NumPy) and
+# builds the CuPy-native CuInfo layer (info.cu); info.d_* alias the CuInfo CuPy
+# buffers.  No numba.  Topology (bond/angle/dihedral) and multipole device data
+# are not part of the MVP and raise NotImplementedError.
 from pygamd import snapshots
 import numpy as np
-import numba as nb
-from numba import cuda
 
 # read a snapshot file with certain format
 class read:
-	def __init__(self, filename):
+	# backend="cupy" (default) builds the CuPy-native CuInfo device-data layer
+	# (info.cu) and is the only supported runtime backend in this package.
+	# Legacy backend="numba" has been removed instead of kept as a fallback.
+	def __init__(self, filename, backend="cupy"):
 		file_array=filename.split(".")
 		if file_array[len(file_array)-1]=="mst":
 			self.data = snapshots.read_mst.read_mst(filename)
@@ -215,24 +221,31 @@ class read:
 		self.virial_potential = np.zeros([self.npa, 2], dtype=np.float32)
 		self.ntypes=len(self.typemap)
 		
-		if len(self.data.bond)>0:
-			self.bond = snapshots.bonded_data.bond_data(self, self.data.bond)
-			
-		if len(self.data.angle)>0:
-			self.angle = snapshots.bonded_data.angle_data(self, self.data.angle)
-
-		if len(self.data.dihedral)>0:
-			self.dihedral = snapshots.bonded_data.dihedral_data(self, self.data.dihedral)
-
-		# device arrays		
-		self.d_pos = cuda.to_device(self.pos)
-		self.d_box = cuda.to_device(self.box)
-		self.d_image = cuda.to_device(self.image)
-		self.d_vel = cuda.to_device(self.vel)
-		self.d_force = cuda.to_device(self.force)
-		self.d_virial_potential = cuda.to_device(self.virial_potential)
-		self.d_tag = cuda.to_device(self.tag)
-		self.d_rtag = cuda.to_device(self.rtag)
+		# --- core particle device arrays (CuPy-native CuInfo) -----------------
+		# The canonical particle buffers are CuPy device arrays owned by a CuInfo
+		# device-data layer (host NumPy -> cupy.asarray, dtype-normalized).
+		# info.d_* alias the CuInfo CuPy buffers; RawPair / RawNVT / clist / nlist /
+		# chare / dump all consume CuPy directly.  "numba" backend is unsupported.
+		if backend != "cupy":
+			raise NotImplementedError(
+				"pygamd.snapshot.read only supports backend='cupy' (CuInfo CuPy-native "
+				"device data) in this MVP; the Numba uploader was removed.  Got %r." % (backend,))
+		self.backend = "cupy"
+		from pygamd.backend.cupy.info import CuInfo
+		self.cu = CuInfo(self.npa, pos=self.pos, vel=self.vel,
+		                 force=self.force, virial_potential=self.virial_potential,
+		                 image=self.image, box=self.box, tag=self.tag, rtag=self.rtag)
+		self.is_cuinfo = True
+		_cp = self.cu.cp
+		# info.d_* are the CuInfo CuPy arrays (same device buffers).
+		self.d_pos = self.cu.d_pos
+		self.d_box = self.cu.d_box
+		self.d_image = self.cu.d_image
+		self.d_vel = self.cu.d_vel
+		self.d_force = self.cu.d_force
+		self.d_virial_potential = self.cu.d_virial_potential
+		self.d_tag = self.cu.d_tag
+		self.d_rtag = self.cu.d_rtag
 		self.d_velo = None
 
 		self.d_charge = None
@@ -247,41 +260,55 @@ class read:
         
         
 		self.d_multipole = None
-		# jin
-		# small_value = 1e-10
-		# init_mp = [[small_value] * 10 for _ in range(self.npa)]
-		# self.d_multipole = cuda.to_device(init_mp)
-		# init_f_pol = np.full((self.npa, 3), small_value)
-		# self.d_fieldPol = cuda.to_device(init_f_pol)
-		# init_f_ct = np.full((self.npa, 3), small_value)
-		# self.d_fieldCt = cuda.to_device(init_f_ct)
 
+		# Optional per-particle fields: registered as first-class CuInfo fields
+		# (info.cu.d_<name>) AND aliased onto the snapshot (info.d_<name>) for
+		# dump compatibility.  All CuPy-native (cu.add_field), no Numba.
 		if len(self.data.charge)==self.npa:
-			self.d_charge = cuda.to_device(self.charge)
+			self.d_charge = self.cu.add_field("charge", self.charge)
 
 		if len(self.data.body)==self.npa:
-			self.d_body = cuda.to_device(self.body)
-			
+			self.d_body = self.cu.add_field("body", self.body)
+
 		if len(self.data.diameter)==self.npa:
-			self.d_diameter = cuda.to_device(self.diameter)
+			self.d_diameter = self.cu.add_field("diameter", self.diameter)
 
 		if len(self.data.molecule)==self.npa:
-			self.d_molecule = cuda.to_device(self.molecule)
+			self.d_molecule = self.cu.add_field("molecule", self.molecule)
 
 		if len(self.data.init)==self.npa:
-			self.d_init = cuda.to_device(self.init)			
+			self.d_init = self.cu.add_field("init", self.init)
 
 		if len(self.data.cris)==self.npa:
-			self.d_cris = cuda.to_device(self.cris)	
-				
+			self.d_cris = self.cu.add_field("cris", self.cris)
+
 		if len(self.data.orientation)==self.npa:
-			self.d_orientation = cuda.to_device(self.orientation)	
+			self.d_orientation = self.cu.add_field("orientation", self.orientation)
 
 		if len(self.data.quaternion)==self.npa:
-			self.d_quaternion = cuda.to_device(self.quaternion)	
+			self.d_quaternion = self.cu.add_field("quaternion", self.quaternion)
 
 		if len(self.data.inert)==self.npa:
-			self.d_inert = cuda.to_device(self.inert)			
+			self.d_inert = self.cu.add_field("inert", self.inert)
+
+		# --- topology (bond / angle / dihedral): CuPy-native data layer -------
+		# Stored in CuInfo as tag-based AND index-based int32 arrays + type ids
+		# (see backend/cupy/info.py CuTopology).  info.bond/.angle/.dihedral keep
+		# the raw host entry lists (.bonds/.angles/.dihedrals) for dump roundtrip.
+		# NOTE: this is data only -- RawBond/RawAngle/RawDihedral forces are a
+		# later migration step.  vsite is parsed but kept host-only this round.
+		if len(self.data.bond) > 0:
+			self.bond = self.cu.add_topology("bond", self.data.bond, self.rtag)
+			self.bond.bonds = self.data.bond
+		if len(self.data.angle) > 0:
+			self.angle = self.cu.add_topology("angle", self.data.angle, self.rtag)
+			self.angle.angles = self.data.angle
+		if len(self.data.dihedral) > 0:
+			self.dihedral = self.cu.add_topology("dihedral", self.data.dihedral, self.rtag)
+			self.dihedral.dihedrals = self.data.dihedral
+		if len(getattr(self.data, "vsite", [])) > 0:
+			# vsite parsed but not yet a device topology block (noted in inventory)
+			self.vsite = self.data.vsite
 
 	# add type name and convert it to type index		
 	def add_name_to_id(self, typename):
@@ -316,7 +343,18 @@ class read:
 				return i
 
 	def init_multipole_data(self):
-		if self.multipole is None:
-			self.multipole = snapshots.multipole_data.multipole_data(self, self.data.type, self.data.position)
-			self.d_multipole = cuda.to_device(self.multipole)
+		# multipole is DEFERRED to the multipole-force stage (Plan B): it is
+		# derived data (computed from type+position by the archived Numba
+		# multipole_data builder), not a stored per-particle field, and there is
+		# no multipole force in the CuPy main line yet.  Not restored this round.
+		raise NotImplementedError(
+			"multipole is deferred to the multipole force stage "
+			"(not part of the CuInfo full-fields data layer).")
+
+
+# CuPy-native read entry point (== read(filename, backend="cupy")).  Returns a
+# snapshot whose core particle data is a CuInfo CuPy device-data layer (info.cu);
+# this is the dynamics main line consumed by RawPair / RawNVT.
+def read_cupy(filename):
+	return read(filename, backend="cupy")
 

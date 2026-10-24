@@ -30,11 +30,14 @@ CORRESPONDENCE
 	Email: ylzhu@pygamd.com
 '''
 
-# from pygamd import dumps
+# [CuPy-native MVP] CuPy-native output/logging (no numba).  data.log uses the
+# CuPy group reductions (chare.comp_info); xml/mst pull particle data to host via
+# cupy.asnumpy (pygamd.backend.cupy.asnumpy) on the CuInfo CuPy buffers.  The
+# data.log header/format is unchanged: timestep momentum temperature pressure potential.
 from pygamd import chare
-from numba import cuda
+from pygamd.profiler import prof
+from pygamd.backend.cupy import asnumpy
 import numpy as np
-import math
 
 class data:
 	def __init__(self, info, group, file, period):
@@ -52,12 +55,17 @@ class data:
 		
 	def compute(self, timestep):
 		if timestep%self.period==0:
-	
+			prof.begin("dump_total")
+			prof.begin("dump_data_total")
 			self.ci.calculate(timestep)
 			# output data
+			prof.begin("dump_write_file")
 			with open(self.file, 'a+') as f:
 				#f.write(str(timestep)+"  "+str(self.ci.momentum)+"	 "+str(self.ci.temp)+"	"+str(self.ci.pressure)+"  "+str(self.ci.potential)+"\n")
 				f.write('%10d\t%.6e\t%.6f\t%.6e\t%.6f\n' % (timestep, self.ci.momentum, self.ci.temp, self.ci.pressure, self.ci.potential))
+			prof.end("dump_write_file")
+			prof.end("dump_data_total")
+			prof.end("dump_total")
 				
 	def register(self, timestep):
 		if timestep%self.period==0:
@@ -142,13 +150,13 @@ class mst:
 			f.write('\tdimension\n')
 			f.write('\t\t%d\n' % (self.info.dimension))
 			
-		self.info.rtag = self.info.d_rtag.copy_to_host()
+		self.info.rtag = asnumpy(self.info.d_rtag)
 		if self.info.variant["box"]==variant_indicator and self.dump["box"]:
 			f.write('\tbox\n')
 			f.write('\t\t%10.6f\t%10.6f\t%10.6f\n' % (self.info.box[0], self.info.box[1], self.info.box[2]))
 			
 		if self.info.variant["position"]==variant_indicator and self.dump["position"]:
-			self.info.pos = self.info.d_pos.copy_to_host()
+			self.info.pos = asnumpy(self.info.d_pos)
 			f.write('\tposition\n')
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -156,7 +164,7 @@ class mst:
 				f.write('\t\t%10.6f\t%10.6f\t%10.6f\n' % (self.info.pos[idx][0], self.info.pos[idx][1], self.info.pos[idx][2]))
 				
 		if self.info.variant["type"]==variant_indicator and self.dump["type"]:
-			self.info.pos = self.info.d_pos.copy_to_host()
+			self.info.pos = asnumpy(self.info.d_pos)
 			f.write('\ttype\n')
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -165,7 +173,7 @@ class mst:
 				f.write('\t\t'+self.info.typemap[typid]+'\n')
 				
 		if self.info.variant["velocity"]==variant_indicator and self.dump["velocity"]:
-			self.info.vel = self.info.d_vel.copy_to_host()
+			self.info.vel = asnumpy(self.info.d_vel)
 			f.write('\tvelocity\n')
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -173,7 +181,7 @@ class mst:
 				f.write('\t\t%10.6f\t%10.6f\t%10.6f\n' % (self.info.vel[idx][0], self.info.vel[idx][1], self.info.vel[idx][2]))
 				
 		if self.info.variant["image"]==variant_indicator and self.dump["image"]:
-			self.info.image = self.info.d_image.copy_to_host()
+			self.info.image = asnumpy(self.info.d_image)
 			f.write('\timage\n')
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -181,7 +189,7 @@ class mst:
 				f.write('\t\t%10d\t%10d\t%10d\n' % (self.info.image[idx][0], self.info.image[idx][1], self.info.image[idx][2]))
 				
 		if self.info.variant["mass"]==variant_indicator and self.dump["mass"]:
-			self.info.vel = self.info.d_vel.copy_to_host()
+			self.info.vel = asnumpy(self.info.d_vel)
 			f.write('\tmass\n')
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -189,7 +197,7 @@ class mst:
 				f.write('\t\t%10.6f\n' % (self.info.vel[idx][3]))
 				
 		if self.info.variant["force"]==variant_indicator and self.dump["force"]:
-			self.info.force = self.info.d_force.copy_to_host()
+			self.info.force = asnumpy(self.info.d_force)
 			f.write('\tforce\n')
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -197,7 +205,7 @@ class mst:
 				f.write('\t\t%10.6f\t%10.6f\t%10.6f\n' % (self.info.force[idx][0], self.info.force[idx][1], self.info.force[idx][2]))
 				
 		if self.info.variant["virial"]==variant_indicator and self.dump["virial"]:
-			self.info.virial_potential = self.info.d_virial_potential.copy_to_host()
+			self.info.virial_potential = asnumpy(self.info.d_virial_potential)
 			f.write('\tvirial\n')
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -205,7 +213,7 @@ class mst:
 				f.write('\t\t%10.6f\n' % (self.info.virial_potential[idx][0]))
 				
 		if self.info.variant["potential"]==variant_indicator and self.dump["potential"]:
-			self.info.virial_potential = self.info.d_virial_potential.copy_to_host()
+			self.info.virial_potential = asnumpy(self.info.d_virial_potential)
 			f.write('\tpotential\n')
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -213,7 +221,7 @@ class mst:
 				f.write('\t\t%10.6f\n' % (self.info.virial_potential[idx][1]))
 				
 		if self.info.charge is not None and self.info.variant["charge"]==variant_indicator and self.dump["charge"]:
-			self.info.charge = self.info.d_charge.copy_to_host()
+			self.info.charge = asnumpy(self.info.d_charge)
 			f.write('\tcharge\n')
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -221,7 +229,7 @@ class mst:
 				f.write('\t\t%10.6f\n' % (self.info.charge[idx]))
 				
 		if self.info.body is not None and self.info.variant["body"]==variant_indicator and self.dump["body"]:
-			self.info.body = self.info.d_body.copy_to_host()
+			self.info.body = asnumpy(self.info.d_body)
 			f.write('\tbody\n')
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -229,7 +237,7 @@ class mst:
 				f.write('\t\t%10d\n' % (self.info.body[idx]))
 
 		if self.info.diameter is not None and self.info.variant["diameter"]==variant_indicator and self.dump["diameter"]:
-			self.info.diameter = self.info.d_diameter.copy_to_host()
+			self.info.diameter = asnumpy(self.info.d_diameter)
 			f.write('\tdiameter\n')
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -237,7 +245,7 @@ class mst:
 				f.write('\t\t%10.6f\n' % (self.info.diameter[idx]))
 
 		if self.info.init is not None and self.info.variant["init"]==variant_indicator and self.dump["init"]:
-			self.info.init = self.info.d_init.copy_to_host()
+			self.info.init = asnumpy(self.info.d_init)
 			f.write('\tinit\n')
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -245,7 +253,7 @@ class mst:
 				f.write('\t\t%10d\n' % (self.info.init[idx]))
 
 		if self.info.cris is not None and self.info.variant["cris"]==variant_indicator and self.dump["cris"]:
-			self.info.cris = self.info.d_cris.copy_to_host()
+			self.info.cris = asnumpy(self.info.d_cris)
 			f.write('\tcris\n')
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -301,8 +309,9 @@ class xml:
 		self.dump = {'position':True, 'type':True, 'mass':True, 'image':True,
 					'velocity':False, 'force':False, 'potential':False, 'virial':False,
 					'charge':False, 'body':False, 'diameter':False, 'init':False, 'cris':False,
+					'molecule':False, 'orientation':False, 'quaternion':False, 'inert':False,
 					'bond':True, 'angle':True, 'dihedral':True}
-		
+
 		if self.properties is not None:
 			for key in self.dump:
 				self.dump[key]=False
@@ -312,6 +321,8 @@ class xml:
 
 	def compute(self, timestep):
 		if timestep%self.period==0:
+			prof.begin("dump_total")
+			prof.begin("dump_xml_total")
 			# output data
 			if not self.split:
 				if self.first_compute:
@@ -332,22 +343,26 @@ class xml:
 					self.write_properties(f, timestep)
 					f.write('</galamost_xml>\n')
 			self.frame += 1
+			prof.end("dump_xml_total")
+			prof.end("dump_total")
 			
 	def write_properties(self, f, timestep):
 		f.write('<configuration time_step="%d" dimensions="%d" natoms="%d" >\n' % (timestep, self.info.dimension, self.ps.nme))
 		f.write('<box lx="%10.6f" ly="%10.6f" lz="%10.6f"/>\n' % (self.info.box[0], self.info.box[1], self.info.box[2]))
-		self.info.rtag = self.info.d_rtag.copy_to_host()
+		self.info.rtag = asnumpy(self.info.d_rtag)
 		if self.dump["position"]:
-			self.info.pos = self.info.d_pos.copy_to_host()
+			prof.begin("dump_copy_to_host_pos")
+			self.info.pos = asnumpy(self.info.d_pos)
+			prof.end("dump_copy_to_host_pos")
 			f.write('<position num="%d">\n' % (self.ps.nme))
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
-				idx = self.info.rtag[tag] 
+				idx = self.info.rtag[tag]
 				f.write('%10.6f\t%10.6f\t%10.6f\n' % (self.info.pos[idx][0], self.info.pos[idx][1], self.info.pos[idx][2]))
 			f.write('</position>\n')
 			
 		if self.dump["type"]:
-			self.info.pos = self.info.d_pos.copy_to_host()
+			self.info.pos = asnumpy(self.info.d_pos)
 			f.write('<type num="%d">\n' % (self.ps.nme))
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -357,16 +372,18 @@ class xml:
 			f.write('</type>\n')
 			
 		if self.dump["velocity"]:
-			self.info.vel = self.info.d_vel.copy_to_host()
+			prof.begin("dump_copy_to_host_vel")
+			self.info.vel = asnumpy(self.info.d_vel)
+			prof.end("dump_copy_to_host_vel")
 			f.write('<velocity num="%d">\n' % (self.ps.nme))
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
-				idx = self.info.rtag[tag] 
+				idx = self.info.rtag[tag]
 				f.write('%10.6f\t%10.6f\t%10.6f\n' % (self.info.vel[idx][0], self.info.vel[idx][1], self.info.vel[idx][2]))
 			f.write('</velocity>\n')
 			
 		if self.dump["image"]:
-			self.info.image = self.info.d_image.copy_to_host()
+			self.info.image = asnumpy(self.info.d_image)
 			f.write('<image num="%d">\n' % (self.ps.nme))
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -375,7 +392,7 @@ class xml:
 			f.write('</image>\n')
 			
 		if self.dump["mass"]:
-			self.info.vel = self.info.d_vel.copy_to_host()
+			self.info.vel = asnumpy(self.info.d_vel)
 			f.write('<mass num="%d">\n' % (self.ps.nme))
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -384,25 +401,29 @@ class xml:
 			f.write('</mass>\n') 
 			
 		if self.dump["force"]:
-			self.info.force = self.info.d_force.copy_to_host()
+			prof.begin("dump_copy_to_host_force")
+			self.info.force = asnumpy(self.info.d_force)
+			prof.end("dump_copy_to_host_force")
 			f.write('<force num="%d">\n' % (self.ps.nme))
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
-				idx = self.info.rtag[tag] 
+				idx = self.info.rtag[tag]
 				f.write('%10.6f\t%10.6f\t%10.6f\n' % (self.info.force[idx][0], self.info.force[idx][1], self.info.force[idx][2]))
-			f.write('</force>\n') 
+			f.write('</force>\n')
 			
 		if self.dump["virial"]:
-			self.info.virial_potential = self.info.d_virial_potential.copy_to_host()
+			prof.begin("dump_copy_to_host_virial")
+			self.info.virial_potential = asnumpy(self.info.d_virial_potential)
+			prof.end("dump_copy_to_host_virial")
 			f.write('<virial num="%d">\n' % (self.ps.nme))
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
-				idx = self.info.rtag[tag] 
+				idx = self.info.rtag[tag]
 				f.write('%10.6f\n' % (self.info.virial_potential[idx][0]))
-			f.write('</virial>\n') 
+			f.write('</virial>\n')
 			
 		if self.dump["potential"]:
-			self.info.virial_potential = self.info.d_virial_potential.copy_to_host()
+			self.info.virial_potential = asnumpy(self.info.d_virial_potential)
 			f.write('<potential num="%d">\n' % (self.ps.nme))
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -411,7 +432,7 @@ class xml:
 			f.write('</potential>\n')
 			
 		if self.info.charge is not None and self.dump["charge"]:
-			self.info.charge = self.info.d_charge.copy_to_host()
+			self.info.charge = asnumpy(self.info.d_charge)
 			f.write('<charge num="%d">\n' % (self.ps.nme))
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -420,7 +441,7 @@ class xml:
 			f.write('</charge>\n')
 			
 		if self.info.body is not None and self.dump["body"]:
-			self.info.body = self.info.d_body.copy_to_host()
+			self.info.body = asnumpy(self.info.d_body)
 			f.write('<body num="%d">\n' % (self.ps.nme))
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -429,7 +450,7 @@ class xml:
 			f.write('</body>\n')
 
 		if self.info.diameter is not None and self.dump["diameter"]:
-			self.info.diameter = self.info.d_diameter.copy_to_host()
+			self.info.diameter = asnumpy(self.info.d_diameter)
 			f.write('<diameter num="%d">\n' % (self.ps.nme))
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -438,7 +459,7 @@ class xml:
 			f.write('</diameter>\n')
 
 		if self.info.init is not None and self.dump["init"]:
-			self.info.init = self.info.d_init.copy_to_host()
+			self.info.init = asnumpy(self.info.d_init)
 			f.write('<init num="%d">\n' % (self.ps.nme))
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
@@ -447,14 +468,50 @@ class xml:
 			f.write('</init>\n')
 
 		if self.info.cris is not None and self.dump["cris"]:
-			self.info.cris = self.info.d_cris.copy_to_host()
+			self.info.cris = asnumpy(self.info.d_cris)
 			f.write('<cris num="%d">\n' % (self.ps.nme))
 			for i in range(0, self.ps.nme):
 				tag = self.ps.member[i]
-				idx = self.info.rtag[tag] 
+				idx = self.info.rtag[tag]
 				f.write('%10d\n' % (self.info.cris[idx]))
-			f.write('</cris>\n')			
-			
+			f.write('</cris>\n')
+
+		if self.info.molecule is not None and self.dump["molecule"]:
+			self.info.molecule = asnumpy(self.info.d_molecule)
+			f.write('<molecule num="%d">\n' % (self.ps.nme))
+			for i in range(0, self.ps.nme):
+				tag = self.ps.member[i]
+				idx = self.info.rtag[tag]
+				f.write('%10d\n' % (self.info.molecule[idx]))
+			f.write('</molecule>\n')
+
+		if self.info.orientation is not None and self.dump["orientation"]:
+			self.info.orientation = asnumpy(self.info.d_orientation)
+			f.write('<orientation num="%d">\n' % (self.ps.nme))
+			for i in range(0, self.ps.nme):
+				tag = self.ps.member[i]
+				idx = self.info.rtag[tag]
+				f.write('%10.6f\t%10.6f\t%10.6f\n' % (self.info.orientation[idx][0], self.info.orientation[idx][1], self.info.orientation[idx][2]))
+			f.write('</orientation>\n')
+
+		if self.info.quaternion is not None and self.dump["quaternion"]:
+			self.info.quaternion = asnumpy(self.info.d_quaternion)
+			f.write('<quaternion num="%d">\n' % (self.ps.nme))
+			for i in range(0, self.ps.nme):
+				tag = self.ps.member[i]
+				idx = self.info.rtag[tag]
+				f.write('%10.6f\t%10.6f\t%10.6f\t%10.6f\n' % (self.info.quaternion[idx][0], self.info.quaternion[idx][1], self.info.quaternion[idx][2], self.info.quaternion[idx][3]))
+			f.write('</quaternion>\n')
+
+		if self.info.inert is not None and self.dump["inert"]:
+			self.info.inert = asnumpy(self.info.d_inert)
+			f.write('<inert num="%d">\n' % (self.ps.nme))
+			for i in range(0, self.ps.nme):
+				tag = self.ps.member[i]
+				idx = self.info.rtag[tag]
+				f.write('%10.6f\t%10.6f\t%10.6f\n' % (self.info.inert[idx][0], self.info.inert[idx][1], self.info.inert[idx][2]))
+			f.write('</inert>\n')
+
 		if self.info.bond is not None and self.dump["bond"]:
 			f.write('<bond num="%d">\n' % (len(self.info.bond.bonds)))
 			for i in range(0, len(self.info.bond.bonds)):

@@ -291,7 +291,7 @@ def parseWFParams(filename, atom_type):
 
 def HarmonicForce(all_info, neighbor_list, alpha, filename):
 	hf = gala.HarmonicForce(all_info, neighbor_list, 1.0)
-	atom_type = all_info.getBasicInfo().getParticleTypes()	
+	atom_type = all_info.getBasicInfo().getParticleTypeMap()	
 	parseNonbondParams(filename, atom_type)
 	for i in range(0, len(nonbonded_params)):
 		hf.setParams(nonbonded_params[i][0], nonbonded_params[i][1], alpha, float(nonbonded_params[i][3])*1.2)
@@ -300,7 +300,7 @@ def HarmonicForce(all_info, neighbor_list, alpha, filename):
 
 def LJEwaldForce(all_info, neighbor_list, rcut, filename):
 	lj = gala.LJEwaldForce(all_info, neighbor_list, rcut)
-	atom_type = all_info.getBasicInfo().getParticleTypes()	
+	atom_type = all_info.getBasicInfo().getParticleTypeMap()	
 	parseNonbondParams(filename, atom_type)
 	for i in range(0, len(nonbonded_params)):
 		lj.setParams(nonbonded_params[i][0], nonbonded_params[i][1], float(nonbonded_params[i][2]), float(nonbonded_params[i][3]), float(nonbonded_params[i][4]))
@@ -308,7 +308,7 @@ def LJEwaldForce(all_info, neighbor_list, rcut, filename):
 	
 def LJCoulombShiftForce(all_info, neighbor_list, rcut, rshift, epsilonr, filename):
 	lj = gala.LJCoulombShiftForce(all_info, neighbor_list)
-	atom_type = all_info.getBasicInfo().getParticleTypes()	
+	atom_type = all_info.getBasicInfo().getParticleTypeMap()	
 	lj.setCoulomb(rcut, rshift, epsilonr)
 	parseNonbondParams(filename, atom_type)
 	for i in range(0, len(nonbonded_params)):
@@ -317,7 +317,7 @@ def LJCoulombShiftForce(all_info, neighbor_list, rcut, rshift, epsilonr, filenam
 	
 def LJShiftForce(all_info, neighbor_list, rcut, rshift, filename):
 	lj = gala.LJShiftForce(all_info, neighbor_list)
-	atom_type = all_info.getBasicInfo().getParticleTypes()
+	atom_type = all_info.getBasicInfo().getParticleTypeMap()
 	parseNonbondParams(filename, atom_type)
 	for i in range(0, len(nonbonded_params)):
 		lj.setParams(nonbonded_params[i][0], nonbonded_params[i][1], float(nonbonded_params[i][2]), float(nonbonded_params[i][3]), float(nonbonded_params[i][4]), rcut, rshift)
@@ -325,7 +325,7 @@ def LJShiftForce(all_info, neighbor_list, rcut, rshift, filename):
 
 # def AHDHForce(all_info, neighbor_list, rcut, epsilon, debye_length, filename):
 	# ahdh = gala.AHDHForce(all_info, neighbor_list, rcut)
-	# atom_type = all_info.getBasicInfo().getParticleTypes()	
+	# atom_type = all_info.getBasicInfo().getParticleTypeMap()	
 	# ahdh.setDebyeLength(debye_length)
 	# parseAHParams(filename, atom_type)
 	# alpha = 1.0
@@ -335,7 +335,7 @@ def LJShiftForce(all_info, neighbor_list, rcut, rshift, filename):
     
 def AHDHForce(all_info, neighbor_list, rcut, epsilon, debye_length, filename, dna=False, domain=False):
     ahdh = gala.AHDHForce(all_info, neighbor_list, rcut)
-    atom_type = all_info.getBasicInfo().getParticleTypes()
+    atom_type = all_info.getBasicInfo().getParticleTypeMap()
     print("AHDH Force Info: you atom types:", atom_type)
     ahdh.setDebyeLength(debye_length)
     parseAHParams(filename, atom_type)
@@ -357,7 +357,7 @@ def AHDHForce(all_info, neighbor_list, rcut, epsilon, debye_length, filename, dn
     
 def WFDHForce(all_info, neighbor_list, rcut, debye_length, filename):
 	wfdh = gala.WFDHForce(all_info, neighbor_list, rcut)
-	atom_type = all_info.getBasicInfo().getParticleTypes()	
+	atom_type = all_info.getBasicInfo().getParticleTypeMap()	
 	wfdh.setDebyeLength(debye_length)
 	parseWFParams(filename, atom_type)
 	for i in range(0, len(wf_params)):

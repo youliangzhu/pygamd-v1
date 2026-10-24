@@ -30,14 +30,14 @@ CORRESPONDENCE
 	Email: ylzhu@pygamd.com
 '''
 
-import sys;
-import ctypes;
-import os;
 
+# CuPy-native integrators (RawKernel): NVT (Nose-Hoover), NVE (velocity-Verlet),
+# BD (Langevin/Brownian), and minimal DPDGWVV.  All cupy.RawKernel, no numba;
+# kernels compile lazily.
 from pygamd.integrations import nvt
-from pygamd.integrations import dpd
-from pygamd.integrations import bd
 from pygamd.integrations import nve
+from pygamd.integrations import bd
+from pygamd.integrations import dpd
 
 # if __name__ == '__main__':
     # print ('main program run')

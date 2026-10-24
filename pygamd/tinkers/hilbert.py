@@ -30,272 +30,104 @@ CORRESPONDENCE
 	Email: ylzhu@pygamd.com
 '''
 
-import math
-import numpy as np
-import numba as nb
-from numba import cuda
-import time
+# CuPy-native particle sort (tinker).  This round implements a DETERMINISTIC
+# GPU CELL-KEY sort (particles reordered by their cell index in row-major cell
+# order) -- a partial of the full GALAMOST Hilbert-curve traversal, which is a
+# follow-up.  The whole hot sort path is now device-side:
+#   - cell keys are computed from CuInfo.d_pos with CuPy,
+#   - argsort uses a deterministic composite key on GPU,
+#   - CuInfo.reorder() rebuilds d_rtag and topology indices on GPU,
+#   - every particle_set's device member list is rebuilt from d_tag on GPU,
+#   - every neighbor list is forced to rebuild on the next step.
+# Tag-based topology (and dump.xml topology output) is sort-invariant.
 
-def sort1(output, input):
-	output[0] = input[0]
-	output[1] = input[3]
-	output[2] = input[4]
-	output[3] = input[7]
-	output[4] = input[6]
-	output[5] = input[5]
-	output[6] = input[2]
-	output[7] = input[1]
-
-def sort2(output, input):
-	output[0] = input[0]
-	output[1] = input[7]
-	output[2] = input[6]
-	output[3] = input[1]
-	output[4] = input[2]
-	output[5] = input[5]
-	output[6] = input[4]
-	output[7] = input[3]
-
-def sort4(output, input):
-	output[0] = input[2]
-	output[1] = input[3]
-	output[2] = input[0]
-	output[3] = input[1]
-	output[4] = input[6]
-	output[5] = input[7]
-	output[6] = input[4]
-	output[7] = input[5]
-
-def sort6(output, input):
-	output[0] = input[4]
-	output[1] = input[3]
-	output[2] = input[2]
-	output[3] = input[5]
-	output[4] = input[6]
-	output[5] = input[1]
-	output[6] = input[0]
-	output[7] = input[7]
-
-def sort8(output, input):
-	output[0] = input[6]
-	output[1] = input[5]
-	output[2] = input[2]
-	output[3] = input[1]
-	output[4] = input[0]
-	output[5] = input[3]
-	output[6] = input[4]
-	output[7] = input[7]
-
-sort={0: sort1, 1: sort2, 2: sort2, 3: sort4, 4: sort4, 5: sort6, 6: sort6, 7: sort8}
-step = np.asarray([[0, 0, 0], [0, 0, 1], [0, 1, 1], [0, 1, 0], [1, 1, 0], [1, 1, 1], [1, 0, 1], [1, 0, 0]])
-
-# sort rtag
-@cuda.jit("void(int32, int32[:], int32[:])")
-def cu_sort_rtag(npa, rtag, tag):
-	i = cuda.grid(1)
-	if i < npa:
-		rtag[tag[i]] = i
-		
-# sort two dimensional int array	
-@cuda.jit("void(int32, int32[:], int32[:, :], int32[:, :])")
-def cu_sort_int2d(npa, particle_order, temp, array):
-	i = cuda.grid(1)
-	if i < npa:
-		order = particle_order[i]
-		for j in range(0, array.shape[1]):
-			temp[i][j] = array[order][j]
-			
-@cuda.jit("void(int32, int32[:, :], int32[:, :])")
-def cu_copy_int2d(npa, array, temp):
-	i = cuda.grid(1)
-	if i < npa:
-		for j in range(0, array.shape[1]):
-			array[i][j] = temp[i][j]
-			
-# sort two dimensional float array	
-@cuda.jit("void(int32, int32[:], float32[:, :], float32[:, :])")
-def cu_sort_float2d(npa, particle_order, temp, array):
-	i = cuda.grid(1)
-	if i < npa:
-		order = particle_order[i]
-		for j in range(0, array.shape[1]):
-			temp[i][j] = array[order][j]
-			
-@cuda.jit("void(int32, float32[:, :], float32[:, :])")
-def cu_copy_float2d(npa, array, temp):
-	i = cuda.grid(1)
-	if i < npa:
-		for j in range(0, array.shape[1]):
-			array[i][j] = temp[i][j]
-
-# sort one dimensional int array	
-@cuda.jit("void(int32, int32[:], int32[:], int32[:])")
-def cu_sort_int1d(npa, particle_order, temp, array):
-	i = cuda.grid(1)
-	if i < npa:
-		order = particle_order[i]
-		temp[i] = array[order]
-			
-@cuda.jit("void(int32, int32[:], int32[:])")
-def cu_copy_int1d(npa, array, temp):
-	i = cuda.grid(1)
-	if i < npa:
-		array[i] = temp[i]
-
-# sort one dimensional float array	
-@cuda.jit("void(int32, int32[:], float32[:], float32[:])")
-def cu_sort_float1d(npa, particle_order, temp, array):
-	i = cuda.grid(1)
-	if i < npa:
-		order = particle_order[i]
-		temp[i] = array[order]
-			
-@cuda.jit("void(int32, float32[:], float32[:])")
-def cu_copy_float1d(npa, array, temp):
-	i = cuda.grid(1)
-	if i < npa:
-		array[i] = temp[i]	
-
-
-@cuda.jit("void(int32, int32, float32[:, :], float32[:], int32[:], int32[:])")
-def cu_bin_particle(npa, ngrid, pos, box, order, bin_particle):
-	i = cuda.grid(1)
-	if i < npa:
-		pi = pos[i]			
-		fix = (pi[0] + box[0]*nb.float32(0.5))/box[0]
-		fiy = (pi[1] + box[1]*nb.float32(0.5))/box[1]		
-		fiz = (pi[2] + box[2]*nb.float32(0.5))/box[2]
-		
-		ix = nb.int32(fix * nb.float32(ngrid))
-		iy = nb.int32(fiy * nb.float32(ngrid))
-		iz = nb.int32(fiz * nb.float32(ngrid))
-		
-		if ix == ngrid:
-			ix = nb.int32(0)
-		if iy == ngrid:
-			iy = nb.int32(0)
-		if iz == ngrid:
-			iz = nb.int32(0)			
-		
-		bin = ix*(ngrid*ngrid) + iy * ngrid + iz
-		bin_particle[i] = order[bin]
+from pygamd.profiler import prof
+from pygamd import engine_metrics as _sp   # engine metrics opt-in counters
+from pygamd import engine_timing as _t     # engine timing opt-in timing decomposition
+from pygamd import launch_trace as _lt   # launch trace opt-in launch trace
 
 
 class sort_order:
-	def __init__(self, info):	
+	'''Periodic spatial sort of particles (cell-key; Hilbert traversal is a
+	follow-up).  app.add not required -- dynamics(sort=True) drives it.'''
+
+	def __init__(self, info):
 		self.info = info
-		if self.info.npa < np.int32(64)*np.int32(64)*np.int32(64):
-			self.ngrid = np.int32(64)
-		else:
-			self.ngrid = np.int32(128)
-		self.nelement = self.ngrid*self.ngrid*self.ngrid		
-		self.order = np.zeros(self.nelement, dtype=np.int32)
-		self.reverse_order = np.zeros(self.nelement, dtype=np.int32)
-		self.bin_particle = np.zeros(self.info.npa, dtype=np.int32)
-		self.particle_order = np.zeros(self.info.npa, dtype=np.int32)        
-		self.count = np.int32(0)
-		self.block_size = 256
-		self.nblocks = math.ceil(self.info.npa / self.block_size)
-		
-		cell_order = np.empty(8, dtype=np.int32)
-		for i in range(0, 8):
-			cell_order[i] = i
-		init = np.int32([0, 0, 0])
-		self.generate_order(init, self.ngrid, self.ngrid, cell_order, self.reverse_order)
-		for i in range(0, self.nelement):
-			self.order[self.reverse_order[i]] = i
-		# for i in range(0, self.nelement):
-			# print(self.order[i])
-		self.d_temp_int = cuda.device_array(self.info.npa, dtype=np.int32)
-		self.d_temp_float = cuda.device_array(self.info.npa, dtype=np.float32)
-		self.d_temp_int3 = cuda.device_array([self.info.npa, 3], dtype=np.int32)
-		self.d_temp_float4 = cuda.device_array([self.info.npa, 4], dtype=np.float32)
-		self.d_order = cuda.to_device(self.order)
-		
-		self.d_bin_particle = cuda.device_array(self.info.npa, dtype=np.int32)
-		self.d_particle_order = cuda.device_array(self.info.npa, dtype=np.int32)
-		
-		
+		self.cu = getattr(info, "cu", None)
+		if self.cu is None:
+			raise RuntimeError("Sort requires a CuInfo snapshot (backend='cupy').")
+		self.grid = None          # optional (mx,my,mz); default derived from box
+		self.sort_count = 0
+
+	def setGrid(self, mx, my, mz):
+		self.grid = (int(mx), int(my), int(mz))
+
+	def _cell_dims(self):
+		if self.grid is not None:
+			return self.grid
+		b = self.info.box
+		# default: ~unit cells, capped, >=1 per axis (deterministic, box-derived)
+		return (max(1, min(int(b[0]), 256)),
+		        max(1, min(int(b[1]), 256)),
+		        max(1, min(int(b[2]), 256)))
+
+	def _cell_key_device(self):
+		'''Return deterministic row-major cell keys as a CuPy device array.
+
+		This replaces the previous host-key path (`cu.to_numpy("pos")` +
+		NumPy cell-key calculation).  Positions are already kept in CuInfo.d_pos,
+		so the key calculation can stay entirely on the current CUDA device.
+		'''
+		cp = self.cu.cp
+		pos = self.cu.d_pos[:, :3]
+		b = cp.asarray(self.info.box[:3], dtype=cp.float32)
+		dim = cp.asarray(self._cell_dims(), dtype=cp.int32)
+		low = -0.5 * b
+		frac = (pos - low) / b
+		idx = cp.floor(frac * dim).astype(cp.int32)
+		idx = cp.clip(idx, 0, dim - 1)
+		# row-major cell id: iz + dimz*(iy + ix*dimy)
+		cell = idx[:, 2] + dim[2] * (idx[:, 1] + idx[:, 0] * dim[1])
+		return cell.astype(cp.int64, copy=False)
+
+	def _sort_order_device(self):
+		'''Return a CuPy device permutation for the current particle order.
+
+		CuPy's sort stability can vary by version/backend.  To preserve the old
+		`np.argsort(..., kind="stable")` semantics, sort a composite key:
+			cell_key * npa + current_index
+		This orders by cell and keeps same-cell particles in current-index order.
+		'''
+		cp = self.cu.cp
+		npa = int(self.info.npa)
+		cell = self._cell_key_device()
+		idx0 = cp.arange(npa, dtype=cp.int64)
+		key = cell * cp.int64(npa) + idx0
+		return cp.argsort(key).astype(cp.int32, copy=False)
+
 	def calculate(self, timestep):
-		if self.info.dimension == 3:
-			self.get_3d_order()
-		self.apply_order()
-		
-
-	def get_3d_order(self):
-		cu_bin_particle[self.nblocks, self.block_size](self.info.npa, self.ngrid, self.info.d_pos, self.info.d_box, self.d_order, self.d_bin_particle)
-		self.bin_particle = self.d_bin_particle.copy_to_host()
-		self.particle_order = np.argsort(self.bin_particle)
-		self.d_particle_order = cuda.to_device(self.particle_order)
-
-	def generate_order(self, ii, wi, mx, cell_order, reverse_order):
-		if wi == np.int32(1):
-			reverse_order[self.count] = ii[0]*mx*mx + ii[1]*mx + ii[2]
-			self.count += np.int32(1)
-		else:
-			wi = wi / np.int32(2)
-			for m in range(0, 8):
-				cell_id = cell_order[m]
-				jj = ii + wi * step[cell_id]
-				sub_cell_order = np.empty(8, dtype=np.int32)
-				sort[m](sub_cell_order, cell_order)
-				self.generate_order(jj, wi, mx, sub_cell_order, reverse_order)			
-			
-	def apply_order(self):
-		# sort tag array
-		cu_sort_int1d[self.nblocks, self.block_size](self.info.npa, self.d_particle_order, self.d_temp_int, self.info.d_tag)
-		cu_copy_int1d[self.nblocks, self.block_size](self.info.npa, self.info.d_tag, self.d_temp_int)
-		
-		# sort rtag array		
-		cu_sort_rtag[self.nblocks, self.block_size](self.info.npa, self.info.d_rtag, self.info.d_tag)
-
-		# sort position array
-		cu_sort_float2d[self.nblocks, self.block_size](self.info.npa, self.d_particle_order, self.d_temp_float4, self.info.d_pos)		
-		cu_copy_float2d[self.nblocks, self.block_size](self.info.npa, self.info.d_pos, self.d_temp_float4)	
-
-		# sort velocity array
-		cu_sort_float2d[self.nblocks, self.block_size](self.info.npa, self.d_particle_order, self.d_temp_float4, self.info.d_vel)		
-		cu_copy_float2d[self.nblocks, self.block_size](self.info.npa, self.info.d_vel, self.d_temp_float4)	
-
-		# sort image array
-		cu_sort_int2d[self.nblocks, self.block_size](self.info.npa, self.d_particle_order, self.d_temp_int3, self.info.d_image)		
-		cu_copy_int2d[self.nblocks, self.block_size](self.info.npa, self.info.d_image, self.d_temp_int3)
-		
-		# sort velocity0 array
-		if self.info.d_velo is not None:
-			cu_sort_float2d[self.nblocks, self.block_size](self.info.npa, self.d_particle_order, self.d_temp_float4, self.info.d_velo)
-			cu_copy_float2d[self.nblocks, self.block_size](self.info.npa, self.info.d_velo, self.d_temp_float4)
-			
-		# sort diameter array
-		if self.info.d_diameter is not None:
-			cu_sort_float1d[self.nblocks, self.block_size](self.info.npa, self.d_particle_order, self.d_temp_float, self.info.d_diameter)
-			cu_copy_float1d[self.nblocks, self.block_size](self.info.npa, self.info.d_diameter, self.d_temp_float)
-
-		# sort charge array
-		if self.info.d_charge is not None:
-			cu_sort_float1d[self.nblocks, self.block_size](self.info.npa, self.d_particle_order, self.d_temp_float, self.info.d_charge)
-			cu_copy_float1d[self.nblocks, self.block_size](self.info.npa, self.info.d_charge, self.d_temp_float)
-
-		# sort body array
-		if self.info.d_body is not None:
-			cu_sort_int1d[self.nblocks, self.block_size](self.info.npa, self.d_particle_order, self.d_temp_int, self.info.d_body)
-			cu_copy_int1d[self.nblocks, self.block_size](self.info.npa, self.info.d_body, self.d_temp_int)				
-
-		for p in self.info.plist:
-			p.data.sort()
-			p.data.calculate(True)
-
-		for p in self.info.particle_set:
-			p.sort()
-
-		if self.info.bond is not None:
-			self.info.bond.sort()
-
-		if self.info.angle is not None:
-			self.info.angle.sort()
-
-		if self.info.dihedral is not None:
-			self.info.dihedral.sort()
-
-			
-
+		prof.begin("tinker_sort_total")
+		prof.count("tinker_sort_total")
+		if _sp.ENABLED:
+			_sp.inc("sort_count")
+			_sp.note("tinker sort is GPU-key: CuPy cell-key + deterministic composite-key argsort; "
+			         "CuInfo.reorder rebuilds rtag/topology on device; full Hilbert traversal deferred")
+		if _lt.LAUNCH: _lt.launch("sort_launches_or_host_calls")
+		if _t.ENABLED: _t.host_begin("sort")
+		order = self._sort_order_device()
+		if _t.ENABLED: _t.host_end("sort")
+		# 1) reorder all per-particle CuPy arrays + rebuild rtag + refresh topology
+		if _lt.LAUNCH: _lt.launch("topology_refresh_calls")
+		if _t.ENABLED: _t.host_begin("topology_refresh")
+		self.cu.reorder(order)
+		# 2) rebuild every group's member list (tag-based)
+		for ps in self.info.particle_set:
+			ps.sort()
+		# 3) force every neighbor list to rebuild on the next calculate()
+		for nb in self.info.plist:
+			data = getattr(nb, "data", None)
+			if data is not None:
+				data._built = False
+		if _t.ENABLED: _t.host_end("topology_refresh")
+		self.sort_count += 1
+		prof.end("tinker_sort_total")

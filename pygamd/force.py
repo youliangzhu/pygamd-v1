@@ -4,59 +4,62 @@ VERSION 1
 COPYRIGHT
 	PYGAMD Copyright (c) (2021) You-Liang Zhu, Zhong-Yuan Lu
 LICENSE
-	This program is a free software: you can redistribute it and/or 
-	modify it under the terms of the GNU General Public License. 
-	This program is distributed in the hope that it will be useful, 
+	This program is a free software: you can redistribute it and/or
+	modify it under the terms of the GNU General Public License.
+	This program is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANT ABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+	MERCHANT ABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 	See the General Public License v3 for more details.
 	You should have received a copy of the GNU General Public License
 	along with this program. If not, see <http://www.gnu.org/licenses/>.
-DISCLAIMER
-	The authors of PYGAMD do not guarantee that this program and its 
-	derivatives are free from error. In no event shall the copyright 
-	holder or contributors be liable for any indirect, incidental, 
-	special, exemplary, or consequential loss or damage that results 
-	from its use. We also have no responsibility for providing the 
-	service of functional extension of this program to general users.
-USER OBLIGATION 
-	If any results obtained with PYGAMD are published in the scientific 
-	literature, the users have an obligation to distribute this program 
-	and acknowledge our efforts by citing the paper "Y.-L. Zhu, H. Liu, 
-	Z.-W. Li, H.-J. Qian, G. Milano, and Z.-Y. Lu, J. Comput. Chem. 2013,
-	34, 2197-2211" in their article.
 CORRESPONDENCE
 	Dr. You-Liang Zhu
 	Email: ylzhu@pygamd.com
 '''
 
+# -----------------------------------------------------------------------------
+# CuPy-native MVP public force entry.
+#
+# The only supported pair-force path is the CuPy RawKernel backend
+# (forces.pair.pair -> forces.pair).  The legacy Numba device-function pair
+# path and the legacy bond/angle/dihedral/threebody/DPD/SLJ/DPK force classes
+# have been removed from the main line (see archive_legacy/ for reference).
+#
+# User entry for raw non-charged pair potentials:
+#     gem = pygamd.potentials.gem4_raw(fast_math=True)  # or lj_raw / pair_raw
+#     fn  = pygamd.force.nonbonded(info=mst, rcut=2.5, func=gem)
+# Built-in charged and bonded potentials use pygamd-numba-style string selectors:
+#     pygamd.force.nonbonded_c(info=mst, rcut=1.2, func="lj_coulomb")
+#     pygamd.force.nonbonded_c(info=mst, rcut=1.2, func="lj_coulomb_erfc")
+#     pygamd.force.pppm(info=mst, rcut=1.2, kappa=2.5, epsilonr=15.0)
+#     pygamd.force.bond(info=mst, func="harmonic")
+#     pygamd.force.angle(info=mst, func="harmonic_cos")
+#     fn.setParams(type_i="A", type_j="A", param=[...])
+#     app.add(fn)
+# `pygamd.force.pair` is an alias of `pygamd.force.nonbonded`.
+# -----------------------------------------------------------------------------
+
 from pygamd import forces
 from pygamd import plist
-import math
 
-class dpk:
-	def __init__(self, info, model_file, poscar_file):
-		self.info = info
-		self.data = forces.dpk.dpk(info, model_file, poscar_file)
-		self.name = "force"
-		self.subname = "dpk"
-
-	def compute(self, timestep):
-		self.data.calculate(timestep)
 
 class nonbonded:
+	'''Non-bonded pair force (CuPy RawKernel).  `func` must be a RawPairPotential
+	built with pygamd.potentials.pair_raw / lj_raw / gem4_raw.'''
+
 	def __init__(self, info, rcut, func, exclusion=None):
+		exclusion = plist.normalize_exclusion(exclusion)
 		nl = info.find_plist(rcut, exclusion)
 		if nl is None:
 			nl = plist.neighbor(info, rcut, exclusion)
 			info.plist.append(nl)
 		self.info = info
-		self.data=forces.pair.pair(info, nl, func)
-		self.name="force"
-		self.subname="nonbonded"
-		self.check=[False for i in range(self.info.ntypes*self.info.ntypes)]
+		self.data = forces.pair.pair(info, nl, func)
+		self.name = "force"
+		self.subname = "nonbonded"
+		self.check = [False for i in range(self.info.ntypes * self.info.ntypes)]
 		self.first_compute = True
-		
+
 	def setParams(self, type_i, type_j, param):
 		self.data.setParams(type_i, type_j, param, self.check)
 
@@ -65,86 +68,37 @@ class nonbonded:
 			self.check_parameters()
 			self.first_compute = False
 		self.data.calculate(timestep)
-	
+
 	def check_parameters(self):
 		for i in range(self.info.ntypes):
 			for j in range(i, self.info.ntypes):
 				idx = i * self.info.ntypes + j
 				if not self.check[idx]:
-					raise RuntimeError('Error! the parameters between type ',self.info.typemap[i],' and type ',self.info.typemap[j],' has not been set!')
+					raise RuntimeError('Error! the parameters between type ', self.info.typemap[i],
+					                   ' and type ', self.info.typemap[j], ' has not been set!')
 
-class nonbonded_p:
-	def __init__(self, info, rcut, func, exclusion=None):
-		nl = info.find_plist(rcut, exclusion)
-		if nl is None:
-			nl = plist.neighbor(info, rcut, exclusion)
-			info.plist.append(nl)
-		self.info = info
-		self.data=forces.pair.pair_p(info, nl, func)
-		self.name="force"
-		self.subname="nonbonded_p"
-		self.check=[False for i in range(self.info.ntypes*self.info.ntypes)]
-		self.first_compute = True
-		
-	def setParams(self, type_i, type_j, param):
-		self.data.setParams(type_i, type_j, param, self.check)
-
-	def compute(self, timestep):
-		if self.first_compute:
-			self.check_parameters()
-			self.first_compute = False
-		self.data.calculate(timestep)
-	
-	def check_parameters(self):
-		for i in range(self.info.ntypes):
-			for j in range(i, self.info.ntypes):
-				idx = i * self.info.ntypes + j
-				if not self.check[idx]:
-					raise RuntimeError('Error! the parameters between type ',self.info.typemap[i],' and type ',self.info.typemap[j],' has not been set!')
-                    
-class nonbonded_p_tri:
-	def __init__(self, info, rcut, func, exclusion=None):
-		nl = info.find_plist(rcut, exclusion)
-		if nl is None:
-			nl = plist.neighbor(info, rcut, exclusion)
-			info.plist.append(nl)
-		self.info = info
-		self.data=forces.threebody.threebody(info, nl, func)
-		self.name="force"
-		self.subname="nonbonded_p_tri"
-		self.check=[False for i in range(self.info.ntypes*self.info.ntypes*self.info.ntypes)]
-		self.first_compute = True
-		
-	def setParams(self, type_i, type_j, type_k, param):
-		self.data.setParams(type_i, type_j, type_k, param, self.check)
-
-	def compute(self, timestep):
-		if self.first_compute:
-			self.check_parameters()
-			self.first_compute = False
-		self.data.calculate(timestep)
-	
-	def check_parameters(self):
-		for i in range(self.info.ntypes):
-			for j in range(self.info.ntypes):
-				for k in range(i, self.info.ntypes):
-					idx = i * self.info.ntypes* self.info.ntypes + j* self.info.ntypes + k
-					if not self.check[idx]:
-						raise RuntimeError('Error! the parameters between type ',self.info.typemap[i],' and type ',self.info.typemap[j],' and type ',self.info.typemap[k],' has not been set!')
 
 class nonbonded_c:
+	'''Charged non-bonded pair force (CuPy RawKernel).
+
+	Use func='lj_coulomb' for the pygamd-numba-compatible cutoff Coulomb,
+	func='lj_coulomb_erfc' / 'coulomb_erfc' as the real-space partner of
+	pygamd.force.pppm(...), or pass a custom pygamd.potentials.pair_charge(...).
+	'''
+
 	def __init__(self, info, rcut, func, exclusion=None):
+		exclusion = plist.normalize_exclusion(exclusion)
 		nl = info.find_plist(rcut, exclusion)
 		if nl is None:
 			nl = plist.neighbor(info, rcut, exclusion)
 			info.plist.append(nl)
 		self.info = info
-		self.data=forces.pair.pair_c(info, nl, func)
-		self.name="force"
-		self.subname="nonbonded_c"
-		self.check=[False for i in range(self.info.ntypes*self.info.ntypes)]
+		self.data = forces.pair.pair_charge(info, nl, func)
+		self.name = "force"
+		self.subname = "nonbonded_c"
+		self.check = [False for i in range(self.info.ntypes * self.info.ntypes)]
 		self.first_compute = True
-		
+
 	def setParams(self, type_i, type_j, param):
 		self.data.setParams(type_i, type_j, param, self.check)
 
@@ -153,107 +107,74 @@ class nonbonded_c:
 			self.check_parameters()
 			self.first_compute = False
 		self.data.calculate(timestep)
-	
-	def check_parameters(self):
-		for i in range(self.info.ntypes):
-			for j in range(i, self.info.ntypes):
-				idx = i * self.info.ntypes + j
-				if not self.check[idx]:
-					raise RuntimeError('Error! the parameters between type ',self.info.typemap[i],' and type ',self.info.typemap[j],' has not been set!')
-
-class dpd:
-	def __init__(self, info, rcut=1.0):
-		nl = info.find_plist(rcut, None)
-		if nl is None:
-			nl = plist.neighbor(info, rcut, None)
-			info.plist.append(nl)
-		self.info = info
-		self.data=forces.pair.dpd(info, nl)
-		self.name="force"
-		self.subname="dpd"
-		self.rcut = rcut
-		self.check=[False for i in range(self.info.ntypes*self.info.ntypes)]
-		self.first_compute = True		
-		
-	def setParams(self, type_i, type_j, alpha, sigma):
-		self.data.setParams(type_i, type_j, alpha, sigma, self.rcut, self.check)
-
-	def compute(self, timestep):
-		if self.first_compute:
-			self.check_parameters()
-			self.first_compute = False	
-		self.data.calculate(timestep)
 
 	def check_parameters(self):
 		for i in range(self.info.ntypes):
 			for j in range(i, self.info.ntypes):
 				idx = i * self.info.ntypes + j
 				if not self.check[idx]:
-					raise RuntimeError('Error! the parameters between type ',self.info.typemap[i],' and type ',self.info.typemap[j],' have not been set!')
+					raise RuntimeError('Error! the parameters between type ', self.info.typemap[i],
+					                   ' and type ', self.info.typemap[j], ' has not been set!')
 
-class slj:
-	def __init__(self, info, rcut=1.0):
-		# check d_diameter    
-		if info.d_diameter is None:
-			raise RuntimeError('Error! particle diameters have not been set!') 
-		max_diameter = [0.0, 0.0]
-		for i in range(info.npa):
-			di = info.diameter[i]
-			if di <= 0.0:
-				RuntimeError('Error! particle diameter equal to or smaller then 0.0, particle id ', i,' with the diameter ', di) 
-			if di>max_diameter[0]:
-				max_diameter[1] = max_diameter[0]
-				max_diameter[0] = di
-			elif di>max_diameter[1]:
-				max_diameter[1] = di
-		max_dia = (max_diameter[0] + max_diameter[1])/2.0
-		nl = info.find_plist(rcut+max_dia, None)
-		if nl is None:
-			nl = plist.neighbor(info, rcut+max_dia, None)
-			info.plist.append(nl)
+
+# `pygamd.force.pair(...)` is the same CuPy RawKernel pair force as nonbonded.
+pair = nonbonded
+
+
+class pppm:
+	'''PPPM reciprocal-space electrostatics (CuPy/cuFFT).
+
+	Pair it with nonbonded_c(func='lj_coulomb_erfc' or 'coulomb_erfc') using the
+	same kappa/epsilonr.  The force is additive and accumulates the long-range
+	Coulomb contribution into the global force buffer.
+	'''
+
+	def __init__(self, info, grid=None, mesh_spacing=1.0, kappa=None, rcut=None,
+	             epsilonr=1.0, coulomb_const=138.935, exclusion=None,
+	             block_size=128, deconvolve=True):
+		exclusion = plist.normalize_exclusion(exclusion)
 		self.info = info
-		self.data = forces.pair.slj(info, nl)
+		self.data = forces.pppm.pppm(
+			info=info,
+			grid=grid,
+			mesh_spacing=mesh_spacing,
+			kappa=kappa,
+			rcut=rcut,
+			epsilonr=epsilonr,
+			coulomb_const=coulomb_const,
+			exclusion=exclusion,
+			block_size=block_size,
+			deconvolve=deconvolve,
+		)
 		self.name = "force"
-		self.subname = "slj"
-		self.rcut = rcut
-		self.check = [False for i in range(self.info.ntypes*self.info.ntypes)]
-		self.first_compute = True
-
-	def setParams(self, type_i, type_j, params):
-		if len(params)!=3 and len(params)!=4:
-			RuntimeError('Error! the number of parameters should be 3 or 4, not ', len(params))
-		epsilon = params[0]
-		sigma = params[1]
-		alpha = params[2]
-		rcut = self.rcut
-		if len(params) == 4:
-			rcut = params[3]
-		lj1 = 4.0 * epsilon * math.pow(sigma, int(12))
-		lj2 = alpha * 4.0 * epsilon * math.pow(sigma, int(6))		
-		self.data.setParams(type_i, type_j, [lj1, lj2, sigma, rcut], self.check)
+		self.subname = "pppm"
 
 	def compute(self, timestep):
-		if self.first_compute:
-			self.check_parameters()			
-			self.first_compute = False
 		self.data.calculate(timestep)
 
-	def check_parameters(self):
-		for i in range(self.info.ntypes):
-			for j in range(i, self.info.ntypes):
-				idx = i * self.info.ntypes + j
-				if not self.check[idx]:
-					raise RuntimeError('Error! the parameters between type ', self.info.typemap[i], ' and type ', self.info.typemap[j], ' have not been set!')
+
+# -----------------------------------------------------------------------------
+# CuPy-native bonded forces.  These consume the CuInfo bond/angle/dihedral
+# topology and accumulate into d_force / d_virial_potential (additive, after the
+# global CuPy zero-force).  Built-in potentials are selected with strings, and
+# scripts can pass custom CUDA device potentials created with
+# pygamd.potentials.bond_raw / angle_raw / dihedral_raw.
+#   bond:      built-in 'harmonic' or custom func(rsq, param, fp)
+#   angle:     built-in 'harmonic'/'harmonic_cos' or custom func(cos, sin, param, fp)
+#   dihedral:  built-in 'periodic'/'harmonic' or custom func(cos, sin, param, fp)
+# -----------------------------------------------------------------------------
 
 class bond:
-	def __init__(self, info, func):	
+	'''Bond force (CuPy RawKernel): built-in harmonic or custom device potential.'''
+
+	def __init__(self, info, func="harmonic"):
 		self.info = info
-		self.data=forces.bond.bond(info, func)
-		self.name="force"
-		self.subname="bond"
-		self.check=[False for i in range(self.info.bond.nbtypes)]
+		self.data = forces.bond.bond(info, func)
+		self.name = "force"
+		self.subname = "bond"
+		self.check = [False for i in range(self.data.ntypes)]
 		self.first_compute = True
-		
+
 	def setParams(self, bond_type, param):
 		self.data.setParams(bond_type, param, self.check)
 
@@ -262,22 +183,25 @@ class bond:
 			self.check_parameters()
 			self.first_compute = False
 		self.data.calculate(timestep)
-	
+
 	def check_parameters(self):
-		for i in range(self.info.bond.nbtypes):
-			if not self.check[i]:
-				raise RuntimeError('Error! the parameters for bond type ',self.info.bond.typemap[i],' have not been set!')		
-				
-				
+		tm = self.data.topo.typemap
+		for tid in range(len(tm)):
+			if not self.check[tid]:
+				raise RuntimeError("Error! parameters for bond type '%s' have not been set!" % tm[tid])
+
+
 class angle:
-	def __init__(self, info, func):	
+	'''Angle force (CuPy RawKernel): built-in harmonic variants or custom device potential.'''
+
+	def __init__(self, info, func="harmonic"):
 		self.info = info
-		self.data=forces.angle.angle(info, func)
-		self.name="force"
-		self.subname="angle"
-		self.check=[False for i in range(self.info.angle.natypes)]
+		self.data = forces.angle.angle(info, func)
+		self.name = "force"
+		self.subname = "angle"
+		self.check = [False for i in range(self.data.ntypes)]
 		self.first_compute = True
-		
+
 	def setParams(self, angle_type, param):
 		self.data.setParams(angle_type, param, self.check)
 
@@ -286,35 +210,79 @@ class angle:
 			self.check_parameters()
 			self.first_compute = False
 		self.data.calculate(timestep)
-	
+
 	def check_parameters(self):
-		for i in range(self.info.angle.natypes):
-			if not self.check[i]:
-				raise RuntimeError('Error! the parameters for angle type ',self.info.angle.typemap[i],' have not been set!')		
-				
-				
+		tm = self.data.topo.typemap
+		for tid in range(len(tm)):
+			if not self.check[tid]:
+				raise RuntimeError("Error! parameters for angle type '%s' have not been set!" % tm[tid])
+
+
 class dihedral:
-	def __init__(self, info, func):	
+	'''Dihedral force (CuPy RawKernel): built-in periodic/harmonic or custom device potential.'''
+
+	def __init__(self, info, func="periodic"):
 		self.info = info
-		self.data=forces.dihedral.dihedral(info, func)
-		self.name="force"
-		self.subname="dihedral"
-		self.check=[False for i in range(self.info.dihedral.ndtypes)]
+		self.data = forces.dihedral.dihedral(info, func)
+		self.name = "force"
+		self.subname = "dihedral"
+		self.check = [False for i in range(self.data.ntypes)]
 		self.first_compute = True
-		
-	def setParams(self, dihedral_type, param, term='proper'):
+
+	def setParams(self, dihedral_type, param, term="proper"):
 		self.data.setParams(dihedral_type, param, term, self.check)
-		
-	def setCosFactor(factor):
-		self.data.setCosFactor(factor)
-		
+
 	def compute(self, timestep):
 		if self.first_compute:
 			self.check_parameters()
 			self.first_compute = False
 		self.data.calculate(timestep)
-	
+
 	def check_parameters(self):
-		for i in range(self.info.dihedral.ndtypes):
-			if not self.check[i]:
-				raise RuntimeError('Error! the parameters for dihedral type ',self.info.dihedral.typemap[i],' have not been set!')
+		tm = self.data.topo.typemap
+		for tid in range(len(tm)):
+			if not self.check[tid]:
+				raise RuntimeError("Error! parameters for dihedral type '%s' have not been set!" % tm[tid])
+
+
+class dpd:
+	'''DPD pairwise force (CuPy RawKernel): conservative + dissipative + random
+	(Saru RNG).  setParams(type_i, type_j, alpha, sigma[, r_cut]).  Shares the
+	CuPy neighbor list with RawPair.  Ordinary DPD uses velocity_source='vel';
+	integration.dpdgwvv switches it to the predictor velocity_source='velo'.'''
+
+	def __init__(self, info, rcut=1.0, temperature=1.0, seed=12345, exclusion=None):
+		exclusion = plist.normalize_exclusion(exclusion)
+		nl = info.find_plist(rcut, exclusion)
+		if nl is None:
+			nl = plist.neighbor(info, rcut, exclusion)
+			info.plist.append(nl)
+		self.info = info
+		self.data = forces.dpd.dpd(info, nl, rcut, temperature, seed)
+		self.name = "force"
+		self.subname = "dpd"
+		self.check = [False for i in range(self.info.ntypes * self.info.ntypes)]
+		self.first_compute = True
+
+	def setParams(self, type_i, type_j, alpha, sigma, r_cut=None):
+		self.data.setParams(type_i, type_j, alpha, sigma, r_cut, self.check)
+
+	def setT(self, temperature):
+		self.data.setT(temperature)
+
+	def setConsiderDiameter(self, con_dia, core_repulsion=0.0):
+		self.data.setConsiderDiameter(con_dia, core_repulsion)
+
+	def compute(self, timestep):
+		if self.first_compute:
+			self.check_parameters()
+			self.first_compute = False
+		self.data.calculate(timestep)
+
+	def check_parameters(self):
+		for i in range(self.info.ntypes):
+			for j in range(i, self.info.ntypes):
+				idx = i * self.info.ntypes + j
+				if not self.check[idx]:
+					raise RuntimeError("Error! DPD parameters between type '%s' and '%s' have not been set!"
+					                   % (self.info.typemap[i], self.info.typemap[j]))

@@ -30,7 +30,13 @@ CORRESPONDENCE
 	Email: ylzhu@pygamd.com
 '''
 from optparse import OptionParser
- 
+
+from .gro2xml import gro2xml
+from .xml2gro import xml2gro
+
+__all__ = ["gro2xml", "xml2gro"]
+
+
 global _options
 parser = OptionParser()
 parser.add_option('--gpu', dest='gpu',help='GPU on which to execute')

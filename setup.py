@@ -30,38 +30,64 @@ CORRESPONDENCE
 	Email: ylzhu@pygamd.com
 '''
 
+from pathlib import Path
+
 from setuptools import setup, find_packages
 
 with open("README.rst", "r") as fh:
     long_description = fh.read()
 
-setup(name='pygamd',
-      version='1.4.8',
-      description='Python GPU-Accelerated Molecular Dynamics Software',
-      long_description=long_description,
-      classifiers=[
-        'Development Status :: 3 - Alpha',
-        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
-        'Programming Language :: Python :: 3',
-        'Intended Audience :: Science/Research',
-        'Operating System :: POSIX :: Linux',
-        'Topic :: Scientific/Engineering :: Physics',
-        'Topic :: Scientific/Engineering :: Chemistry'
-      ],
-      # python_requires='>=3.6',
-      keywords='molecular dynamics',
-      url='https://github.com/ylzhu/pygamd.py',
-      author='You-Liang Zhu',
-      author_email='ylzhu@pygamd.com',
-      license='GNU General Public License v3 (GPLv3)',
-	  packages = find_packages(),
-      install_requires=[
-          'numpy',
-          'numba'
-      ],
-      package_data={
-      'poetry': ['poetry/poetry.zip', 'poetry/READ.md', 'poetry/*.so', 'poetry/dataTackle'],
-      },
-      include_package_data=True,
-      python_requires='>=3',
-      zip_safe=False)
+setup(name="pygamd",
+    version="1.4.9",
+    description="Python GPU-Accelerated Molecular Dynamics Software",
+    long_description=long_description,
+    long_description_content_type="text/x-rst",
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3 :: Only",
+        "Programming Language :: Python :: 3.12",
+        "Intended Audience :: Science/Research",
+        "Operating System :: Microsoft :: Windows",
+        "Operating System :: POSIX :: Linux",
+        "Topic :: Scientific/Engineering :: Physics",
+        "Topic :: Scientific/Engineering :: Chemistry",
+    ],
+    keywords="molecular dynamics",
+    url="https://github.com/ylzhu/pygamd.py",
+    author="You-Liang Zhu",
+    author_email="ylzhu@pygamd.com",
+    license="GPL-3.0-or-later",
+    license_files=["LICENSE"],
+    packages=find_packages(),
+    python_requires=">=3.12,<3.13",
+    install_requires=[
+        "numpy>=1.26",
+        "networkx>=3.0",
+    ],
+    extras_require={
+        # CuPy wheels are CUDA-major-specific.  Keeping them as mutually
+        # exclusive extras avoids a slow and usually unsuccessful source build
+        # of the generic ``cupy`` package.
+        "cuda12": ["cupy-cuda12x>=14.1,<15"],
+        "cuda13": ["cupy-cuda13x>=14.1,<15"],
+        "aa2cg": ["MDAnalysis>=2.9,<3"],
+        "rdf": ["MDAnalysis>=2.9,<3"],
+        "test": ["pytest>=8"],
+    },
+    entry_points={
+        "console_scripts": [
+            "multiscale=multiscale.cli:main",
+        ],
+    },
+    package_data={
+        "multiscale": ["py.typed"],
+        "multiscale.forcefield.assets.opls": [
+            "*.txt",
+            "*.itp",
+        ],
+    },
+    include_package_data=True,
+    zip_safe=False,
+)
+

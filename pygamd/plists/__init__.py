@@ -30,13 +30,20 @@ CORRESPONDENCE
 	Email: ylzhu@pygamd.com
 '''
 
-import sys;
-import ctypes;
-import os;
+# [CuPy-native MVP] CuPy-native main line: clist / nlist / cplist are pure
+# cupy.RawKernel (no numba).  LAZY: imported only on first attribute access, so
+# importing this package never requires a CUDA driver.  The old Numba
+# clist/nlist/vlist live in archive_legacy/pygamd/plists/.
+__all__ = ["clist", "nlist", "cplist"]
 
-from pygamd.plists import vlist
-from pygamd.plists import clist
-from pygamd.plists import nlist
+
+def __getattr__(name):
+    if name in __all__:
+        import importlib
+        module = importlib.import_module("." + name, __name__)
+        globals()[name] = module
+        return module
+    raise AttributeError("module %r has no attribute %r" % (__name__, name))
 
 # if __name__ == '__main__':
     # print ('main program run')

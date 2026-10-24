@@ -30,20 +30,19 @@ CORRESPONDENCE
 	Email: ylzhu@pygamd.com
 '''
 
-import sys;
-import ctypes;
-import os;
-import importlib.util
 
 
+# CuPy-native main line: RawKernel pair force + RawKernel bonded forces
+# (harmonic bond, harmonic angle, periodic dihedral).  All cupy.RawKernel, no
+# numba.  Importing these is CUDA-driver-free (kernels compile lazily on first
+# calculate()).  Legacy numba forces remain in archive_legacy/.
+from pygamd.forces import potentials
 from pygamd.forces import pair
 from pygamd.forces import bond
 from pygamd.forces import angle
 from pygamd.forces import dihedral
-from pygamd.forces import threebody
-
-if importlib.util.find_spec("dpdata") and importlib.util.find_spec("deepmd-kit"):
-    from pygamd.forces import dpk
+from pygamd.forces import dpd
+from pygamd.forces import pppm
 
 # if __name__ == '__main__':
     # print ('main program run')

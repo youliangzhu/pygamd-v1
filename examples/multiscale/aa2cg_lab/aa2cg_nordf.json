@@ -1,0 +1,104 @@
+{
+  "schema": "multiscale.aa2cg.v1",
+  "name": "AC10 20-bead AA-to-CG mapping",
+  "input": {"tpr": "md_nvt.tpr", "gro": "md_nvt.gro"},
+  "model": {
+    "name": "AC10_20beads",
+    "parent": "AC10",
+    "type_order": ["BBE", "BB", "CO"],
+    "beads": [
+      {"name": "BB01", "type": "BBE", "atoms": [1, 2, 51, 52, 53, 54]},
+      {"name": "CO01", "type": "CO", "atoms": [3, 4, 5, 55]},
+      {"name": "BB02", "type": "BB", "atoms": [6, 7, 56, 57, 58]},
+      {"name": "CO02", "type": "CO", "atoms": [8, 9, 10, 59]},
+      {"name": "BB03", "type": "BB", "atoms": [11, 12, 60, 61, 62]},
+      {"name": "CO03", "type": "CO", "atoms": [13, 14, 15, 63]},
+      {"name": "BB04", "type": "BB", "atoms": [16, 17, 64, 65, 66]},
+      {"name": "CO04", "type": "CO", "atoms": [18, 19, 20, 67]},
+      {"name": "BB05", "type": "BB", "atoms": [21, 22, 68, 69, 70]},
+      {"name": "CO05", "type": "CO", "atoms": [23, 24, 25, 71]},
+      {"name": "BB06", "type": "BB", "atoms": [26, 27, 72, 73, 74]},
+      {"name": "CO06", "type": "CO", "atoms": [28, 29, 30, 75]},
+      {"name": "BB07", "type": "BB", "atoms": [31, 32, 76, 77, 78]},
+      {"name": "CO07", "type": "CO", "atoms": [33, 34, 35, 79]},
+      {"name": "BB08", "type": "BB", "atoms": [36, 37, 80, 81, 82]},
+      {"name": "CO08", "type": "CO", "atoms": [38, 39, 40, 83]},
+      {"name": "BB09", "type": "BB", "atoms": [41, 42, 84, 85, 86]},
+      {"name": "CO09", "type": "CO", "atoms": [43, 44, 45, 87]},
+      {"name": "BB10", "type": "BBE", "atoms": [46, 47, 88, 89, 90, 91]},
+      {"name": "CO10", "type": "CO", "atoms": [48, 49, 50, 92]}
+    ],
+    "bonds": {
+      "1": [
+        ["BB01", "BB02"],
+        ["BB09", "BB10"]
+      ],
+      "2": [
+        ["BB02", "BB03"],
+        ["BB03", "BB04"],
+        ["BB04", "BB05"],
+        ["BB05", "BB06"],
+        ["BB06", "BB07"],
+        ["BB07", "BB08"],
+        ["BB08", "BB09"]
+      ],
+      "3": [
+        ["BB01", "CO01"],
+        ["BB10", "CO10"]
+      ],
+      "4": [
+        ["BB02", "CO02"],
+        ["BB03", "CO03"],
+        ["BB04", "CO04"],
+        ["BB05", "CO05"],
+        ["BB06", "CO06"],
+        ["BB07", "CO07"],
+        ["BB08", "CO08"],
+        ["BB09", "CO09"]
+      ]
+    },
+    "angles": {
+      "5": [
+        ["BB01", "BB02", "BB03"],
+        ["BB08", "BB09", "BB10"]
+      ],
+      "6": [
+        ["BB02", "BB03", "BB04"],
+        ["BB03", "BB04", "BB05"],
+        ["BB04", "BB05", "BB06"],
+        ["BB05", "BB06", "BB07"],
+        ["BB06", "BB07", "BB08"],
+        ["BB07", "BB08", "BB09"]
+      ],
+      "7": [
+        ["BB01", "BB02", "CO02"],
+        ["BB09", "BB10", "CO10"]
+      ],
+      "8": [
+        ["BB02", "BB03", "CO03"],
+        ["BB03", "BB04", "CO04"],
+        ["BB04", "BB05", "CO05"],
+        ["BB05", "BB06", "CO06"],
+        ["BB06", "BB07", "CO07"],
+        ["BB07", "BB08", "CO08"],
+        ["BB08", "BB09", "CO09"]
+      ],
+      "9": [
+        ["BB02", "BB01", "CO01"],
+        ["BB03", "BB02", "CO02"],
+        ["BB04", "BB03", "CO03"],
+        ["BB05", "BB04", "CO04"],
+        ["BB06", "BB05", "CO05"],
+        ["BB07", "BB06", "CO06"],
+        ["BB08", "BB07", "CO07"],
+        ["BB09", "BB08", "CO08"],
+        ["BB10", "BB09", "CO09"]
+      ]
+    }
+  },
+  "output": {
+  "directory": "outputs/aa2cg_nordf",
+  "formats": ["galamost"]
+},
+"rdf": false
+}

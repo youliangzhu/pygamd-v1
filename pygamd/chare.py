@@ -30,10 +30,13 @@ CORRESPONDENCE
 	Email: ylzhu@pygamd.com
 '''
 
+# [CuPy-native MVP] CuPy-native group membership + property reductions (no numba).
+# particle_set keeps tag-defined membership on host for dump order, and maintains
+# a CuPy current-index member list for reductions/integrators.  After particle
+# sort, the device member list is rebuilt from d_tag on GPU (no tag host copy).
 from pygamd import chares
+from pygamd.backend.cupy import import_cupy
 import numpy as np
-from numba import cuda
-import numba as nb
 import math
 		
 class particle_set:
@@ -79,20 +82,28 @@ class particle_set:
 		elif self.info.dimension == 2:
 			self.nfreedom = self.nme*2-2		
 		self.h_member = np.asarray(self.member, dtype=np.int32)
-		self.d_member = cuda.to_device(self.h_member)
-		
-	def sort(self):
-		self.info.tag = self.info.d_tag.copy_to_host()
-		for i in range(0, self.info.npa):
-			ti = self.info.tag[i]
-			self.check_member_idx[i] = self.check_member_tag[ti]
+		cp = import_cupy("CuPy particle_set")
+		self.d_member = cp.asarray(self.h_member)
+		self.d_check_member_tag = cp.asarray(self.check_member_tag)
+		self._h_member_current = True
 
-		count = np.int32(0)
-		for i in range(0, self.info.npa):
-			if self.check_member_idx[i] == np.int32(1):
-				self.h_member[count] = i
-				count += np.int32(1)
-		self.d_member = cuda.to_device(self.h_member)
+	def sort(self):
+		# Rebuild the group's CURRENT-INDEX member list after a Sort reordered
+		# particles.  Membership is defined by TAG (check_member_tag[tag]); after
+		# reorder the particle at new index k has tag = d_tag[k], so it is a member
+		# iff d_check_member_tag[d_tag[k]] == 1.  This stays on GPU.
+		cp = import_cupy("CuPy particle_set")
+		tag = self.info.cu.d_tag
+		mask = self.d_check_member_tag[tag] != cp.int32(0)
+		new_member = cp.nonzero(mask)[0].astype(cp.int32, copy=False)
+		# Group size is tag-defined and should not change under sort.  Preserve the
+		# d_member array identity when possible so graph signatures remain stable.
+		if getattr(self, "d_member", None) is not None and self.d_member.shape == new_member.shape:
+			self.d_member[...] = new_member
+		else:
+			self.d_member = new_member
+		self.nme = int(self.d_member.shape[0])
+		self._h_member_current = False
 
 		
 class comp_info:
@@ -108,58 +119,29 @@ class comp_info:
 
 		self.last_ts = 0xffffffff
 		self.temp = 0.0
-		self.pressure = 0.0	
+		self.pressure = 0.0
 		self.potential = 0.0
 		self.momentum = 0.0
-		self.block_size = 256
-		self.nblocks = math.ceil(self.ps.nme / self.block_size)
-		
-		self.coll = np.zeros(self.nblocks*6, dtype = np.float32)
-		self.d_coll = cuda.to_device(self.coll)
-		# self.result = np.zeros(3, dtype = nb.float32)
-		self.result = cuda.pinned_array(16, dtype = np.float32)
-		self.result[0] = 0.0
-		self.result[1] = 0.0
-		self.result[2] = 0.0
-		self.result[3] = 0.0
-		self.result[4] = 0.0
-		self.result[5] = 0.0		
-		self.d_result = cuda.to_device(self.result)
-		
+		# CuInfo CuPy device-data layer (required for the CuPy-native reductions).
+		self.cu = getattr(info, "cu", None)
+		if self.cu is None:
+			raise NotImplementedError(
+				"CuPy-native comp_info requires a CuInfo snapshot "
+				"(pygamd.snapshot.read(..., backend='cupy')).")
+
 	def calculate(self, timestep):
 		if timestep == self.last_ts:
 			return
 		self.last_ts = timestep
-		cp = self.info.compute_properties
-		# print(timestep, cp)
-		if cp['momentum'] and  cp['temperature'] and cp['pressure'] and cp['potential']:
-			chares.compute_properties.cu_sums4[self.nblocks, self.block_size](self.ps.nme, self.ps.d_member, self.info.d_vel, self.info.d_virial_potential, self.d_coll, self.nblocks)
-			# h_coll=self.d_coll.copy_to_host()
-			# print(self.nblocks)
-			# print(h_coll)		
-			chares.compute_properties.cu_final_sums4[1, 512](self.d_coll, self.d_result, self.nblocks)
-		elif cp['temperature'] and cp['pressure']:
-			chares.compute_properties.cu_sums2[self.nblocks, self.block_size](self.ps.nme, self.ps.d_member, self.info.d_vel, self.info.d_virial_potential, self.d_coll, self.nblocks)
-			chares.compute_properties.cu_final_sums2[1, 512](self.d_coll, self.d_result, self.nblocks)		
-		elif cp['temperature']:
-			chares.compute_properties.cu_sums1[self.nblocks, self.block_size](self.ps.nme, self.ps.d_member, self.info.d_vel, self.info.d_virial_potential, self.d_coll, self.nblocks)
-			chares.compute_properties.cu_final_sums1[1, 512](self.d_coll, self.d_result, self.nblocks)			
-		
-		
-		self.result = self.d_result.copy_to_host()
-		self.temp = self.result[0]/float(self.ps.nfreedom)
-		
-		volume_inv = 1.0/(self.info.box[0] * self.info.box[1] * self.info.box[2])
-		virial = self.result[1]
+		# CuPy-native group reduction (momentum / temperature / pressure / potential).
+		ke2, virial, potential, mx, my, mz = chares.compute_properties.group_sums(
+			self.cu, self.ps.d_member)
+		self.temp = ke2 / float(self.ps.nfreedom)
+		volume_inv = 1.0 / (self.info.box[0] * self.info.box[1] * self.info.box[2])
 		if self.info.dimension == 2:
-			virial *= 3.0/2.0			
-		self.pressure = (self.result[0] / float(self.info.dimension) + virial) * volume_inv
-		self.potential = self.result[2]
-		mx = self.result[3]
-		my = self.result[4]
-		mz = self.result[5]
-		self.momentum = math.sqrt(mx*mx + my*my + mz*mz)/float(self.info.npa)
-			# self.temp = sum_reduce(self.d_temp_arr)/float(self.nfreedom)
-		# print (self.temp, self.result[1], self.result[2])
+			virial *= 3.0 / 2.0
+		self.pressure = (ke2 / float(self.info.dimension) + virial) * volume_inv
+		self.potential = potential
+		self.momentum = math.sqrt(mx * mx + my * my + mz * mz) / float(self.info.npa)
 			
 			

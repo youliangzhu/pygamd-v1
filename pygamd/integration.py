@@ -30,41 +30,88 @@ CORRESPONDENCE
 	Email: ylzhu@pygamd.com
 '''
 
+# -----------------------------------------------------------------------------
+# CuPy-native MVP public integration entry.
+#
+# Supported CuPy-native integrators are NVT, NVE, and BD, implemented through
+# integrations.nvt / nve / bd.  Legacy Numba integrators are not part
+# of the eager-graph primary route.
+#
+# User entries:
+#     inn = pygamd.integration.nvt(info=mst, group="all", method="nh",
+#                                  tau=0.5, temperature=0.02)
+#     inn = pygamd.integration.nve(info=mst, group="all")
+#     inn = pygamd.integration.bd(info=mst, group="all", temperature=0.02)
+#     app.add(inn)
+# -----------------------------------------------------------------------------
+
 from pygamd import integrations
 from pygamd import chare
+from pygamd.backend.cupy.runtime import DPDGWVV_DEFAULT_LAMBDA
+
+
+def _comp_info(info, group):
+	ci = info.find_comp_info(group)
+	if ci is None:
+		ci = chare.comp_info(info, group)
+		info.comp_info.append(ci)
+	return ci
+
 
 class nvt:
+	'''Nose-Hoover NVT (CuPy RawKernel).'''
+
 	def __init__(self, info, group, method, tau, temperature):
-		if method == "nh":
-			ci = info.find_comp_info(group)
-			if ci is None:
-				ci = chare.comp_info(info, group)
-				info.comp_info.append(ci)
-			self.data=integrations.nvt.nose_hoover(info, ci, tau, temperature)
-		self.name="integration"
-		self.subname="nvt"
+		if method != "nh":
+			raise RuntimeError("Error: pygamd.integration.nvt only supports method='nh' "
+			                   "(CuPy RawKernel Nose-Hoover) in the CuPy-native MVP.")
+		self.data = integrations.nvt.nose_hoover(info, _comp_info(info, group), tau, temperature)
+		self.name = "integration"
+		self.subname = "nvt"
+
+	def setT(self, temperature):
+		self.data.setT(temperature)
+
 
 class nve:
+	'''Velocity-Verlet NVE (CuPy RawKernel).'''
+
 	def __init__(self, info, group):
-		ci = info.find_comp_info(group)
-		if ci is None:
-			ci = chare.comp_info(info, group)
-			info.comp_info.append(ci)
-		self.data = integrations.nve.nve(info, ci)
+		self.data = integrations.nve.nve(info, _comp_info(info, group))
 		self.name = "integration"
 		self.subname = "nve"
-		
+
+
 class gwvv:
-	def __init__(self, info, group):
-		self.data=integrations.dpd.gwvv(info, group)
-		self.name="integration"
-		self.subname="gwvv"
+	"""Minimal Groot-Warren DPD velocity-Verlet integrator (CuPy RawKernel).
+
+	This is the recommended public DPDGWVV entry.  Pass the DPD force wrapper so
+	its RawDPD backend reads the predictor velocity field d_velo.  No separate legacy DPD integrator alias is exposed.
+	"""
+
+	def __init__(self, info, group, dpd_force=None, lambda_gw=DPDGWVV_DEFAULT_LAMBDA):
+		self.data = integrations.dpd.gwvv(info, _comp_info(info, group), dpd_force=dpd_force, lambda_gw=lambda_gw)
+		self.name = "integration"
+		self.subname = "gwvv"
+
+	def attachDPDForce(self, dpd_force):
+		self.data.attach_dpd_force(dpd_force)
+
+	def setLambda(self, lambda_gw):
+		self.data.setLambda(lambda_gw)
+
 
 class bd:
-	def __init__(self, info, group, temp):
-		self.data=integrations.bd.bd(info, group, temp)
-		self.name="integration"
-		self.subname="bd"
-        
+	'''Brownian / Langevin dynamics (CuPy RawKernel, Saru RNG).
+	setParams(type, gamma) sets per-type friction; setT(value) the temperature.'''
+
+	def __init__(self, info, group, temp, seed=12345):
+		self.data = integrations.bd.bd(info, _comp_info(info, group), temp, seed)
+		self.name = "integration"
+		self.subname = "bd"
+
 	def setParams(self, typ, gamma):
-		self.data.setParams(typ, gamma)	
+		self.data.setParams(typ, gamma)
+
+	def setT(self, temperature):
+		self.data.setT(temperature)

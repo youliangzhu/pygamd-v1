@@ -10,4 +10,5 @@ Constraint
    cu-constraint-ccpmd
    cu-constraint-bond_constraint
    cu-constraint-virtual_site
+   cu-constraint-force_constraint
 

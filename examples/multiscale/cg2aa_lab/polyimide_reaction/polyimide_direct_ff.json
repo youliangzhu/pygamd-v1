@@ -1,0 +1,61 @@
+{
+  "schema": "multiscale.cg2aa.v1",
+  "name": "Polyimide backmapping with direct OPLS assignment",
+  "input": {"cg_xml": "pi-cg.xml"},
+  "units": {
+    "cg_xml": "nm",
+    "template_pdb": "angstrom",
+    "output_xml": "nm"
+  },
+  "templates": {
+    "DIANHYDRIDE": {
+      "pdb": "dianhydride.pdb",
+      "smiles": "O=C1OC(=O)c2cc3C(=O)OC(=O)c3cc12",
+      "sites": [
+        {"name": "A1", "group": "A", "atoms": [10, 11, 12, 15, 16]},
+        {"name": "B", "group": "B", "atoms": [1, 2, 3, 4, 5, 6, 17, 18]},
+        {"name": "A2", "group": "A", "atoms": [7, 8, 9, 13, 14]}
+      ],
+      "fit": {"mode": "frame", "permute_equivalent": true}
+    },
+    "DIAMINE": {
+      "pdb": "diamine.pdb",
+      "smiles": "Nc1ccc(Oc2ccc(N)cc2)cc1",
+      "sites": [
+        {"name": "C1", "group": "C", "atoms": [1, 2, 6, 15, 16, 19, 26, 27]},
+        {"name": "D", "group": "D", "atoms": [3, 4, 5, 7, 8, 9, 13, 17, 18, 20, 23]},
+        {"name": "C2", "group": "C", "atoms": [10, 11, 12, 14, 21, 22, 24, 25]}
+      ],
+      "fit": {"mode": "frame", "permute_equivalent": true}
+    }
+  },
+  "placement": [
+    {"template": "DIANHYDRIDE", "count": 40},
+    {"template": "DIAMINE", "count": 40}
+  ],
+  "reactions": [
+    {
+      "id": "imidization",
+      "reactants": ["DIAMINE", "DIANHYDRIDE"],
+      "bond_types": ["A-C"],
+      "smarts": "[NH2:1].[C:2](=[O:3])[O:4][C:5](=[O:6])>>[N:1]([C:2]=[O:3])[C:5]=[O:6].[O:4]",
+      "keep_products": [0]
+    }
+  ],
+  "hydrogens": "rebuild",
+  "force_field": {
+    "name": "opls",
+    "atom_defaults": {
+      "C": "@atom:84",
+      "H": "@atom:85",
+      "N": "@atom:732",
+      "O": "@atom:122"
+    },
+    "neutralize": true
+  },
+  "output": {
+    "directory": "../outputs/polyimide_direct_ff",
+    "prefix": "polyimide",
+    "split": false
+  }
+}

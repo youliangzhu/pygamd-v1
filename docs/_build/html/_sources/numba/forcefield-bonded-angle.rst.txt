@@ -51,7 +51,7 @@ Description:
         :nowrap:
 
         \begin{eqnarray*}
-        V_{\mathrm{angle}}(\theta)=k\left[ 1-\cos \left( \theta - {\theta}_{0} \right) \right]		
+        V_{\mathrm{angle}}(\theta)=\frac{1}{2}k\left[\cos \left( \theta \right)-\cos \left( \theta_{0} \right)\right]^{2}	
         \end{eqnarray*}
 
     Coefficients:

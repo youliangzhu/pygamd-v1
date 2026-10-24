@@ -72,29 +72,25 @@ class read_xml:
             if self.xml_read:
                 if element.tag == 'configuration':
                     self.reset_params()
-                    self.num_particles = element.attrib.get('natoms')
-                    if self.num_particles:
+
+                    natoms = element.attrib.get('natoms')
+                    if natoms is not None:
                         self.num_particles_read = True
-                        self.num_particles = element.attrib.get('natoms')
+                        self.num_particles = int(natoms)
                         print("info : number of particles", self.num_particles)
-                    else:
-                        self.num_particles = len(self.position)
-                    continue
 
-                if element.tag == 'configuration':
-                    self.reset_params()
-                    self.timestep_read = True
-                    if self.num_particles_read:
-                        self.timestep = element.attrib.get('time_step')
+                    time_step = element.attrib.get('time_step')
+                    if time_step is not None:
+                        self.timestep_read = True
+                        self.timestep = int(time_step)
                         print("info : timestep", self.timestep)
-                    continue
 
-                if element.tag == 'configuration':
-                    self.reset_params()
-                    self.dimension_read = True
-                    if self.dimension_read:
-                        self.dimension = element.attrib.get('dimensions')
+                    dimensions = element.attrib.get('dimensions')
+                    if dimensions is not None:
+                        self.dimension_read = True
+                        self.dimension = int(dimensions)
                         print("info : dimension", self.dimension)
+
                     continue
 
                 if element.tag == 'box':
@@ -123,7 +119,7 @@ class read_xml:
                         step = 3
                         for i in range(start, end, step):
                             x = i
-                            self.position.append(position_content2[x:x + step])
+                            self.position.append([float(j) for j in position_content2[x:x + step]])
                     continue
 
                 if element.tag == 'type':
@@ -153,7 +149,7 @@ class read_xml:
                         step = 3
                         for i in range(start, end, step):
                             x = i
-                            self.image.append(image_content2[x:x + step])
+                            self.image.append([int(j) for j in image_content2[x:x + step]])
                     continue
 
                 if element.tag == 'mass':
@@ -183,8 +179,7 @@ class read_xml:
                         step = 3
                         for i in range(start, end, step):
                             x = i
-                            output_list = [int(j) if j.isdigit() else j for j in velocity_content2[x:x + step]]
-                            self.velocity.append(output_list)
+                            self.velocity.append([float(j) for j in velocity_content2[x:x + step]])
                     continue
 
                 if element.tag == "charge":
@@ -196,7 +191,7 @@ class read_xml:
                         charge_content1 = "".join(element.text)
                         charge_content2 = charge_content1.strip().split()
                         for i in charge_content2:
-                            self.charge.append(i)
+                            self.charge.append(float(i))
                     continue
 
                 if element.tag == "body":#-----------------------------------------
@@ -204,6 +199,9 @@ class read_xml:
                     self.body_read = True
                     if self.invariant_data:
                         self.read_indicator['body'] = True
+                    if self.body_read and element.text is not None:
+                        for tok in "".join(element.text).strip().split():
+                            self.body.append(int(float(tok)))
                     continue
 
                 if element.tag == "diameter":#-----------------------------------------
@@ -211,6 +209,9 @@ class read_xml:
                     self.diameter_read = True
                     if self.invariant_data:
                         self.read_indicator['diameter'] = True
+                    if self.diameter_read and element.text is not None:
+                        for tok in "".join(element.text).strip().split():
+                            self.diameter.append(float(tok))
                     continue
 
                 if element.tag == "rotangle":#-----------------------------------------
@@ -239,6 +240,9 @@ class read_xml:
                     self.molecule_read = True
                     if self.invariant_data:
                         self.read_indicator['molecule'] = True
+                    if self.molecule_read and element.text is not None:
+                        for tok in "".join(element.text).strip().split():
+                            self.molecule.append(int(float(tok)))
                     continue
 
                 if element.tag == "init":#-----------------------------------------
@@ -246,6 +250,9 @@ class read_xml:
                     self.init_read = True
                     if self.invariant_data:
                         self.read_indicator['init'] = True
+                    if self.init_read and element.text is not None:
+                        for tok in "".join(element.text).strip().split():
+                            self.init.append(int(float(tok)))
                     continue
 
                 if element.tag == "cris":#-----------------------------------------
@@ -253,6 +260,9 @@ class read_xml:
                     self.cris_read = True
                     if self.invariant_data:
                         self.read_indicator['cris'] = True
+                    if self.cris_read and element.text is not None:
+                        for tok in "".join(element.text).strip().split():
+                            self.cris.append(int(float(tok)))
                     continue
 
                 if element.tag == "orientation":#-----------------------------------------
@@ -260,6 +270,10 @@ class read_xml:
                     self.orientation_read = True
                     if self.invariant_data:
                         self.read_indicator['orientation'] = True
+                    if self.orientation_read and element.text is not None:
+                        ori = "".join(element.text).strip().split()
+                        for i in range(0, len(ori), 3):
+                            self.orientation.append([float(j) for j in ori[i:i + 3]])
                     continue
 
                 if element.tag == "quaternion":#-----------------------------------------
@@ -267,6 +281,10 @@ class read_xml:
                     self.quaternion_read = True
                     if self.invariant_data:
                         self.read_indicator['quaternion'] = True
+                    if self.quaternion_read and element.text is not None:
+                        qua = "".join(element.text).strip().split()
+                        for i in range(0, len(qua), 4):
+                            self.quaternion.append([float(j) for j in qua[i:i + 4]])
                     continue
 
                 if element.tag == "rotation":#-----------------------------------------
@@ -274,6 +292,7 @@ class read_xml:
                     self.rotation_read = True
                     if self.invariant_data:
                         self.read_indicator['rotation'] = True
+                    # NOTE: rotation is not consumed by snapshot/CuInfo (deferred).
                     continue
 
                 if element.tag == "inert":#-----------------------------------------
@@ -281,6 +300,10 @@ class read_xml:
                     self.inert_read = True
                     if self.invariant_data:
                         self.read_indicator['inert'] = True
+                    if self.inert_read and element.text is not None:
+                        ine = "".join(element.text).strip().split()
+                        for i in range(0, len(ine), 3):
+                            self.inert.append([float(j) for j in ine[i:i + 3]])
                     continue
 
                 if element.tag == "asphere":#-----------------------------------------

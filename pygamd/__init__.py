@@ -36,7 +36,8 @@ import os
 import zipfile
 import platform
 
-PYGAMD_VERSION="1.4.8"
+PYGAMD_VERSION = "1.4.9"
+__version__ = PYGAMD_VERSION
 
 
 curr_file = os.path.abspath(__file__)
@@ -76,7 +77,7 @@ if find_poet:
 	# print (type(json1))
 	# print (json1)
 	ser_dic = json_data[x]
-	print("Read a Chinese Tang poem and wait a few seconds for the program initialization")
+	print("A Chinese Tang poem, good mood!")
 	print(ser_dic['title'] + '  作者:  ' + ser_dic['author'])
 	for i in ser_dic['paragraphs']:
 		print(i)
@@ -85,68 +86,44 @@ else:
 	print('Warning, not find poetry path!')
 
 
-from pygamd import application
-from pygamd import chare
-from pygamd import force
-from pygamd import integration
-from pygamd import plist
-from pygamd import snapshot
-from pygamd import tinker
-from pygamd import dump
-
-from numba import cuda
-from optparse import OptionParser
+__all__ = [
+    "application", "force", "potentials", "integration",
+    "plist", "snapshot", "dump", "extern", "tinker",
+]
 
 
-print("PYGAMD v", PYGAMD_VERSION )
-print("PYGAMD - Python GPU-Accelerated Molecular Dynamics Software")
-print("COPYRIGHT" )
-print(" PYGAMD Copyright (c) (2021) You-Liang Zhu, Zhong-Yuan Lu" )
-print("LICENSE" )
-print("	This program is a free software: you can redistribute it and/or " )
-print("	modify it under the terms of the GNU General Public License." ) 
-print("	This program is distributed in the hope that it will be useful, " )
-print("	but WITHOUT ANY WARRANTY; without even the implied warranty of" )
-print("	MERCHANT ABILITY or FITNESS FOR A PARTICULAR PURPOSE." ) 
-print("	See the General Public License v3 for more details." )
-print("	You should have received a copy of the GNU General Public License" )
-print("	along with this program. If not, see <http://www.gnu.org/licenses/>." )
-print("DISCLAIMER" )
-print("	The authors of PYGAMD do not guarantee that this program and its " )
-print("	derivatives are free from error. In no event shall the copyright " )
-print("	holder or contributors be liable for any indirect, incidental," ) 
-print("	special, exemplary, or consequential loss or damage that results " )
-print("	from its use. We also have no responsibility for providing the " )
-print("	service of functional extension of this program to general users." )
-print("USER OBLIGATION " )
-print("	If any results obtained with PYGAMD are published in the scientific " )
-print("	literature, the users have an obligation to distribute this program " )
-print("	and acknowledge our efforts by citing the paper \"Y.-L. Zhu et al.," )
-print("	MGE Advances. 2025, 3, e70019.\" in their article." )
-print("CORRESPONDENCE" )
-print("	Dr. You-Liang Zhu," ) 
-print("	Email: ylzhu@pygamd.com" )
+def _print_import_banner():
+    """Print the formal import banner.
 
-global _options
-parser = OptionParser()
-parser.add_option('--gpu', dest='gpu',help='GPU on which to execute')
-(_options, args) = parser.parse_args()
+    The v1.0-refactor branch intentionally keeps import-time output concise and
+    deterministic: no poetry lookup, no environment-gated silent mode, and no
+    development-only banner toggle.  A single version line is enough for runtime
+    logs while preserving the historical PYGAMD identity.
+    """
+    print(f"PYGAMD v{PYGAMD_VERSION} | CuPy-native GPU molecular dynamics engine")
 
 
-device_id = 0
-if _options.gpu is not None:
-	device_id = int(_options.gpu)
+_print_import_banner()
 
-cuda.select_device(device_id)
-	
-d=cuda.cudadrv.driver.Device(devnum=device_id)
-cc=str(d.compute_capability[0])+'.'+str(d.compute_capability[1])
-id='['+str(d.id)+']'
-print('GPU id', id, ' ', d.name, 'compute capability:', cc)	
 
-if __name__ == '__main__':
-    print ('main program run')
-else:
-    print ('pygamd engine initialization')
-	
-	
+def __getattr__(name):
+    if name in ("potentials", "potential"):
+        import importlib
+        import sys
+        module = importlib.import_module(".forces.potentials", __name__)
+        globals()["potentials"] = module
+        globals()["potential"] = module
+        sys.modules[__name__ + ".potentials"] = module
+        sys.modules[__name__ + ".potential"] = module
+        return module
+    # PEP 562: import the public submodule on first access, then cache it.
+    if name in __all__:
+        import importlib
+        module = importlib.import_module("." + name, __name__)
+        globals()[name] = module
+        return module
+    raise AttributeError("module %r has no attribute %r" % (__name__, name))
+
+
+def __dir__():
+    return sorted(set(list(globals().keys()) + __all__))

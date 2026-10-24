@@ -31,14 +31,20 @@ CORRESPONDENCE
 '''
 
 
-import sys;
-import ctypes;
-import os;
+# [CuPy-native MVP] host-only XML/MST parsing (pure Python/NumPy, no CUDA).
+# LAZY: imported on first attribute access (snapshots.read_mst / snapshots.read_xml).
+# The old device topology builders (box / bonded_data / multipole_data, which
+# carried Numba kernels) moved to archive_legacy/pygamd/snapshots/.
+__all__ = ["read_mst", "read_xml"]
 
-from pygamd.snapshots import read_mst
-from pygamd.snapshots import box
-from pygamd.snapshots import bonded_data
-from pygamd.snapshots import read_xml
+
+def __getattr__(name):
+    if name in __all__:
+        import importlib
+        module = importlib.import_module("." + name, __name__)
+        globals()[name] = module
+        return module
+    raise AttributeError("module %r has no attribute %r" % (__name__, name))
 
 # if __name__ == '__main__':
     # print ('main program run')

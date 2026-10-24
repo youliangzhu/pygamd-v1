@@ -1,0 +1,42 @@
+{
+  "schema": "multiscale.cg2aa.v1",
+  "name": "Minimal methane-to-ethane backmapping",
+  "input": {"cg_xml": "minimal_reaction_cg.xml"},
+  "units": {
+    "cg_xml": "nm",
+    "template_pdb": "angstrom",
+    "output_xml": "nm"
+  },
+  "templates": {
+    "METHANE": {
+      "cg_type": "M",
+      "pdb": "carbon_template.pdb",
+      "smiles": "C",
+      "add_hydrogens": false,
+      "sites": [
+        {"name": "CENTER", "atoms": [1]}
+      ]
+    }
+  },
+  "placement": [
+    {"template": "METHANE", "count": 2}
+  ],
+  "reactions": [
+    {
+      "id": "couple_carbons",
+      "reactants": ["M", "M"],
+      "bond_types": ["M-M"],
+      "smarts": "[C:1].[C:2]>>[C:1][C:2]"
+    }
+  ],
+  "hydrogens": "rebuild",
+  "force_field": {
+    "name": "opls",
+    "neutralize": true
+  },
+  "output": {
+    "directory": "../outputs/minimal_reaction",
+    "prefix": "ethane",
+    "split": false
+  }
+}

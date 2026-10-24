@@ -1,0 +1,58 @@
+REMARK   Materials Studio PDB file
+REMARK   Created:  Mon May 23 10:47:38 中国标准时间 2022
+ATOM      1  C   MOL     1      -3.973  -1.892   0.445  1.00  0.00           C    
+ATOM      2  C   MOL     1      -2.968  -3.059   0.392  1.00  0.00           C    
+ATOM      3  C   MOL     1      -1.460  -2.772   0.261  1.00  0.00           C    
+ATOM      4  C   MOL     1      -0.956  -1.318   0.185  1.00  0.00           C    
+ATOM      5  C   MOL     1      -1.957  -0.151   0.278  1.00  0.00           C    
+ATOM      6  C   MOL     1      -3.466  -0.438   0.408  1.00  0.00           C    
+ATOM      7  O   MOL     1       0.505  -1.036  -0.076  1.00  0.00           O    
+ATOM      8  C   MOL     1       1.358  -1.060   1.169  1.00  0.00           C    
+ATOM      9  C   MOL     1       2.265  -2.271   1.455  1.00  0.00           C    
+ATOM     10  C   MOL     1       3.235  -2.243   2.652  1.00  0.00           C    
+ATOM     11  C   MOL     1       3.297  -1.004   3.566  1.00  0.00           C    
+ATOM     12  C   MOL     1       2.360   0.192   3.302  1.00  0.00           C    
+ATOM     13  C   MOL     1       1.392   0.164   2.104  1.00  0.00           C    
+ATOM     14  N   MOL     1       4.278  -0.959   4.715  1.00  0.00           N    
+ATOM     15  N   MOL     1      -5.455  -2.174   0.531  1.00  0.00           N    
+ATOM     16  H   MOL     1      -3.341  -4.135   0.441  1.00  0.00           H    
+ATOM     17  H   MOL     1      -0.718  -3.636   0.204  1.00  0.00           H    
+ATOM     18  H   MOL     1      -1.584   0.925   0.230  1.00  0.00           H    
+ATOM     19  H   MOL     1      -4.207   0.426   0.466  1.00  0.00           H    
+ATOM     20  H   MOL     1       2.231  -3.181   0.770  1.00  0.00           H    
+ATOM     21  H   MOL     1       3.912  -3.137   2.857  1.00  0.00           H    
+ATOM     22  H   MOL     1       2.391   1.102   3.988  1.00  0.00           H    
+ATOM     23  H   MOL     1       0.712   1.056   1.899  1.00  0.00           H    
+ATOM     24  H   MOL     1       4.954  -1.819   4.902  1.00  0.00           H    
+ATOM     25  H   MOL     1       4.324  -0.065   5.371  1.00  0.00           H    
+ATOM     26  H   MOL     1      -5.820  -3.222   0.556  1.00  0.00           H    
+ATOM     27  H   MOL     1      -6.179  -1.333   0.566  1.00  0.00           H    
+TER      28 
+CONECT    1    2    6   15
+CONECT    2    3    1   16
+CONECT    3    2    4   17
+CONECT    4    3    5    7
+CONECT    5    4    6   18
+CONECT    6    5    1   19
+CONECT    7    4    8
+CONECT    8    7    9   13
+CONECT    9   10    8   20
+CONECT   10    9   11   21
+CONECT   11   10   12   14
+CONECT   12   11   13   22
+CONECT   13   12    8   23
+CONECT   14   11   24   25
+CONECT   15    1   26   27
+CONECT   16    2
+CONECT   17    3
+CONECT   18    5
+CONECT   19    6
+CONECT   20    9
+CONECT   21   10
+CONECT   22   12
+CONECT   23   13
+CONECT   24   14
+CONECT   25   14
+CONECT   26   15
+CONECT   27   15
+END
