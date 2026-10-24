@@ -24,7 +24,9 @@ USER OBLIGATION
 	literature, the users have an obligation to distribute this program 
 	and acknowledge our efforts by citing the paper "Y.-L. Zhu, H. Liu, 
 	Z.-W. Li, H.-J. Qian, G. Milano, and Z.-Y. Lu, J. Comput. Chem. 2013,
-	34, 2197-2211" in their article.
+	34, 2197-2211", "J. Xu, S. Guo, M. Zhen, Z. Yu, Y. Zhu, G. Milano,
+	and Z. Lu, PyGAMD: Python graphics processing unit accelerated molecular 
+	dynamics software, MGE Adv. 2025, 3, e70019" in their article.
 CORRESPONDENCE
 	Dr. You-Liang Zhu
 	Email: ylzhu@pygamd.com

@@ -37,8 +37,8 @@ Hardware: NVIDIA GPU, AMD GPU or DCU.
 
 Dependencies
 
-1. Python3.11 including numba, numpy, and pybind11 packages
-2. NVIDIA CUDA Toolkit 12
+1. Python3.12 including numba, numpy, and pybind11 packages
+2. NVIDIA CUDA Toolkit 13
 
 
 Citation
