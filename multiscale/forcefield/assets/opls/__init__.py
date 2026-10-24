@@ -1,1 +1,0 @@
-"""Bundled OPLS parameter data."""
