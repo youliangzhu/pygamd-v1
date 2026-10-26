@@ -4,7 +4,7 @@ PYGAMD: Python GPU-Accelerated Molecular Dynamics Software
 Version 1
 ---------
 
-Copyright: Lu group
+Copyright: Lu and Zhu group
 -------------------
 
 Molecular dynamics is an essential tool in the scientific research on
@@ -48,7 +48,7 @@ Citation
 
    To cite PYGAMD in publications use:
     
-   Thanks to Zhongyuan Lu group for providing PYGAMD software in our research work.
+   Thanks to Zhongyuan Lu and Youliang Zhu group for providing PYGAMD software in our research work.
 
 Documentation
 -------------
